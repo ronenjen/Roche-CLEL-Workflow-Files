@@ -1,0 +1,191 @@
+{
+  "parameters": [],
+  "procedures": [
+    {
+      "name": "Start",
+      "sequence": {
+        "children": [
+          {
+            "$type": "Biosero.Workflow.RunScript, Biosero.Workflow.Core",
+            "helpText": "Runs the specified script",
+            "backgroundColorHex": "#FFF58CFF",
+            "iconUrl": "PackIcon.ScriptTextOutline [#FFFFFFFF]",
+            "name": "Run Script",
+            "isAsync": false,
+            "allowAsync": false,
+            "isDisabled": false,
+            "description": "Run Script: CreateEventForTips",
+            "isPausePointSet": false,
+            "scriptName": "CreateEventForTips",
+            "guid": "52cf7d58-b238-4e11-b314-4818ef23d86b"
+          },
+          {
+            "$type": "Biosero.Workflow.Parallel, Biosero.Workflow.Core",
+            "helpText": "Executes two sequences in parallel",
+            "backgroundColorHex": "#FF72EAFF",
+            "iconUrl": "PackIcon.CallSplit [#FFFFFFFF:180]",
+            "name": "Parallel",
+            "isAsync": false,
+            "allowAsync": false,
+            "isDisabled": false,
+            "isPausePointSet": false,
+            "description": "Parallel",
+            "left": {
+              "children": [
+                {
+                  "$type": "Biosero.Workflow.Commands.TransportCommand, Biosero.Workflow.Core",
+                  "helpText": "Transports the specified barcode(s) from one station to another.",
+                  "backgroundColorHex": "#FF666666",
+                  "iconUrl": "PackIcon.TransitConnectionVariant [#FFFFFFFF]",
+                  "name": "Transport",
+                  "inputParameters": [
+                    {
+                      "name": "Timeout (min)",
+                      "value": "10",
+                      "valueType": "Double",
+                      "defaultValue": "10"
+                    },
+                    {
+                      "name": "From",
+                      "value": "IO",
+                      "valueType": "String"
+                    },
+                    {
+                      "name": "To",
+                      "value": "CP",
+                      "valueType": "String"
+                    },
+                    {
+                      "name": "Barcodes",
+                      "value": "50_1,50_2",
+                      "valueType": "String"
+                    },
+                    {
+                      "name": "Metadata",
+                      "value": "Source Orchestrator Workflow=Consumables Carousel;Zone=50uL Tips;Destination Orchestrator Workflow=Consumables Carousel;Placeholder=true;Labware Type=96 50ul Tips Tecan",
+                      "valueType": "String"
+                    }
+                  ],
+                  "outputParameterMapping": [
+                    {
+                      "name": "Barcodes",
+                      "parameterType": "String"
+                    },
+                    {
+                      "name": "Request ID",
+                      "parameterType": "String"
+                    }
+                  ],
+                  "description": "Transport",
+                  "guid": "c844bab9-87e4-4737-9890-eef9ef7a2dd3",
+                  "isAsync": false,
+                  "allowAsync": false,
+                  "isDisabled": false,
+                  "isPausePointSet": false
+                }
+              ],
+              "name": "Sequence",
+              "description": "Sequence",
+              "helpText": "A sequence of workflow elements",
+              "guid": "397ccb30-49f1-4024-a264-d012cef5976d",
+              "isAsync": false,
+              "allowAsync": false,
+              "backgroundColorHex": "#00000000",
+              "isDisabled": false,
+              "isPausePointSet": false
+            },
+            "right": {
+              "children": [
+                {
+                  "$type": "Biosero.Workflow.Commands.TransportCommand, Biosero.Workflow.Core",
+                  "helpText": "Transports the specified barcode(s) from one station to another.",
+                  "backgroundColorHex": "#FF666666",
+                  "iconUrl": "PackIcon.TransitConnectionVariant [#FFFFFFFF]",
+                  "name": "Transport",
+                  "inputParameters": [
+                    {
+                      "name": "Timeout (min)",
+                      "value": "10",
+                      "valueType": "Double",
+                      "defaultValue": "10"
+                    },
+                    {
+                      "name": "From",
+                      "value": "IO",
+                      "valueType": "String"
+                    },
+                    {
+                      "name": "To",
+                      "value": "CP",
+                      "valueType": "String"
+                    },
+                    {
+                      "name": "Barcodes",
+                      "value": "200_1,200_2",
+                      "valueType": "String"
+                    },
+                    {
+                      "name": "Metadata",
+                      "value": "Source Orchestrator Workflow=Consumables Carousel;Zone=200uL Tips;Destination Orchestrator Workflow=Consumables Carousel;Placeholder=true;Labware Type=96 200ul Tips Tecan",
+                      "valueType": "String"
+                    }
+                  ],
+                  "outputParameterMapping": [
+                    {
+                      "name": "Barcodes",
+                      "parameterType": "String"
+                    },
+                    {
+                      "name": "Request ID",
+                      "parameterType": "String"
+                    }
+                  ],
+                  "description": "Transport",
+                  "guid": "a43b947f-0f18-458c-b220-c225a7cdac2d",
+                  "isAsync": false,
+                  "allowAsync": false,
+                  "isDisabled": false,
+                  "isPausePointSet": false
+                }
+              ],
+              "name": "Sequence",
+              "description": "Sequence",
+              "helpText": "A sequence of workflow elements",
+              "guid": "efb3239e-bb62-46bc-af18-d838f7a70b90",
+              "isAsync": false,
+              "allowAsync": false,
+              "backgroundColorHex": "#00000000",
+              "isDisabled": false,
+              "isPausePointSet": false
+            },
+            "guid": "4861f96d-b25b-4e3d-96f4-22a1735a41c3"
+          }
+        ],
+        "name": "Sequence",
+        "description": "Sequence",
+        "helpText": "A sequence of workflow elements",
+        "guid": "0d9608d5-60a8-4db9-b21e-b428485980aa",
+        "isAsync": false,
+        "allowAsync": false,
+        "backgroundColorHex": "#00000000",
+        "isDisabled": false,
+        "isPausePointSet": false
+      }
+    }
+  ],
+  "scripts": [
+    {
+      "name": "CreateEventForTips",
+      "code": "using Biosero.DataServices.Client;\r\nusing Biosero.Orchestrator.WorkflowService;\r\nusing Newtonsoft.Json;\r\nusing System;\r\nusing System.Threading;\r\nusing System.Threading.Tasks;\r\n\r\n/*\r\nScript written by Ronen Peleg (ronenpeleg@biosero.com)\r\n\r\nDescription:\r\nRegisters a new TipsSentEvent\r\n*/\r\n\r\nnamespace Biosero.Scripting\r\n{\r\n    public class CreateEventForTips\r\n    {\r\n        public async Task RunAsync(DataServicesClient client, WorkflowContext context, CancellationToken cancellationToken)\r\n        {\r\n            //New TipsSentEvent called Transfer with current timestamp and \"Roche-Orchestrator\" set as actor\r\n            TipsSentEvent transfer = new TipsSentEvent()\r\n            {\r\n                TimeStamp = DateTime.Now,\r\n                OperatorIdentifier = \"Roche-Orchestrator\",\r\n            };\r\n\r\n            var now = DateTimeOffset.Now;\r\n\r\n            //Add the new tips event using the TRANSFER data defined above\r\n            await client.AddEventAsync(new AddEventCommand\r\n            {\r\n                Topic = \"Biosero.Scripting.TipsSentEvent\",\r\n                Data = JsonConvert.SerializeObject(transfer),\r\n                Start = now,\r\n                End = now,\r\n                ActorId = \"Roche-Orchestrator\",\r\n                OperatorId = \"Roche-Orchestrator\",\r\n                Subjects = new string[] { \"\" }\r\n            });\r\n\r\n            Serilog.Log.Information(\"TecanTipRacksSent= Yes\");\r\n        }\r\n    }\r\n\r\n    // Class defining the structure of the TipsSentEvent\r\n    public class TipsSentEvent\r\n    {\r\n        public DateTimeOffset TimeStamp { get; set; }\r\n\r\n        public string OperatorIdentifier { get; set; }\r\n    }\r\n}",
+      "language": "C#"
+    }
+  ],
+  "screens": [],
+  "globalScriptReferences": [
+    "Biosero.Workflow.Core.dll",
+    "Biosero.DataModels.dll"
+  ],
+  "deviceRequirements": [],
+  "lastModified": "0001-01-01T00:00:00+00:00",
+  "parameterReferenceIndicator": "%"
+}

@@ -1,0 +1,76 @@
+{
+  "parameters": [
+    {
+      "name": "Input.Plate Identifier",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.JobId",
+      "value": "0",
+      "valueType": "Integer",
+      "defaultValue": "0",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.NewPlateStatus",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    }
+  ],
+  "procedures": [
+    {
+      "name": "Start",
+      "sequence": {
+        "children": [],
+        "name": "Sequence",
+        "description": "Sequence",
+        "helpText": "A sequence of workflow elements",
+        "guid": "97f8e3c8-13f6-446b-89cb-1399b7f03a74",
+        "isAsync": false,
+        "allowAsync": false,
+        "backgroundColorHex": "#00000000",
+        "isDisabled": false,
+        "isPausePointSet": false
+      }
+    }
+  ],
+  "scripts": [
+    {
+      "name": "EBPlatesReStatus",
+      "code": "\r\n\r\n\r\n/*\r\nScript written by Ronen Peleg (ronenpeleg@biosero.com)\r\n\r\nDescription:\r\nInitial script to determine the type of order jobs required to be processed and their contents.\r\nThe script also populates various required variables in dataservices in down the line processes\r\n*/\r\n\r\nusing Biosero.DataServices.Client;\r\nusing Biosero.Orchestrator.WorkflowService;\r\nusing Newtonsoft.Json;\r\nusing System;\r\nusing System.Threading;\r\nusing System.Threading.Tasks;\r\nusing System.Collections.Generic;\r\nusing System.Text;\r\nusing System.Linq;\r\nusing Roche.LAMA1;\r\nusing Roche.LAMA1.Models;\r\nusing Roche.LAMA1.MosaicTypes;\r\nusing Biosero.DataServices.RestClient;\r\nusing Biosero.DataModels.Events;\r\nusing Biosero.DataModels.Ordering;\r\nusing Biosero.DataModels.Clients;\r\nusing Biosero.DataModels.Resources;\r\nusing System.Security.Cryptography;\r\nusing System.Collections;\r\nusing System.Text.RegularExpressions;\r\n\r\n\r\nnamespace Biosero.Scripting\r\n{\r\n\r\n    public class EBPlatesReStatus\r\n    {\r\n        public async Task RunAsync(DataServicesClient client, WorkflowContext context, CancellationToken cancellationToken)\r\n        {\r\n            //retrieve initial global variables values\r\n            string RequestedOrder = context.GetGlobalVariableValue<string>(\"Input.OrderId\");\r\n            string PlateIdentifier = context.GetGlobalVariableValue<string>(\"Input.Plate Identifier\");\r\n            string NewEBSourcesStatus = context.GetGlobalVariableValue<string>(\"Input.NewPlateStatus\");\r\n            int SourceJobID = context.GetGlobalVariableValue<int>(\"Input.JobId\"); \r\n\r\n\r\n            string DestLabwareType = \"\";\r\n\r\n\r\n            string API_BASE_URL = \"http://192.168.14.10:8105/api/v2.0/\";\r\n            IQueryClient _queryClient = new QueryClient(API_BASE_URL);\r\n            IAccessioningClient _accessioningClient = new AccessioningClient(API_BASE_URL);\r\n            IEventClient _eventClient = new EventClient(API_BASE_URL);\r\n\r\n            IdentityHelper _identityHelper;\r\n\r\n            List<string> AllDestinationsForOrder = new List<string>();\r\n\r\n\r\n            //Add all required barcodes to a dedicated comma separated list\r\n            List<string> CPToEBBarcodes = PlateIdentifier.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).ToList();\r\n\r\n            string EBSources = string.Join(\",\", CPToEBBarcodes);\r\n            string initialReadyDestinations = \"\";// string.Join(\",\", ReadyDestinationsForEB);\r\n\r\n            //Build out and register the root identities (i.e Mosaic Job) if they do not exist\r\n            _identityHelper = new IdentityHelper(_queryClient, _accessioningClient, _eventClient);\r\n            _identityHelper.BuildBaseIdentities();\r\n\r\n            //Get all the sources associated with this order\r\n            var sources = _identityHelper.GetSources(RequestedOrder).ToList();\r\n            //Get all the Sources associated with this order\r\n            var destinations = _identityHelper.GetDestinations(RequestedOrder).ToList();\r\n            //Get all the jobs\r\n            var jobs = _identityHelper.GetJobs(RequestedOrder).ToList();\r\n\r\n\r\n                var cc = sources\r\n                .Where(x => x.Identifier == PlateIdentifier)\r\n                .FirstOrDefault();\r\n\r\n\r\n                cc.Properties.SetValue(\"Status\", NewEBSourcesStatus);\r\n                _identityHelper.Register(cc, SourceJobID, RequestedOrder);\r\n\r\n\r\n            \r\n\r\n        }\r\n\r\n    }\r\n}",
+      "language": "C#"
+    }
+  ],
+  "screens": [],
+  "globalScriptReferences": [
+    "Biosero.Workflow.Core.dll",
+    "Biosero.DataModels.dll"
+  ],
+  "deviceRequirements": [],
+  "iconUrl": "PackIcon.BunkBed [#FFFFFF:0:0]",
+  "color": "#0000FF",
+  "name": "Change Plate Status",
+  "category": "Workcell Templates",
+  "lastModified": "0001-01-01T00:00:00+00:00",
+  "parameterReferenceIndicator": "%"
+}

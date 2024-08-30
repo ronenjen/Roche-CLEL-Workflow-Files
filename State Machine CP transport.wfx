@@ -1,0 +1,567 @@
+{
+  "procedures": [
+    {
+      "name": "Start",
+      "sequence": {
+        "children": [
+          {
+            "$type": "Biosero.Workflow.RunScript, Biosero.Workflow.Core",
+            "scriptName": "Retieve_Assay_Plate_Barcodes",
+            "name": "Run Script",
+            "description": "Run Script: Retieve_Assay_Plate_Barcodes",
+            "helpText": "Runs the specified script",
+            "guid": "b7ae5d3c-d579-4168-8125-9e7e1e02f847",
+            "isAsync": false,
+            "allowAsync": false,
+            "iconUrl": "PackIcon.ScriptTextOutline [#FFFFFFFF]",
+            "backgroundColorHex": "#FFF58CFF",
+            "isDisabled": false,
+            "isPausePointSet": false
+          },
+          {
+            "$type": "Biosero.Workflow.RunScript, Biosero.Workflow.Core",
+            "scriptName": "populate_placeholder_destination_barcodes",
+            "name": "Run Script",
+            "description": "Run Script: populate_placeholder_destination_barcodes",
+            "helpText": "Runs the specified script",
+            "guid": "a0fb3932-d21b-40d4-a12a-16c847fff079",
+            "isAsync": false,
+            "allowAsync": false,
+            "iconUrl": "PackIcon.ScriptTextOutline [#FFFFFFFF]",
+            "backgroundColorHex": "#FFF58CFF",
+            "isDisabled": true,
+            "isPausePointSet": false
+          },
+          {
+            "$type": "Biosero.Workflow.Commands.ExecuteOrderCommand, Biosero.Workflow.Core",
+            "timeout": "00:30:00",
+            "inputParameters": [
+              {
+                "name": "AssayLabwareTypes",
+                "value": "%Input.SM CP Assay Labware Type%",
+                "valueType": "String",
+                "defaultValue": "",
+                "valueOptions": [],
+                "validationRules": [],
+                "tags": [
+                  "User",
+                  "#DarkMagenta"
+                ]
+              }
+            ],
+            "outputParameterMapping": [
+              {
+                "name": "AssayLabwareTypeZone",
+                "mapToGlobalVariableName": "SM AssayLabwareTypeZone",
+                "parameterType": "String"
+              },
+              {
+                "name": "AssayLabwareTypeStorage",
+                "mapToGlobalVariableName": "SM AssayLabwareTypeStorage",
+                "parameterType": "String"
+              },
+              {
+                "name": "Module ID",
+                "parameterType": "String"
+              }
+            ],
+            "name": "Script.OrchFindStorageForLabwareType",
+            "description": "Order: Script.OrchFindStorageForLabwareType",
+            "guid": "13410178-9b88-4fa5-8844-94c2199807b2",
+            "isAsync": false,
+            "allowAsync": true,
+            "iconUrl": "PackIcon.Parachute [#FFFFFF:0:0]",
+            "backgroundColorHex": "#FFFF00CA",
+            "isDisabled": false,
+            "isPausePointSet": false
+          },
+          {
+            "$type": "Biosero.Workflow.Elements.WriteToLog, Biosero.Workflow.Core",
+            "helpText": "Writes to the log",
+            "backgroundColorHex": "#FFC69AE8",
+            "iconUrl": "PackIcon.Feather [#FFFFFFFF]",
+            "name": "Log",
+            "description": "Log: Sending Transport Request From IO to CP for plates from Job ID %Input.SM Job Number% in Order ID %Input.SM Job Number% \r\n\r\nJob Priority: %Input.Priority%",
+            "text": "Sending Transport Request From IO to CP for plates from Job ID %Input.SM Job Number% in Order ID %Input.SM Job Number% \r\n\r\nJob Priority: %Input.Priority%",
+            "appendNewLine": false,
+            "guid": "d18325ee-a498-41a5-9bfa-2842c0820f9b",
+            "isAsync": false,
+            "allowAsync": false,
+            "isDisabled": false,
+            "isPausePointSet": false
+          },
+          {
+            "$type": "Biosero.Workflow.Branch, Biosero.Workflow.Core",
+            "yes": {
+              "children": [
+                {
+                  "$type": "Biosero.Workflow.Elements.Error, Biosero.Workflow.Core",
+                  "helpText": "Generates and error in the workflow with the specified message",
+                  "backgroundColorHex": "#FFFF0000",
+                  "iconUrl": "PackIcon.AlertOutline [#FFFFFFFF]",
+                  "name": "Error",
+                  "message": "Selected labware type for the operation was not found - please revise",
+                  "description": "Error: Selected labware type for the operation was not found - please revise",
+                  "guid": "e2abbc0d-a81d-4980-b859-0aa2b6015a1d",
+                  "isAsync": false,
+                  "allowAsync": false,
+                  "isDisabled": false,
+                  "isPausePointSet": false
+                }
+              ],
+              "name": "Sequence",
+              "description": "Sequence",
+              "helpText": "A sequence of workflow elements",
+              "guid": "a03ccbed-d900-4e67-9f81-54ecd71f34a6",
+              "isAsync": false,
+              "allowAsync": false,
+              "backgroundColorHex": "#00000000",
+              "isDisabled": false,
+              "isPausePointSet": false
+            },
+            "no": {
+              "children": [],
+              "name": "Sequence",
+              "description": "Sequence",
+              "helpText": "A sequence of workflow elements",
+              "guid": "149c1266-1b9b-4d5e-903e-ae8b26e6aa8b",
+              "isAsync": false,
+              "allowAsync": false,
+              "backgroundColorHex": "#00000000",
+              "isDisabled": false,
+              "isPausePointSet": false
+            },
+            "evaluation": {
+              "left": "SM AssayLabwareTypeStorage",
+              "right": "",
+              "evaluator": "Equal"
+            },
+            "name": "Branch",
+            "description": "Branch if SM AssayLabwareTypeStorage = ",
+            "helpText": "Evaluates a condition and branches accordingly",
+            "guid": "51d3a3ca-c112-4c60-89e3-793758d0c09e",
+            "isAsync": false,
+            "allowAsync": false,
+            "iconUrl": "PackIcon.Help [#FFFFFFFF:0:2]",
+            "backgroundColorHex": "#FFDEDE81",
+            "isDisabled": true,
+            "isPausePointSet": false
+          },
+          {
+            "$type": "Biosero.Workflow.Branch, Biosero.Workflow.Core",
+            "yes": {
+              "children": [
+                {
+                  "$type": "Biosero.Workflow.Commands.TransportCommand, Biosero.Workflow.Core",
+                  "inputParameters": [
+                    {
+                      "name": "Timeout (min)",
+                      "value": "10",
+                      "valueType": "Double",
+                      "defaultValue": "10"
+                    },
+                    {
+                      "name": "From",
+                      "value": "IO",
+                      "valueType": "String"
+                    },
+                    {
+                      "name": "To",
+                      "value": "CP",
+                      "valueType": "String"
+                    },
+                    {
+                      "name": "Barcodes",
+                      "value": "%SM CPAssayPlaceholderBarcodes%",
+                      "valueType": "String"
+                    },
+                    {
+                      "name": "Metadata",
+                      "value": "Source Orchestrator Workflow=%SM AssayLabwareTypeStorage%;Labware Type=%Input.SM CP Assay Labware Type%;Destination Orchestrator Workflow=DWP Assay;Orchestrator Used=True;Input.Priority=%Input.Priority%;Input.OrderId=%Input.SM Order Number%;Input.JobId=%Input.SM Job Number%",
+                      "valueType": "String"
+                    }
+                  ],
+                  "outputParameterMapping": [
+                    {
+                      "name": "Barcodes",
+                      "parameterType": "String"
+                    },
+                    {
+                      "name": "Request ID",
+                      "parameterType": "String"
+                    }
+                  ],
+                  "name": "Transport",
+                  "description": "Transport",
+                  "helpText": "Transports the specified barcode(s) from one station to another.",
+                  "guid": "e883517a-fbb3-46fc-94b2-8be6c6be0acd",
+                  "isAsync": false,
+                  "allowAsync": false,
+                  "iconUrl": "PackIcon.TransitConnectionVariant [#FFFFFFFF]",
+                  "backgroundColorHex": "#FF666666",
+                  "isDisabled": false,
+                  "isPausePointSet": false
+                }
+              ],
+              "name": "Sequence",
+              "description": "Sequence",
+              "helpText": "A sequence of workflow elements",
+              "guid": "0888922e-d970-492c-a23d-9d232ad0a486",
+              "isAsync": false,
+              "allowAsync": false,
+              "backgroundColorHex": "#00000000",
+              "isDisabled": false,
+              "isPausePointSet": false
+            },
+            "no": {
+              "children": [
+                {
+                  "$type": "Biosero.Workflow.Branch, Biosero.Workflow.Core",
+                  "yes": {
+                    "children": [
+                      {
+                        "$type": "Biosero.Workflow.Commands.TransportCommand, Biosero.Workflow.Core",
+                        "inputParameters": [
+                          {
+                            "name": "Timeout (min)",
+                            "value": "100",
+                            "valueType": "Double",
+                            "defaultValue": "10"
+                          },
+                          {
+                            "name": "From",
+                            "value": "IO",
+                            "valueType": "String"
+                          },
+                          {
+                            "name": "To",
+                            "value": "CP",
+                            "valueType": "String"
+                          },
+                          {
+                            "name": "Barcodes",
+                            "value": "%SM CPAssayPlaceholderBarcodes%",
+                            "valueType": "String"
+                          },
+                          {
+                            "name": "Metadata",
+                            "value": "Source Orchestrator Workflow=%SM AssayLabwareTypeStorage%;Labware Type=%Input.SM CP Assay Labware Type%;Destination Orchestrator Workflow=DWP Assay;Orchestrator Used=True;Input.Priority=%Input.Priority%;Input.OrderId=%Input.SM Order Number%;Input.JobId=%Input.SM Job Number%",
+                            "valueType": "String"
+                          }
+                        ],
+                        "outputParameterMapping": [
+                          {
+                            "name": "Barcodes",
+                            "mapToGlobalVariableName": "Output.PlaceHolderAssayPlateBarcodes",
+                            "parameterType": "String"
+                          },
+                          {
+                            "name": "Request ID",
+                            "parameterType": "String"
+                          }
+                        ],
+                        "name": "Transport",
+                        "description": "Transport",
+                        "helpText": "Transports the specified barcode(s) from one station to another.",
+                        "guid": "b3f2e10a-8d22-493c-8a96-34cccb2334e4",
+                        "isAsync": false,
+                        "allowAsync": false,
+                        "iconUrl": "PackIcon.TransitConnectionVariant [#FFFFFFFF]",
+                        "backgroundColorHex": "#FF666666",
+                        "isDisabled": false,
+                        "isPausePointSet": false
+                      }
+                    ],
+                    "name": "Sequence",
+                    "description": "Sequence",
+                    "helpText": "A sequence of workflow elements",
+                    "guid": "0250f727-8442-4442-ac11-d1115dc38a92",
+                    "isAsync": false,
+                    "allowAsync": false,
+                    "backgroundColorHex": "#00000000",
+                    "isDisabled": false,
+                    "isPausePointSet": false
+                  },
+                  "no": {
+                    "children": [
+                      {
+                        "$type": "Biosero.Workflow.Commands.TransportCommand, Biosero.Workflow.Core",
+                        "inputParameters": [
+                          {
+                            "name": "Timeout (min)",
+                            "value": "100",
+                            "valueType": "Double",
+                            "defaultValue": "10"
+                          },
+                          {
+                            "name": "From",
+                            "value": "IO",
+                            "valueType": "String"
+                          },
+                          {
+                            "name": "To",
+                            "value": "CP",
+                            "valueType": "String"
+                          },
+                          {
+                            "name": "Barcodes",
+                            "value": "%SM CPAssayPlaceholderBarcodes%",
+                            "valueType": "String"
+                          },
+                          {
+                            "name": "Metadata",
+                            "value": "Source Orchestrator Workflow=%SM AssayLabwareTypeStorage%;Labware Type=%Input.SM CP Assay Labware Type%;Destination Orchestrator Workflow=%SM AssayLabwareTypeStorage%;Input.Priority=%Input.Priority%;Input.OrderId=%Input.SM Order Number%;Input.JobId=%Input.SM Job Number%;Orchestrator Used=True",
+                            "valueType": "String"
+                          }
+                        ],
+                        "outputParameterMapping": [
+                          {
+                            "name": "Barcodes",
+                            "mapToGlobalVariableName": "Output.PlaceHolderAssayPlateBarcodes",
+                            "parameterType": "String"
+                          },
+                          {
+                            "name": "Request ID",
+                            "parameterType": "String"
+                          }
+                        ],
+                        "name": "Transport",
+                        "description": "Transport",
+                        "helpText": "Transports the specified barcode(s) from one station to another.",
+                        "guid": "1cf54f83-285f-45aa-8af5-168e805d4c1c",
+                        "isAsync": false,
+                        "allowAsync": false,
+                        "iconUrl": "PackIcon.TransitConnectionVariant [#FFFFFFFF]",
+                        "backgroundColorHex": "#FF666666",
+                        "isDisabled": false,
+                        "isPausePointSet": false
+                      }
+                    ],
+                    "name": "Sequence",
+                    "description": "Sequence",
+                    "helpText": "A sequence of workflow elements",
+                    "guid": "75213afd-daf8-47b8-b39e-f767432b18f5",
+                    "isAsync": false,
+                    "allowAsync": false,
+                    "backgroundColorHex": "#00000000",
+                    "isDisabled": false,
+                    "isPausePointSet": false
+                  },
+                  "evaluation": {
+                    "left": "Input.SM CP Assay Labware Type",
+                    "right": "96 DWP 1.2ml",
+                    "evaluator": "Equal"
+                  },
+                  "name": "Branch",
+                  "description": "Branch if Input.SM CP Assay Labware Type = 96 DWP 1.2ml",
+                  "helpText": "Evaluates a condition and branches accordingly",
+                  "guid": "f7e9dc5c-94e7-4fe2-a084-62bfa1e64b84",
+                  "isAsync": false,
+                  "allowAsync": false,
+                  "iconUrl": "PackIcon.Help [#FFFFFFFF:0:2]",
+                  "backgroundColorHex": "#FFDEDE81",
+                  "isDisabled": false,
+                  "isPausePointSet": false
+                }
+              ],
+              "name": "Sequence",
+              "description": "Sequence",
+              "helpText": "A sequence of workflow elements",
+              "guid": "4f4a1dac-9922-478c-bf9a-4e742fc02d2e",
+              "isAsync": false,
+              "allowAsync": false,
+              "backgroundColorHex": "#00000000",
+              "isDisabled": false,
+              "isPausePointSet": false
+            },
+            "evaluation": {
+              "left": "Input.SM CP Assay Labware Type",
+              "right": "96 Matrix Rack",
+              "evaluator": "Equal"
+            },
+            "name": "Branch",
+            "description": "Branch if Input.SM CP Assay Labware Type = 96 Matrix Rack",
+            "helpText": "Evaluates a condition and branches accordingly",
+            "guid": "723c8d0b-15bb-499c-aa94-cf262bd3d7dc",
+            "isAsync": false,
+            "allowAsync": false,
+            "iconUrl": "PackIcon.Help [#FFFFFFFF:0:2]",
+            "backgroundColorHex": "#FFDEDE81",
+            "isDisabled": false,
+            "isPausePointSet": false
+          },
+          {
+            "$type": "Biosero.Workflow.Elements.WriteToLog, Biosero.Workflow.Core",
+            "helpText": "Writes to the log",
+            "backgroundColorHex": "#FFC69AE8",
+            "iconUrl": "PackIcon.Feather [#FFFFFFFF]",
+            "name": "Log",
+            "description": "Log: Transport of plates from Job ID %Input.SM Job Number% in Order ID %Input.SM Job Number% Completed",
+            "text": "Transport of plates from Job ID %Input.SM Job Number% in Order ID %Input.SM Job Number% Completed",
+            "appendNewLine": false,
+            "guid": "599c932e-3db1-45de-9fe1-df7cfa681eb4",
+            "isAsync": false,
+            "allowAsync": false,
+            "isDisabled": false,
+            "isPausePointSet": false
+          }
+        ],
+        "name": "Sequence",
+        "description": "Sequence",
+        "helpText": "A sequence of workflow elements",
+        "guid": "5a48165d-543f-46fa-a8a6-bac1deef69c8",
+        "isAsync": false,
+        "allowAsync": false,
+        "backgroundColorHex": "#00000000",
+        "isDisabled": false,
+        "isPausePointSet": false
+      }
+    }
+  ],
+  "parameters": [
+    {
+      "name": "Input.SM Job Number",
+      "value": "22",
+      "valueType": "String",
+      "defaultValue": "22",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.SM Order Number",
+      "value": "5000",
+      "valueType": "String",
+      "defaultValue": "5000",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.SM CP Assay Labware Type",
+      "value": "384 ECHO PP 65uL",
+      "valueType": "String",
+      "defaultValue": "384 ECHO PP 65uL",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.SM Total Assay Plates",
+      "value": "4",
+      "valueType": "Integer",
+      "defaultValue": "4",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "SM CPAssayPlaceholderBarcodes",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "SM AssayLabwareTypeStorage",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "SM AssayLabwareTypeZone",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Output.PlaceHolderAssayPlateBarcodes",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.Priority",
+      "value": "2",
+      "valueType": "String",
+      "defaultValue": "2",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.SM Order Number Copy",
+      "value": "5000",
+      "valueType": "String",
+      "defaultValue": "5000",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    }
+  ],
+  "scripts": [
+    {
+      "name": "populate_placeholder_destination_barcodes",
+      "code": "using Biosero.DataServices.Client;\r\nusing Biosero.Orchestrator.WorkflowService;\r\nusing Newtonsoft.Json;\r\nusing System;\r\nusing System.Threading;\r\nusing System.Threading.Tasks;\r\nusing System.Collections.Generic;\r\nusing System.Text;\r\nusing System.Linq;\r\n\r\n\r\n\r\nnamespace Biosero.Scripting\r\n{\r\n    public class populate_placeholder_destination_barcodes\r\n    {\r\n        public async Task RunAsync(DataServicesClient client, WorkflowContext context, CancellationToken cancellationToken)\r\n        {\r\n            string JobNumber = context.GetGlobalVariableValue<string>(\"Input.SM Job Number\");\r\n            string OrderNumber = context.GetGlobalVariableValue<string>(\"Input.SM Order Number\");\r\n            int AssayLabwareTypeTotal = context.GetGlobalVariableValue<int>(\"Input.SM Total Assay Plates\");\r\n\r\n            string CPAssayPlaceholderBarcodes = \"\";\r\n\r\n            DateTime currentDate = DateTime.Now;\r\n            int CurrentDay = currentDate.Day;\r\n\r\n\r\n            \r\n            for (int i = 1; i <= (AssayLabwareTypeTotal); i++)\r\n            {\r\n                CPAssayPlaceholderBarcodes = CPAssayPlaceholderBarcodes + OrderNumber.ToString() + JobNumber.ToString() + CurrentDay.ToString() + \"Assay\" + i + \",\";\r\n            }\r\n            CPAssayPlaceholderBarcodes = CPAssayPlaceholderBarcodes.TrimEnd(',');\r\n\r\n            Serilog.Log.Information(\"CPAssayPlaceholderBarcodes= {CPAssayPlaceholderBarcodes}\", CPAssayPlaceholderBarcodes.ToString());\r\n\r\n            await context.AddOrUpdateGlobalVariableAsync(\"SM CPAssayPlaceholderBarcodes\", CPAssayPlaceholderBarcodes);\r\n\r\n\r\n        }\r\n    }\r\n}\r\n",
+      "language": "C#"
+    },
+    {
+      "name": "Retieve_Assay_Plate_Barcodes",
+      "code": "#r Roche.LAMA1.dll\r\n\r\nusing Biosero.DataServices.Client;\r\nusing Biosero.Orchestrator.WorkflowService;\r\nusing Newtonsoft.Json;\r\nusing System;\r\nusing System.Threading;\r\nusing System.Threading.Tasks;\r\nusing System.Collections.Generic;\r\nusing System.Text;\r\nusing System.Linq;\r\nusing Roche.LAMA1;\r\nusing Roche.LAMA1.Models;\r\nusing Roche.LAMA1.MosaicTypes;\r\nusing Biosero.DataServices.RestClient;\r\nusing Biosero.DataModels.Events;\r\nusing Biosero.DataModels.Ordering;\r\nusing Biosero.DataModels.Clients;\r\nusing Biosero.DataModels.Resources;\r\nusing System.Security.Cryptography;\r\nusing System.Collections;\r\nusing System.IO;\r\n\r\n\r\nnamespace Biosero.Scripting\r\n{\r\n    public class Retieve_Assay_Plate_Barcodes\r\n    {\r\n\r\n\r\n\r\n\r\n        public async Task RunAsync(DataServicesClient client, WorkflowContext context, CancellationToken cancellationToken)\r\n        {\r\n            string RequestedOrder = context.GetGlobalVariableValue<string>(\"Input.SM Order Number\");\r\n             string currentJob = context.GetGlobalVariableValue<string>(\"Input.SM Job Number\");\r\n\r\n            //instantiate LAMA1 objects\r\n\r\n            string API_BASE_URL = \"http://192.168.14.10:8105/api/v2.0/\";\r\n            IQueryClient _queryClient = new QueryClient(API_BASE_URL);\r\n            IAccessioningClient _accessioningClient = new AccessioningClient(API_BASE_URL);\r\n            IEventClient _eventClient = new EventClient(API_BASE_URL);\r\n\r\n\r\n            IdentityHelper _identityHelper;\r\n\r\n\r\n            //Build out and register the root identities (i.e Mosaic Job) if they do not exist\r\n            _identityHelper = new IdentityHelper(_queryClient, _accessioningClient, _eventClient);\r\n            _identityHelper.BuildBaseIdentities();\r\n\r\n\r\n            //Get all the sources associated with this order\r\n            var sources = _identityHelper.GetSources(RequestedOrder).ToList();\r\n\r\n            //Get all the destinations associated with this order\r\n            var destinations = _identityHelper.GetDestinations(RequestedOrder).ToList();\r\n            //Get all the jobs\r\n            var jobs = _identityHelper.GetJobs(RequestedOrder).ToList();\r\n\r\n            //instantiate LAMA1 objects\r\n            StringBuilder sb = new StringBuilder();\r\n\r\n            //  MosaicDestination? destination = destinations?.FirstOrDefault(d => d.Description == \"777\");\r\n            foreach (var dest in destinations)\r\n            {\r\n                string DestinationName = dest.Name;\r\n                string DestinationDescription = dest.Description;\r\n                string DestinationSampleTransfers = dest.SampleTransfers;\r\n                string DestinationOperationType = dest.OperationType.ToString();\r\n                string DestinationJobId = dest.JobId.ToString();\r\n\r\n               \r\n\t                 if ((DestinationOperationType == \"CherryPick\") && (DestinationJobId == currentJob))\r\n\t                 {\r\n\t                        if (sb.Length > 0)\r\n\t                        {\r\n\t                            sb.Append(\",\");\r\n\t                        }\r\n\t                        sb.Append(dest.Name);\r\n                \t\t  }\r\n\r\n\r\n            }\r\n            string commaSeparatedValues = sb.ToString();\r\n\r\n            Serilog.Log.Information(\"DestinationName= {commaSeparatedValues}\", commaSeparatedValues.ToString());\r\n            \r\n            await context.AddOrUpdateGlobalVariableAsync(\"SM CPAssayPlaceholderBarcodes\", commaSeparatedValues);\r\n        }\r\n\r\n    }\r\n}\r\n\r\n",
+      "language": "C#"
+    }
+  ],
+  "globalScriptReferences": [
+    "Biosero.Workflow.Core.dll",
+    "Biosero.DataModels.dll"
+  ],
+  "screens": [],
+  "deviceRequirements": [],
+  "iconUrl": "PackIcon.WritingSystemHebrew [#FFFFFF:0:0]",
+  "color": "#FF00FF2D",
+  "name": "State Machine CP transport",
+  "category": "Workflows",
+  "lastModified": "0001-01-01T00:00:00+00:00",
+  "parameterReferenceIndicator": "%"
+}

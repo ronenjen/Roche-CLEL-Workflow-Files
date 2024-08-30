@@ -1,0 +1,99 @@
+{
+  "parameters": [
+    {
+      "name": "Input.InventorySkyline",
+      "value": "False",
+      "valueType": "Boolean",
+      "defaultValue": "False",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.InventoryStacksCarousel",
+      "value": "False",
+      "valueType": "Boolean",
+      "defaultValue": "False",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.InventoryHotelsCarousel",
+      "value": "False",
+      "valueType": "Boolean",
+      "defaultValue": "False",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.InventoryCytomat",
+      "value": "False",
+      "valueType": "Boolean",
+      "defaultValue": "False",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    }
+  ],
+  "procedures": [
+    {
+      "name": "Start",
+      "sequence": {
+        "children": [
+          {
+            "$type": "Biosero.Workflow.RunScript, Biosero.Workflow.Core",
+            "helpText": "Runs the specified script",
+            "backgroundColorHex": "#FFF58CFF",
+            "iconUrl": "PackIcon.ScriptTextOutline [#FFFFFFFF]",
+            "name": "Run Script",
+            "isAsync": false,
+            "allowAsync": false,
+            "isDisabled": false,
+            "description": "Run Script: CreateInventoryEvent",
+            "isPausePointSet": false,
+            "scriptName": "CreateInventoryEvent",
+            "guid": "560a88f4-757e-4641-864c-a07410c80173"
+          }
+        ],
+        "name": "Sequence",
+        "description": "Sequence",
+        "helpText": "A sequence of workflow elements",
+        "guid": "2cda7d78-438b-46b1-81e6-427dd100a9b5",
+        "isAsync": false,
+        "allowAsync": false,
+        "backgroundColorHex": "#00000000",
+        "isDisabled": false,
+        "isPausePointSet": false
+      }
+    }
+  ],
+  "scripts": [
+    {
+      "name": "CreateInventoryEvent",
+      "code": "using Biosero.DataServices.Client;\r\nusing Biosero.Orchestrator.WorkflowService;\r\nusing Newtonsoft.Json;\r\nusing System;\r\nusing System.Threading;\r\nusing System.Threading.Tasks;\r\n\r\n/*\r\nScript written by Ronen Peleg (ronenpeleg@biosero.com)\r\n\r\nDescription:\r\nRegisters a new InventorySentEvent\r\n*/\r\n\r\n\r\nnamespace Biosero.Scripting\r\n{\r\n    public class CreateInventoryEvent\r\n    {\r\n        public async Task RunAsync(DataServicesClient client, WorkflowContext context, CancellationToken cancellationToken)\r\n        {\r\n            //New InventorySentEvent called Transfer with current timestamp and \"Roche-Orchestrator\" set as actor\r\n            InventorySentEvent transfer = new InventorySentEvent()\r\n            {\r\n                TimeStamp = DateTime.Now,\r\n                OperatorIdentifier = \"Roche-Orchestrator\",\r\n            };\r\n\r\n            var now = DateTimeOffset.Now;\r\n            //Add the new inventory event using the TRANSFER data defined above\r\n            await client.AddEventAsync(new AddEventCommand\r\n            {\r\n                Topic = \"Biosero.Scripting.InventorySentEvent\",\r\n                Data = JsonConvert.SerializeObject(transfer),\r\n                Start = now,\r\n                End = now,\r\n                ActorId = \"Roche-Orchestrator\",\r\n                OperatorId = \"Roche-Orchestrator\",\r\n                Subjects = new string[] { \"\" }\r\n            });\r\n\r\n            Serilog.Log.Information(\"Inventory Operation Required= Yes\");\r\n        }\r\n    }\r\n\r\n\r\n    // Class defining the structure of the InventorySentEvent\r\n    public class InventorySentEvent\r\n    {\r\n        public DateTimeOffset TimeStamp { get; set; }\r\n\r\n        public string OperatorIdentifier { get; set; }\r\n    }\r\n}",
+      "language": "C#"
+    }
+  ],
+  "screens": [],
+  "globalScriptReferences": [
+    "Biosero.Workflow.Core.dll",
+    "Biosero.DataModels.dll"
+  ],
+  "deviceRequirements": [],
+  "lastModified": "0001-01-01T00:00:00+00:00",
+  "parameterReferenceIndicator": "%"
+}

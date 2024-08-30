@@ -1,0 +1,1945 @@
+{
+  "procedures": [
+    {
+      "name": "Start",
+      "sequence": {
+        "children": [
+          {
+            "$type": "Biosero.Workflow.RunScript, Biosero.Workflow.Core",
+            "scriptName": "DebugCheckAllQueuedSources",
+            "name": "Run Script",
+            "description": "Run Script: DebugCheckAllQueuedSources",
+            "helpText": "Runs the specified script",
+            "guid": "26fdbf5f-7390-4578-a893-5ac4bd821409",
+            "isAsync": false,
+            "allowAsync": false,
+            "iconUrl": "PackIcon.ScriptTextOutline [#FFFFFFFF]",
+            "backgroundColorHex": "#FFF58CFF",
+            "isDisabled": true,
+            "isPausePointSet": false
+          },
+          {
+            "$type": "Biosero.Workflow.RunScript, Biosero.Workflow.Core",
+            "scriptName": "Process_State_Machine_EB_Initial",
+            "name": "Run Script",
+            "description": "Run Script: Process_State_Machine_EB_Initial",
+            "helpText": "Runs the specified script",
+            "guid": "59d99c91-866e-491f-973f-a265b2df9125",
+            "isAsync": false,
+            "allowAsync": false,
+            "iconUrl": "PackIcon.ScriptTextOutline [#FFFFFFFF]",
+            "backgroundColorHex": "#FFF58CFF",
+            "isDisabled": false,
+            "isPausePointSet": false
+          },
+          {
+            "$type": "Biosero.Workflow.Loop, Biosero.Workflow.Core",
+            "sequence": {
+              "children": [
+                {
+                  "$type": "Biosero.Workflow.RunScript, Biosero.Workflow.Core",
+                  "scriptName": "Process_EB_Sorted_Jobs",
+                  "name": "Run Script",
+                  "description": "Run Script: Process_EB_Sorted_Jobs",
+                  "helpText": "Runs the specified script",
+                  "guid": "b215abf2-e797-4263-aa86-184adc3dfcc1",
+                  "isAsync": false,
+                  "allowAsync": false,
+                  "iconUrl": "PackIcon.ScriptTextOutline [#FFFFFFFF]",
+                  "backgroundColorHex": "#FFF58CFF",
+                  "isDisabled": false,
+                  "isPausePointSet": false
+                },
+                {
+                  "$type": "Biosero.Workflow.Commands.ExecuteOrderCommand, Biosero.Workflow.Core",
+                  "timeout": "00:30:00",
+                  "inputParameters": [
+                    {
+                      "name": "AssayLabwareTypes",
+                      "value": "%CrashLabwareType%",
+                      "valueType": "String",
+                      "defaultValue": "",
+                      "valueOptions": [],
+                      "validationRules": [],
+                      "tags": [
+                        "User",
+                        "#DarkMagenta"
+                      ]
+                    }
+                  ],
+                  "outputParameterMapping": [
+                    {
+                      "name": "AssayLabwareTypeZone",
+                      "mapToGlobalVariableName": "CrashZone",
+                      "parameterType": "String"
+                    },
+                    {
+                      "name": "AssayLabwareTypeStorage",
+                      "mapToGlobalVariableName": "CrashStorage",
+                      "parameterType": "String"
+                    },
+                    {
+                      "name": "Module ID",
+                      "parameterType": "String"
+                    }
+                  ],
+                  "name": "Script.OrchFindStorageForLabwareType",
+                  "description": "Order: Script.OrchFindStorageForLabwareType",
+                  "guid": "a99153ef-c172-438c-989a-cec048330cee",
+                  "isAsync": false,
+                  "allowAsync": true,
+                  "iconUrl": "PackIcon.Parachute [#FFFFFF:0:0]",
+                  "backgroundColorHex": "#FFFF00CA",
+                  "isDisabled": false,
+                  "isPausePointSet": false
+                },
+                {
+                  "$type": "Biosero.Workflow.Commands.TransportCommand, Biosero.Workflow.Core",
+                  "inputParameters": [
+                    {
+                      "name": "Timeout (min)",
+                      "value": "100",
+                      "valueType": "Double",
+                      "defaultValue": "10"
+                    },
+                    {
+                      "name": "From",
+                      "value": "IO",
+                      "valueType": "String"
+                    },
+                    {
+                      "name": "To",
+                      "value": "EB2",
+                      "valueType": "String"
+                    },
+                    {
+                      "name": "Barcodes",
+                      "value": "%CrashDestinationsEB%",
+                      "valueType": "String"
+                    },
+                    {
+                      "name": "Metadata",
+                      "value": "Source Orchestrator Workflow=%CrashStorage%;Labware Type=%CrashLabwareType%;Destination Orchestrator Workflow=%CrashStorage%;Job=%Job Number%;Labware Designation=Destination Labware",
+                      "valueType": "String"
+                    }
+                  ],
+                  "outputParameterMapping": [
+                    {
+                      "name": "Barcodes",
+                      "parameterType": "String"
+                    },
+                    {
+                      "name": "Request ID",
+                      "parameterType": "String"
+                    }
+                  ],
+                  "name": "Transport",
+                  "description": "Transport",
+                  "helpText": "Transports the specified barcode(s) from one station to another.",
+                  "guid": "0b166e7e-c7aa-488c-ad9c-0b2ebb4f1c43",
+                  "isAsync": false,
+                  "allowAsync": false,
+                  "iconUrl": "PackIcon.TransitConnectionVariant [#FFFFFFFF]",
+                  "backgroundColorHex": "#FF666666",
+                  "isDisabled": false,
+                  "isPausePointSet": false
+                }
+              ],
+              "name": "Sequence",
+              "description": "Sequence",
+              "helpText": "A sequence of workflow elements",
+              "guid": "4163051e-7c21-4e8d-925c-c6db698eb623",
+              "isAsync": false,
+              "allowAsync": false,
+              "backgroundColorHex": "#00000000",
+              "isDisabled": false,
+              "isPausePointSet": false
+            },
+            "evaluation": {
+              "left": "Prioritised Jobs",
+              "right": "",
+              "evaluator": "NotEqual"
+            },
+            "evaluateAtEnd": false,
+            "loopCount": 0,
+            "loopType": "While",
+            "foreachCollectionVariable": "",
+            "foreachItemVariable": "",
+            "foreachDelimiter": ",",
+            "name": "Loop",
+            "description": "Loop While Prioritised Jobs ≠ ",
+            "helpText": "A loop over a sequence of elements",
+            "guid": "a10155c6-8357-49ac-b775-c06840aa2a3b",
+            "isAsync": false,
+            "allowAsync": false,
+            "iconUrl": "PackIcon.Reload [#FFFFFFFF]",
+            "backgroundColorHex": "#FF08EAA7",
+            "isDisabled": false,
+            "isPausePointSet": false
+          },
+          {
+            "$type": "Biosero.Workflow.Branch, Biosero.Workflow.Core",
+            "yes": {
+              "children": [
+                {
+                  "$type": "Biosero.Workflow.RunScript, Biosero.Workflow.Core",
+                  "scriptName": "RequiredVelocityTips",
+                  "name": "Run Script",
+                  "description": "Run Script: RequiredVelocityTips",
+                  "helpText": "Runs the specified script",
+                  "guid": "970b6260-e0d7-49f7-8ebd-d09be6dac5f2",
+                  "isAsync": false,
+                  "allowAsync": false,
+                  "iconUrl": "PackIcon.ScriptTextOutline [#FFFFFFFF]",
+                  "backgroundColorHex": "#FFF58CFF",
+                  "isDisabled": false,
+                  "isPausePointSet": false
+                },
+                {
+                  "$type": "Biosero.Workflow.Branch, Biosero.Workflow.Core",
+                  "yes": {
+                    "children": [
+                      {
+                        "$type": "Biosero.Workflow.Commands.ExecuteOrderCommand, Biosero.Workflow.Core",
+                        "timeout": "00:30:00",
+                        "inputParameters": [
+                          {
+                            "name": "AssayLabwareTypes",
+                            "value": "384 V11 ST10 Tip Box Standard",
+                            "valueType": "String",
+                            "defaultValue": "",
+                            "valueOptions": [],
+                            "validationRules": [],
+                            "tags": [
+                              "User",
+                              "#DarkMagenta"
+                            ]
+                          }
+                        ],
+                        "outputParameterMapping": [
+                          {
+                            "name": "AssayLabwareTypeZone",
+                            "mapToGlobalVariableName": "Velocity10Zone",
+                            "parameterType": "String"
+                          },
+                          {
+                            "name": "AssayLabwareTypeStorage",
+                            "mapToGlobalVariableName": "Velocity10Storage",
+                            "parameterType": "String"
+                          },
+                          {
+                            "name": "Module ID",
+                            "parameterType": "String"
+                          }
+                        ],
+                        "name": "Script.OrchFindStorageForLabwareType",
+                        "description": "Order: Script.OrchFindStorageForLabwareType",
+                        "guid": "e4c4dbec-db3a-42a2-8f1e-7207d59d46cf",
+                        "isAsync": false,
+                        "allowAsync": true,
+                        "iconUrl": "PackIcon.Parachute [#FFFFFF:0:0]",
+                        "backgroundColorHex": "#FFFF00CA",
+                        "isDisabled": false,
+                        "isPausePointSet": false
+                      },
+                      {
+                        "$type": "Biosero.Workflow.Commands.TransportCommand, Biosero.Workflow.Core",
+                        "inputParameters": [
+                          {
+                            "name": "Timeout (min)",
+                            "value": "100",
+                            "valueType": "Double",
+                            "defaultValue": "10"
+                          },
+                          {
+                            "name": "From",
+                            "value": "IO",
+                            "valueType": "String"
+                          },
+                          {
+                            "name": "To",
+                            "value": "EB2",
+                            "valueType": "String"
+                          },
+                          {
+                            "name": "Barcodes",
+                            "value": "%VelocityTips10PlaceholderBarcodes%",
+                            "valueType": "String"
+                          },
+                          {
+                            "name": "Metadata",
+                            "value": "Source Orchestrator Workflow=%Velocity10Storage%;Labware Type=384 V11 ST10 Tip Box Standard;Destination Orchestrator Workflow=%Velocity10Storage%;Labware Designation=10 Tips",
+                            "valueType": "String"
+                          }
+                        ],
+                        "outputParameterMapping": [
+                          {
+                            "name": "Barcodes",
+                            "parameterType": "String"
+                          },
+                          {
+                            "name": "Request ID",
+                            "parameterType": "String"
+                          }
+                        ],
+                        "name": "Transport",
+                        "description": "Transport",
+                        "helpText": "Transports the specified barcode(s) from one station to another.",
+                        "guid": "cc89fd19-8d77-452b-8e61-f91e842e0531",
+                        "isAsync": false,
+                        "allowAsync": false,
+                        "iconUrl": "PackIcon.TransitConnectionVariant [#FFFFFFFF]",
+                        "backgroundColorHex": "#FF666666",
+                        "isDisabled": false,
+                        "isPausePointSet": false
+                      }
+                    ],
+                    "name": "Sequence",
+                    "description": "Sequence",
+                    "helpText": "A sequence of workflow elements",
+                    "guid": "7f1cc5ac-abc8-4437-a39f-e03233eccca7",
+                    "isAsync": false,
+                    "allowAsync": false,
+                    "backgroundColorHex": "#00000000",
+                    "isDisabled": false,
+                    "isPausePointSet": false
+                  },
+                  "no": {
+                    "children": [],
+                    "name": "Sequence",
+                    "description": "Sequence",
+                    "helpText": "A sequence of workflow elements",
+                    "guid": "935576ab-ae81-45d9-aa17-e483c6074d5a",
+                    "isAsync": false,
+                    "allowAsync": false,
+                    "backgroundColorHex": "#00000000",
+                    "isDisabled": false,
+                    "isPausePointSet": false
+                  },
+                  "evaluation": {
+                    "left": "VelocityTips10PlaceholderBarcodes",
+                    "right": "",
+                    "evaluator": "NotEqual"
+                  },
+                  "name": "Branch",
+                  "description": "Branch if VelocityTips10PlaceholderBarcodes ≠ ",
+                  "helpText": "Evaluates a condition and branches accordingly",
+                  "guid": "442a5ee5-f113-470c-8569-06ca911fa330",
+                  "isAsync": false,
+                  "allowAsync": false,
+                  "iconUrl": "PackIcon.Help [#FFFFFFFF:0:2]",
+                  "backgroundColorHex": "#FFDEDE81",
+                  "isDisabled": false,
+                  "isPausePointSet": false
+                },
+                {
+                  "$type": "Biosero.Workflow.Branch, Biosero.Workflow.Core",
+                  "yes": {
+                    "children": [
+                      {
+                        "$type": "Biosero.Workflow.Commands.ExecuteOrderCommand, Biosero.Workflow.Core",
+                        "timeout": "00:30:00",
+                        "inputParameters": [
+                          {
+                            "name": "AssayLabwareTypes",
+                            "value": "384 V11 ST30 Tip Box Standard",
+                            "valueType": "String",
+                            "defaultValue": "",
+                            "valueOptions": [],
+                            "validationRules": [],
+                            "tags": [
+                              "User",
+                              "#DarkMagenta"
+                            ]
+                          }
+                        ],
+                        "outputParameterMapping": [
+                          {
+                            "name": "AssayLabwareTypeZone",
+                            "mapToGlobalVariableName": "Velocity30Zone",
+                            "parameterType": "String"
+                          },
+                          {
+                            "name": "AssayLabwareTypeStorage",
+                            "mapToGlobalVariableName": "Velocity30Storage",
+                            "parameterType": "String"
+                          },
+                          {
+                            "name": "Module ID",
+                            "parameterType": "String"
+                          }
+                        ],
+                        "name": "Script.OrchFindStorageForLabwareType",
+                        "description": "Order: Script.OrchFindStorageForLabwareType",
+                        "guid": "ab147327-8672-450f-9e40-35c6adb33d4d",
+                        "isAsync": false,
+                        "allowAsync": true,
+                        "iconUrl": "PackIcon.Parachute [#FFFFFF:0:0]",
+                        "backgroundColorHex": "#FFFF00CA",
+                        "isDisabled": false,
+                        "isPausePointSet": false
+                      },
+                      {
+                        "$type": "Biosero.Workflow.Commands.TransportCommand, Biosero.Workflow.Core",
+                        "inputParameters": [
+                          {
+                            "name": "Timeout (min)",
+                            "value": "100",
+                            "valueType": "Double",
+                            "defaultValue": "10"
+                          },
+                          {
+                            "name": "From",
+                            "value": "IO",
+                            "valueType": "String"
+                          },
+                          {
+                            "name": "To",
+                            "value": "EB2",
+                            "valueType": "String"
+                          },
+                          {
+                            "name": "Barcodes",
+                            "value": "%VelocityTips30PlaceholderBarcodes%",
+                            "valueType": "String"
+                          },
+                          {
+                            "name": "Metadata",
+                            "value": "Source Orchestrator Workflow=%Velocity30Storage%;Labware Type=384 V11 ST30 Tip Box Standard;Destination Orchestrator Workflow=%Velocity30Storage%;Labware Designation=30 Tips",
+                            "valueType": "String"
+                          }
+                        ],
+                        "outputParameterMapping": [
+                          {
+                            "name": "Barcodes",
+                            "parameterType": "String"
+                          },
+                          {
+                            "name": "Request ID",
+                            "parameterType": "String"
+                          }
+                        ],
+                        "name": "Transport",
+                        "description": "Transport",
+                        "helpText": "Transports the specified barcode(s) from one station to another.",
+                        "guid": "2a90d91b-9bef-4d1b-a653-cc169615c046",
+                        "isAsync": false,
+                        "allowAsync": false,
+                        "iconUrl": "PackIcon.TransitConnectionVariant [#FFFFFFFF]",
+                        "backgroundColorHex": "#FF666666",
+                        "isDisabled": false,
+                        "isPausePointSet": false
+                      }
+                    ],
+                    "name": "Sequence",
+                    "description": "Sequence",
+                    "helpText": "A sequence of workflow elements",
+                    "guid": "ead10063-682b-4c45-8e64-4bf36aa2d14b",
+                    "isAsync": false,
+                    "allowAsync": false,
+                    "backgroundColorHex": "#00000000",
+                    "isDisabled": false,
+                    "isPausePointSet": false
+                  },
+                  "no": {
+                    "children": [],
+                    "name": "Sequence",
+                    "description": "Sequence",
+                    "helpText": "A sequence of workflow elements",
+                    "guid": "15f4cfcc-76d3-4f2c-9f13-8544765e2334",
+                    "isAsync": false,
+                    "allowAsync": false,
+                    "backgroundColorHex": "#00000000",
+                    "isDisabled": false,
+                    "isPausePointSet": false
+                  },
+                  "evaluation": {
+                    "left": "VelocityTips30PlaceholderBarcodes",
+                    "right": "",
+                    "evaluator": "NotEqual"
+                  },
+                  "name": "Branch",
+                  "description": "Branch if VelocityTips30PlaceholderBarcodes ≠ ",
+                  "helpText": "Evaluates a condition and branches accordingly",
+                  "guid": "0b0686e9-8cfc-4cc2-9175-ad5ac0034276",
+                  "isAsync": false,
+                  "allowAsync": false,
+                  "iconUrl": "PackIcon.Help [#FFFFFFFF:0:2]",
+                  "backgroundColorHex": "#FFDEDE81",
+                  "isDisabled": false,
+                  "isPausePointSet": false
+                },
+                {
+                  "$type": "Biosero.Workflow.Commands.ExecuteOrderCommand, Biosero.Workflow.Core",
+                  "timeout": "00:30:00",
+                  "inputParameters": [
+                    {
+                      "name": "SMOrder Id",
+                      "value": "%Input.OrderId%",
+                      "valueType": "String",
+                      "defaultValue": "",
+                      "valueOptions": [],
+                      "validationRules": [],
+                      "tags": [
+                        "User",
+                        "#DarkMagenta"
+                      ]
+                    },
+                    {
+                      "name": "SMJob Number",
+                      "value": "%Job Number%",
+                      "valueType": "String",
+                      "defaultValue": "",
+                      "valueOptions": [],
+                      "validationRules": [],
+                      "tags": [
+                        "User",
+                        "#DarkMagenta"
+                      ]
+                    },
+                    {
+                      "name": "SMPriority",
+                      "value": "%Job Priority%",
+                      "valueType": "String",
+                      "defaultValue": "",
+                      "valueOptions": [],
+                      "validationRules": [],
+                      "tags": [
+                        "User",
+                        "#DarkMagenta"
+                      ]
+                    },
+                    {
+                      "name": "SMSourceBarcode",
+                      "value": "%CrashPlatesForEB%",
+                      "valueType": "String",
+                      "defaultValue": "",
+                      "valueOptions": [],
+                      "validationRules": [],
+                      "tags": [
+                        "User",
+                        "#DarkMagenta"
+                      ]
+                    },
+                    {
+                      "name": "SMDestBarcode",
+                      "value": "%CrashDestinationsEB%",
+                      "valueType": "String",
+                      "defaultValue": "",
+                      "valueOptions": [],
+                      "validationRules": [],
+                      "tags": [
+                        "User",
+                        "#DarkMagenta"
+                      ]
+                    },
+                    {
+                      "name": "SMBravoInstructions",
+                      "value": "%CrashPairListString%",
+                      "valueType": "String",
+                      "defaultValue": "",
+                      "valueOptions": [],
+                      "validationRules": [],
+                      "tags": [
+                        "User",
+                        "#DarkMagenta"
+                      ]
+                    },
+                    {
+                      "name": "SMBravoOperation",
+                      "value": "Replicate",
+                      "valueType": "String",
+                      "defaultValue": "",
+                      "valueOptions": [],
+                      "validationRules": [],
+                      "tags": [
+                        "User",
+                        "#DarkMagenta"
+                      ]
+                    }
+                  ],
+                  "outputParameterMapping": [
+                    {
+                      "name": "Module ID",
+                      "parameterType": "String"
+                    }
+                  ],
+                  "name": "Inject Process (Bravo)",
+                  "description": "Order: Inject Process (Bravo)",
+                  "guid": "766f482d-48a1-4e10-89f8-ffa7d1f231e3",
+                  "isAsync": false,
+                  "allowAsync": true,
+                  "iconUrl": "PackIcon.AirHorn [#FFFFFF:0:0]",
+                  "backgroundColorHex": "#0000FF",
+                  "isDisabled": false,
+                  "isPausePointSet": false
+                },
+                {
+                  "$type": "Biosero.Workflow.Parallel, Biosero.Workflow.Core",
+                  "helpText": "Executes two sequences in parallel",
+                  "backgroundColorHex": "#FF72EAFF",
+                  "iconUrl": "PackIcon.CallSplit [#FFFFFFFF:180]",
+                  "name": "Parallel",
+                  "left": {
+                    "children": [
+                      {
+                        "$type": "Biosero.Workflow.RunScript, Biosero.Workflow.Core",
+                        "scriptName": "Check_All_Echo_Plates_Finished",
+                        "name": "Run Script",
+                        "description": "Run Script: Check_All_Echo_Plates_Finished",
+                        "helpText": "Runs the specified script",
+                        "guid": "e0fed90a-791f-4b04-8009-a06fef29d71f",
+                        "isAsync": false,
+                        "allowAsync": false,
+                        "iconUrl": "PackIcon.ScriptTextOutline [#FFFFFFFF]",
+                        "backgroundColorHex": "#FFF58CFF",
+                        "isDisabled": false,
+                        "isPausePointSet": false
+                      },
+                      {
+                        "$type": "Biosero.Workflow.SetParameter, Biosero.Workflow.Core",
+                        "parameterName": "Crash Plates Not Finished",
+                        "leftOperand": "True",
+                        "isUnaryOperation": true,
+                        "operator": "Add",
+                        "rightOperand": "",
+                        "name": "Set Parameter",
+                        "description": "Crash Plates Not Finished = True",
+                        "helpText": "Sets a parameter",
+                        "guid": "dddae54e-69d1-4986-90e2-349d63aab28b",
+                        "isAsync": false,
+                        "allowAsync": false,
+                        "iconUrl": "PackIcon.Equal [#FFFFFFFF]",
+                        "backgroundColorHex": "#FFA8E281",
+                        "isDisabled": false,
+                        "isPausePointSet": false
+                      },
+                      {
+                        "$type": "Biosero.Workflow.Loop, Biosero.Workflow.Core",
+                        "sequence": {
+                          "children": [
+                            {
+                              "$type": "Biosero.Workflow.Elements.Delay, Biosero.Workflow.Core",
+                              "seconds": 20.0,
+                              "minutes": 0.0,
+                              "hours": 0.0,
+                              "name": "Delay",
+                              "description": "Delay 0:0:20",
+                              "helpText": "Delays the workflow for the specified amount of time",
+                              "guid": "92e72938-b02e-4e36-8579-c7153bcd81e7",
+                              "isAsync": false,
+                              "allowAsync": false,
+                              "iconUrl": "PackIcon.ClockOutline [#FFFFFFFF]",
+                              "backgroundColorHex": "#FF26A9FF",
+                              "isDisabled": false,
+                              "isPausePointSet": false
+                            },
+                            {
+                              "$type": "Biosero.Workflow.RunScript, Biosero.Workflow.Core",
+                              "scriptName": "Check_All_Echo_Plates_Finished",
+                              "name": "Run Script",
+                              "description": "Run Script: Check_All_Echo_Plates_Finished",
+                              "helpText": "Runs the specified script",
+                              "guid": "aa06b6f9-cef0-4d67-ab43-e5e9bb76f932",
+                              "isAsync": false,
+                              "allowAsync": false,
+                              "iconUrl": "PackIcon.ScriptTextOutline [#FFFFFFFF]",
+                              "backgroundColorHex": "#FFF58CFF",
+                              "isDisabled": false,
+                              "isPausePointSet": false
+                            }
+                          ],
+                          "name": "Sequence",
+                          "description": "Sequence",
+                          "helpText": "A sequence of workflow elements",
+                          "guid": "9da4b573-5641-45eb-89b8-e2966d6f4068",
+                          "isAsync": false,
+                          "allowAsync": false,
+                          "backgroundColorHex": "#00000000",
+                          "isDisabled": false,
+                          "isPausePointSet": false
+                        },
+                        "evaluation": {
+                          "left": "Crash Plates Not Finished",
+                          "right": "True",
+                          "evaluator": "Equal"
+                        },
+                        "evaluateAtEnd": false,
+                        "loopCount": 0,
+                        "loopType": "While",
+                        "foreachCollectionVariable": "",
+                        "foreachItemVariable": "",
+                        "foreachDelimiter": ",",
+                        "name": "Loop",
+                        "description": "Loop While Crash Plates Not Finished = True",
+                        "helpText": "A loop over a sequence of elements",
+                        "guid": "1fb26df5-4061-4747-9517-1e71ff4b1ae7",
+                        "isAsync": false,
+                        "allowAsync": false,
+                        "iconUrl": "PackIcon.Reload [#FFFFFFFF]",
+                        "backgroundColorHex": "#FF08EAA7",
+                        "isDisabled": false,
+                        "isPausePointSet": false
+                      },
+                      {
+                        "$type": "Biosero.Workflow.Commands.TransportCommand, Biosero.Workflow.Core",
+                        "inputParameters": [
+                          {
+                            "name": "Timeout (min)",
+                            "value": "100",
+                            "valueType": "Double",
+                            "defaultValue": "10"
+                          },
+                          {
+                            "name": "From",
+                            "value": "EB2",
+                            "valueType": "String"
+                          },
+                          {
+                            "name": "To",
+                            "value": "IO",
+                            "valueType": "String"
+                          },
+                          {
+                            "name": "Barcodes",
+                            "value": "%CrashDestinationsEB%",
+                            "valueType": "String"
+                          },
+                          {
+                            "name": "Metadata",
+                            "value": "Zone=Destination Plates;Labware Designation=EB Plates;Labware Type=%CrashLabwareType%",
+                            "valueType": "String"
+                          }
+                        ],
+                        "outputParameterMapping": [
+                          {
+                            "name": "Barcodes",
+                            "parameterType": "String"
+                          },
+                          {
+                            "name": "Request ID",
+                            "parameterType": "String"
+                          }
+                        ],
+                        "name": "Transport",
+                        "description": "Transport",
+                        "helpText": "Transports the specified barcode(s) from one station to another.",
+                        "guid": "4550f2f4-138b-4e95-9d11-860c91165396",
+                        "isAsync": false,
+                        "allowAsync": false,
+                        "iconUrl": "PackIcon.TransitConnectionVariant [#FFFFFFFF]",
+                        "backgroundColorHex": "#FF666666",
+                        "isDisabled": false,
+                        "isPausePointSet": false
+                      }
+                    ],
+                    "name": "Sequence",
+                    "description": "Sequence",
+                    "helpText": "A sequence of workflow elements",
+                    "guid": "6d79ea0c-4525-4340-9845-790dd6ce7699",
+                    "isAsync": false,
+                    "allowAsync": false,
+                    "backgroundColorHex": "#00000000",
+                    "isDisabled": false,
+                    "isPausePointSet": false
+                  },
+                  "right": {
+                    "children": [
+                      {
+                        "$type": "Biosero.Workflow.RunScript, Biosero.Workflow.Core",
+                        "scriptName": "Check_All_Source_Echo_Plates_Finished",
+                        "name": "Run Script",
+                        "description": "Run Script: Check_All_Source_Echo_Plates_Finished",
+                        "helpText": "Runs the specified script",
+                        "guid": "312a379b-b6d5-4726-9307-a1b4c2b2e8f1",
+                        "isAsync": false,
+                        "allowAsync": false,
+                        "iconUrl": "PackIcon.ScriptTextOutline [#FFFFFFFF]",
+                        "backgroundColorHex": "#FFF58CFF",
+                        "isDisabled": false,
+                        "isPausePointSet": false
+                      },
+                      {
+                        "$type": "Biosero.Workflow.SetParameter, Biosero.Workflow.Core",
+                        "parameterName": "Crash Plates Not Finished",
+                        "leftOperand": "True",
+                        "isUnaryOperation": true,
+                        "operator": "Add",
+                        "rightOperand": "",
+                        "name": "Set Parameter",
+                        "description": "Crash Plates Not Finished = True",
+                        "helpText": "Sets a parameter",
+                        "guid": "2ac504ba-fad1-4e37-a0c3-049c5387bdb1",
+                        "isAsync": false,
+                        "allowAsync": false,
+                        "iconUrl": "PackIcon.Equal [#FFFFFFFF]",
+                        "backgroundColorHex": "#FFA8E281",
+                        "isDisabled": false,
+                        "isPausePointSet": false
+                      },
+                      {
+                        "$type": "Biosero.Workflow.Loop, Biosero.Workflow.Core",
+                        "sequence": {
+                          "children": [
+                            {
+                              "$type": "Biosero.Workflow.Elements.Delay, Biosero.Workflow.Core",
+                              "seconds": 20.0,
+                              "minutes": 0.0,
+                              "hours": 0.0,
+                              "name": "Delay",
+                              "description": "Delay 0:0:20",
+                              "helpText": "Delays the workflow for the specified amount of time",
+                              "guid": "80bdc254-906b-4e04-845b-07ba5d350c87",
+                              "isAsync": false,
+                              "allowAsync": false,
+                              "iconUrl": "PackIcon.ClockOutline [#FFFFFFFF]",
+                              "backgroundColorHex": "#FF26A9FF",
+                              "isDisabled": false,
+                              "isPausePointSet": false
+                            },
+                            {
+                              "$type": "Biosero.Workflow.RunScript, Biosero.Workflow.Core",
+                              "scriptName": "Check_All_Source_Echo_Plates_Finished",
+                              "name": "Run Script",
+                              "description": "Run Script: Check_All_Source_Echo_Plates_Finished",
+                              "helpText": "Runs the specified script",
+                              "guid": "6f2b2f72-0957-4b54-aec8-f4f07f79c699",
+                              "isAsync": false,
+                              "allowAsync": false,
+                              "iconUrl": "PackIcon.ScriptTextOutline [#FFFFFFFF]",
+                              "backgroundColorHex": "#FFF58CFF",
+                              "isDisabled": false,
+                              "isPausePointSet": false
+                            }
+                          ],
+                          "name": "Sequence",
+                          "description": "Sequence",
+                          "helpText": "A sequence of workflow elements",
+                          "guid": "5cc53d0c-ec8d-4e09-a192-85fb7b498e13",
+                          "isAsync": false,
+                          "allowAsync": false,
+                          "backgroundColorHex": "#00000000",
+                          "isDisabled": false,
+                          "isPausePointSet": false
+                        },
+                        "evaluation": {
+                          "left": "Source Crash Plates Not Finished",
+                          "right": "True",
+                          "evaluator": "Equal"
+                        },
+                        "evaluateAtEnd": false,
+                        "loopCount": 0,
+                        "loopType": "While",
+                        "foreachCollectionVariable": "",
+                        "foreachItemVariable": "",
+                        "foreachDelimiter": ",",
+                        "name": "Loop",
+                        "description": "Loop While Source Crash Plates Not Finished = True",
+                        "helpText": "A loop over a sequence of elements",
+                        "guid": "aaff0f22-584a-4c24-a424-40c02feb6ff7",
+                        "isAsync": false,
+                        "allowAsync": false,
+                        "iconUrl": "PackIcon.Reload [#FFFFFFFF]",
+                        "backgroundColorHex": "#FF08EAA7",
+                        "isDisabled": false,
+                        "isPausePointSet": false
+                      },
+                      {
+                        "$type": "Biosero.Workflow.Commands.TransportCommand, Biosero.Workflow.Core",
+                        "inputParameters": [
+                          {
+                            "name": "Timeout (min)",
+                            "value": "100",
+                            "valueType": "Double",
+                            "defaultValue": "10"
+                          },
+                          {
+                            "name": "From",
+                            "value": "EB2",
+                            "valueType": "String"
+                          },
+                          {
+                            "name": "To",
+                            "value": "IO",
+                            "valueType": "String"
+                          },
+                          {
+                            "name": "Barcodes",
+                            "value": "%CrashPlatesForEB%",
+                            "valueType": "String"
+                          },
+                          {
+                            "name": "Metadata",
+                            "value": "Zone=Source Plates;Labware Designation=EB Plates;Labware Type=%CrashSourceLabwareType%",
+                            "valueType": "String"
+                          }
+                        ],
+                        "outputParameterMapping": [
+                          {
+                            "name": "Barcodes",
+                            "parameterType": "String"
+                          },
+                          {
+                            "name": "Request ID",
+                            "parameterType": "String"
+                          }
+                        ],
+                        "name": "Transport",
+                        "description": "Transport",
+                        "helpText": "Transports the specified barcode(s) from one station to another.",
+                        "guid": "dbad2280-3ce6-4867-9dd8-756f6dd20b44",
+                        "isAsync": false,
+                        "allowAsync": false,
+                        "iconUrl": "PackIcon.TransitConnectionVariant [#FFFFFFFF]",
+                        "backgroundColorHex": "#FF666666",
+                        "isDisabled": false,
+                        "isPausePointSet": false
+                      }
+                    ],
+                    "name": "Sequence",
+                    "description": "Sequence",
+                    "helpText": "A sequence of workflow elements",
+                    "guid": "69445635-a4f2-42fd-b81f-93e34b64eaf6",
+                    "isAsync": false,
+                    "allowAsync": false,
+                    "backgroundColorHex": "#00000000",
+                    "isDisabled": false,
+                    "isPausePointSet": false
+                  },
+                  "description": "Parallel",
+                  "guid": "cabd900a-25f0-41b2-8ad6-a2b6110652c0",
+                  "isAsync": false,
+                  "allowAsync": false,
+                  "isDisabled": false,
+                  "isPausePointSet": false
+                }
+              ],
+              "name": "Sequence",
+              "description": "Sequence",
+              "helpText": "A sequence of workflow elements",
+              "guid": "29d47854-9864-4a21-b142-9f2197eb6f63",
+              "isAsync": false,
+              "allowAsync": false,
+              "backgroundColorHex": "#00000000",
+              "isDisabled": false,
+              "isPausePointSet": false
+            },
+            "no": {
+              "children": [
+                {
+                  "$type": "Biosero.Workflow.Commands.ExecuteOrderCommand, Biosero.Workflow.Core",
+                  "timeout": "00:30:00",
+                  "inputParameters": [
+                    {
+                      "name": "SMOrder Id",
+                      "value": "%Input.OrderId%",
+                      "valueType": "String",
+                      "defaultValue": "",
+                      "valueOptions": [],
+                      "validationRules": [],
+                      "tags": [
+                        "User",
+                        "#DarkMagenta"
+                      ]
+                    },
+                    {
+                      "name": "SMJob Number",
+                      "value": "%Job Number%",
+                      "valueType": "String",
+                      "defaultValue": "",
+                      "valueOptions": [],
+                      "validationRules": [],
+                      "tags": [
+                        "User",
+                        "#DarkMagenta"
+                      ]
+                    },
+                    {
+                      "name": "SMPriority",
+                      "value": "%Job Priority%",
+                      "valueType": "String",
+                      "defaultValue": "",
+                      "valueOptions": [],
+                      "validationRules": [],
+                      "tags": [
+                        "User",
+                        "#DarkMagenta"
+                      ]
+                    },
+                    {
+                      "name": "SMSourceBarcode",
+                      "value": "%CrashPlatesForEB%",
+                      "valueType": "String",
+                      "defaultValue": "",
+                      "valueOptions": [],
+                      "validationRules": [],
+                      "tags": [
+                        "User",
+                        "#DarkMagenta"
+                      ]
+                    },
+                    {
+                      "name": "SMDestBarcode",
+                      "value": "%CrashDestinationsEB%",
+                      "valueType": "String",
+                      "defaultValue": "",
+                      "valueOptions": [],
+                      "validationRules": [],
+                      "tags": [
+                        "User",
+                        "#DarkMagenta"
+                      ]
+                    },
+                    {
+                      "name": "SMEchoInstructions",
+                      "value": "%CrashPairListString%",
+                      "valueType": "String",
+                      "defaultValue": "",
+                      "valueOptions": [],
+                      "validationRules": [],
+                      "tags": [
+                        "User",
+                        "#DarkMagenta"
+                      ]
+                    }
+                  ],
+                  "outputParameterMapping": [
+                    {
+                      "name": "Module ID",
+                      "parameterType": "String"
+                    }
+                  ],
+                  "name": "Inject Process (Echo)",
+                  "description": "Order: Inject Process (Echo)",
+                  "guid": "fecea9f4-3968-47ef-aa67-63b25ad35946",
+                  "isAsync": false,
+                  "allowAsync": true,
+                  "iconUrl": "PackIcon.AccessPoint [#FFFFFF:0:0]",
+                  "backgroundColorHex": "#FFFF006E",
+                  "isDisabled": false,
+                  "isPausePointSet": false
+                },
+                {
+                  "$type": "Biosero.Workflow.Parallel, Biosero.Workflow.Core",
+                  "helpText": "Executes two sequences in parallel",
+                  "backgroundColorHex": "#FF72EAFF",
+                  "iconUrl": "PackIcon.CallSplit [#FFFFFFFF:180]",
+                  "name": "Parallel",
+                  "left": {
+                    "children": [
+                      {
+                        "$type": "Biosero.Workflow.RunScript, Biosero.Workflow.Core",
+                        "scriptName": "Check_All_Echo_Plates_Finished",
+                        "name": "Run Script",
+                        "description": "Run Script: Check_All_Echo_Plates_Finished",
+                        "helpText": "Runs the specified script",
+                        "guid": "2fb37ea0-515c-45e5-a45f-8037bd7cf70a",
+                        "isAsync": false,
+                        "allowAsync": false,
+                        "iconUrl": "PackIcon.ScriptTextOutline [#FFFFFFFF]",
+                        "backgroundColorHex": "#FFF58CFF",
+                        "isDisabled": false,
+                        "isPausePointSet": false
+                      },
+                      {
+                        "$type": "Biosero.Workflow.Loop, Biosero.Workflow.Core",
+                        "sequence": {
+                          "children": [
+                            {
+                              "$type": "Biosero.Workflow.Elements.Delay, Biosero.Workflow.Core",
+                              "seconds": 20.0,
+                              "minutes": 0.0,
+                              "hours": 0.0,
+                              "name": "Delay",
+                              "description": "Delay 0:0:20",
+                              "helpText": "Delays the workflow for the specified amount of time",
+                              "guid": "938e8607-c4a4-4846-a725-30ebcbf7c282",
+                              "isAsync": false,
+                              "allowAsync": false,
+                              "iconUrl": "PackIcon.ClockOutline [#FFFFFFFF]",
+                              "backgroundColorHex": "#FF26A9FF",
+                              "isDisabled": false,
+                              "isPausePointSet": false
+                            },
+                            {
+                              "$type": "Biosero.Workflow.RunScript, Biosero.Workflow.Core",
+                              "scriptName": "Check_All_Echo_Plates_Finished",
+                              "name": "Run Script",
+                              "description": "Run Script: Check_All_Echo_Plates_Finished",
+                              "helpText": "Runs the specified script",
+                              "guid": "ff31aaf0-3600-466f-88d7-fb432d89795b",
+                              "isAsync": false,
+                              "allowAsync": false,
+                              "iconUrl": "PackIcon.ScriptTextOutline [#FFFFFFFF]",
+                              "backgroundColorHex": "#FFF58CFF",
+                              "isDisabled": false,
+                              "isPausePointSet": false
+                            }
+                          ],
+                          "name": "Sequence",
+                          "description": "Sequence",
+                          "helpText": "A sequence of workflow elements",
+                          "guid": "3e426f9a-68a0-42a3-9423-078fa451429d",
+                          "isAsync": false,
+                          "allowAsync": false,
+                          "backgroundColorHex": "#00000000",
+                          "isDisabled": false,
+                          "isPausePointSet": false
+                        },
+                        "evaluation": {
+                          "left": "Crash Plates Not Finished",
+                          "right": "true",
+                          "evaluator": "Equal"
+                        },
+                        "evaluateAtEnd": false,
+                        "loopCount": 0,
+                        "loopType": "While",
+                        "foreachCollectionVariable": "",
+                        "foreachItemVariable": "",
+                        "foreachDelimiter": ",",
+                        "name": "Loop",
+                        "description": "Loop While Crash Plates Not Finished = true",
+                        "helpText": "A loop over a sequence of elements",
+                        "guid": "ce2edbad-7508-4296-adba-315ef695949f",
+                        "isAsync": false,
+                        "allowAsync": false,
+                        "iconUrl": "PackIcon.Reload [#FFFFFFFF]",
+                        "backgroundColorHex": "#FF08EAA7",
+                        "isDisabled": false,
+                        "isPausePointSet": false
+                      },
+                      {
+                        "$type": "Biosero.Workflow.Commands.TransportCommand, Biosero.Workflow.Core",
+                        "inputParameters": [
+                          {
+                            "name": "Timeout (min)",
+                            "value": "100",
+                            "valueType": "Double",
+                            "defaultValue": "10"
+                          },
+                          {
+                            "name": "From",
+                            "value": "EB2",
+                            "valueType": "String"
+                          },
+                          {
+                            "name": "To",
+                            "value": "IO",
+                            "valueType": "String"
+                          },
+                          {
+                            "name": "Barcodes",
+                            "value": "%CrashDestinationsEB%",
+                            "valueType": "String"
+                          },
+                          {
+                            "name": "Metadata",
+                            "value": "Zone=Destination Plates;Labware Designation=EB Plates;Labware Type=%CrashLabwareType%",
+                            "valueType": "String"
+                          }
+                        ],
+                        "outputParameterMapping": [
+                          {
+                            "name": "Barcodes",
+                            "parameterType": "String"
+                          },
+                          {
+                            "name": "Request ID",
+                            "parameterType": "String"
+                          }
+                        ],
+                        "name": "Transport",
+                        "description": "Transport",
+                        "helpText": "Transports the specified barcode(s) from one station to another.",
+                        "guid": "524a1068-0910-4657-8037-e5338cb42756",
+                        "isAsync": false,
+                        "allowAsync": false,
+                        "iconUrl": "PackIcon.TransitConnectionVariant [#FFFFFFFF]",
+                        "backgroundColorHex": "#FF666666",
+                        "isDisabled": false,
+                        "isPausePointSet": false
+                      }
+                    ],
+                    "name": "Sequence",
+                    "description": "Sequence",
+                    "helpText": "A sequence of workflow elements",
+                    "guid": "db249048-e4db-45c1-83fa-2bd4da582cca",
+                    "isAsync": false,
+                    "allowAsync": false,
+                    "backgroundColorHex": "#00000000",
+                    "isDisabled": false,
+                    "isPausePointSet": false
+                  },
+                  "right": {
+                    "children": [
+                      {
+                        "$type": "Biosero.Workflow.RunScript, Biosero.Workflow.Core",
+                        "scriptName": "Check_All_Source_Echo_Plates_Finished",
+                        "name": "Run Script",
+                        "description": "Run Script: Check_All_Source_Echo_Plates_Finished",
+                        "helpText": "Runs the specified script",
+                        "guid": "9a26e54f-f21b-4e2d-b858-ef28bc4b54c0",
+                        "isAsync": false,
+                        "allowAsync": false,
+                        "iconUrl": "PackIcon.ScriptTextOutline [#FFFFFFFF]",
+                        "backgroundColorHex": "#FFF58CFF",
+                        "isDisabled": false,
+                        "isPausePointSet": false
+                      },
+                      {
+                        "$type": "Biosero.Workflow.Loop, Biosero.Workflow.Core",
+                        "sequence": {
+                          "children": [
+                            {
+                              "$type": "Biosero.Workflow.Elements.Delay, Biosero.Workflow.Core",
+                              "seconds": 20.0,
+                              "minutes": 0.0,
+                              "hours": 0.0,
+                              "name": "Delay",
+                              "description": "Delay 0:0:20",
+                              "helpText": "Delays the workflow for the specified amount of time",
+                              "guid": "57ea9730-cba3-442c-a281-abdf3c2fa6cc",
+                              "isAsync": false,
+                              "allowAsync": false,
+                              "iconUrl": "PackIcon.ClockOutline [#FFFFFFFF]",
+                              "backgroundColorHex": "#FF26A9FF",
+                              "isDisabled": false,
+                              "isPausePointSet": false
+                            },
+                            {
+                              "$type": "Biosero.Workflow.RunScript, Biosero.Workflow.Core",
+                              "scriptName": "Check_All_Source_Echo_Plates_Finished",
+                              "name": "Run Script",
+                              "description": "Run Script: Check_All_Source_Echo_Plates_Finished",
+                              "helpText": "Runs the specified script",
+                              "guid": "3decc915-78f8-4c26-9c49-bbc3c843a521",
+                              "isAsync": false,
+                              "allowAsync": false,
+                              "iconUrl": "PackIcon.ScriptTextOutline [#FFFFFFFF]",
+                              "backgroundColorHex": "#FFF58CFF",
+                              "isDisabled": false,
+                              "isPausePointSet": false
+                            }
+                          ],
+                          "name": "Sequence",
+                          "description": "Sequence",
+                          "helpText": "A sequence of workflow elements",
+                          "guid": "4a149271-2923-40ba-8604-efa18c128aad",
+                          "isAsync": false,
+                          "allowAsync": false,
+                          "backgroundColorHex": "#00000000",
+                          "isDisabled": false,
+                          "isPausePointSet": false
+                        },
+                        "evaluation": {
+                          "left": "Source Crash Plates Not Finished",
+                          "right": "true",
+                          "evaluator": "Equal"
+                        },
+                        "evaluateAtEnd": false,
+                        "loopCount": 0,
+                        "loopType": "While",
+                        "foreachCollectionVariable": "",
+                        "foreachItemVariable": "",
+                        "foreachDelimiter": ",",
+                        "name": "Loop",
+                        "description": "Loop While Source Crash Plates Not Finished = true",
+                        "helpText": "A loop over a sequence of elements",
+                        "guid": "04babe56-02e2-42d6-a963-7dfb7b9297cb",
+                        "isAsync": false,
+                        "allowAsync": false,
+                        "iconUrl": "PackIcon.Reload [#FFFFFFFF]",
+                        "backgroundColorHex": "#FF08EAA7",
+                        "isDisabled": false,
+                        "isPausePointSet": false
+                      },
+                      {
+                        "$type": "Biosero.Workflow.Commands.TransportCommand, Biosero.Workflow.Core",
+                        "inputParameters": [
+                          {
+                            "name": "Timeout (min)",
+                            "value": "100",
+                            "valueType": "Double",
+                            "defaultValue": "10"
+                          },
+                          {
+                            "name": "From",
+                            "value": "EB2",
+                            "valueType": "String"
+                          },
+                          {
+                            "name": "To",
+                            "value": "IO",
+                            "valueType": "String"
+                          },
+                          {
+                            "name": "Barcodes",
+                            "value": "%CrashPlatesForEB%",
+                            "valueType": "String"
+                          },
+                          {
+                            "name": "Metadata",
+                            "value": "Zone=Source Plates;Labware Designation=EB Plates;Labware Type=%CrashSourceLabwareType%",
+                            "valueType": "String"
+                          }
+                        ],
+                        "outputParameterMapping": [
+                          {
+                            "name": "Barcodes",
+                            "parameterType": "String"
+                          },
+                          {
+                            "name": "Request ID",
+                            "parameterType": "String"
+                          }
+                        ],
+                        "name": "Transport",
+                        "description": "Transport",
+                        "helpText": "Transports the specified barcode(s) from one station to another.",
+                        "guid": "6413f360-c768-475e-ba30-b0e50449715c",
+                        "isAsync": false,
+                        "allowAsync": false,
+                        "iconUrl": "PackIcon.TransitConnectionVariant [#FFFFFFFF]",
+                        "backgroundColorHex": "#FF666666",
+                        "isDisabled": false,
+                        "isPausePointSet": false
+                      }
+                    ],
+                    "name": "Sequence",
+                    "description": "Sequence",
+                    "helpText": "A sequence of workflow elements",
+                    "guid": "6b9e57a0-f561-46de-9b8b-8f8b38421e52",
+                    "isAsync": false,
+                    "allowAsync": false,
+                    "backgroundColorHex": "#00000000",
+                    "isDisabled": false,
+                    "isPausePointSet": false
+                  },
+                  "description": "Parallel",
+                  "guid": "af3e194f-b5dc-48b7-8642-27f9798815fd",
+                  "isAsync": false,
+                  "allowAsync": false,
+                  "isDisabled": false,
+                  "isPausePointSet": false
+                }
+              ],
+              "name": "Sequence",
+              "description": "Sequence",
+              "helpText": "A sequence of workflow elements",
+              "guid": "3f5a6a06-d193-4f3b-848f-b3a8dd428710",
+              "isAsync": false,
+              "allowAsync": false,
+              "backgroundColorHex": "#00000000",
+              "isDisabled": false,
+              "isPausePointSet": false
+            },
+            "evaluation": {
+              "left": "CrashPlateDispenseAmount",
+              "right": "0.5",
+              "evaluator": "GreaterThan"
+            },
+            "name": "Branch",
+            "description": "Branch if CrashPlateDispenseAmount > 0.5",
+            "helpText": "Evaluates a condition and branches accordingly",
+            "guid": "81e7e60a-d19b-4b08-ade4-98daaf752eae",
+            "isAsync": false,
+            "allowAsync": false,
+            "iconUrl": "PackIcon.Help [#FFFFFFFF:0:2]",
+            "backgroundColorHex": "#FFDEDE81",
+            "isDisabled": false,
+            "isPausePointSet": false
+          }
+        ],
+        "name": "Sequence",
+        "description": "Sequence",
+        "helpText": "A sequence of workflow elements",
+        "guid": "11bbdc57-3d31-49f0-b58f-4ee23d6141bf",
+        "isAsync": false,
+        "allowAsync": false,
+        "backgroundColorHex": "#00000000",
+        "isDisabled": false,
+        "isPausePointSet": false
+      }
+    }
+  ],
+  "parameters": [
+    {
+      "name": "Input.OrderId",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "REPOneLabwareType",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "REPTwoLabwareType",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "RepOneZone",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "RepOneStorage",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "RepTwoZone",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "RepTwoStorage",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "RepOnePlaceholderBarcodes",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "RepTwoPlaceholderBarcodes",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "CPSourcesForEB",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "EBSourcesToBeTransferred",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "CPSourcesTransferred",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "EBTransferredSources",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "EBSourcesIdentifiers",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "CPSourcessIdentifiersForEB",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "SourcesSentToTransfer",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Prioritised Jobs",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Job Priority",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Job Number",
+      "value": "0",
+      "valueType": "Integer",
+      "defaultValue": "0",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "TotalEBTransportedSources",
+      "value": "0",
+      "valueType": "Integer",
+      "defaultValue": "0",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "TotalEBQueuedDestinedSources",
+      "value": "0",
+      "valueType": "Integer",
+      "defaultValue": "0",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "TotalEBReadySources",
+      "value": "0",
+      "valueType": "Integer",
+      "defaultValue": "0",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "VelocityThresholdVolume",
+      "value": "8",
+      "valueType": "Integer",
+      "defaultValue": "8",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "VelocityTips30PlaceholderBarcodes",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "VelocityTips10PlaceholderBarcodes",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Velocity10Zone",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Velocity30Zone",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Velocity10Storage",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Velocity30Storage",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "CrashPlatesForEB",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "CrashDestinationsEB",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "CrashLabwareType",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "CrashZone",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "CrashStorage",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "EBRempSourceLabwareType",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "EBSources",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "EchoInstructions",
+      "value": "Targ1-REPOne 1,Targ2-REPOne 2,Targ3-REPOne 3",
+      "valueType": "String",
+      "defaultValue": "Targ1-REPOne 1,Targ2-REPOne 2,Targ3-REPOne 3",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "CrashPairListString",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Crash Plates Not Finished",
+      "value": "False",
+      "valueType": "Boolean",
+      "defaultValue": "False",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "CrashSourceLabwareType",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Source Crash Plates Not Finished",
+      "value": "False",
+      "valueType": "Boolean",
+      "defaultValue": "False",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "CrashPlateDispenseAmount",
+      "value": "0",
+      "valueType": "Double",
+      "defaultValue": "0",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    }
+  ],
+  "scripts": [
+    {
+      "name": "Process_State_Machine_EB_Initial",
+      "code": "#r Roche.LAMA1.dll\r\n\r\nusing Biosero.DataServices.Client;\r\nusing Biosero.Orchestrator.WorkflowService;\r\nusing Newtonsoft.Json;\r\nusing System;\r\nusing System.Threading;\r\nusing System.Threading.Tasks;\r\nusing System.Collections.Generic;\r\nusing System.Text;\r\nusing System.Linq;\r\nusing Roche.LAMA1;\r\nusing Roche.LAMA1.Models;\r\nusing Roche.LAMA1.MosaicTypes;\r\nusing Biosero.DataServices.RestClient;\r\nusing Biosero.DataModels.Events;\r\nusing Biosero.DataModels.Ordering;\r\nusing Biosero.DataModels.Clients;\r\nusing Biosero.DataModels.Resources;\r\nusing System.Security.Cryptography;\r\nusing System.Collections;\r\n\r\n\r\nnamespace Biosero.Scripting\r\n{\r\n    public class Process_State_Machine_EB_Initial\r\n    {\r\n\r\n\r\n        static string ExtractNumber(string input)\r\n        {\r\n            // Initialize an empty result string\r\n            string result = string.Empty;\r\n\r\n            // Iterate through each character in the input string\r\n            foreach (char c in input)\r\n            {\r\n                // Check if the character is a digit or a decimal point\r\n                if (char.IsDigit(c) || c == '.')\r\n                {\r\n                    result += c;\r\n                }\r\n                else\r\n                {\r\n                    // Stop collecting characters once a non-numeric character is found\r\n                    break;\r\n                }\r\n            }\r\n\r\n            // Return the extracted number\r\n            return result;\r\n        }\r\n\r\n        public async Task RunAsync(DataServicesClient client, WorkflowContext context, CancellationToken cancellationToken)\r\n        {\r\n            await context.AddOrUpdateGlobalVariableAsync(\"IOC Racks Required\", false);\r\n            await context.AddOrUpdateGlobalVariableAsync(\"IOC Crash Plates Required\", false);\r\n\r\n\r\n            string RequestedOrder = context.GetGlobalVariableValue<string>(\"Input.OrderId\");\r\n            string API_BASE_URL = \"http://192.168.14.10:8105/api/v2.0/\";\r\n\r\n            string ExtractedReplicationVolume = \"\";\r\n            string ExtractedNextReplicationVolume = \"\";\r\n            string NextReplicateLabware = \"\";\r\n            string FurtherReplicateLabware = \"\";\r\n            string DestinationCommonName = \"\";\r\n            string DestSourceLabwareType = \"\";\r\n\r\n\r\n            int EBSourcesCount = 0;\r\n            int RepOneCount = 0;\r\n            int RepTwoCount = 0;\r\n\r\n\r\n            string JobWorkflowFragment = \"\";\r\n\r\n            IQueryClient _queryClient = new QueryClient(API_BASE_URL);\r\n            IAccessioningClient _accessioningClient = new AccessioningClient(API_BASE_URL);\r\n            IEventClient _eventClient = new EventClient(API_BASE_URL);\r\n\r\n            List<string> AllCPSourcesForEB = new List<string>();\r\n            List<string> AllCPSourcesIdentifiersForEB = new List<string>();\r\n            List<string> AllSerializePlates = new List<string>();\r\n            List<string> AllReplicatePlates = new List<string>();\r\n            List<string> AllNextReplicatePlates = new List<string>();\r\n            List<string> AllCrashPlatesForEB = new List<string>();\r\n            List<string> AllCrashPlateIdentierssForEB = new List<string>();\r\n            List<string> AllCrashDestinationsEB = new List<string>();\r\n            List<string> EchoPairList = new List<string>();\r\n\r\n\r\n            IdentityHelper _identityHelper;\r\n\r\n\r\n            //Build out and register the root identities (i.e Mosaic Job) if they do not exist\r\n            _identityHelper = new IdentityHelper(_queryClient, _accessioningClient, _eventClient);\r\n            _identityHelper.BuildBaseIdentities();\r\n\r\n\r\n            //Get all the sources associated with this order\r\n            var sources = _identityHelper.GetSources(RequestedOrder).ToList();\r\n\r\n            //Get all the destinations associated with this order\r\n            var destinations = _identityHelper.GetDestinations(RequestedOrder).ToList();\r\n            //Get all the jobs\r\n            var jobs = _identityHelper.GetJobs(RequestedOrder).ToList();\r\n\r\n\r\n            //  MosaicDestination? destination = destinations?.FirstOrDefault(d => d.Description == \"777\");\r\n            foreach (var dest in destinations)\r\n            {\r\n                string DestinationName = dest.Name;\r\n                string DestinationDescription = dest.Description;\r\n                string DestinationSampleTransfers = dest.SampleTransfers;\r\n                string DestinationOperationType = dest.OperationType.ToString();\r\n                string DestinationJobId = dest.JobId.ToString();\r\n                string DestinationId = dest.Identifier.ToString();\r\n                string DestinationParent = dest.ParentIdentifier != null ? dest.ParentIdentifier.ToString() : null;\r\n                string NextDestName = \"\";\r\n                string NextDestIdentifier = \"\";\r\n                string NextOperationType = \"\";\r\n                string NextReplicateDestName = \"\";\r\n                string NextReplicateSibling = \"\";\r\n                string NextReplicateDestIdentifier = \"\";\r\n                string NextReplicateOperationType = \"\";\r\n                string NextReplicateSampleTransfers = \"\";\r\n                string NextReplicateID = \"\";\r\n                string FurtherReplicateDestName = \"\";\r\n                string FurtherReplicateDestIdentifier = \"\";\r\n                string FurtherReplicateOperationType = \"\";\r\n                string FurtherReplicateSampleTransfers = \"\";\r\n                string FurtherReplicateID = \"\";\r\n\r\n\r\n                if (DestinationOperationType == \"CherryPick\")\r\n                {\r\n\r\n\r\n                    // if not member already - add to a list of all EB CP sources for the order\r\n                    if (!AllCPSourcesForEB.Contains(DestinationName))\r\n                    {\r\n                        AllCPSourcesForEB.Add(DestinationName);\r\n                        AllCPSourcesIdentifiersForEB.Add(DestinationId);\r\n                    }\r\n\r\n                    // Find a list of all destinations (Serialiase) for the source above (should be only 1 each)\r\n                    var NextPlates = destinations\r\n                    .Where(x => x.ParentIdentifier != null &&\r\n                        x.ParentIdentifier == DestinationId)\r\n                    .ToList();\r\n\r\n                    foreach (var Plate in NextPlates)\r\n                    {\r\n                        NextDestName = Plate.Name;\r\n                        NextDestIdentifier = Plate.Identifier;\r\n                        NextOperationType = Plate.OperationType.ToString();\r\n                        string NextId = Plate.Identifier;\r\n\r\n\r\n\r\n                        // if not member already - add to a list of all serilisation for the order for the order\r\n                        if (!AllSerializePlates.Contains(NextDestName))\r\n                        {\r\n                            AllSerializePlates.Add(NextDestName);\r\n                        }\r\n\r\n\r\n\r\n                        if (NextOperationType == \"Serialise\")\r\n                        {\r\n                            var NextReplicatePlates = destinations\r\n                            .Where(x => x.ParentIdentifier != null &&\r\n                                x.ParentIdentifier == NextId)\r\n                            .ToList();\r\n\r\n                            foreach (var ReplicatePlate in NextReplicatePlates)\r\n                            {\r\n                                NextReplicateDestName = ReplicatePlate.Name;\r\n                                NextReplicateDestIdentifier = ReplicatePlate.Identifier;\r\n                                NextReplicateOperationType = ReplicatePlate.OperationType.ToString();\r\n                                NextReplicateSampleTransfers = ReplicatePlate.SampleTransfers;\r\n                                NextReplicateID = ReplicatePlate.Identifier;\r\n                                NextReplicateLabware = ReplicatePlate.CommonName;\r\n                                NextReplicateSibling = ReplicatePlate.SiblingIdentifier;\r\n\r\n\r\n\r\n                                var ExtractNum = destinations\r\n                                .Where(x => x.ParentIdentifier != null && x.Identifier == NextReplicateID)\r\n                                .FirstOrDefault();\r\n\r\n                                if (ExtractedReplicationVolume == \"\")\r\n                                {\r\n                                    ExtractedReplicationVolume = ExtractNumber(ExtractNum.SampleTransfers);\r\n                                }\r\n\r\n\r\n\r\n                                // if not member already - add to a list of all Echo plates needed for the order\r\n                                if (!AllReplicatePlates.Contains(NextReplicateDestName))\r\n                                {\r\n                                    AllReplicatePlates.Add(NextReplicateDestName);\r\n                                }\r\n\r\n                                Serilog.Log.Information(\"w777777777777 = {NextReplicateDestName}\", NextReplicateDestName.ToString());\r\n\r\n                                var RepDestSource = sources\r\n                                .Where(x => x.Identifier == NextReplicateSibling)\r\n                                .FirstOrDefault();\r\n\r\n                                string DestSourceName = RepDestSource.Name;\r\n\r\n                                Serilog.Log.Information(\"w777777777777 = {DestSourceName}\", DestSourceName.ToString());\r\n\r\n                                // Find a list of all Echo plates for each  serialsed plate (if exists)\r\n                                var FurtherReplicatePlates = destinations\r\n                                .Where(x => x.ParentIdentifier != null &&\r\n                                    x.ParentIdentifier == NextReplicateID)\r\n                                .ToList();\r\n\r\n                                int CheckFurtherReplicateExists = FurtherReplicatePlates.Count();\r\n\r\n                                if (CheckFurtherReplicateExists > 0)\r\n                                {\r\n                                    foreach (var FurtherPlateRep in FurtherReplicatePlates)\r\n                                    {\r\n                                        FurtherReplicateDestName = FurtherPlateRep.Name;\r\n                                        FurtherReplicateDestIdentifier = FurtherPlateRep.Identifier;\r\n                                        FurtherReplicateOperationType = FurtherPlateRep.OperationType.ToString();\r\n                                        FurtherReplicateSampleTransfers = FurtherPlateRep.SampleTransfers;\r\n                                        FurtherReplicateID = FurtherPlateRep.Identifier;\r\n                                        FurtherReplicateLabware = FurtherPlateRep.CommonName;\r\n\r\n                                        var ExtractNectReplicateNum = destinations\r\n                                        .Where(x => x.ParentIdentifier != null && x.Identifier == FurtherReplicateID)\r\n                                        .FirstOrDefault();\r\n\r\n                                        if (ExtractedNextReplicationVolume == \"\")\r\n                                        {\r\n                                            ExtractedNextReplicationVolume = ExtractNumber(ExtractNectReplicateNum.SampleTransfers);\r\n                                        }\r\n\r\n\r\n\r\n                                        // if not member already - add to a list of all Echo plates needed for the order\r\n                                        if (!AllNextReplicatePlates.Contains(FurtherReplicateDestName))\r\n                                        {\r\n                                            AllNextReplicatePlates.Add(FurtherReplicateDestName);\r\n                                        }\r\n\r\n\r\n                                    }\r\n                                }\r\n\r\n\r\n\r\n\r\n                            }\r\n\r\n\r\n                        }\r\n                        else if (NextOperationType == \"Replicate\")\r\n                        {\r\n                            // Find a list of all replicates only\r\n                            var NextReplicatePlates = destinations\r\n                            .Where(x => x.ParentIdentifier != null)\r\n                            .ToList();\r\n\r\n                            foreach (var ReplicatePlate in NextReplicatePlates)\r\n                            {\r\n                                NextReplicateDestName = ReplicatePlate.Name.Trim();\r\n                                NextReplicateDestIdentifier = ReplicatePlate.Identifier;\r\n                                NextReplicateOperationType = ReplicatePlate.OperationType.ToString();\r\n                                NextReplicateSampleTransfers = ReplicatePlate.SampleTransfers;\r\n                                NextReplicateID = ReplicatePlate.Identifier;\r\n                                NextReplicateLabware = ReplicatePlate.CommonName;\r\n                                NextReplicateSibling = ReplicatePlate.SiblingIdentifier;\r\n\r\n\r\n                                var ExtractNum = destinations\r\n                                .Where(x => x.ParentIdentifier != null && x.Identifier == NextReplicateID)\r\n                                .FirstOrDefault();\r\n\r\n                                if (ExtractedReplicationVolume == \"\")\r\n                                {\r\n                                    ExtractedReplicationVolume = ExtractNumber(ExtractNum.SampleTransfers);\r\n                                }\r\n\r\n\r\n\r\n                                // if not member already - add to a list of all Echo plates needed for the order\r\n                                if (!AllReplicatePlates.Contains(NextReplicateDestName))\r\n                                {\r\n                                    AllReplicatePlates.Add(NextReplicateDestName);\r\n                                }\r\n\r\n\r\n                                var RepDestSource = sources\r\n                                .Where(x => x.Identifier == NextReplicateSibling)\r\n                                .FirstOrDefault();\r\n\r\n                                string DestSourceName = RepDestSource.Name.Trim();\r\n\r\n\r\n                                if (!EchoPairList.Contains(DestSourceName + \"-\" + NextReplicateDestName))\r\n                                {\r\n                                    EchoPairList.Add(DestSourceName + \"-\" + NextReplicateDestName);\r\n                                }\r\n\r\n\r\n\r\n\r\n                                // Find a list of all Echo plates for each  serialsed plate (if exists)\r\n                                var FurtherReplicatePlates = destinations\r\n                                .Where(x => x.ParentIdentifier != null &&\r\n                                    x.ParentIdentifier == NextReplicateID)\r\n                                .ToList();\r\n\r\n                                int CheckFurtherReplicateExists = FurtherReplicatePlates.Count();\r\n\r\n                                if (CheckFurtherReplicateExists > 0)\r\n                                {\r\n                                    foreach (var FurtherPlateRep in FurtherReplicatePlates)\r\n                                    {\r\n                                        FurtherReplicateDestName = FurtherPlateRep.Name;\r\n                                        FurtherReplicateDestIdentifier = FurtherPlateRep.Identifier;\r\n                                        FurtherReplicateOperationType = FurtherPlateRep.OperationType.ToString();\r\n                                        FurtherReplicateSampleTransfers = FurtherPlateRep.SampleTransfers;\r\n                                        FurtherReplicateID = FurtherPlateRep.Identifier;\r\n                                        FurtherReplicateLabware = FurtherPlateRep.CommonName;\r\n\r\n                                        var ExtractNectReplicateNum = destinations\r\n                                        .Where(x => x.ParentIdentifier != null && x.Identifier == FurtherReplicateID)\r\n                                        .FirstOrDefault();\r\n\r\n                                        if (ExtractedNextReplicationVolume == \"\")\r\n                                        {\r\n                                            ExtractedNextReplicationVolume = ExtractNumber(ExtractNectReplicateNum.SampleTransfers);\r\n                                        }\r\n\r\n\r\n\r\n                                        // if not member already - add to a list of all Echo plates needed for the order\r\n                                        if (!AllNextReplicatePlates.Contains(FurtherReplicateDestName))\r\n                                        {\r\n                                            AllNextReplicatePlates.Add(FurtherReplicateDestName);\r\n                                        }\r\n\r\n\r\n                                    }\r\n                                }\r\n\r\n\r\n\r\n\r\n                            }\r\n\r\n\r\n                        }\r\n                    }\r\n\r\n                }\r\n\r\n\r\n            }\r\n\r\n\r\n            string EchoPairListString = String.Join(\",\", EchoPairList);\r\n            //  Serilog.Log.Information(\"w777777777777 = {EchoPairListString}\", EchoPairListString.ToString());\r\n            await context.AddOrUpdateGlobalVariableAsync(\"EchoInstructions\", EchoPairListString);\r\n\r\n            List<string> highPriorityJobs = new List<string>();\r\n            List<string> mediumPriorityJobs = new List<string>();\r\n            List<string> lowPriorityJobs = new List<string>();\r\n            List<string> CrashPairList = new List<string>();\r\n            List<string> sortedJobs = new List<string>();\r\n\r\n            foreach (var job in jobs)\r\n            {\r\n                string JobPriority = job.Priority;\r\n                string JobNumber = job.JobId.ToString();\r\n                JobWorkflowFragment = job.WorkflowFragment.ToString();\r\n\r\n\r\n                Serilog.Log.Information(\"++++++= {JobNumber}\", JobNumber.ToString());\r\n\r\n                Serilog.Log.Information(\"JobNumber= {JobNumber}\", JobNumber.ToString());\r\n\r\n                switch (JobPriority)\r\n                {\r\n                    case \"High\":\r\n                        highPriorityJobs.Add(JobNumber);\r\n                        break;\r\n                    case \"Medium\":\r\n                        mediumPriorityJobs.Add(JobNumber);\r\n                        break;\r\n                    case \"Low\":\r\n                        lowPriorityJobs.Add(JobNumber);\r\n                        break;\r\n                }\r\n\r\n            }\r\n\r\n            // Combine the lists in the desired order\r\n            sortedJobs.AddRange(highPriorityJobs);\r\n            sortedJobs.AddRange(mediumPriorityJobs);\r\n            sortedJobs.AddRange(lowPriorityJobs);\r\n\r\n            string PrioritisedJobs = string.Join(\",\", sortedJobs);\r\n            string CrashTransfer = \"\";\r\n            double Crashresult = 0.0;\r\n\r\n            Serilog.Log.Information(\"PrioritisedJobs = {PrioritisedJobs}\", PrioritisedJobs.ToString());\r\n\r\n\r\n            await context.AddOrUpdateGlobalVariableAsync(\"Prioritised Jobs\", PrioritisedJobs);\r\n\r\n            if (JobWorkflowFragment == \"Replicate\")\r\n            {\r\n                foreach (var dest in destinations)\r\n                {\r\n                    string DestinationName = dest.Name;\r\n                    string DestinationDescription = dest.Description;\r\n                    string DestinationSampleTransfers = dest.SampleTransfers;\r\n                    string DestinationOperationType = dest.OperationType.ToString();\r\n                    string DestinationJobId = dest.JobId.ToString();\r\n                    string DestinationId = dest.Identifier.ToString();\r\n                    string DestinationSibling = dest.SiblingIdentifier.ToString();\r\n                    string DestinationPriority = dest.Priority.ToString();\r\n                    DestinationCommonName = dest.CommonName.ToString();\r\n                    string DestinationParent = dest.ParentIdentifier != null ? dest.ParentIdentifier.ToString() : null;\r\n                    CrashTransfer = dest.SampleTransfers.ToString().Trim();\r\n\r\n                    \r\n                \r\n\r\n\r\n\r\n                    // Convert the cleaned string to a double\r\n                    Crashresult = double.Parse(CrashTransfer);\r\n\r\n\r\n                    await context.AddOrUpdateGlobalVariableAsync(\"CrashPlateDispenseAmount\", Crashresult);\r\n                    await context.AddOrUpdateGlobalVariableAsync(\"Job Number\", Int32.Parse(DestinationJobId));\r\n                    await context.AddOrUpdateGlobalVariableAsync(\"Job Priority\", DestinationPriority);\r\n\r\n\r\n                    var CrashSource = sources\r\n                    .Where(x => x.Identifier == DestinationSibling)\r\n                    .FirstOrDefault();\r\n\r\n                    string DestSourceName = CrashSource.Name;\r\n\r\n                    DestSourceLabwareType = CrashSource.CommonName;\r\n\r\n\r\n                    if (!CrashPairList.Contains(DestSourceName + \"-\" + DestinationName))\r\n                    {\r\n                        CrashPairList.Add(DestSourceName + \"-\" + DestinationName);\r\n                    }\r\n\r\n\r\n\r\n                    if ((DestinationOperationType == \"Replicate\") && (DestinationParent == null))\r\n                    {\r\n                        // if not member already - add to a list of all EB CP sources for the order\r\n                        if (!AllCrashDestinationsEB.Contains(DestinationName))\r\n                        {\r\n                            AllCrashDestinationsEB.Add(DestinationName);\r\n                        }\r\n\r\n\r\n                        var SiblingResult = sources\r\n                                    .Where(x => x.Identifier == DestinationSibling)\r\n                                    .FirstOrDefault();\r\n\r\n                        String crashName = SiblingResult.Name.ToString();\r\n                        String crashIdentifier = SiblingResult.Identifier.ToString();\r\n\r\n                        // if not member already - add to a list of all EB CP sources for the order\r\n                        if (!AllCrashPlatesForEB.Contains(crashName))\r\n                        {\r\n                            AllCrashPlatesForEB.Add(crashName);\r\n                            AllCrashPlateIdentierssForEB.Add(crashIdentifier);\r\n                        }\r\n\r\n\r\n\r\n                    }\r\n\r\n\r\n                }\r\n\r\n\r\n                string CrashPairListString = String.Join(\", \", CrashPairList);\r\n                //  Serilog.Log.Information(\"w777777777777 = {EchoPairListString}\", EchoPairListString.ToString());\r\n                await context.AddOrUpdateGlobalVariableAsync(\"CrashPairListString\", CrashPairListString);\r\n\r\n\r\n\r\n                string CrashNames = String.Join(\", \", AllCrashPlatesForEB);\r\n                string CrashIDs = String.Join(\", \", AllCrashPlateIdentierssForEB);\r\n                string CrashDestinationsEB = String.Join(\", \", AllCrashDestinationsEB);\r\n\r\n\r\n                Serilog.Log.Information(\"CrashNames = {CrashNames}\", CrashNames);\r\n                Serilog.Log.Information(\"CrashIDs = {CrashIDs}\", CrashIDs);\r\n                Serilog.Log.Information(\"CrashTransfer = {CrashTransfer}\", Crashresult.ToString());\r\n                await context.AddOrUpdateGlobalVariableAsync(\"CrashPlatesForEB\", CrashNames);\r\n                await context.AddOrUpdateGlobalVariableAsync(\"CrashDestinationsEB\", CrashDestinationsEB);\r\n                await context.AddOrUpdateGlobalVariableAsync(\"CrashLabwareType\", DestinationCommonName);\r\n                await context.AddOrUpdateGlobalVariableAsync(\"CrashSourceLabwareType\", DestSourceLabwareType);\r\n            }\r\n            else\r\n            {\r\n\r\n                string RepOnePlaceholderBarcodes = \"\";\r\n                string RepTwoPlaceholderBarcodes = \"\";\r\n\r\n                EBSourcesCount = AllCPSourcesForEB.Count();\r\n                RepOneCount = AllReplicatePlates.Count();\r\n                RepTwoCount = AllNextReplicatePlates.Count();\r\n\r\n                List<string> RepOneBarcodes = new List<string>();\r\n                List<string> RepTwoBarcodes = new List<string>();\r\n                Serilog.Log.Information(\"RepOneCount = {RepOneCount}\", RepOneCount.ToString());\r\n                Serilog.Log.Information(\"RepTwoCount = {RepTwoCount}\", RepTwoCount.ToString());\r\n\r\n\r\n                if (RepOneCount > 0)\r\n                {\r\n                    for (int i = 1; i <= RepOneCount; i++)\r\n                    {\r\n                        RepOneBarcodes.Add(\"REPOne \" + i);\r\n                    }\r\n\r\n                    RepOnePlaceholderBarcodes = String.Join(\", \", RepOneBarcodes);\r\n\r\n                    string REPOneInstrument = \"\";\r\n                    double REPOneVolume = Double.Parse(ExtractedReplicationVolume);\r\n\r\n\r\n                    if (REPOneVolume < 0.5)\r\n                    {\r\n                        REPOneInstrument = \"Echo\";\r\n                    }\r\n                    else\r\n                    {\r\n                        REPOneInstrument = \"Bravo\";\r\n                    }\r\n\r\n                }\r\n\r\n\r\n\r\n                if (RepTwoCount > 0)\r\n                {\r\n\r\n                    for (int i = 1; i <= 10; i++)\r\n                    {\r\n                        RepTwoBarcodes.Add(\"REPTwo \" + i);\r\n                    }\r\n\r\n                    RepTwoPlaceholderBarcodes = String.Join(\", \", RepTwoBarcodes);\r\n                    string REPTwoInstrument = \"\";\r\n                    double REPTwoVolume = 0;\r\n\r\n                    if (ExtractedNextReplicationVolume != \"\")\r\n                    {\r\n                        REPTwoVolume = Double.Parse(ExtractedNextReplicationVolume);\r\n                    }\r\n\r\n                }\r\n\r\n\r\n\r\n\r\n                Serilog.Log.Information(\"ExtractedReplicationVolume = {ExtractedReplicationVolume}\", ExtractedReplicationVolume.ToString());\r\n                Serilog.Log.Information(\"ExtractedNextReplicationVolume = {ExtractedNextReplicationVolume}\", ExtractedNextReplicationVolume.ToString());\r\n                Serilog.Log.Information(\"NextReplicateLabware = {NextReplicateLabware}\", NextReplicateLabware.ToString());\r\n                Serilog.Log.Information(\"FurtherReplicateLabware = {FurtherReplicateLabware}\", FurtherReplicateLabware.ToString());\r\n\r\n\r\n\r\n\r\n                string EBSources = string.Join(\",\", AllCPSourcesForEB);\r\n                string EBSourcesIdentifiers = string.Join(\",\", AllCPSourcesIdentifiersForEB);\r\n                string SerializePlates = string.Join(\",\", AllSerializePlates);\r\n                string ReplicatePlates = string.Join(\",\", AllReplicatePlates);\r\n                string ReplicateTwoReplicatePlates = string.Join(\",\", AllNextReplicatePlates);\r\n\r\n\r\n\r\n                Serilog.Log.Information(\"EBSourcesCount = {EBSourcesCount}\", EBSourcesCount.ToString());\r\n                Serilog.Log.Information(\"RepOneCount = {RepOneCount}\", RepOneCount.ToString());\r\n                Serilog.Log.Information(\"RepTwoCount = {RepTwoCount}\", RepTwoCount.ToString());\r\n\r\n                await context.AddOrUpdateGlobalVariableAsync(\"REPOneLabwareType\", NextReplicateLabware);\r\n\r\n                await context.AddOrUpdateGlobalVariableAsync(\"REPTwoLabwareType\", FurtherReplicateLabware);\r\n\r\n                await context.AddOrUpdateGlobalVariableAsync(\"RepOnePlaceholderBarcodes\", RepOnePlaceholderBarcodes);\r\n\r\n                await context.AddOrUpdateGlobalVariableAsync(\"RepTwoPlaceholderBarcodes\", RepTwoPlaceholderBarcodes);\r\n\r\n                await context.AddOrUpdateGlobalVariableAsync(\"CPSourcesForEB\", EBSources);\r\n\r\n                await context.AddOrUpdateGlobalVariableAsync(\"CPSourcesIdentifiersForEB\", EBSourcesIdentifiers);\r\n\r\n\r\n\r\n                Serilog.Log.Information(\"RepOnePlaceholderBarcodes = {RepOnePlaceholderBarcodes}\", RepOnePlaceholderBarcodes.ToString());\r\n\r\n                Serilog.Log.Information(\"EBSources = {EBSources}\", EBSources.ToString());\r\n\r\n\r\n            }\r\n\r\n\r\n\r\n\r\n        }\r\n        public List<Biosero.DataModels.Resources.Identity> GetPlatesWithNumberOfParents<T>(IdentityHelper _helper, QueryClient _queryClient, int nParents, string ownerId)\r\n        {\r\n            IEnumerable<DataModels.Resources.Identity> identities = typeof(T) switch\r\n            {\r\n                Type t when t == typeof(MosaicSource) => _helper.GetSources(ownerId).Select(od => od as Biosero.DataModels.Resources.Identity),\r\n                Type t when t == typeof(MosaicDestination) => _helper.GetDestinations(ownerId).Select(od => od as Biosero.DataModels.Resources.Identity),\r\n                Type t when t == typeof(MosaicJob) => _helper.GetJobs(ownerId).Select(od => od as Biosero.DataModels.Resources.Identity),\r\n                _ => throw new Exception(\"Type not supported\"),\r\n            };\r\n\r\n            //   Serilog.Log.Information($\"There are {orderIdents.Count} identities associated with owner ID {ownerId}\");\r\n            Dictionary<int, List<Biosero.DataModels.Resources.Identity>> identitiesWithNumberOfParents = new Dictionary<int, List<Biosero.DataModels.Resources.Identity>>();\r\n\r\n            int numberOfParentsCount;\r\n            string parent;\r\n            string Ident;\r\n\r\n            foreach (var identity in identities)\r\n            {\r\n                numberOfParentsCount = 0;\r\n                parent = identity.Properties.GetOrDefaultValue(\"ParentIdentifier\", string.Empty);\r\n                Ident = identity.Identifier;\r\n                //\tSerilog.Log.Information($\"Parent ID = {parent}\");\r\n                while (parent != string.Empty)\r\n                {                    //add null check here?\r\n                    Biosero.DataModels.Resources.Identity parentId = _queryClient.GetIdentity(parent);\r\n                    parent = parentId.Properties.GetOrDefaultValue(\"ParentIdentifier\", string.Empty);\r\n                    //Serilog.Log.Information($\"Parent ID = {parent}\");\r\n                    numberOfParentsCount += 1;\r\n                }\r\n\r\n                if (identitiesWithNumberOfParents.ContainsKey(numberOfParentsCount))\r\n                {\r\n                    identitiesWithNumberOfParents[numberOfParentsCount].Add(identity);\r\n                }\r\n\r\n                else\r\n                {\r\n                    identitiesWithNumberOfParents.Add(numberOfParentsCount, new List<Biosero.DataModels.Resources.Identity> { identity });\r\n                }\r\n            }\r\n            foreach (KeyValuePair<int, List<Biosero.DataModels.Resources.Identity>> kvp in identitiesWithNumberOfParents)\r\n            {\r\n                //   Serilog.Log.Information($\"There are {kvp.Value.Count} identities with  {kvp.Key} parents\");\r\n            }\r\n            if (identitiesWithNumberOfParents.ContainsKey(nParents))\r\n            {\r\n                return identitiesWithNumberOfParents[nParents];\r\n            }\r\n            else\r\n            {\r\n                return new List<Biosero.DataModels.Resources.Identity>();\r\n            }\r\n        }\r\n\r\n    }\r\n}\r\n\r\n\r\n",
+      "language": "C#"
+    },
+    {
+      "name": "DebugCheckAllQueuedSources",
+      "code": "#r ScriptTools.dll\r\n\r\nusing System;\r\nusing Newtonsoft.Json;\r\nusing System.Collections;\r\nusing System.Collections.Generic;\r\nusing System.Text;\r\nusing System.Linq;\r\nusing System.Threading;\r\nusing System.Threading.Tasks;\r\nusing Biosero.DataServices.Client;\r\nusing Biosero.Orchestrator.WorkflowService;\r\nusing ScriptTools;\r\n\r\nnamespace Acme.Orchestrator.Scripting\r\n{\r\npublic class DebugCheckAllQueuedSources\r\n    {\r\npublic async Task RunAsync  (DataServicesClient client, WorkflowContext context, CancellationToken cancellationToken)\r\n        {\r\n            var DebugCheckAllQueuedSources = new ScriptTools.Tools();\r\n            await DebugCheckAllQueuedSources.RunAsync(\"Ronen\", client, context, cancellationToken);\r\n        }\r\n    }\r\n}",
+      "language": "C#"
+    },
+    {
+      "name": "CheckAllQueuedEBSources",
+      "code": "#r Roche.LAMA1.dll\r\n\r\nusing Biosero.DataServices.Client;\r\nusing Biosero.Orchestrator.WorkflowService;\r\nusing Newtonsoft.Json;\r\nusing System;\r\nusing System.Threading;\r\nusing System.Threading.Tasks;\r\nusing System.Collections.Generic;\r\nusing System.Text;\r\nusing System.Linq;\r\nusing Roche.LAMA1;\r\nusing Roche.LAMA1.Models;\r\nusing Roche.LAMA1.MosaicTypes;\r\nusing Biosero.DataServices.RestClient;\r\nusing Biosero.DataModels.Events;\r\nusing Biosero.DataModels.Ordering;\r\nusing Biosero.DataModels.Clients;\r\nusing Biosero.DataModels.Resources;\r\nusing System.Security.Cryptography;\r\nusing System.Collections;\r\n\r\n\r\nnamespace Biosero.Scripting\r\n{\r\n    public class CheckAllQueuedEBSources\r\n    {\r\n        public async Task RunAsync(DataServicesClient client, WorkflowContext context, CancellationToken cancellationToken)\r\n        {\r\n            string RequestedOrder = context.GetGlobalVariableValue<string>(\"Input.OrderId\");\r\n            string CPSourcesForEB = context.GetGlobalVariableValue<string>(\"CPSourcesForEB\");\r\n\r\n\r\n            string DestLabwareType = \"\";\r\n\r\n\r\n\r\n            string API_BASE_URL = \"http://192.168.14.10:8105/api/v2.0/\";\r\n            IQueryClient _queryClient = new QueryClient(API_BASE_URL);\r\n            IAccessioningClient _accessioningClient = new AccessioningClient(API_BASE_URL);\r\n            IEventClient _eventClient = new EventClient(API_BASE_URL);\r\n\r\n            List<string> AllDestinationsForOrder = new List<string>();\r\n            List<string> QueuedDestinationsForOrder = new List<string>();\r\n            List<string> ReadyDestinationsForEB = new List<string>();\r\n            List<string> TransportedDestinationsForEB = new List<string>();\r\n            List<string> CPToEBBarcodes = CPSourcesForEB.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).ToList();\r\n\r\n            string EBSources = string.Join(\",\", CPToEBBarcodes);\r\n\r\n            string initialReadyDestinations = string.Join(\",\", ReadyDestinationsForEB);\r\n\r\n            Serilog.Log.Information(\"EBSources= {EBSources}\", EBSources.ToString());\r\n            Serilog.Log.Information(\"initialReadySources= {initialReadySources}\", initialReadyDestinations.ToString());\r\n\r\n\r\n\r\n\r\n            IdentityHelper _identityHelper;\r\n\r\n\r\n            //Build out and register the root identities (i.e Mosaic Job) if they do not exist\r\n            _identityHelper = new IdentityHelper(_queryClient, _accessioningClient, _eventClient);\r\n            _identityHelper.BuildBaseIdentities();\r\n\r\n\r\n            //Get all the sources associated with this order\r\n            var sources = _identityHelper.GetSources(RequestedOrder).ToList();\r\n\r\n            //Get all the Sources associated with this order\r\n            var destinations = _identityHelper.GetDestinations(RequestedOrder).ToList();\r\n            //Get all the jobs\r\n            var jobs = _identityHelper.GetJobs(RequestedOrder).ToList();\r\n\r\n\r\n            //  MosaicSource? Source = Sources?.FirstOrDefault(d => d.Description == \"777\");\r\n            foreach (var dest in destinations)\r\n            {\r\n                string DestID = dest.Identifier;\r\n                string DestName = dest.Name;\r\n                string DestType = dest.TypeIdentifier;\r\n                string DestState = dest.Status.ToString();\r\n                string DestOperationType = dest.OperationType.ToString();\r\n\r\n                bool isInList = CPToEBBarcodes.Contains(DestName);\r\n\r\n                if (isInList)\r\n                {\r\n\r\n                    if (!AllDestinationsForOrder.Contains(DestName))\r\n                    {\r\n                        AllDestinationsForOrder.Add(DestName);\r\n                        QueuedDestinationsForOrder.Add(DestName);\r\n                    }\r\n                    \r\n                    Serilog.Log.Information(\">>>>= {DestID}\", DestID.ToString());\r\n\r\n\r\n                    if ((!ReadyDestinationsForEB.Contains(DestName)) && (DestState == \"Finished\"))\r\n                    {\r\n\r\n                        Serilog.Log.Information(\"Got One!= {DestName}\", DestName.ToString());\r\n                        ReadyDestinationsForEB.Add(DestName);\r\n                        DestLabwareType = dest.CommonName.ToString();\r\n                    }\r\n                    else if ((!ReadyDestinationsForEB.Contains(DestName)) && (DestState == \"Transporting\"))\r\n                    {\r\n\r\n                        Serilog.Log.Information(\"This one was sent= {DestName}\", DestName.ToString());\r\n                        TransportedDestinationsForEB.Add(DestName);\r\n                    }\r\n                }\r\n\r\n\r\n            }\r\n\r\n            string AllEBDestinedSources = string.Join(\",\", AllDestinationsForOrder);\r\n            int TotalEBDestinedSources = AllDestinationsForOrder.Count;\r\n            string AllQueuedEBDestinedSources = string.Join(\",\", QueuedDestinationsForOrder);\r\n            int TotalEBQueuedDestinedSources = QueuedDestinationsForOrder.Count;\r\n            string AllEBReadySources = \"\";\r\n            int TotalEBReadySources = 0;\r\n            string AllEBTransportedSources = \"\";\r\n            int TotalEBTransportedSources = 0;\r\n\r\n            if (ReadyDestinationsForEB.Count() > 0)\r\n            {\r\n                AllEBReadySources = string.Join(\",\", ReadyDestinationsForEB);\r\n                TotalEBReadySources = ReadyDestinationsForEB.Count;\r\n            }\r\n            else\r\n            {\r\n\r\n                AllEBReadySources = \"\";\r\n                TotalEBReadySources = 0;\r\n            }\r\n\r\n            if (TransportedDestinationsForEB.Count() > 0)\r\n            {\r\n                AllEBTransportedSources = string.Join(\",\", TransportedDestinationsForEB);\r\n                TotalEBTransportedSources = TransportedDestinationsForEB.Count;\r\n            }\r\n            else\r\n            {\r\n\r\n                AllEBTransportedSources = \"\";\r\n                TotalEBTransportedSources = 0;\r\n            }\r\n\r\n            Serilog.Log.Information(\"SETUP info prior to attempting==============\");\r\n            Serilog.Log.Information(\"TotalEBDestinedSources= {TotalEBDestinedSources} \", TotalEBDestinedSources.ToString());\r\n            Serilog.Log.Information(\"TotalEBQueuedDestinedSources= {TotalEBQueuedDestinedSources} \", TotalEBQueuedDestinedSources.ToString());\r\n            Serilog.Log.Information(\"TotalEBReadyDestinations= {TotalEBReadySources} \", TotalEBReadySources.ToString());\r\n            Serilog.Log.Information(\"TotalEBTransportedSources= {TotalEBTransportedSources} \", TotalEBTransportedSources.ToString());\r\n            Serilog.Log.Information(\"SETUP info prior to attempting==============\");\r\n\r\n            await context.AddOrUpdateGlobalVariableAsync(\"EBSourcesToBeTransferred\", AllEBReadySources);\r\n            Serilog.Log.Information(\"<><><><><>= {AllEBReadySources} \", AllEBReadySources.ToString());\r\n            await context.AddOrUpdateGlobalVariableAsync(\"TotalEBReadySources\", TotalEBReadySources);\r\n            await context.AddOrUpdateGlobalVariableAsync(\"TotalEBTransportedSources\", TotalEBTransportedSources);\r\n            await context.AddOrUpdateGlobalVariableAsync(\"TotalEBQueuedDestinedSources\", TotalEBQueuedDestinedSources);\r\n            await context.AddOrUpdateGlobalVariableAsync(\"EBRempSourceLabwareType\", DestLabwareType);\r\n\r\n        }\r\n        public List<Biosero.DataModels.Resources.Identity> GetPlatesWithNumberOfParents<T>(IdentityHelper _helper, QueryClient _queryClient, int nParents, string ownerId)\r\n        {\r\n            IEnumerable<DataModels.Resources.Identity> identities = typeof(T) switch\r\n            {\r\n                Type t when t == typeof(MosaicSource) => _helper.GetSources(ownerId).Select(od => od as Biosero.DataModels.Resources.Identity),\r\n                Type t when t == typeof(MosaicSource) => _helper.GetSources(ownerId).Select(od => od as Biosero.DataModels.Resources.Identity),\r\n                Type t when t == typeof(MosaicJob) => _helper.GetJobs(ownerId).Select(od => od as Biosero.DataModels.Resources.Identity),\r\n                _ => throw new Exception(\"Type not supported\"),\r\n            };\r\n\r\n            //   Serilog.Log.Information($\"There are {orderIdents.Count} identities associated with owner ID {ownerId}\");\r\n            Dictionary<int, List<Biosero.DataModels.Resources.Identity>> identitiesWithNumberOfParents = new Dictionary<int, List<Biosero.DataModels.Resources.Identity>>();\r\n\r\n            int numberOfParentsCount;\r\n            string parent;\r\n            string Ident;\r\n\r\n            foreach (var identity in identities)\r\n            {\r\n                numberOfParentsCount = 0;\r\n                parent = identity.Properties.GetOrDefaultValue(\"ParentIdentifier\", string.Empty);\r\n                Ident = identity.Identifier;\r\n                //\tSerilog.Log.Information($\"Parent ID = {parent}\");\r\n                while (parent != string.Empty)\r\n                {                    //add null check here?\r\n                    Biosero.DataModels.Resources.Identity parentId = _queryClient.GetIdentity(parent);\r\n                    parent = parentId.Properties.GetOrDefaultValue(\"ParentIdentifier\", string.Empty);\r\n                    //Serilog.Log.Information($\"Parent ID = {parent}\");\r\n                    numberOfParentsCount += 1;\r\n                }\r\n\r\n                if (identitiesWithNumberOfParents.ContainsKey(numberOfParentsCount))\r\n                {\r\n                    identitiesWithNumberOfParents[numberOfParentsCount].Add(identity);\r\n                }\r\n\r\n                else\r\n                {\r\n                    identitiesWithNumberOfParents.Add(numberOfParentsCount, new List<Biosero.DataModels.Resources.Identity> { identity });\r\n                }\r\n            }\r\n            foreach (KeyValuePair<int, List<Biosero.DataModels.Resources.Identity>> kvp in identitiesWithNumberOfParents)\r\n            {\r\n                //   Serilog.Log.Information($\"There are {kvp.Value.Count} identities with  {kvp.Key} parents\");\r\n            }\r\n            if (identitiesWithNumberOfParents.ContainsKey(nParents))\r\n            {\r\n                return identitiesWithNumberOfParents[nParents];\r\n            }\r\n            else\r\n            {\r\n                return new List<Biosero.DataModels.Resources.Identity>();\r\n            }\r\n        }\r\n\r\n    }\r\n}",
+      "language": "C#"
+    },
+    {
+      "name": "ResetTransferredPlatesValuesedEBSources",
+      "code": "#r Roche.LAMA1.dll\r\n\r\nusing Biosero.DataModels.Clients;\r\nusing Biosero.DataModels.Events;\r\nusing Biosero.DataModels.Ordering;\r\nusing Biosero.DataModels.Resources;\r\nusing Biosero.DataServices.Client;\r\nusing Biosero.DataServices.RestClient;\r\nusing Biosero.Orchestrator.WorkflowService;\r\nusing Newtonsoft.Json;\r\nusing Roche.LAMA1.Models;\r\nusing Roche.LAMA1.MosaicTypes;\r\nusing Roche.LAMA1;\r\nusing System.Collections.Generic;\r\nusing System.Collections;\r\nusing System.Linq;\r\nusing System.Security.Cryptography;\r\nusing System.Text;\r\nusing System.Threading.Tasks;\r\nusing System.Threading;\r\nusing System;\r\n\r\n\r\n\r\nnamespace Biosero.Scripting\r\n{\r\n    public class ResetTransferredPlatesValuesedEBSources\r\n    {\r\n        public async Task RunAsync(DataServicesClient client, WorkflowContext context, CancellationToken cancellationToken)\r\n        {\r\n            string RequestedOrder = context.GetGlobalVariableValue<string>(\"Input.OrderId\");\r\n\r\n            int RequestedJob =context.GetGlobalVariableValue<int>(\"Job Number\");\r\n\r\n\r\n            string SourceIndentityState = \"\";\r\n\r\n            string API_BASE_URL = \"http://192.168.14.10:8105/api/v2.0/\";\r\n            IQueryClient _queryClient = new QueryClient(API_BASE_URL);\r\n            IAccessioningClient _accessioningClient = new AccessioningClient(API_BASE_URL);\r\n            IEventClient _eventClient = new EventClient(API_BASE_URL);\r\n\r\n\r\n            IdentityHelper _identityHelper;\r\n\r\n\r\n            //Build out and register the root identities (i.e Mosaic Job) if they do not exist\r\n            _identityHelper = new IdentityHelper(_queryClient, _accessioningClient, _eventClient);\r\n            _identityHelper.BuildBaseIdentities();\r\n\r\n            var sources = _identityHelper.GetSources(RequestedOrder).ToList();\r\n\r\n            var destinations = _identityHelper.GetDestinations(RequestedOrder).ToList();\r\n\r\n            string SourcesToBeTransferred = context.GetGlobalVariableValue<string>(\"CPSourcesForEB\");\r\n            string SourceIdentifierssToBeTransferred = context.GetGlobalVariableValue<string>(\"CPSourcesIdentifiersForEB\");\r\n\r\n\r\n            Serilog.Log.Information(\"SourcesToBeTransferred = {SourcesToBeTransferred}\", SourcesToBeTransferred);\r\n\r\n            //  Serilog.Log.Information(\"SourceIdentifierssToBeTransferred = {SourceIdentifierssToBeTransferred}\", SourceIdentifierssToBeTransferred);\r\n            string TransferredSources = context.GetGlobalVariableValue<string>(\"EBTransferredSources\");\r\n\r\n            List<string> AllTransferredSources = TransferredSources.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).ToList();\r\n            List<string> AllSourcesToBeTransferred = SourcesToBeTransferred.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).ToList();\r\n            List<string> AllSourceIdentifiersToBeTransferred = SourceIdentifierssToBeTransferred.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).ToList();\r\n\r\n\r\n\r\n            foreach (var destination in destinations)\r\n            {\r\n                int identityJobID = destination.JobId; // Identity Job as string\r\n                string SourceIdentityID = destination.Identifier;\r\n                string SourceIdentityName = destination.Name;\r\n                string SourceIdentityType = destination.TypeIdentifier;\r\n                SourceIndentityState = destination.Status.ToString();\r\n\r\n                if ((AllSourcesToBeTransferred.Contains(SourceIdentityName)) && (SourceIndentityState == \"Finished\"))\r\n                {\r\n                    Serilog.Log.Information(\"SourceIdentityName = {SourceIdentityName}\", SourceIdentityName);\r\n                    var currentStatus = SourceIndentityState;\r\n                    destination.Properties.SetValue(\"Status\", \"Transporting\");\r\n                    _identityHelper.Register(destination, identityJobID, RequestedOrder);\r\n\r\n\r\n                    AllTransferredSources.Add(SourceIdentityName);\r\n\r\n                }\r\n\r\n            }\r\n\r\n\r\n            string SourcesSentToTransfer = string.Join(\",\", AllTransferredSources);\r\n            Serilog.Log.Information(\"THESE PLATES WERE SENT====\");\r\n            Serilog.Log.Information(\"SourcesSentToTransfer = {SourcesSentToTransfer}\", SourcesSentToTransfer);\r\n             await context.AddOrUpdateGlobalVariableAsync(\"SourcesSentToTransfer\", SourcesSentToTransfer);\r\n            await context.AddOrUpdateGlobalVariableAsync(\"EBSourcesToBeTransferred\", \"\");\r\n\r\n        }\r\n\r\n\r\n    }\r\n}",
+      "language": "C#"
+    },
+    {
+      "name": "Process_State_Machine_EB",
+      "code": "#r Roche.LAMA1.dll\r\n\r\nusing Biosero.DataServices.Client;\r\nusing Biosero.Orchestrator.WorkflowService;\r\nusing Newtonsoft.Json;\r\nusing System;\r\nusing System.Threading;\r\nusing System.Threading.Tasks;\r\nusing System.Collections.Generic;\r\nusing System.Text;\r\nusing System.Linq;\r\nusing Roche.LAMA1;\r\nusing Roche.LAMA1.Models;\r\nusing Roche.LAMA1.MosaicTypes;\r\nusing Biosero.DataServices.RestClient;\r\nusing Biosero.DataModels.Events;\r\nusing Biosero.DataModels.Ordering;\r\nusing Biosero.DataModels.Clients;\r\nusing Biosero.DataModels.Resources;\r\nusing System.Security.Cryptography;\r\nusing System.Collections;\r\nusing System.IO;\r\n\r\n\r\nnamespace Biosero.Scripting\r\n{\r\n    public class Process_State_Machine_EB\r\n    {\r\n\r\n\r\n\r\n        enum Priority\r\n        {\r\n            High,\r\n            Medium,\r\n            Low\r\n        }\r\n\r\n        // Define a class to represent a job\r\n        class Job\r\n        {\r\n            public string Name { get; set; }\r\n            public Priority JobPriority { get; set; }\r\n\r\n            public Job(string name, Priority priority)\r\n            {\r\n                Name = name;\r\n                JobPriority = priority;\r\n            }\r\n        }\r\n\r\n        public async Task RunAsync(DataServicesClient client, WorkflowContext context, CancellationToken cancellationToken)\r\n        {\r\n            string RequestedOrder = context.GetGlobalVariableValue<string>(\"Input.OrderId\");\r\n            string ReadyJobs = context.GetGlobalVariableValue<string>(\"Input.All Ready Jobs\");\r\n            string CPRacksToProcess = context.GetGlobalVariableValue<string>(\"Input.IOC Processed Racks\");\r\n\r\n\r\n            string API_BASE_URL = \"http://192.168.14.10:8105/api/v2.0/\";\r\n            IQueryClient _queryClient = new QueryClient(API_BASE_URL);\r\n            IAccessioningClient _accessioningClient = new AccessioningClient(API_BASE_URL);\r\n            IEventClient _eventClient = new EventClient(API_BASE_URL);\r\n\r\n\r\n            IdentityHelper _identityHelper;\r\n\r\n\r\n            //Build out and register the root identities (i.e Mosaic Job) if they do not exist\r\n            _identityHelper = new IdentityHelper(_queryClient, _accessioningClient, _eventClient);\r\n            _identityHelper.BuildBaseIdentities();\r\n\r\n\r\n            //Get all the sources associated with this order\r\n            var sources = _identityHelper.GetSources(RequestedOrder).ToList();\r\n\r\n            //Get all the destinations associated with this order\r\n            var destinations = _identityHelper.GetDestinations(RequestedOrder).ToList();\r\n            //Get all the jobs\r\n            var jobs = _identityHelper.GetJobs(RequestedOrder).ToList();\r\n\r\n            List<string> highPriorityJobs = new List<string>();\r\n            List<string> mediumPriorityJobs = new List<string>();\r\n            List<string> lowPriorityJobs = new List<string>();\r\n\r\n            List<string> sortedJobs = new List<string>();\r\n\r\n            foreach (var job in jobs)\r\n            {\r\n                string JobPriority = job.Priority;\r\n                string JobNumber = job.JobId.ToString();\r\n                Serilog.Log.Information(\"JobNumber= {JobNumber}\", JobNumber.ToString());\r\n\r\n                switch (JobPriority)\r\n                {\r\n                    case \"High\":\r\n                        highPriorityJobs.Add(JobNumber);\r\n                        break;\r\n                    case \"Medium\":\r\n                        mediumPriorityJobs.Add(JobNumber);\r\n                        break;\r\n                    case \"Low\":\r\n                        lowPriorityJobs.Add(JobNumber);\r\n                        break;\r\n                }\r\n\r\n            }\r\n\r\n            // Combine the lists in the desired order\r\n            sortedJobs.AddRange(highPriorityJobs);\r\n            sortedJobs.AddRange(mediumPriorityJobs);\r\n            sortedJobs.AddRange(lowPriorityJobs);\r\n\r\n            string PrioritisedJobs = string.Join(\",\", sortedJobs);\r\n\r\n\r\n            await context.AddOrUpdateGlobalVariableAsync(\"Prioritised Jobs\", PrioritisedJobs);\r\n\r\n\r\n        }\r\n\r\n    }\r\n}\r\n\r\n",
+      "language": "C#"
+    },
+    {
+      "name": "Process_EB_Sorted_Jobs",
+      "code": "#r Roche.LAMA1.dll\r\n\r\nusing Biosero.DataServices.Client;\r\nusing Biosero.Orchestrator.WorkflowService;\r\nusing Newtonsoft.Json;\r\nusing System;\r\nusing System.Threading;\r\nusing System.Threading.Tasks;\r\nusing System.Collections.Generic;\r\nusing System.Text;\r\nusing System.Linq;\r\nusing Roche.LAMA1;\r\nusing Roche.LAMA1.Models;\r\nusing Roche.LAMA1.MosaicTypes;\r\nusing Biosero.DataServices.RestClient;\r\nusing Biosero.DataModels.Events;\r\nusing Biosero.DataModels.Ordering;\r\nusing Biosero.DataModels.Clients;\r\nusing Biosero.DataModels.Resources;\r\nusing System.Security.Cryptography;\r\nusing System.Collections;\r\nusing System.IO;\r\n\r\n\r\nnamespace Biosero.Scripting\r\n{\r\n    public class Process_EB_Sorted_Jobs\r\n    {\r\n\r\n\r\n\r\n\r\n        public async Task RunAsync(DataServicesClient client, WorkflowContext context, CancellationToken cancellationToken)\r\n        {\r\n            string PrioritisedJobs = context.GetGlobalVariableValue<string>(\"Prioritised Jobs\");\r\n            string RequestedOrder = context.GetGlobalVariableValue<string>(\"Input.OrderId\");\r\n\r\n            //instantiate LAMA1 objects\r\n\r\n            string API_BASE_URL = \"http://192.168.14.10:8105/api/v2.0/\";\r\n            IQueryClient _queryClient = new QueryClient(API_BASE_URL);\r\n            IAccessioningClient _accessioningClient = new AccessioningClient(API_BASE_URL);\r\n            IEventClient _eventClient = new EventClient(API_BASE_URL);\r\n\r\n\r\n            IdentityHelper _identityHelper;\r\n\r\n\r\n            //Build out and register the root identities (i.e Mosaic Job) if they do not exist\r\n            _identityHelper = new IdentityHelper(_queryClient, _accessioningClient, _eventClient);\r\n            _identityHelper.BuildBaseIdentities();\r\n\r\n\r\n            //Get all the sources associated with this order\r\n            var sources = _identityHelper.GetSources(RequestedOrder).ToList();\r\n\r\n            //Get all the destinations associated with this order\r\n            var destinations = _identityHelper.GetDestinations(RequestedOrder).ToList();\r\n            //Get all the jobs\r\n            var jobs = _identityHelper.GetJobs(RequestedOrder).ToList();\r\n\r\n            //instantiate LAMA1 objects\r\n\r\n\r\n\r\n\r\n            List<string> PrioritisedJobsList = PrioritisedJobs.Split(',').ToList();\r\n\r\n            // Get highest priority job\r\n            string PrioritisedJobId = PrioritisedJobsList[0];\r\n\r\n            Serilog.Log.Information(\"job= {job}\", PrioritisedJobId.ToString());\r\n\r\n            //Retrienve job name and identifier from Identities dataset\r\n            var i = jobs\r\n            .Where(x => x.Properties.GetValue<string>(\"JobId\") == PrioritisedJobId)\r\n            .FirstOrDefault();\r\n\r\n\r\n\r\n\r\n            string JobName = i.Name;\r\n            string JobIdentifier = i.Identifier;\r\n            string Priority = i.Priority;\r\n\r\n            //Retrieve destination details from identities dataset\r\n            var a = destinations\r\n            .Where(a => a.Properties.GetValue<string>(\"JobId\") == PrioritisedJobId)\r\n            .FirstOrDefault();\r\n\r\n            string AssayLabwareType = a.CommonName;\r\n\r\n\r\n\r\n            int PriorityId = 0;\r\n\r\n            switch (Priority)\r\n            {\r\n                case \"High\":\r\n                    PriorityId = 1;\r\n                    break;\r\n                case \"Medium\":\r\n                    PriorityId = 2;\r\n                    break;\r\n                case \"Low\":\r\n                    PriorityId = 3;\r\n                    break;\r\n            }\r\n\r\n\r\n            Serilog.Log.Information(\"JobName= {JobName}\", JobName.ToString());\r\n            Serilog.Log.Information(\"JobIdentifier= {JobIdentifier}\", JobIdentifier.ToString());\r\n            Serilog.Log.Information(\"Priority= {Priority}\", PriorityId.ToString());\r\n\r\n\r\n\r\n            await context.AddOrUpdateGlobalVariableAsync(\"Job Number\", Int32.Parse(PrioritisedJobId));\r\n            await context.AddOrUpdateGlobalVariableAsync(\"Job Priority\", PriorityId.ToString());\r\n\r\n\r\n            string result = string.Join(\",\", PrioritisedJobs.Split(',').Where(s => s != PrioritisedJobId));\r\n\r\n            await context.AddOrUpdateGlobalVariableAsync(\"Prioritised Jobs\", result);\r\n\r\n        }\r\n\r\n    }\r\n}\r\n\r\n",
+      "language": "C#"
+    },
+    {
+      "name": "RequiredVelocityTips",
+      "code": "#r Roche.LAMA1.dll\r\n\r\nusing Biosero.DataServices.Client;\r\nusing Biosero.Orchestrator.WorkflowService;\r\nusing Newtonsoft.Json;\r\nusing System;\r\nusing System.Threading;\r\nusing System.Threading.Tasks;\r\nusing System.Collections.Generic;\r\nusing System.Text;\r\nusing System.Linq;\r\nusing Roche.LAMA1;\r\nusing Roche.LAMA1.Models;\r\nusing Roche.LAMA1.MosaicTypes;\r\nusing Biosero.DataServices.RestClient;\r\nusing Biosero.DataModels.Events;\r\nusing Biosero.DataModels.Ordering;\r\nusing Biosero.DataModels.Clients;\r\nusing Biosero.DataModels.Resources;\r\nusing System.Security.Cryptography;\r\nusing System.Collections;\r\n\r\n\r\nnamespace Biosero.Scripting\r\n{\r\n    public class RequiredVelocityTips\r\n    {\r\n        public async Task RunAsync(DataServicesClient client, WorkflowContext context, CancellationToken cancellationToken)\r\n        {\r\n\r\n\r\n            string RequestedOrder = context.GetGlobalVariableValue<string>(\"Input.OrderId\");\r\n            int VelocityThresholdVolume = context.GetGlobalVariableValue<int>(\"VelocityThresholdVolume\");\r\n            int JobNo  = context.GetGlobalVariableValue<int>(\"Job Number\");\r\n           \r\n\r\n\r\n            int TotalCP = 0;\r\n            int TotalEcho = 0;\r\n            double EchoVolume = 0;\r\n            int TotalBravo = 0;\r\n            double BravoVolume = 0;\r\n\r\n            int EchoST10Total = 0;\r\n            int EchoST30Total = 0;\r\n            int BravoST10Total = 0;\r\n            int BravoST30Total = 0;\r\n\r\n            int V10WorkflowStepsTotal = 0;\r\n            int V30WorkflowStepsTotal = 0;\r\n\r\n\r\n            string VelocityTips10PlaceholderBarcodes = \"\";\r\n            string VelocityTips30PlaceholderBarcodes = \"\";\r\n\r\n            string API_BASE_URL = \"http://192.168.14.10:8105/api/v2.0/\";\r\n            IQueryClient _queryClient = new QueryClient(API_BASE_URL);\r\n            IAccessioningClient _accessioningClient = new AccessioningClient(API_BASE_URL);\r\n            IEventClient _eventClient = new EventClient(API_BASE_URL);\r\n\r\n\r\n\r\n            IdentityHelper _identityHelper;\r\n\r\n\r\n            //Build out and register the root identities (i.e Mosaic Job) if they do not exist\r\n            _identityHelper = new IdentityHelper(_queryClient, _accessioningClient, _eventClient);\r\n            _identityHelper.BuildBaseIdentities();\r\n\r\n\r\n            //Get all the sources associated with this order\r\n            var sources = _identityHelper.GetSources(RequestedOrder).ToList();\r\n\r\n            //Get all the destinations associated with this order\r\n            var destinations = _identityHelper.GetDestinations(RequestedOrder).ToList();\r\n            //Get all the jobs\r\n            var jobs = _identityHelper.GetJobs(RequestedOrder).ToList();\r\n\r\n\r\n            var i = jobs\r\n            .Where(x => x.JobId == JobNo)\r\n            .FirstOrDefault();\r\n\r\n\r\n            int TotalReplicates = 0;\r\n            int TotalSerialise = 0;\r\n            double DestSampleTransfers = 0.0;\r\n            string DestSibling = \"\";\r\n            List<string> AllDestSiblings = new List<string>();\r\n\r\n\r\n            foreach (var dest in destinations)\r\n            {\r\n                string DestinationOperation = dest.OperationType.ToString();\r\n\r\n\r\n                if (DestinationOperation == \"Replicate\")\r\n                {\r\n                    DestSampleTransfers = double.Parse(dest.SampleTransfers);\r\n                    DestSibling = dest.SiblingIdentifier.ToString();\r\n\r\n                    if ((DestSampleTransfers >= 0.5) && (!AllDestSiblings.Contains(DestSibling)))\r\n                    {\r\n                        AllDestSiblings.Add(DestSibling);\r\n                        TotalReplicates++;\r\n                        \r\n                    }\r\n                }\r\n                else if (DestinationOperation == \"Serialise\")\r\n                {\r\n                    TotalSerialise++;\r\n                }\r\n\r\n            }\r\n\r\n\r\n            if (TotalSerialise > 1)\r\n            {\r\n                TotalSerialise = TotalSerialise + 1;\r\n            }\r\n\r\n            if (DestSampleTransfers < VelocityThresholdVolume)\r\n            {\r\n                TotalReplicates = TotalReplicates + TotalSerialise;\r\n                for (int b = 1; b <= (TotalReplicates); b++)\r\n                {\r\n                    VelocityTips10PlaceholderBarcodes = VelocityTips10PlaceholderBarcodes + \"Velocity10_\" + b + \",\";\r\n                }\r\n            }\r\n            else if (DestSampleTransfers >= VelocityThresholdVolume)\r\n            {\r\n                TotalReplicates = TotalReplicates + TotalSerialise;\r\n                for (int b = 1; b <= (TotalReplicates); b++)\r\n                {\r\n                    VelocityTips30PlaceholderBarcodes = VelocityTips30PlaceholderBarcodes + \"Velocity30_\" + b + \",\";\r\n                }\r\n            }\r\n\r\n            VelocityTips10PlaceholderBarcodes = VelocityTips10PlaceholderBarcodes.TrimEnd(',');\r\n            VelocityTips30PlaceholderBarcodes = VelocityTips30PlaceholderBarcodes.TrimEnd(',');\r\n            string DS = String.Join(\", \", AllDestSiblings);\r\n\r\n            Serilog.Log.Information(\"VelocityTips10PlaceholderBarcodes = {VelocityTips10PlaceholderBarcodes}\", VelocityTips10PlaceholderBarcodes.ToString());\r\n            Serilog.Log.Information(\"DS = {DS}\", DS.ToString());\r\n\r\n            Serilog.Log.Information(\"VelocityTips30PlaceholderBarcodes = {VelocityTips30PlaceholderBarcodes}\", VelocityTips30PlaceholderBarcodes.ToString());\r\n\r\n\r\n            await context.AddOrUpdateGlobalVariableAsync(\"VelocityTips10PlaceholderBarcodes\", VelocityTips10PlaceholderBarcodes);\r\n            await context.AddOrUpdateGlobalVariableAsync(\"VelocityTips30PlaceholderBarcodes\", VelocityTips30PlaceholderBarcodes);\r\n        }\r\n\r\n\r\n        public List<Biosero.DataModels.Resources.Identity> GetPlatesWithNumberOfParents<T>(IdentityHelper _helper, QueryClient _queryClient, int nParents, string ownerId)\r\n        {\r\n            IEnumerable<DataModels.Resources.Identity> identities = typeof(T) switch\r\n            {\r\n                Type t when t == typeof(MosaicSource) => _helper.GetSources(ownerId).Select(od => od as Biosero.DataModels.Resources.Identity),\r\n                Type t when t == typeof(MosaicDestination) => _helper.GetDestinations(ownerId).Select(od => od as Biosero.DataModels.Resources.Identity),\r\n                Type t when t == typeof(MosaicJob) => _helper.GetJobs(ownerId).Select(od => od as Biosero.DataModels.Resources.Identity),\r\n                _ => throw new Exception(\"Type not supported\"),\r\n            };\r\n\r\n            //   Serilog.Log.Information($\"There are {orderIdents.Count} identities associated with owner ID {ownerId}\");\r\n            Dictionary<int, List<Biosero.DataModels.Resources.Identity>> identitiesWithNumberOfParents = new Dictionary<int, List<Biosero.DataModels.Resources.Identity>>();\r\n\r\n            int numberOfParentsCount;\r\n            string parent;\r\n            string Ident;\r\n\r\n            foreach (var identity in identities)\r\n            {\r\n                numberOfParentsCount = 0;\r\n                parent = identity.Properties.GetOrDefaultValue(\"ParentIdentifier\", string.Empty);\r\n                Ident = identity.Identifier;\r\n                //\tSerilog.Log.Information($\"Parent ID = {parent}\");\r\n                while (parent != string.Empty)\r\n                {                    //add null check here?\r\n                    Biosero.DataModels.Resources.Identity parentId = _queryClient.GetIdentity(parent);\r\n                    parent = parentId.Properties.GetOrDefaultValue(\"ParentIdentifier\", string.Empty);\r\n                    //Serilog.Log.Information($\"Parent ID = {parent}\");\r\n                    numberOfParentsCount += 1;\r\n                }\r\n\r\n                if (identitiesWithNumberOfParents.ContainsKey(numberOfParentsCount))\r\n                {\r\n                    identitiesWithNumberOfParents[numberOfParentsCount].Add(identity);\r\n                }\r\n\r\n                else\r\n                {\r\n                    identitiesWithNumberOfParents.Add(numberOfParentsCount, new List<Biosero.DataModels.Resources.Identity> { identity });\r\n                }\r\n            }\r\n            foreach (KeyValuePair<int, List<Biosero.DataModels.Resources.Identity>> kvp in identitiesWithNumberOfParents)\r\n            {\r\n                //   Serilog.Log.Information($\"There are {kvp.Value.Count} identities with  {kvp.Key} parents\");\r\n            }\r\n            if (identitiesWithNumberOfParents.ContainsKey(nParents))\r\n            {\r\n                return identitiesWithNumberOfParents[nParents];\r\n            }\r\n            else\r\n            {\r\n                return new List<Biosero.DataModels.Resources.Identity>();\r\n            }\r\n        }\r\n\r\n    }\r\n}\r\n\r\n\r\n",
+      "language": "C#"
+    },
+    {
+      "name": "CRASH_TEST",
+      "code": "#r Roche.LAMA1.dll\r\n\r\nusing Biosero.DataServices.Client;\r\nusing Biosero.Orchestrator.WorkflowService;\r\nusing Newtonsoft.Json;\r\nusing System;\r\nusing System.Threading;\r\nusing System.Threading.Tasks;\r\nusing System.Collections.Generic;\r\nusing System.Text;\r\nusing System.Linq;\r\nusing Roche.LAMA1;\r\nusing Roche.LAMA1.Models;\r\nusing Roche.LAMA1.MosaicTypes;\r\nusing Biosero.DataServices.RestClient;\r\nusing Biosero.DataModels.Events;\r\nusing Biosero.DataModels.Ordering;\r\nusing Biosero.DataModels.Clients;\r\nusing Biosero.DataModels.Resources;\r\nusing System.Security.Cryptography;\r\nusing System.Collections;\r\nusing System.Xml.Linq;\r\n\r\n\r\nnamespace Biosero.Scripting\r\n{\r\n    public class CRASH_TEST\r\n    {\r\n\r\n\r\n        static string ExtractNumber(string input)\r\n        {\r\n            // Initialize an empty result string\r\n            string result = string.Empty;\r\n\r\n            // Iterate through each character in the input string\r\n            foreach (char c in input)\r\n            {\r\n                // Check if the character is a digit or a decimal point\r\n                if (char.IsDigit(c) || c == '.')\r\n                {\r\n                    result += c;\r\n                }\r\n                else\r\n                {\r\n                    // Stop collecting characters once a non-numeric character is found\r\n                    break;\r\n                }\r\n            }\r\n\r\n            // Return the extracted number\r\n            return result;\r\n        }\r\n\r\n        public async Task RunAsync(DataServicesClient client, WorkflowContext context, CancellationToken cancellationToken)\r\n        {\r\n            await context.AddOrUpdateGlobalVariableAsync(\"IOC Racks Required\", false);\r\n            await context.AddOrUpdateGlobalVariableAsync(\"IOC Crash Plates Required\", false);\r\n\r\n\r\n            string RequestedOrder = context.GetGlobalVariableValue<string>(\"Input.OrderId\");\r\n            string API_BASE_URL = \"http://192.168.14.10:8105/api/v2.0/\";\r\n\r\n            string ExtractedReplicationVolume = \"\";\r\n            string ExtractedNextReplicationVolume = \"\";\r\n            string NextReplicateLabware = \"\";\r\n            string FurtherReplicateLabware = \"\";\r\n\r\n\r\n\r\n            int EBSourcesCount = 0;\r\n            int RepOneCount = 0;\r\n            int RepTwoCount = 0;\r\n\r\n\r\n\r\n            IQueryClient _queryClient = new QueryClient(API_BASE_URL);\r\n            IAccessioningClient _accessioningClient = new AccessioningClient(API_BASE_URL);\r\n            IEventClient _eventClient = new EventClient(API_BASE_URL);\r\n\r\n            List<string> AllCrashPlatesForEB = new List<string>();\r\n            List<string> AllCrashPlateIdentierssForEB = new List<string>();\r\n\r\n\r\n            IdentityHelper _identityHelper;\r\n\r\n\r\n            //Build out and register the root identities (i.e Mosaic Job) if they do not exist\r\n            _identityHelper = new IdentityHelper(_queryClient, _accessioningClient, _eventClient);\r\n            _identityHelper.BuildBaseIdentities();\r\n\r\n\r\n            //Get all the sources associated with this order\r\n            var sources = _identityHelper.GetSources(RequestedOrder).ToList();\r\n\r\n            //Get all the destinations associated with this order\r\n            var destinations = _identityHelper.GetDestinations(RequestedOrder).ToList();\r\n            //Get all the jobs\r\n            var jobs = _identityHelper.GetJobs(RequestedOrder).ToList();\r\n\r\n\r\n            //  MosaicDestination? destination = destinations?.FirstOrDefault(d => d.Description == \"777\");\r\n            foreach (var dest in destinations)\r\n            {\r\n                string DestinationName = dest.Name;\r\n                string DestinationDescription = dest.Description;\r\n                string DestinationSampleTransfers = dest.SampleTransfers;\r\n                string DestinationOperationType = dest.OperationType.ToString();\r\n                string DestinationJobId = dest.JobId.ToString();\r\n                string DestinationId = dest.Identifier.ToString();\r\n                string DestinationSibling = dest.SiblingIdentifier.ToString();\r\n                string DestinationParent = dest.ParentIdentifier != null ? dest.ParentIdentifier.ToString() : null;\r\n\r\n\r\n\r\n\r\n                if ((DestinationOperationType == \"Replicate\") && (DestinationParent == null))\r\n                {\r\n                    var SiblingResult = sources\r\n                                .Where(x => x.Identifier == DestinationSibling)\r\n                                .FirstOrDefault();\r\n\r\n                    String crashName = SiblingResult.Name.ToString();\r\n                    String crashIdentifier = SiblingResult.Identifier.ToString();\r\n\r\n                    // if not member already - add to a list of all EB CP sources for the order\r\n                    if (!AllCrashPlatesForEB.Contains(crashName))\r\n                    {\r\n                        AllCrashPlatesForEB.Add(crashName);\r\n                        AllCrashPlateIdentierssForEB.Add(crashIdentifier);\r\n                    }\r\n\r\n\r\n                    string CrashNames = String.Join(\", \", AllCrashPlatesForEB);\r\n                    string CrashIDs = String.Join(\", \", AllCrashPlateIdentierssForEB);\r\n\r\n\r\n                    Serilog.Log.Information(\"CrashNames = {CrashNames}\", CrashNames);\r\n\r\n                    Serilog.Log.Information(\"CrashIDs = {CrashIDs}\", CrashIDs);\r\n\r\n                }\r\n\r\n\r\n            }\r\n\r\n\r\n\r\n\r\n\r\n\r\n        }\r\n        public List<Biosero.DataModels.Resources.Identity> GetPlatesWithNumberOfParents<T>(IdentityHelper _helper, QueryClient _queryClient, int nParents, string ownerId)\r\n        {\r\n            IEnumerable<DataModels.Resources.Identity> identities = typeof(T) switch\r\n            {\r\n                Type t when t == typeof(MosaicSource) => _helper.GetSources(ownerId).Select(od => od as Biosero.DataModels.Resources.Identity),\r\n                Type t when t == typeof(MosaicDestination) => _helper.GetDestinations(ownerId).Select(od => od as Biosero.DataModels.Resources.Identity),\r\n                Type t when t == typeof(MosaicJob) => _helper.GetJobs(ownerId).Select(od => od as Biosero.DataModels.Resources.Identity),\r\n                _ => throw new Exception(\"Type not supported\"),\r\n            };\r\n\r\n            //   Serilog.Log.Information($\"There are {orderIdents.Count} identities associated with owner ID {ownerId}\");\r\n            Dictionary<int, List<Biosero.DataModels.Resources.Identity>> identitiesWithNumberOfParents = new Dictionary<int, List<Biosero.DataModels.Resources.Identity>>();\r\n\r\n            int numberOfParentsCount;\r\n            string parent;\r\n            string Ident;\r\n\r\n            foreach (var identity in identities)\r\n            {\r\n                numberOfParentsCount = 0;\r\n                parent = identity.Properties.GetOrDefaultValue(\"ParentIdentifier\", string.Empty);\r\n                Ident = identity.Identifier;\r\n                //\tSerilog.Log.Information($\"Parent ID = {parent}\");\r\n                while (parent != string.Empty)\r\n                {                    //add null check here?\r\n                    Biosero.DataModels.Resources.Identity parentId = _queryClient.GetIdentity(parent);\r\n                    parent = parentId.Properties.GetOrDefaultValue(\"ParentIdentifier\", string.Empty);\r\n                    //Serilog.Log.Information($\"Parent ID = {parent}\");\r\n                    numberOfParentsCount += 1;\r\n                }\r\n\r\n                if (identitiesWithNumberOfParents.ContainsKey(numberOfParentsCount))\r\n                {\r\n                    identitiesWithNumberOfParents[numberOfParentsCount].Add(identity);\r\n                }\r\n\r\n                else\r\n                {\r\n                    identitiesWithNumberOfParents.Add(numberOfParentsCount, new List<Biosero.DataModels.Resources.Identity> { identity });\r\n                }\r\n            }\r\n            foreach (KeyValuePair<int, List<Biosero.DataModels.Resources.Identity>> kvp in identitiesWithNumberOfParents)\r\n            {\r\n                //   Serilog.Log.Information($\"There are {kvp.Value.Count} identities with  {kvp.Key} parents\");\r\n            }\r\n            if (identitiesWithNumberOfParents.ContainsKey(nParents))\r\n            {\r\n                return identitiesWithNumberOfParents[nParents];\r\n            }\r\n            else\r\n            {\r\n                return new List<Biosero.DataModels.Resources.Identity>();\r\n            }\r\n        }\r\n\r\n    }\r\n}\r\n\r\n\r\n",
+      "language": "C#"
+    },
+    {
+      "name": "CP_Is_Only_A_CP_Job",
+      "code": "#r Roche.LAMA1.dll\r\n\r\nusing Biosero.DataServices.Client;\r\nusing Biosero.Orchestrator.WorkflowService;\r\nusing Newtonsoft.Json;\r\nusing System;\r\nusing System.Threading;\r\nusing System.Threading.Tasks;\r\nusing System.Collections.Generic;\r\nusing System.Text;\r\nusing System.Linq;\r\nusing Roche.LAMA1;\r\nusing Roche.LAMA1.Models;\r\nusing Roche.LAMA1.MosaicTypes;\r\nusing Biosero.DataServices.RestClient;\r\nusing Biosero.DataModels.Events;\r\nusing Biosero.DataModels.Ordering;\r\nusing Biosero.DataModels.Clients;\r\nusing Biosero.DataModels.Resources;\r\nusing System.Security.Cryptography;\r\nusing System.Collections;\r\nusing System.IO;\r\n\r\n\r\nnamespace Biosero.Scripting\r\n{\r\n    public class CP_Is_Only_A_CP_Job\r\n    {  \r\n        public async Task RunAsync(DataServicesClient client, WorkflowContext context, CancellationToken cancellationToken)\r\n        {\r\n            string CurrentJobNumber = context.GetGlobalVariableValue<string>(\"Job Number\");\r\n            string RequestedOrder = context.GetGlobalVariableValue<string>(\"Input.OrderId\");\r\n\r\n            //instantiate LAMA1 objects\r\n\r\n            string API_BASE_URL = \"http://192.168.14.10:8105/api/v2.0/\";\r\n            IQueryClient _queryClient = new QueryClient(API_BASE_URL);\r\n            IAccessioningClient _accessioningClient = new AccessioningClient(API_BASE_URL);\r\n            IEventClient _eventClient = new EventClient(API_BASE_URL);\r\n\r\n\r\n            IdentityHelper _identityHelper;\r\n\r\n\r\n            //Build out and register the root identities (i.e Mosaic Job) if they do not exist\r\n            _identityHelper = new IdentityHelper(_queryClient, _accessioningClient, _eventClient);\r\n            _identityHelper.BuildBaseIdentities();\r\n\r\n\r\n            //Get all the sources associated with this order\r\n            var sources = _identityHelper.GetSources(RequestedOrder).ToList();\r\n\r\n            //Get all the destinations associated with this order\r\n            var destinations = _identityHelper.GetDestinations(RequestedOrder).ToList();\r\n            //Get all the jobs\r\n            var jobs = _identityHelper.GetJobs(RequestedOrder).ToList();\r\n\r\n\r\n\r\n            foreach (var dest in destinations)\r\n            {\r\n                string DestinationName = dest.Name;\r\n                string DestinationDescription = dest.Description;\r\n                string DestinationSampleTransfers = dest.SampleTransfers;\r\n                string DestinationOperationType = dest.OperationType.ToString();\r\n                string DestinationJobId = dest.JobId.ToString();\r\n                string DestinationParent = dest.ParentIdentifier != null ? dest.ParentIdentifier.ToString() : null;\r\n\r\n\r\n                if ((DestinationParent == null) && (DestinationJobId == CurrentJobNumber) && (DestinationOperationType == \"CherryPick\"))\r\n                {\r\n\r\n\r\n                    Serilog.Log.Information(\"DestinationName= {DestinationName}\", DestinationName.ToString());\r\n                }\r\n            }\r\n\r\n        }\r\n\r\n    }\r\n}\r\n\r\n",
+      "language": "C#"
+    },
+    {
+      "name": "Check_All_Echo_Plates_Finished",
+      "code": "#r Roche.LAMA1.dll\r\n\r\nusing Biosero.DataServices.Client;\r\nusing Biosero.Orchestrator.WorkflowService;\r\nusing Newtonsoft.Json;\r\nusing System;\r\nusing System.Threading;\r\nusing System.Threading.Tasks;\r\nusing System.Collections.Generic;\r\nusing System.Text;\r\nusing System.Linq;\r\nusing Roche.LAMA1;\r\nusing Roche.LAMA1.Models;\r\nusing Roche.LAMA1.MosaicTypes;\r\nusing Biosero.DataServices.RestClient;\r\nusing Biosero.DataModels.Events;\r\nusing Biosero.DataModels.Ordering;\r\nusing Biosero.DataModels.Clients;\r\nusing Biosero.DataModels.Resources;\r\nusing System.Security.Cryptography;\r\nusing System.Collections;\r\n\r\n\r\nnamespace Biosero.Scripting\r\n{\r\n    public class Check_All_Echo_Plates_Finished\r\n    {\r\n        public async Task RunAsync(DataServicesClient client, WorkflowContext context, CancellationToken cancellationToken)\r\n        {\r\n\r\n            string RequestedOrder = context.GetGlobalVariableValue<string>(\"Input.OrderId\");\r\n            string API_BASE_URL = \"http://192.168.14.10:8105/api/v2.0/\";\r\n\r\n            string ExtractedReplicationVolume = \"\";\r\n            string ExtractedNextReplicationVolume = \"\";\r\n            string NextReplicateLabware = \"\";\r\n            string FurtherReplicateLabware = \"\";\r\n            string DestinationCommonName = \"\";\r\n\r\n\r\n\r\n            int EBSourcesCount = 0;\r\n            int RepOneCount = 0;\r\n            int RepTwoCount = 0;\r\n\r\n\r\n            string JobWorkflowFragment = \"\";\r\n\r\n            IQueryClient _queryClient = new QueryClient(API_BASE_URL);\r\n            IAccessioningClient _accessioningClient = new AccessioningClient(API_BASE_URL);\r\n            IEventClient _eventClient = new EventClient(API_BASE_URL);\r\n\r\n            List<string> AllCPSourcesForEB = new List<string>();\r\n            List<string> AllCPSourcesIdentifiersForEB = new List<string>();\r\n            List<string> AllSerializePlates = new List<string>();\r\n            List<string> AllReplicatePlates = new List<string>();\r\n            List<string> AllNextReplicatePlates = new List<string>();\r\n            List<string> AllCrashPlatesForEB = new List<string>();\r\n            List<string> AllCrashPlateIdentierssForEB = new List<string>();\r\n            List<string> AllCrashDestinationsEB = new List<string>();\r\n            List<string> EchoPairList = new List<string>();\r\n\r\n\r\n            IdentityHelper _identityHelper;\r\n\r\n\r\n            //Build out and register the root identities (i.e Mosaic Job) if they do not exist\r\n            _identityHelper = new IdentityHelper(_queryClient, _accessioningClient, _eventClient);\r\n            _identityHelper.BuildBaseIdentities();\r\n\r\n\r\n            //Get all the sources associated with this order\r\n            var sources = _identityHelper.GetSources(RequestedOrder).ToList();\r\n\r\n            //Get all the destinations associated with this order\r\n            var destinations = _identityHelper.GetDestinations(RequestedOrder).ToList();\r\n            //Get all the jobs\r\n            var jobs = _identityHelper.GetJobs(RequestedOrder).ToList();\r\n\r\n\r\n            //  MosaicDestination? destination = destinations?.FirstOrDefault(d => d.Description == \"777\");\r\n            foreach (var dest in destinations)\r\n            {\r\n                string DestinationName = dest.Name;\r\n                string DestinationDescription = dest.Description;\r\n                string DestinationSampleTransfers = dest.SampleTransfers;\r\n                string DestinationOperationType = dest.OperationType.ToString();\r\n                string DestinationJobId = dest.JobId.ToString();\r\n                string DestinationId = dest.Identifier.ToString();\r\n                string DestinationStatus = dest.Status.ToString();\r\n                string DestinationParent = dest.ParentIdentifier != null ? dest.ParentIdentifier.ToString() : null;\r\n\r\n\r\n                await context.AddOrUpdateGlobalVariableAsync(\"Crash Plates Not Finished\", false);\r\n\r\n\r\n                if (DestinationStatus != \"Finished\")\r\n                {\r\n                    Serilog.Log.Information(\"Plate Not Finished = {DestinationName}\", DestinationName.ToString());\r\n\r\n                    await context.AddOrUpdateGlobalVariableAsync(\"Crash Plates Not Finished\", true);\r\n                }\r\n\r\n\r\n            }\r\n\r\n\r\n\r\n\r\n        }\r\n        public List<Biosero.DataModels.Resources.Identity> GetPlatesWithNumberOfParents<T>(IdentityHelper _helper, QueryClient _queryClient, int nParents, string ownerId)\r\n        {\r\n            IEnumerable<DataModels.Resources.Identity> identities = typeof(T) switch\r\n            {\r\n                Type t when t == typeof(MosaicSource) => _helper.GetSources(ownerId).Select(od => od as Biosero.DataModels.Resources.Identity),\r\n                Type t when t == typeof(MosaicDestination) => _helper.GetDestinations(ownerId).Select(od => od as Biosero.DataModels.Resources.Identity),\r\n                Type t when t == typeof(MosaicJob) => _helper.GetJobs(ownerId).Select(od => od as Biosero.DataModels.Resources.Identity),\r\n                _ => throw new Exception(\"Type not supported\"),\r\n            };\r\n\r\n            //   Serilog.Log.Information($\"There are {orderIdents.Count} identities associated with owner ID {ownerId}\");\r\n            Dictionary<int, List<Biosero.DataModels.Resources.Identity>> identitiesWithNumberOfParents = new Dictionary<int, List<Biosero.DataModels.Resources.Identity>>();\r\n\r\n            int numberOfParentsCount;\r\n            string parent;\r\n            string Ident;\r\n\r\n            foreach (var identity in identities)\r\n            {\r\n                numberOfParentsCount = 0;\r\n                parent = identity.Properties.GetOrDefaultValue(\"ParentIdentifier\", string.Empty);\r\n                Ident = identity.Identifier;\r\n                //\tSerilog.Log.Information($\"Parent ID = {parent}\");\r\n                while (parent != string.Empty)\r\n                {                    //add null check here?\r\n                    Biosero.DataModels.Resources.Identity parentId = _queryClient.GetIdentity(parent);\r\n                    parent = parentId.Properties.GetOrDefaultValue(\"ParentIdentifier\", string.Empty);\r\n                    //Serilog.Log.Information($\"Parent ID = {parent}\");\r\n                    numberOfParentsCount += 1;\r\n                }\r\n\r\n                if (identitiesWithNumberOfParents.ContainsKey(numberOfParentsCount))\r\n                {\r\n                    identitiesWithNumberOfParents[numberOfParentsCount].Add(identity);\r\n                }\r\n\r\n                else\r\n                {\r\n                    identitiesWithNumberOfParents.Add(numberOfParentsCount, new List<Biosero.DataModels.Resources.Identity> { identity });\r\n                }\r\n            }\r\n            foreach (KeyValuePair<int, List<Biosero.DataModels.Resources.Identity>> kvp in identitiesWithNumberOfParents)\r\n            {\r\n                //   Serilog.Log.Information($\"There are {kvp.Value.Count} identities with  {kvp.Key} parents\");\r\n            }\r\n            if (identitiesWithNumberOfParents.ContainsKey(nParents))\r\n            {\r\n                return identitiesWithNumberOfParents[nParents];\r\n            }\r\n            else\r\n            {\r\n                return new List<Biosero.DataModels.Resources.Identity>();\r\n            }\r\n        }\r\n\r\n    }\r\n}\r\n\r\n\r\n",
+      "language": "C#"
+    },
+    {
+      "name": "Check_All_Source_Echo_Plates_Finished",
+      "code": "#r Roche.LAMA1.dll\r\n\r\nusing Biosero.DataServices.Client;\r\nusing Biosero.Orchestrator.WorkflowService;\r\nusing Newtonsoft.Json;\r\nusing System;\r\nusing System.Threading;\r\nusing System.Threading.Tasks;\r\nusing System.Collections.Generic;\r\nusing System.Text;\r\nusing System.Linq;\r\nusing Roche.LAMA1;\r\nusing Roche.LAMA1.Models;\r\nusing Roche.LAMA1.MosaicTypes;\r\nusing Biosero.DataServices.RestClient;\r\nusing Biosero.DataModels.Events;\r\nusing Biosero.DataModels.Ordering;\r\nusing Biosero.DataModels.Clients;\r\nusing Biosero.DataModels.Resources;\r\nusing System.Security.Cryptography;\r\nusing System.Collections;\r\n\r\n\r\nnamespace Biosero.Scripting\r\n{\r\n    public class Check_All_Source_Echo_Plates_Finished\r\n    {\r\n        public async Task RunAsync(DataServicesClient client, WorkflowContext context, CancellationToken cancellationToken)\r\n        {\r\n\r\n\r\n\r\n            string RequestedOrder = context.GetGlobalVariableValue<string>(\"Input.OrderId\");\r\n            string API_BASE_URL = \"http://192.168.14.10:8105/api/v2.0/\";\r\n\r\n            string ExtractedReplicationVolume = \"\";\r\n            string ExtractedNextReplicationVolume = \"\";\r\n            string NextReplicateLabware = \"\";\r\n            string FurtherReplicateLabware = \"\";\r\n            string DestinationCommonName = \"\";\r\n\r\n\r\n\r\n            int EBSourcesCount = 0;\r\n            int RepOneCount = 0;\r\n            int RepTwoCount = 0;\r\n\r\n\r\n            string JobWorkflowFragment = \"\";\r\n\r\n            IQueryClient _queryClient = new QueryClient(API_BASE_URL);\r\n            IAccessioningClient _accessioningClient = new AccessioningClient(API_BASE_URL);\r\n            IEventClient _eventClient = new EventClient(API_BASE_URL);\r\n\r\n            List<string> AllCPSourcesForEB = new List<string>();\r\n            List<string> AllCPSourcesIdentifiersForEB = new List<string>();\r\n            List<string> AllSerializePlates = new List<string>();\r\n            List<string> AllReplicatePlates = new List<string>();\r\n            List<string> AllNextReplicatePlates = new List<string>();\r\n            List<string> AllCrashPlatesForEB = new List<string>();\r\n            List<string> AllCrashPlateIdentierssForEB = new List<string>();\r\n            List<string> AllCrashDestinationsEB = new List<string>();\r\n            List<string> EchoPairList = new List<string>();\r\n\r\n\r\n            IdentityHelper _identityHelper;\r\n\r\n\r\n            //Build out and register the root identities (i.e Mosaic Job) if they do not exist\r\n            _identityHelper = new IdentityHelper(_queryClient, _accessioningClient, _eventClient);\r\n            _identityHelper.BuildBaseIdentities();\r\n\r\n\r\n            //Get all the sources associated with this order\r\n            var sources = _identityHelper.GetSources(RequestedOrder).ToList();\r\n\r\n            //Get all the destinations associated with this order\r\n            var destinations = _identityHelper.GetDestinations(RequestedOrder).ToList();\r\n            //Get all the jobs\r\n            var jobs = _identityHelper.GetJobs(RequestedOrder).ToList();\r\n\r\n\r\n            //  MosaicDestination? destination = destinations?.FirstOrDefault(d => d.Description == \"777\");\r\n            foreach (var src in sources)\r\n            {\r\n                string srcName = src.Name;\r\n                string srcDescription = src.Description;\r\n                string srcOperationType = src.OperationType.ToString();\r\n                string srcJobId = src.JobId.ToString();\r\n                string srcId = src.Identifier.ToString();\r\n                string srcStatus = src.Status.ToString();\r\n                string srcParent = src.ParentIdentifier != null ? src.ParentIdentifier.ToString() : null;\r\n\r\n\r\n                await context.AddOrUpdateGlobalVariableAsync(\"Source Crash Plates Not Finished\", false);\r\n\r\n\r\n                if (srcStatus != \"Finished\")\r\n                {\r\n                    Serilog.Log.Information(\"Plate Not Finished = {srcName}\", srcName.ToString());\r\n\r\n                    await context.AddOrUpdateGlobalVariableAsync(\"Source Crash Plates Not Finished\", true);\r\n                }\r\n\r\n\r\n\r\n\r\n            }\r\n\r\n        }\r\n\r\n            public List<Biosero.DataModels.Resources.Identity> GetPlatesWithNumberOfParents<T>(IdentityHelper _helper, QueryClient _queryClient, int nParents, string ownerId)\r\n            {\r\n                IEnumerable<DataModels.Resources.Identity> identities = typeof(T) switch\r\n                {\r\n                    Type t when t == typeof(MosaicSource) => _helper.GetSources(ownerId).Select(od => od as Biosero.DataModels.Resources.Identity),\r\n                    Type t when t == typeof(MosaicDestination) => _helper.GetDestinations(ownerId).Select(od => od as Biosero.DataModels.Resources.Identity),\r\n                    Type t when t == typeof(MosaicJob) => _helper.GetJobs(ownerId).Select(od => od as Biosero.DataModels.Resources.Identity),\r\n                    _ => throw new Exception(\"Type not supported\"),\r\n                };\r\n\r\n                //   Serilog.Log.Information($\"There are {orderIdents.Count} identities associated with owner ID {ownerId}\");\r\n                Dictionary<int, List<Biosero.DataModels.Resources.Identity>> identitiesWithNumberOfParents = new Dictionary<int, List<Biosero.DataModels.Resources.Identity>>();\r\n\r\n                int numberOfParentsCount;\r\n                string parent;\r\n                string Ident;\r\n\r\n                foreach (var identity in identities)\r\n                {\r\n                    numberOfParentsCount = 0;\r\n                    parent = identity.Properties.GetOrDefaultValue(\"ParentIdentifier\", string.Empty);\r\n                    Ident = identity.Identifier;\r\n                    //\tSerilog.Log.Information($\"Parent ID = {parent}\");\r\n                    while (parent != string.Empty)\r\n                    {                    //add null check here?\r\n                        Biosero.DataModels.Resources.Identity parentId = _queryClient.GetIdentity(parent);\r\n                        parent = parentId.Properties.GetOrDefaultValue(\"ParentIdentifier\", string.Empty);\r\n                        //Serilog.Log.Information($\"Parent ID = {parent}\");\r\n                        numberOfParentsCount += 1;\r\n                    }\r\n\r\n                    if (identitiesWithNumberOfParents.ContainsKey(numberOfParentsCount))\r\n                    {\r\n                        identitiesWithNumberOfParents[numberOfParentsCount].Add(identity);\r\n                    }\r\n\r\n                    else\r\n                    {\r\n                        identitiesWithNumberOfParents.Add(numberOfParentsCount, new List<Biosero.DataModels.Resources.Identity> { identity });\r\n                    }\r\n                }\r\n                foreach (KeyValuePair<int, List<Biosero.DataModels.Resources.Identity>> kvp in identitiesWithNumberOfParents)\r\n                {\r\n                    //   Serilog.Log.Information($\"There are {kvp.Value.Count} identities with  {kvp.Key} parents\");\r\n                }\r\n                if (identitiesWithNumberOfParents.ContainsKey(nParents))\r\n                {\r\n                    return identitiesWithNumberOfParents[nParents];\r\n                }\r\n                else\r\n                {\r\n                    return new List<Biosero.DataModels.Resources.Identity>();\r\n                }\r\n            }\r\n\r\n        }\r\n    }\r\n\r\n\r\n",
+      "language": "C#"
+    },
+    {
+      "name": "Check_All_Bravo_Plates_Finished",
+      "code": "#r Roche.LAMA1.dll\r\n\r\nusing Biosero.DataServices.Client;\r\nusing Biosero.Orchestrator.WorkflowService;\r\nusing Newtonsoft.Json;\r\nusing System;\r\nusing System.Threading;\r\nusing System.Threading.Tasks;\r\nusing System.Collections.Generic;\r\nusing System.Text;\r\nusing System.Linq;\r\nusing Roche.LAMA1;\r\nusing Roche.LAMA1.Models;\r\nusing Roche.LAMA1.MosaicTypes;\r\nusing Biosero.DataServices.RestClient;\r\nusing Biosero.DataModels.Events;\r\nusing Biosero.DataModels.Ordering;\r\nusing Biosero.DataModels.Clients;\r\nusing Biosero.DataModels.Resources;\r\nusing System.Security.Cryptography;\r\nusing System.Collections;\r\n\r\n\r\nnamespace Biosero.Scripting\r\n{\r\n    public class Check_All_Bravo_Plates_Finished\r\n    {\r\n        public async Task RunAsync(DataServicesClient client, WorkflowContext context, CancellationToken cancellationToken)\r\n        {\r\n\r\n            string RequestedOrder = context.GetGlobalVariableValue<string>(\"Input.OrderId\");\r\n            string API_BASE_URL = \"http://192.168.14.10:8105/api/v2.0/\";\r\n\r\n            string ExtractedReplicationVolume = \"\";\r\n            string ExtractedNextReplicationVolume = \"\";\r\n            string NextReplicateLabware = \"\";\r\n            string FurtherReplicateLabware = \"\";\r\n            string DestinationCommonName = \"\";\r\n\r\n\r\n\r\n            int EBSourcesCount = 0;\r\n            int RepOneCount = 0;\r\n            int RepTwoCount = 0;\r\n\r\n\r\n            string JobWorkflowFragment = \"\";\r\n\r\n            IQueryClient _queryClient = new QueryClient(API_BASE_URL);\r\n            IAccessioningClient _accessioningClient = new AccessioningClient(API_BASE_URL);\r\n            IEventClient _eventClient = new EventClient(API_BASE_URL);\r\n\r\n            List<string> AllCPSourcesForEB = new List<string>();\r\n            List<string> AllCPSourcesIdentifiersForEB = new List<string>();\r\n            List<string> AllSerializePlates = new List<string>();\r\n            List<string> AllReplicatePlates = new List<string>();\r\n            List<string> AllNextReplicatePlates = new List<string>();\r\n            List<string> AllCrashPlatesForEB = new List<string>();\r\n            List<string> AllCrashPlateIdentierssForEB = new List<string>();\r\n            List<string> AllCrashDestinationsEB = new List<string>();\r\n            List<string> EchoPairList = new List<string>();\r\n\r\n\r\n            IdentityHelper _identityHelper;\r\n\r\n\r\n            //Build out and register the root identities (i.e Mosaic Job) if they do not exist\r\n            _identityHelper = new IdentityHelper(_queryClient, _accessioningClient, _eventClient);\r\n            _identityHelper.BuildBaseIdentities();\r\n\r\n\r\n            //Get all the sources associated with this order\r\n            var sources = _identityHelper.GetSources(RequestedOrder).ToList();\r\n\r\n            //Get all the destinations associated with this order\r\n            var destinations = _identityHelper.GetDestinations(RequestedOrder).ToList();\r\n            //Get all the jobs\r\n            var jobs = _identityHelper.GetJobs(RequestedOrder).ToList();\r\n\r\n\r\n            //  MosaicDestination? destination = destinations?.FirstOrDefault(d => d.Description == \"777\");\r\n            foreach (var dest in destinations)\r\n            {\r\n                string DestinationName = dest.Name;\r\n                string DestinationDescription = dest.Description;\r\n                string DestinationSampleTransfers = dest.SampleTransfers;\r\n                string DestinationOperationType = dest.OperationType.ToString();\r\n                string DestinationJobId = dest.JobId.ToString();\r\n                string DestinationId = dest.Identifier.ToString();\r\n                string DestinationStatus = dest.Status.ToString();\r\n                string DestinationParent = dest.ParentIdentifier != null ? dest.ParentIdentifier.ToString() : null;\r\n\r\n\r\n                await context.AddOrUpdateGlobalVariableAsync(\"Crash Plates Not Finished\", false);\r\n\r\n\r\n                if (DestinationStatus != \"Finished\")\r\n                {\r\n                    Serilog.Log.Information(\"Plate Not Finished = {DestinationName}\", DestinationName.ToString());\r\n\r\n                    await context.AddOrUpdateGlobalVariableAsync(\"Crash Plates Not Finished\", true);\r\n                }\r\n\r\n\r\n            }\r\n\r\n\r\n\r\n\r\n        }\r\n        public List<Biosero.DataModels.Resources.Identity> GetPlatesWithNumberOfParents<T>(IdentityHelper _helper, QueryClient _queryClient, int nParents, string ownerId)\r\n        {\r\n            IEnumerable<DataModels.Resources.Identity> identities = typeof(T) switch\r\n            {\r\n                Type t when t == typeof(MosaicSource) => _helper.GetSources(ownerId).Select(od => od as Biosero.DataModels.Resources.Identity),\r\n                Type t when t == typeof(MosaicDestination) => _helper.GetDestinations(ownerId).Select(od => od as Biosero.DataModels.Resources.Identity),\r\n                Type t when t == typeof(MosaicJob) => _helper.GetJobs(ownerId).Select(od => od as Biosero.DataModels.Resources.Identity),\r\n                _ => throw new Exception(\"Type not supported\"),\r\n            };\r\n\r\n            //   Serilog.Log.Information($\"There are {orderIdents.Count} identities associated with owner ID {ownerId}\");\r\n            Dictionary<int, List<Biosero.DataModels.Resources.Identity>> identitiesWithNumberOfParents = new Dictionary<int, List<Biosero.DataModels.Resources.Identity>>();\r\n\r\n            int numberOfParentsCount;\r\n            string parent;\r\n            string Ident;\r\n\r\n            foreach (var identity in identities)\r\n            {\r\n                numberOfParentsCount = 0;\r\n                parent = identity.Properties.GetOrDefaultValue(\"ParentIdentifier\", string.Empty);\r\n                Ident = identity.Identifier;\r\n                //\tSerilog.Log.Information($\"Parent ID = {parent}\");\r\n                while (parent != string.Empty)\r\n                {                    //add null check here?\r\n                    Biosero.DataModels.Resources.Identity parentId = _queryClient.GetIdentity(parent);\r\n                    parent = parentId.Properties.GetOrDefaultValue(\"ParentIdentifier\", string.Empty);\r\n                    //Serilog.Log.Information($\"Parent ID = {parent}\");\r\n                    numberOfParentsCount += 1;\r\n                }\r\n\r\n                if (identitiesWithNumberOfParents.ContainsKey(numberOfParentsCount))\r\n                {\r\n                    identitiesWithNumberOfParents[numberOfParentsCount].Add(identity);\r\n                }\r\n\r\n                else\r\n                {\r\n                    identitiesWithNumberOfParents.Add(numberOfParentsCount, new List<Biosero.DataModels.Resources.Identity> { identity });\r\n                }\r\n            }\r\n            foreach (KeyValuePair<int, List<Biosero.DataModels.Resources.Identity>> kvp in identitiesWithNumberOfParents)\r\n            {\r\n                //   Serilog.Log.Information($\"There are {kvp.Value.Count} identities with  {kvp.Key} parents\");\r\n            }\r\n            if (identitiesWithNumberOfParents.ContainsKey(nParents))\r\n            {\r\n                return identitiesWithNumberOfParents[nParents];\r\n            }\r\n            else\r\n            {\r\n                return new List<Biosero.DataModels.Resources.Identity>();\r\n            }\r\n        }\r\n\r\n    }\r\n}\r\n\r\n\r\n",
+      "language": "C#"
+    }
+  ],
+  "globalScriptReferences": [
+    "Biosero.Workflow.Core.dll",
+    "Biosero.DataModels.dll"
+  ],
+  "screens": [],
+  "deviceRequirements": [],
+  "iconUrl": "PackIcon.AirballoonOutline [#FFFFFF:0:0]",
+  "color": "#FF0049FF",
+  "name": "State Machine EB crash",
+  "category": "Workflows",
+  "lastModified": "0001-01-01T00:00:00+00:00",
+  "parameterReferenceIndicator": "%"
+}

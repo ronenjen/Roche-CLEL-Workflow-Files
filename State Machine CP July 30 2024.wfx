@@ -1,0 +1,1106 @@
+{
+  "parameters": [
+    {
+      "name": "Input.OrderId",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.All Ready Jobs",
+      "value": "23",
+      "valueType": "String",
+      "defaultValue": "23",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.IOC Processed Racks",
+      "value": "REMP 3,REMP6",
+      "valueType": "String",
+      "defaultValue": "REMP 3,REMP6",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Total Sources",
+      "value": "0",
+      "valueType": "Integer",
+      "defaultValue": "0",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Total Assay Plates",
+      "value": "0",
+      "valueType": "Integer",
+      "defaultValue": "0",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "CP Assay Labware Type",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Job Number",
+      "value": "0",
+      "valueType": "Integer",
+      "defaultValue": "0",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Prioritised Jobs",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Job Priority",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Sources For Job",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "PlaceholderCPAssayBarcodes",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Assay Prep Finalized",
+      "value": "False",
+      "valueType": "Boolean",
+      "defaultValue": "False",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "CPLastRunId",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "CPLastRunStatus",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "EBOperationsRequired",
+      "value": "False",
+      "valueType": "Boolean",
+      "defaultValue": "False",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Completed Assay Barcodes",
+      "value": "AssayWF8_2,AssayWF8_1",
+      "valueType": "String",
+      "defaultValue": "AssayWF8_2,AssayWF8_1",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "AllAssayPlatesCompleted",
+      "value": "False",
+      "valueType": "Boolean",
+      "defaultValue": "False",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "TargetCPPlates",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Delivered Assay Barcodes",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Assay Barcodes To Deliver",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "IOC work Required",
+      "value": "False",
+      "valueType": "Boolean",
+      "defaultValue": "False",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "DestinationPlateType",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    }
+  ],
+  "procedures": [
+    {
+      "name": "Start",
+      "sequence": {
+        "children": [
+          {
+            "$type": "Biosero.Workflow.RunScript, Biosero.Workflow.Core",
+            "helpText": "Runs the specified script",
+            "backgroundColorHex": "#FFF58CFF",
+            "iconUrl": "PackIcon.ScriptTextOutline [#FFFFFFFF]",
+            "name": "Run Script",
+            "isAsync": false,
+            "allowAsync": false,
+            "isDisabled": false,
+            "description": "Run Script: Process_State_Machine_CP",
+            "isPausePointSet": false,
+            "scriptName": "Process_State_Machine_CP",
+            "guid": "4c6d5673-daf9-4de0-8982-64333ab68cba"
+          },
+          {
+            "$type": "Biosero.Workflow.Loop, Biosero.Workflow.Core",
+            "helpText": "A loop over a sequence of elements",
+            "backgroundColorHex": "#FF08EAA7",
+            "iconUrl": "PackIcon.Reload [#FFFFFFFF]",
+            "name": "Loop",
+            "sequence": {
+              "children": [
+                {
+                  "$type": "Biosero.Workflow.RunScript, Biosero.Workflow.Core",
+                  "helpText": "Runs the specified script",
+                  "backgroundColorHex": "#FFF58CFF",
+                  "iconUrl": "PackIcon.ScriptTextOutline [#FFFFFFFF]",
+                  "name": "Run Script",
+                  "isAsync": false,
+                  "allowAsync": false,
+                  "isDisabled": false,
+                  "description": "Run Script: Process_CP_Sorted_Jobs",
+                  "isPausePointSet": false,
+                  "scriptName": "Process_CP_Sorted_Jobs",
+                  "guid": "2abcd5ab-3d3a-412d-8bbc-9990e2535d6c"
+                },
+                {
+                  "$type": "Biosero.Workflow.RunScript, Biosero.Workflow.Core",
+                  "helpText": "Runs the specified script",
+                  "backgroundColorHex": "#FFF58CFF",
+                  "iconUrl": "PackIcon.ScriptTextOutline [#FFFFFFFF]",
+                  "name": "Run Script",
+                  "isAsync": false,
+                  "allowAsync": false,
+                  "isDisabled": false,
+                  "description": "Run Script: Check_Remaining_Transport_For_Job",
+                  "isPausePointSet": false,
+                  "scriptName": "Check_Remaining_Transport_For_Job",
+                  "guid": "e4b6b2ce-51cf-4ec7-8c95-94ac13f0a5a6"
+                },
+                {
+                  "$type": "Biosero.Workflow.Elements.WriteToLog, Biosero.Workflow.Core",
+                  "helpText": "Writes to the log",
+                  "backgroundColorHex": "#FFC69AE8",
+                  "iconUrl": "PackIcon.Feather [#FFFFFFFF]",
+                  "name": "Log",
+                  "description": "Log: Initiating Transport Order for CP plates in Job %Job Number%\r\n\r\n",
+                  "text": "Initiating Transport Order for CP plates in Job %Job Number%\r\n\r\n",
+                  "appendNewLine": true,
+                  "guid": "8d4ae12d-7439-4918-b094-23236b6ef68c",
+                  "isAsync": false,
+                  "allowAsync": false,
+                  "isDisabled": false,
+                  "isPausePointSet": false
+                },
+                {
+                  "$type": "Biosero.Workflow.Commands.ExecuteOrderCommand, Biosero.Workflow.Core",
+                  "backgroundColorHex": "#FF00FF2D",
+                  "iconUrl": "PackIcon.WritingSystemHebrew [#FFFFFF:0:0]",
+                  "name": "State Machine CP transport",
+                  "timeout": "00:30:00",
+                  "inputParameters": [
+                    {
+                      "name": "SM Job Number",
+                      "value": "%Job Number%",
+                      "valueType": "String",
+                      "defaultValue": "22",
+                      "valueOptions": {
+                        "$type": "System.String[], System.Private.CoreLib",
+                        "$values": []
+                      },
+                      "validationRules": [],
+                      "tags": [
+                        ""
+                      ]
+                    },
+                    {
+                      "name": "SM Order Number",
+                      "value": "%Input.OrderId%",
+                      "valueType": "String",
+                      "defaultValue": "5000",
+                      "valueOptions": {
+                        "$type": "System.String[], System.Private.CoreLib",
+                        "$values": []
+                      },
+                      "validationRules": [],
+                      "tags": [
+                        ""
+                      ]
+                    },
+                    {
+                      "name": "SM CP Assay Labware Type",
+                      "value": "%CP Assay Labware Type%",
+                      "valueType": "String",
+                      "defaultValue": "384 ECHO PP 65uL",
+                      "valueOptions": {
+                        "$type": "System.String[], System.Private.CoreLib",
+                        "$values": []
+                      },
+                      "validationRules": [],
+                      "tags": [
+                        ""
+                      ]
+                    },
+                    {
+                      "name": "SM Total Assay Plates",
+                      "value": "%Total Assay Plates%",
+                      "valueType": "Integer",
+                      "defaultValue": "4",
+                      "valueOptions": {
+                        "$type": "System.String[], System.Private.CoreLib",
+                        "$values": []
+                      },
+                      "validationRules": [],
+                      "tags": [
+                        ""
+                      ]
+                    },
+                    {
+                      "name": "Priority",
+                      "value": "%Job Priority%",
+                      "valueType": "String",
+                      "defaultValue": "2",
+                      "valueOptions": {
+                        "$type": "System.String[], System.Private.CoreLib",
+                        "$values": []
+                      },
+                      "validationRules": [],
+                      "tags": [
+                        ""
+                      ]
+                    }
+                  ],
+                  "outputParameterMapping": [
+                    {
+                      "name": "PlaceHolderAssayPlateBarcodes",
+                      "mapToGlobalVariableName": "PlaceholderCPAssayBarcodes",
+                      "parameterType": "String"
+                    },
+                    {
+                      "name": "Module ID",
+                      "parameterType": "String"
+                    }
+                  ],
+                  "description": "Order: State Machine CP transport",
+                  "guid": "bc3a0f2a-cb6b-499c-b327-a7b39546dfca",
+                  "isAsync": true,
+                  "allowAsync": true,
+                  "isDisabled": false,
+                  "isPausePointSet": false
+                },
+                {
+                  "$type": "Biosero.Workflow.Elements.WriteToLog, Biosero.Workflow.Core",
+                  "helpText": "Writes to the log",
+                  "backgroundColorHex": "#FFC69AE8",
+                  "iconUrl": "PackIcon.Feather [#FFFFFFFF]",
+                  "name": "Log",
+                  "description": "Log: Queuing up next Job...\r\n\r\n",
+                  "text": "Queuing up next Job...\r\n\r\n",
+                  "appendNewLine": true,
+                  "guid": "52ca341a-0593-4538-9927-e69ffbf7cf08",
+                  "isAsync": false,
+                  "allowAsync": false,
+                  "isDisabled": false,
+                  "isPausePointSet": false
+                }
+              ],
+              "name": "Sequence",
+              "description": "Sequence",
+              "helpText": "A sequence of workflow elements",
+              "guid": "46431ca0-7654-46bd-b5a5-6f8d05ec5938",
+              "isAsync": false,
+              "allowAsync": false,
+              "backgroundColorHex": "#00000000",
+              "isDisabled": false,
+              "isPausePointSet": false
+            },
+            "evaluation": {
+              "left": "Prioritised Jobs",
+              "right": "",
+              "evaluator": "NotEqual"
+            },
+            "evaluateAtEnd": false,
+            "loopCount": 0,
+            "loopType": "While",
+            "foreachCollectionVariable": "",
+            "foreachItemVariable": "",
+            "foreachDelimiter": ",",
+            "description": "Loop While Prioritised Jobs ≠ ",
+            "guid": "bd85f29f-1f47-4077-af31-4993cd6293c2",
+            "isAsync": false,
+            "allowAsync": false,
+            "isDisabled": false,
+            "isPausePointSet": false
+          },
+          {
+            "$type": "Biosero.Workflow.Elements.WriteToLog, Biosero.Workflow.Core",
+            "helpText": "Writes to the log",
+            "backgroundColorHex": "#FFC69AE8",
+            "iconUrl": "PackIcon.Feather [#FFFFFFFF]",
+            "name": "Log",
+            "description": "Log: All jobs sent to CP for OrderID %Input.OrderId%",
+            "text": "All jobs sent to CP for OrderID %Input.OrderId%",
+            "appendNewLine": false,
+            "guid": "8a8cd30f-9539-4afa-9ebd-6f2259110e7d",
+            "isAsync": false,
+            "allowAsync": false,
+            "isDisabled": false,
+            "isPausePointSet": false
+          },
+          {
+            "$type": "Biosero.Workflow.RunScript, Biosero.Workflow.Core",
+            "helpText": "Runs the specified script",
+            "backgroundColorHex": "#FFF58CFF",
+            "iconUrl": "PackIcon.ScriptTextOutline [#FFFFFFFF]",
+            "name": "Run Script",
+            "isAsync": false,
+            "allowAsync": false,
+            "isDisabled": false,
+            "description": "Run Script: CP_Is_Only_A_CP_Job",
+            "isPausePointSet": false,
+            "scriptName": "CP_Is_Only_A_CP_Job",
+            "guid": "f88a0031-1457-420a-bec0-8879c3e4b771"
+          },
+          {
+            "$type": "Biosero.Workflow.SetParameter, Biosero.Workflow.Core",
+            "helpText": "Sets a parameter",
+            "backgroundColorHex": "#FFA8E281",
+            "iconUrl": "PackIcon.Equal [#FFFFFFFF]",
+            "name": "Set Parameter",
+            "parameterName": "AllAssayPlatesCompleted",
+            "leftOperand": "False",
+            "isUnaryOperation": true,
+            "operator": "Add",
+            "rightOperand": "",
+            "description": "AllAssayPlatesCompleted = False",
+            "guid": "c6850599-3ee6-4aaa-81f7-dbdd956aad6a",
+            "isAsync": false,
+            "allowAsync": false,
+            "isDisabled": false,
+            "isPausePointSet": false
+          },
+          {
+            "$type": "Biosero.Workflow.Branch, Biosero.Workflow.Core",
+            "helpText": "Evaluates a condition and branches accordingly",
+            "backgroundColorHex": "#FFDEDE81",
+            "iconUrl": "PackIcon.Help [#FFFFFFFF:0:2]",
+            "name": "Branch",
+            "yes": {
+              "children": [
+                {
+                  "$type": "Biosero.Workflow.Loop, Biosero.Workflow.Core",
+                  "helpText": "A loop over a sequence of elements",
+                  "backgroundColorHex": "#FF08EAA7",
+                  "iconUrl": "PackIcon.Reload [#FFFFFFFF]",
+                  "name": "Loop",
+                  "sequence": {
+                    "children": [
+                      {
+                        "$type": "Biosero.Workflow.Elements.WriteToLog, Biosero.Workflow.Core",
+                        "helpText": "Writes to the log",
+                        "backgroundColorHex": "#FFC69AE8",
+                        "iconUrl": "PackIcon.Feather [#FFFFFFFF]",
+                        "name": "Log",
+                        "description": "Log: starting the return to IOC loop",
+                        "text": "starting the return to IOC loop",
+                        "appendNewLine": false,
+                        "guid": "d722a237-4afc-421e-8ae1-f9aa4efa8252",
+                        "isAsync": false,
+                        "allowAsync": false,
+                        "isDisabled": false,
+                        "isPausePointSet": false
+                      },
+                      {
+                        "$type": "Biosero.Workflow.RunScript, Biosero.Workflow.Core",
+                        "helpText": "Runs the specified script",
+                        "backgroundColorHex": "#FFF58CFF",
+                        "iconUrl": "PackIcon.ScriptTextOutline [#FFFFFFFF]",
+                        "name": "Run Script",
+                        "isAsync": false,
+                        "allowAsync": false,
+                        "isDisabled": false,
+                        "description": "Run Script: Compare Assay In And Assay Completed",
+                        "isPausePointSet": false,
+                        "scriptName": "Compare Assay In And Assay Completed",
+                        "guid": "7b105273-62e3-47d8-a18c-a764aad189ce"
+                      },
+                      {
+                        "$type": "Biosero.Workflow.Branch, Biosero.Workflow.Core",
+                        "helpText": "Evaluates a condition and branches accordingly",
+                        "backgroundColorHex": "#FFDEDE81",
+                        "iconUrl": "PackIcon.Help [#FFFFFFFF:0:2]",
+                        "name": "Branch",
+                        "yes": {
+                          "children": [
+                            {
+                              "$type": "Biosero.Workflow.RunScript, Biosero.Workflow.Core",
+                              "helpText": "Runs the specified script",
+                              "backgroundColorHex": "#FFF58CFF",
+                              "iconUrl": "PackIcon.ScriptTextOutline [#FFFFFFFF]",
+                              "name": "Run Script",
+                              "isAsync": false,
+                              "allowAsync": false,
+                              "isDisabled": false,
+                              "description": "Run Script: UpdateStatusForReturningCPPlates",
+                              "isPausePointSet": false,
+                              "scriptName": "UpdateStatusForReturningCPPlates",
+                              "guid": "24c0607f-fb3e-4c05-86e3-dce4fa9fb5b1"
+                            },
+                            {
+                              "$type": "Biosero.Workflow.RunScript, Biosero.Workflow.Core",
+                              "helpText": "Runs the specified script",
+                              "backgroundColorHex": "#FFF58CFF",
+                              "iconUrl": "PackIcon.ScriptTextOutline [#FFFFFFFF]",
+                              "name": "Run Script",
+                              "isAsync": false,
+                              "allowAsync": false,
+                              "isDisabled": true,
+                              "description": "Run Script: Reset Labware Type For Plate",
+                              "isPausePointSet": false,
+                              "scriptName": "Reset Labware Type For Plate",
+                              "guid": "a78feee6-fdd4-463d-bac5-c36149fad694"
+                            },
+                            {
+                              "$type": "Biosero.Workflow.Branch, Biosero.Workflow.Core",
+                              "helpText": "Evaluates a condition and branches accordingly",
+                              "backgroundColorHex": "#FFDEDE81",
+                              "iconUrl": "PackIcon.Help [#FFFFFFFF:0:2]",
+                              "name": "Branch",
+                              "yes": {
+                                "children": [
+                                  {
+                                    "$type": "Biosero.Workflow.Commands.TransportCommand, Biosero.Workflow.Core",
+                                    "helpText": "Transports the specified barcode(s) from one station to another.",
+                                    "backgroundColorHex": "#FF666666",
+                                    "iconUrl": "PackIcon.TransitConnectionVariant [#FFFFFFFF]",
+                                    "name": "Transport",
+                                    "inputParameters": [
+                                      {
+                                        "name": "Timeout (min)",
+                                        "value": "10",
+                                        "valueType": "Double",
+                                        "defaultValue": "10"
+                                      },
+                                      {
+                                        "name": "From",
+                                        "value": "CP",
+                                        "valueType": "String"
+                                      },
+                                      {
+                                        "name": "To",
+                                        "value": "IO",
+                                        "valueType": "String"
+                                      },
+                                      {
+                                        "name": "Barcodes",
+                                        "value": "%Delivered Assay Barcodes%",
+                                        "valueType": "String"
+                                      },
+                                      {
+                                        "name": "Metadata",
+                                        "value": "Source Orchestrator Workflow=DWP Assay;Labware Designation=MTPs;Labware Type=%CP Assay Labware Type%;Order=%Input.OrderId%",
+                                        "valueType": "String"
+                                      }
+                                    ],
+                                    "outputParameterMapping": [
+                                      {
+                                        "name": "Barcodes",
+                                        "parameterType": "String"
+                                      },
+                                      {
+                                        "name": "Request ID",
+                                        "parameterType": "String"
+                                      }
+                                    ],
+                                    "description": "Transport",
+                                    "guid": "584f9ff9-cda2-49e2-ae5e-c344efbbd569",
+                                    "isAsync": false,
+                                    "allowAsync": false,
+                                    "isDisabled": false,
+                                    "isPausePointSet": false
+                                  }
+                                ],
+                                "name": "Sequence",
+                                "description": "Sequence",
+                                "helpText": "A sequence of workflow elements",
+                                "guid": "cb21590e-b08b-494a-80ca-510969de75d3",
+                                "isAsync": false,
+                                "allowAsync": false,
+                                "backgroundColorHex": "#00000000",
+                                "isDisabled": false,
+                                "isPausePointSet": false
+                              },
+                              "no": {
+                                "children": [
+                                  {
+                                    "$type": "Biosero.Workflow.Branch, Biosero.Workflow.Core",
+                                    "helpText": "Evaluates a condition and branches accordingly",
+                                    "backgroundColorHex": "#FFDEDE81",
+                                    "iconUrl": "PackIcon.Help [#FFFFFFFF:0:2]",
+                                    "name": "Branch",
+                                    "yes": {
+                                      "children": [
+                                        {
+                                          "$type": "Biosero.Workflow.Commands.TransportCommand, Biosero.Workflow.Core",
+                                          "helpText": "Transports the specified barcode(s) from one station to another.",
+                                          "backgroundColorHex": "#FF666666",
+                                          "iconUrl": "PackIcon.TransitConnectionVariant [#FFFFFFFF]",
+                                          "name": "Transport",
+                                          "inputParameters": [
+                                            {
+                                              "name": "Timeout (min)",
+                                              "value": "10",
+                                              "valueType": "Double",
+                                              "defaultValue": "10"
+                                            },
+                                            {
+                                              "name": "From",
+                                              "value": "CP",
+                                              "valueType": "String"
+                                            },
+                                            {
+                                              "name": "To",
+                                              "value": "IO",
+                                              "valueType": "String"
+                                            },
+                                            {
+                                              "name": "Barcodes",
+                                              "value": "%Delivered Assay Barcodes%",
+                                              "valueType": "String"
+                                            },
+                                            {
+                                              "name": "Metadata",
+                                              "value": "Source Orchestrator Workflow=DWP Assay;Labware Designation=MTPs;Labware Type=%CP Assay Labware Type%;Order=%Input.OrderId%",
+                                              "valueType": "String"
+                                            }
+                                          ],
+                                          "outputParameterMapping": [
+                                            {
+                                              "name": "Barcodes",
+                                              "parameterType": "String"
+                                            },
+                                            {
+                                              "name": "Request ID",
+                                              "parameterType": "String"
+                                            }
+                                          ],
+                                          "description": "Transport",
+                                          "guid": "b749f254-ef58-4402-aa6d-740046644d3a",
+                                          "isAsync": false,
+                                          "allowAsync": false,
+                                          "isDisabled": false,
+                                          "isPausePointSet": false
+                                        }
+                                      ],
+                                      "name": "Sequence",
+                                      "description": "Sequence",
+                                      "helpText": "A sequence of workflow elements",
+                                      "guid": "35ac35b3-7d13-4709-8e9a-daedc48ecb55",
+                                      "isAsync": false,
+                                      "allowAsync": false,
+                                      "backgroundColorHex": "#00000000",
+                                      "isDisabled": false,
+                                      "isPausePointSet": false
+                                    },
+                                    "no": {
+                                      "children": [
+                                        {
+                                          "$type": "Biosero.Workflow.Commands.TransportCommand, Biosero.Workflow.Core",
+                                          "helpText": "Transports the specified barcode(s) from one station to another.",
+                                          "backgroundColorHex": "#FF666666",
+                                          "iconUrl": "PackIcon.TransitConnectionVariant [#FFFFFFFF]",
+                                          "name": "Transport",
+                                          "inputParameters": [
+                                            {
+                                              "name": "Timeout (min)",
+                                              "value": "10",
+                                              "valueType": "Double",
+                                              "defaultValue": "10"
+                                            },
+                                            {
+                                              "name": "From",
+                                              "value": "CP",
+                                              "valueType": "String"
+                                            },
+                                            {
+                                              "name": "To",
+                                              "value": "IO",
+                                              "valueType": "String"
+                                            },
+                                            {
+                                              "name": "Barcodes",
+                                              "value": "%Delivered Assay Barcodes%",
+                                              "valueType": "String"
+                                            },
+                                            {
+                                              "name": "Metadata",
+                                              "value": "Source Orchestrator Workflow=Standard Assay;Labware Designation=MTPs;Labware Type=%CP Assay Labware Type%;Order=%Input.OrderId%",
+                                              "valueType": "String"
+                                            }
+                                          ],
+                                          "outputParameterMapping": [
+                                            {
+                                              "name": "Barcodes",
+                                              "parameterType": "String"
+                                            },
+                                            {
+                                              "name": "Request ID",
+                                              "parameterType": "String"
+                                            }
+                                          ],
+                                          "description": "Transport",
+                                          "guid": "d18fe0b7-69e7-4088-ba4c-4720aa2886ef",
+                                          "isAsync": false,
+                                          "allowAsync": false,
+                                          "isDisabled": false,
+                                          "isPausePointSet": false
+                                        }
+                                      ],
+                                      "name": "Sequence",
+                                      "description": "Sequence",
+                                      "helpText": "A sequence of workflow elements",
+                                      "guid": "d144c4be-a637-4493-91e2-83171ee3771e",
+                                      "isAsync": false,
+                                      "allowAsync": false,
+                                      "backgroundColorHex": "#00000000",
+                                      "isDisabled": false,
+                                      "isPausePointSet": false
+                                    },
+                                    "evaluation": {
+                                      "left": "DestinationPlateType",
+                                      "right": "96 DWP 1.2ml",
+                                      "evaluator": "Equal"
+                                    },
+                                    "description": "Branch if DestinationPlateType = 96 DWP 1.2ml",
+                                    "guid": "7b0ebec4-8190-405d-85a1-ba2ffde515b9",
+                                    "isAsync": false,
+                                    "allowAsync": false,
+                                    "isDisabled": false,
+                                    "isPausePointSet": false
+                                  }
+                                ],
+                                "name": "Sequence",
+                                "description": "Sequence",
+                                "helpText": "A sequence of workflow elements",
+                                "guid": "0cee2059-3fa7-4fd8-99a7-5b32efda5097",
+                                "isAsync": false,
+                                "allowAsync": false,
+                                "backgroundColorHex": "#00000000",
+                                "isDisabled": false,
+                                "isPausePointSet": false
+                              },
+                              "evaluation": {
+                                "left": "DestinationPlateType",
+                                "right": "96 Matrix Rack",
+                                "evaluator": "Equal"
+                              },
+                              "description": "Branch if DestinationPlateType = 96 Matrix Rack",
+                              "guid": "23249db9-d827-482b-bb9b-670cdd18c755",
+                              "isAsync": false,
+                              "allowAsync": false,
+                              "isDisabled": false,
+                              "isPausePointSet": false
+                            },
+                            {
+                              "$type": "Biosero.Workflow.RunScript, Biosero.Workflow.Core",
+                              "helpText": "Runs the specified script",
+                              "backgroundColorHex": "#FFF58CFF",
+                              "iconUrl": "PackIcon.ScriptTextOutline [#FFFFFFFF]",
+                              "name": "Run Script",
+                              "isAsync": false,
+                              "allowAsync": false,
+                              "isDisabled": false,
+                              "description": "Run Script: UpdateStatusForReturningCPPlatesToCompleted",
+                              "isPausePointSet": false,
+                              "scriptName": "UpdateStatusForReturningCPPlatesToCompleted",
+                              "guid": "9270412a-824c-4626-8006-c4ae677d1ff6"
+                            }
+                          ],
+                          "name": "Sequence",
+                          "description": "Sequence",
+                          "helpText": "A sequence of workflow elements",
+                          "guid": "86c37a4a-c2a0-407f-a6fa-425e68b80137",
+                          "isAsync": false,
+                          "allowAsync": false,
+                          "backgroundColorHex": "#00000000",
+                          "isDisabled": false,
+                          "isPausePointSet": false
+                        },
+                        "no": {
+                          "children": [],
+                          "name": "Sequence",
+                          "description": "Sequence",
+                          "helpText": "A sequence of workflow elements",
+                          "guid": "9d9e3b4a-06c4-4513-9526-dcb1be148fcf",
+                          "isAsync": false,
+                          "allowAsync": false,
+                          "backgroundColorHex": "#00000000",
+                          "isDisabled": false,
+                          "isPausePointSet": false
+                        },
+                        "evaluation": {
+                          "left": "Delivered Assay Barcodes",
+                          "right": "",
+                          "evaluator": "NotEqual"
+                        },
+                        "description": "Branch if Delivered Assay Barcodes ≠ ",
+                        "guid": "16b92f66-7df2-4c01-aca4-7d6ba870f1ab",
+                        "isAsync": false,
+                        "allowAsync": false,
+                        "isDisabled": false,
+                        "isPausePointSet": false
+                      },
+                      {
+                        "$type": "Biosero.Workflow.Branch, Biosero.Workflow.Core",
+                        "helpText": "Evaluates a condition and branches accordingly",
+                        "backgroundColorHex": "#FFDEDE81",
+                        "iconUrl": "PackIcon.Help [#FFFFFFFF:0:2]",
+                        "name": "Branch",
+                        "yes": {
+                          "children": [
+                            {
+                              "$type": "Biosero.Workflow.Elements.Delay, Biosero.Workflow.Core",
+                              "helpText": "Delays the workflow for the specified amount of time",
+                              "backgroundColorHex": "#FF26A9FF",
+                              "iconUrl": "PackIcon.ClockOutline [#FFFFFFFF]",
+                              "name": "Delay",
+                              "seconds": 30.0,
+                              "minutes": 0.0,
+                              "hours": 0.0,
+                              "description": "Delay 0:0:30",
+                              "guid": "ad809e04-670f-4f12-ad79-e2134ba85b06",
+                              "isAsync": false,
+                              "allowAsync": false,
+                              "isDisabled": false,
+                              "isPausePointSet": false
+                            }
+                          ],
+                          "name": "Sequence",
+                          "description": "Sequence",
+                          "helpText": "A sequence of workflow elements",
+                          "guid": "7c7de9e4-23c5-4a70-9198-72bcc72dc2f0",
+                          "isAsync": false,
+                          "allowAsync": false,
+                          "backgroundColorHex": "#00000000",
+                          "isDisabled": false,
+                          "isPausePointSet": false
+                        },
+                        "no": {
+                          "children": [],
+                          "name": "Sequence",
+                          "description": "Sequence",
+                          "helpText": "A sequence of workflow elements",
+                          "guid": "cb815eff-7325-4ba8-9d5a-28997b98eb7a",
+                          "isAsync": false,
+                          "allowAsync": false,
+                          "backgroundColorHex": "#00000000",
+                          "isDisabled": false,
+                          "isPausePointSet": false
+                        },
+                        "evaluation": {
+                          "left": "AllAssayPlatesCompleted",
+                          "right": "True",
+                          "evaluator": "NotEqual"
+                        },
+                        "description": "Branch if AllAssayPlatesCompleted ≠ True",
+                        "guid": "9a234392-e18a-4c81-8887-220c6e96eeff",
+                        "isAsync": false,
+                        "allowAsync": false,
+                        "isDisabled": false,
+                        "isPausePointSet": false
+                      }
+                    ],
+                    "name": "Sequence",
+                    "description": "Sequence",
+                    "helpText": "A sequence of workflow elements",
+                    "guid": "3c7ff4aa-2249-414c-b68b-7efd3a95d314",
+                    "isAsync": false,
+                    "allowAsync": false,
+                    "backgroundColorHex": "#00000000",
+                    "isDisabled": false,
+                    "isPausePointSet": false
+                  },
+                  "evaluation": {
+                    "left": "AllAssayPlatesCompleted",
+                    "right": "True",
+                    "evaluator": "NotEqual"
+                  },
+                  "evaluateAtEnd": false,
+                  "loopCount": 0,
+                  "loopType": "While",
+                  "foreachCollectionVariable": "",
+                  "foreachItemVariable": "",
+                  "foreachDelimiter": ",",
+                  "description": "Loop While AllAssayPlatesCompleted ≠ True",
+                  "guid": "ff524975-b810-410f-b79d-d87cdfb446f6",
+                  "isAsync": false,
+                  "allowAsync": false,
+                  "isDisabled": false,
+                  "isPausePointSet": false
+                }
+              ],
+              "name": "Sequence",
+              "description": "Sequence",
+              "helpText": "A sequence of workflow elements",
+              "guid": "6c3dc7b2-1bb2-4aec-a513-5c5db3c55a48",
+              "isAsync": false,
+              "allowAsync": false,
+              "backgroundColorHex": "#00000000",
+              "isDisabled": false,
+              "isPausePointSet": false
+            },
+            "no": {
+              "children": [],
+              "name": "Sequence",
+              "description": "Sequence",
+              "helpText": "A sequence of workflow elements",
+              "guid": "07c8e1ff-4550-4455-8c46-50a7d0ed17d1",
+              "isAsync": false,
+              "allowAsync": false,
+              "backgroundColorHex": "#00000000",
+              "isDisabled": false,
+              "isPausePointSet": false
+            },
+            "evaluation": {
+              "left": "IOC work Required",
+              "right": "False",
+              "evaluator": "Equal"
+            },
+            "description": "Branch if IOC work Required = False",
+            "guid": "d1910c33-dafa-422c-be9c-0d124e350f00",
+            "isAsync": false,
+            "allowAsync": false,
+            "isDisabled": false,
+            "isPausePointSet": false
+          },
+          {
+            "$type": "Biosero.Workflow.Elements.WriteToLog, Biosero.Workflow.Core",
+            "helpText": "Writes to the log",
+            "backgroundColorHex": "#FFC69AE8",
+            "iconUrl": "PackIcon.Feather [#FFFFFFFF]",
+            "name": "Log",
+            "description": "Log: Order finished",
+            "text": "Order finished",
+            "appendNewLine": false,
+            "guid": "3b344659-a79d-4208-82b9-bb893dfde095",
+            "isAsync": false,
+            "allowAsync": false,
+            "isDisabled": false,
+            "isPausePointSet": false
+          }
+        ],
+        "name": "Sequence",
+        "description": "Sequence",
+        "helpText": "A sequence of workflow elements",
+        "guid": "5b26ce61-4d4b-4836-b62e-a5c4372e189f",
+        "isAsync": false,
+        "allowAsync": false,
+        "backgroundColorHex": "#00000000",
+        "isDisabled": false,
+        "isPausePointSet": false
+      }
+    }
+  ],
+  "scripts": [
+    {
+      "name": "Process_State_Machine_CP",
+      "code": "#r Roche.LAMA1.dll\r\n\r\nusing Biosero.DataServices.Client;\r\nusing Biosero.Orchestrator.WorkflowService;\r\nusing Newtonsoft.Json;\r\nusing System;\r\nusing System.Threading;\r\nusing System.Threading.Tasks;\r\nusing System.Collections.Generic;\r\nusing System.Text;\r\nusing System.Linq;\r\nusing Roche.LAMA1;\r\nusing Roche.LAMA1.Models;\r\nusing Roche.LAMA1.MosaicTypes;\r\nusing Biosero.DataServices.RestClient;\r\nusing Biosero.DataModels.Events;\r\nusing Biosero.DataModels.Ordering;\r\nusing Biosero.DataModels.Clients;\r\nusing Biosero.DataModels.Resources;\r\nusing System.Security.Cryptography;\r\nusing System.Collections;\r\nusing System.IO;\r\n\r\n\r\nnamespace Biosero.Scripting\r\n{\r\n    public class Process_State_Machine_CP\r\n    {\r\n\r\n\r\n\r\n        enum Priority\r\n        {\r\n            High,\r\n            Medium,\r\n            Low\r\n        }\r\n        \r\n        // Define a class to represent a job\r\n        class Job\r\n        {\r\n            public string Name { get; set; }\r\n            public Priority JobPriority { get; set; }\r\n\r\n            public Job(string name, Priority priority)\r\n            {\r\n                Name = name;\r\n                JobPriority = priority;\r\n            }\r\n        }\r\n\r\n        public async Task RunAsync(DataServicesClient client, WorkflowContext context, CancellationToken cancellationToken)\r\n        {\r\n            string RequestedOrder = context.GetGlobalVariableValue<string>(\"Input.OrderId\");\r\n            string ReadyJobs = context.GetGlobalVariableValue<string>(\"Input.All Ready Jobs\");\r\n             string CPRacksToProcess = context.GetGlobalVariableValue<string>(\"Input.IOC Processed Racks\");\r\n\r\n\r\n            string API_BASE_URL = \"http://192.168.14.10:8105/api/v2.0/\";\r\n            IQueryClient _queryClient = new QueryClient(API_BASE_URL);\r\n            IAccessioningClient _accessioningClient = new AccessioningClient(API_BASE_URL);\r\n            IEventClient _eventClient = new EventClient(API_BASE_URL);\r\n\r\n\r\n            IdentityHelper _identityHelper;\r\n\r\n\r\n            //Build out and register the root identities (i.e Mosaic Job) if they do not exist\r\n            _identityHelper = new IdentityHelper(_queryClient, _accessioningClient, _eventClient);\r\n            _identityHelper.BuildBaseIdentities();\r\n\r\n\r\n            //Get all the sources associated with this order\r\n            var sources = _identityHelper.GetSources(RequestedOrder).ToList();\r\n\r\n            //Get all the destinations associated with this order\r\n            var destinations = _identityHelper.GetDestinations(RequestedOrder).ToList();\r\n            //Get all the jobs\r\n            var jobs = _identityHelper.GetJobs(RequestedOrder).ToList();\r\n\r\n            List<string> highPriorityJobs = new List<string>();\r\n            List<string> mediumPriorityJobs = new List<string>();\r\n            List<string> lowPriorityJobs = new List<string>();\r\n\r\n            List<string> sortedJobs = new List<string>();\r\n\r\n            foreach (var job in jobs)\r\n            {\r\n                string JobPriority = job.Priority;\r\n                string JobNumber = job.JobId.ToString();\r\n                Serilog.Log.Information(\"JobNumber= {JobNumber}\", JobNumber.ToString());\r\n\r\n                switch (JobPriority)\r\n                {\r\n                    case \"High\":\r\n                        highPriorityJobs.Add(JobNumber);\r\n                        break;\r\n                    case \"Medium\":\r\n                        mediumPriorityJobs.Add(JobNumber);\r\n                        break;\r\n                    case \"Low\":\r\n                        lowPriorityJobs.Add(JobNumber);\r\n                        break;\r\n                }\r\n\r\n            }\r\n\r\n            // Combine the lists in the desired order\r\n            sortedJobs.AddRange(highPriorityJobs);\r\n            sortedJobs.AddRange(mediumPriorityJobs);\r\n            sortedJobs.AddRange(lowPriorityJobs);\r\n\r\n            string PrioritisedJobs = string.Join(\",\", sortedJobs);\r\n\r\n\r\n            await context.AddOrUpdateGlobalVariableAsync(\"Prioritised Jobs\", PrioritisedJobs);\r\n\r\n           \r\n        }\r\n\r\n    }\r\n}\r\n\r\n",
+      "language": "C#"
+    },
+    {
+      "name": "Process_CP_Sorted_Jobs",
+      "code": "#r Roche.LAMA1.dll\r\n\r\nusing Biosero.DataServices.Client;\r\nusing Biosero.Orchestrator.WorkflowService;\r\nusing Newtonsoft.Json;\r\nusing System;\r\nusing System.Threading;\r\nusing System.Threading.Tasks;\r\nusing System.Collections.Generic;\r\nusing System.Text;\r\nusing System.Linq;\r\nusing Roche.LAMA1;\r\nusing Roche.LAMA1.Models;\r\nusing Roche.LAMA1.MosaicTypes;\r\nusing Biosero.DataServices.RestClient;\r\nusing Biosero.DataModels.Events;\r\nusing Biosero.DataModels.Ordering;\r\nusing Biosero.DataModels.Clients;\r\nusing Biosero.DataModels.Resources;\r\nusing System.Security.Cryptography;\r\nusing System.Collections;\r\nusing System.IO;\r\n\r\n\r\nnamespace Biosero.Scripting\r\n{\r\n    public class Process_CP_Sorted_Jobs\r\n    {\r\n\r\n\r\n\r\n\r\n        public async Task RunAsync(DataServicesClient client, WorkflowContext context, CancellationToken cancellationToken)\r\n        {\r\n            string PrioritisedJobs = context.GetGlobalVariableValue<string>(\"Prioritised Jobs\");\r\n            string RequestedOrder = context.GetGlobalVariableValue<string>(\"Input.OrderId\");\r\n\r\n            //instantiate LAMA1 objects\r\n\r\n            string API_BASE_URL = \"http://192.168.14.10:8105/api/v2.0/\";\r\n            IQueryClient _queryClient = new QueryClient(API_BASE_URL);\r\n            IAccessioningClient _accessioningClient = new AccessioningClient(API_BASE_URL);\r\n            IEventClient _eventClient = new EventClient(API_BASE_URL);\r\n\r\n\r\n            IdentityHelper _identityHelper;\r\n\r\n\r\n            //Build out and register the root identities (i.e Mosaic Job) if they do not exist\r\n            _identityHelper = new IdentityHelper(_queryClient, _accessioningClient, _eventClient);\r\n            _identityHelper.BuildBaseIdentities();\r\n\r\n\r\n            //Get all the sources associated with this order\r\n            var sources = _identityHelper.GetSources(RequestedOrder).ToList();\r\n\r\n            //Get all the destinations associated with this order\r\n            var destinations = _identityHelper.GetDestinations(RequestedOrder).ToList();\r\n            //Get all the jobs\r\n            var jobs = _identityHelper.GetJobs(RequestedOrder).ToList();\r\n\r\n            //instantiate LAMA1 objects\r\n\r\n\r\n\r\n\r\n            List<string> PrioritisedJobsList = PrioritisedJobs.Split(',').ToList();\r\n\r\n            // Get highest priority job\r\n            string PrioritisedJobId = PrioritisedJobsList[0];\r\n\r\n            Serilog.Log.Information(\"job= {job}\", PrioritisedJobId.ToString());\r\n\r\n            //Retrienve job name and identifier from Identities dataset\r\n            var i = jobs\r\n            .Where(x => x.Properties.GetValue<string>(\"JobId\") == PrioritisedJobId)\r\n            .FirstOrDefault();\r\n\r\n\r\n\r\n\r\n            string JobName = i.Name;\r\n            string JobIdentifier = i.Identifier;\r\n            string Priority = i.Priority;\r\n\r\n            //Retrieve destination details from identities dataset\r\n            var a = destinations\r\n            .Where(a => a.Properties.GetValue<string>(\"JobId\") == PrioritisedJobId)\r\n            .FirstOrDefault();\r\n\r\n            string AssayLabwareType = destinations\r\n            .Where(a => a.Properties.GetValue<string>(\"JobId\") == PrioritisedJobId && a.OperationType.ToString() == \"CherryPick\")\r\n            .Select(a => a.CommonName)\r\n            .FirstOrDefault();            \r\n            \r\n            Serilog.Log.Information(\"CP AssayLabwareType= {AssayLabwareType}\", AssayLabwareType);\r\n\r\n\r\n            //Retrieve destination details from identities dataset\r\n            int NumberOfSources = sources\r\n            .Where(a => a.Properties.GetValue<string>(\"JobId\") == PrioritisedJobId)\r\n            .Count();\r\n\r\n            int NumberOfAssays = destinations\r\n            .Where(a => a.Properties.GetValue<string>(\"JobId\") == PrioritisedJobId)\r\n            .Count();\r\n\r\n            var AllSourceBarcodes = sources\r\n                .Where(a => a.Properties.GetValue<string>(\"JobId\") == PrioritisedJobId)\r\n                .Select(a => a.Name)\r\n                .ToList();\r\n\r\n            string SourceBarcodes = string.Join(\",\", AllSourceBarcodes);\r\n\r\n\r\n            var AllDestinationBarcodes = destinations\r\n                .Where(a => a.Properties.GetValue<string>(\"JobId\") == PrioritisedJobId)\r\n                .Select(a => a.Name)\r\n                .ToList();\r\n\r\n\r\n            var AllCPDestinationBarcodes = destinations\r\n                .Where(a => a.Properties.GetValue<string>(\"JobId\") == PrioritisedJobId && a.OperationType.ToString() == \"CherryPick\")\r\n                .Select(a => a.Name)\r\n                .ToList();\r\n\r\n            string destinationBarcodes = string.Join(\",\", AllDestinationBarcodes);\r\n\r\n            string CPdestinationBarcodes = string.Join(\",\", AllCPDestinationBarcodes);\r\n\r\n            int PriorityId = 0;\r\n\r\n            switch (Priority)\r\n            {\r\n                case \"High\":\r\n                    PriorityId = 1;\r\n                    break;\r\n                case \"Medium\":\r\n                    PriorityId = 2;\r\n                    break;\r\n                case \"Low\":\r\n                    PriorityId = 3;\r\n                    break;\r\n            }\r\n\r\n\r\n            Serilog.Log.Information(\"SortedJobList= {SortedJobList}\", PrioritisedJobs.ToString());\r\n            Serilog.Log.Information(\"JobName= {JobName}\", JobName.ToString());\r\n            Serilog.Log.Information(\"JobIdentifier= {JobIdentifier}\", JobIdentifier.ToString());\r\n            Serilog.Log.Information(\"SourceBarcodes= {SourceBarcodes}\", SourceBarcodes.ToString());\r\n            Serilog.Log.Information(\"+++destinationBarcodes= {destinationBarcodes}\", destinationBarcodes.ToString());\r\n            Serilog.Log.Information(\"Priority= {Priority}\", PriorityId.ToString());\r\n\r\n\r\n            Serilog.Log.Information(\"NumberOfAssays= {NumberOfAssays}\", NumberOfAssays.ToString());\r\n\r\n            await context.AddOrUpdateGlobalVariableAsync(\"Total Assay Plates\", NumberOfAssays);\r\n            await context.AddOrUpdateGlobalVariableAsync(\"Total Sources\", NumberOfSources);\r\n            await context.AddOrUpdateGlobalVariableAsync(\"CP Assay Labware Type\", AssayLabwareType);\r\n            await context.AddOrUpdateGlobalVariableAsync(\"Job Number\", Int32.Parse(PrioritisedJobId));\r\n            await context.AddOrUpdateGlobalVariableAsync(\"Job Priority\", PriorityId.ToString());\r\n            await context.AddOrUpdateGlobalVariableAsync(\"Sources For Job\", SourceBarcodes);\r\n            await context.AddOrUpdateGlobalVariableAsync(\"TargetCPPlates\", CPdestinationBarcodes);\r\n\r\n\r\n            string result = string.Join(\",\", PrioritisedJobs.Split(',').Where(s => s != PrioritisedJobId));\r\n            \r\n            Serilog.Log.Information(\"Prioritised Jobs Remaining= {RemainJobs}\", result.ToString());\r\n\r\n\r\n            await context.AddOrUpdateGlobalVariableAsync(\"Prioritised Jobs\", result);\r\n\r\n        }\r\n\r\n    }\r\n}\r\n\r\n",
+      "language": "C#"
+    },
+    {
+      "name": "CP_Is_Only_A_CP_Job",
+      "code": "#r Roche.LAMA1.dll\r\n\r\nusing Biosero.DataServices.Client;\r\nusing Biosero.Orchestrator.WorkflowService;\r\nusing Newtonsoft.Json;\r\nusing System;\r\nusing System.Threading;\r\nusing System.Threading.Tasks;\r\nusing System.Collections.Generic;\r\nusing System.Text;\r\nusing System.Linq;\r\nusing Roche.LAMA1;\r\nusing Roche.LAMA1.Models;\r\nusing Roche.LAMA1.MosaicTypes;\r\nusing Biosero.DataServices.RestClient;\r\nusing Biosero.DataModels.Events;\r\nusing Biosero.DataModels.Ordering;\r\nusing Biosero.DataModels.Clients;\r\nusing Biosero.DataModels.Resources;\r\nusing System.Security.Cryptography;\r\nusing System.Collections;\r\nusing System.IO;\r\n\r\n\r\nnamespace Biosero.Scripting\r\n{\r\n    public class CP_Is_Only_A_CP_Job\r\n    {\r\n        public async Task RunAsync(DataServicesClient client, WorkflowContext context, CancellationToken cancellationToken)\r\n        {\r\n            int CurrentJobNumber = context.GetGlobalVariableValue<int>(\"Job Number\");\r\n            string RequestedOrder = context.GetGlobalVariableValue<string>(\"Input.OrderId\");\r\n            string ParentId = \"\";\r\n\r\n            //instantiate LAMA1 objects\r\n\r\n            string API_BASE_URL = \"http://192.168.14.10:8105/api/v2.0/\";\r\n            IQueryClient _queryClient = new QueryClient(API_BASE_URL);\r\n            IAccessioningClient _accessioningClient = new AccessioningClient(API_BASE_URL);\r\n            IEventClient _eventClient = new EventClient(API_BASE_URL);\r\n\r\n\r\n            IdentityHelper _identityHelper;\r\n\r\n\r\n            //Build out and register the root identities (i.e Mosaic Job) if they do not exist\r\n            _identityHelper = new IdentityHelper(_queryClient, _accessioningClient, _eventClient);\r\n            _identityHelper.BuildBaseIdentities();\r\n\r\n\r\n            //Get all the sources associated with this order\r\n            var sources = _identityHelper.GetSources(RequestedOrder).ToList();\r\n\r\n            //Get all the destinations associated with this order\r\n            var destinations = _identityHelper.GetDestinations(RequestedOrder).ToList();\r\n            //Get all the jobs\r\n            var jobs = _identityHelper.GetJobs(RequestedOrder).ToList();\r\n\r\n\r\n            foreach (var dest in destinations)\r\n            {\r\n                string DestinationName = dest.Name;\r\n                string DestinationDescription = dest.Description;\r\n                string DestinationSampleTransfers = dest.SampleTransfers;\r\n                string DestinationOperationType = dest.OperationType.ToString();\r\n                string DestinationJobId = dest.JobId.ToString();\r\n                string DestinationId = dest.Identifier.ToString();\r\n                string DestinationParent = dest.ParentIdentifier ?? string.Empty;\r\n\r\n                bool IOCReturnNeeded = false;\r\n\r\n                if (DestinationOperationType == \"CherryPick\")\r\n                {\r\n                \r\n                    Serilog.Log.Information(\"------Important log starting-------\");\r\n\r\n                    Serilog.Log.Information(\" DestinationName= {DestinationName}\", DestinationName.ToString());\r\n                    Serilog.Log.Information(\" DestinationJobId= {DestinationJobId}\", DestinationJobId.ToString());\r\n\r\n\r\n                     ParentId = DestinationId;\r\n\r\n                    var subDestinations = destinations.Where(x => x.ParentIdentifier == ParentId);\r\n\r\n                    foreach (var subDestination in subDestinations)\r\n                    {\r\n\r\n                        string SubDestinationName = subDestination.Name.ToString();\r\n                        string SubDestinationOptTypee = subDestination.OperationType.ToString();\r\n\r\n\r\n                        Serilog.Log.Information(\"new SubDestinationName= {SubDestinationName}\", SubDestinationName.ToString());\r\n\r\n                        if (SubDestinationOptTypee == \"CherryPick\")\r\n                        {\r\n                            IOCReturnNeeded = true;\r\n\r\n                        }\r\n\r\n\r\n                    }\r\n                  Serilog.Log.Information(\"Any plates need to be returned to IOC?= {IOCReturnNeeded}\", IOCReturnNeeded.ToString());\r\n                  await context.AddOrUpdateGlobalVariableAsync(\"IOC work Required\", IOCReturnNeeded);\r\n\r\n\r\n                }\r\n            }\r\n\r\n        }\r\n\r\n    }\r\n}\r\n\r\n",
+      "language": "C#"
+    },
+    {
+      "name": "Check_Remaining_Transport_For_Job",
+      "code": "#r Roche.LAMA1.dll\r\n\r\nusing Biosero.DataServices.Client;\r\nusing Biosero.Orchestrator.WorkflowService;\r\nusing Newtonsoft.Json;\r\nusing System;\r\nusing System.Threading;\r\nusing System.Threading.Tasks;\r\nusing System.Collections.Generic;\r\nusing System.Text;\r\nusing System.Linq;\r\nusing Roche.LAMA1;\r\nusing Roche.LAMA1.Models;\r\nusing Roche.LAMA1.MosaicTypes;\r\nusing Biosero.DataServices.RestClient;\r\nusing Biosero.DataModels.Events;\r\nusing Biosero.DataModels.Ordering;\r\nusing Biosero.DataModels.Clients;\r\nusing Biosero.DataModels.Resources;\r\nusing System.Security.Cryptography;\r\nusing System.Collections;\r\n\r\n\r\nnamespace Biosero.Scripting\r\n{\r\n    public class Check_Remaining_Transport_For_Job\r\n    {\r\n        public async Task RunAsync(DataServicesClient client, WorkflowContext context, CancellationToken cancellationToken)\r\n        {\r\n\r\n            string RequestedOrder = context.GetGlobalVariableValue<string>(\"Input.OrderId\");\r\n            int RequestJob = context.GetGlobalVariableValue<int>(\"Job Number\");\r\n\r\n\r\n            string API_BASE_URL = \"http://192.168.14.10:8105/api/v2.0/\";\r\n\r\n            string ExtractedReplicationVolume = \"\";\r\n            string ExtractedNextReplicationVolume = \"\";\r\n            string NextReplicateLabware = \"\";\r\n            string FurtherReplicateLabware = \"\";\r\n            string DestinationCommonName = \"\";\r\n\r\n\r\n\r\n            int JobTransportTasksRemaining = 0;\r\n\r\n\r\n            string JobWorkflowFragment = \"\";\r\n\r\n            IQueryClient _queryClient = new QueryClient(API_BASE_URL);\r\n            IAccessioningClient _accessioningClient = new AccessioningClient(API_BASE_URL);\r\n            IEventClient _eventClient = new EventClient(API_BASE_URL);\r\n\r\n            List<string> AllCPSourcesForEB = new List<string>();\r\n\r\n\r\n            IdentityHelper _identityHelper;\r\n\r\n\r\n            //Build out and register the root identities (i.e Mosaic Job) if they do not exist\r\n            _identityHelper = new IdentityHelper(_queryClient, _accessioningClient, _eventClient);\r\n            _identityHelper.BuildBaseIdentities();\r\n\r\n\r\n            //Get all the sources associated with this order\r\n            var sources = _identityHelper.GetSources(RequestedOrder).ToList();\r\n\r\n            //Get all the destinations associated with this order\r\n            var destinations = _identityHelper.GetDestinations(RequestedOrder).ToList();\r\n            //Get all the jobs\r\n            var jobs = _identityHelper.GetJobs(RequestedOrder).ToList();\r\n\r\n\r\n            //  MosaicDestination? destination = destinations?.FirstOrDefault(d => d.Description == \"777\");\r\n            foreach (var dest in destinations)\r\n            {\r\n                string DestinationName = dest.Name;\r\n                string DestinationDescription = dest.Description;\r\n                string DestinationSampleTransfers = dest.SampleTransfers;\r\n                string DestinationOperationType = dest.OperationType.ToString();\r\n                string DestinationJobId = dest.JobId.ToString();\r\n                string DestinationId = dest.Identifier.ToString();\r\n                string DestinationStatus = dest.Status.ToString();\r\n                string DestinationParent = dest.ParentIdentifier != null ? dest.ParentIdentifier.ToString() : null;\r\n\r\n\r\n\r\n\r\n                if ((DestinationJobId.ToString() == RequestJob.ToString()) && (DestinationStatus == \"Pending\") && (DestinationOperationType == \"CherryPick\"))\r\n                {\r\n                    JobTransportTasksRemaining++;\r\n                    Serilog.Log.Information(\"For OrderID {OrderID}: Found Barcode {DestinationName} in JobID {JobID}\", RequestedOrder, DestinationName, RequestJob.ToString());\r\n                }\r\n\r\n\r\n\r\n            }\r\n\r\n            if (JobTransportTasksRemaining > 0)\r\n            {\r\n                Serilog.Log.Information(\"More jobs remain\");\r\n               // await context.AddOrUpdateGlobalVariableAsync(\"Assay Prep Finalized\", false);\r\n            }\r\n            else\r\n            {\r\n                Serilog.Log.Information(\"No jobs remain\");\r\n               // await context.AddOrUpdateGlobalVariableAsync(\"Assay Prep Finalized\", true);\r\n            }\r\n\r\n\r\n\r\n\r\n        }\r\n        public List<Biosero.DataModels.Resources.Identity> GetPlatesWithNumberOfParents<T>(IdentityHelper _helper, QueryClient _queryClient, int nParents, string ownerId)\r\n        {\r\n            IEnumerable<DataModels.Resources.Identity> identities = typeof(T) switch\r\n            {\r\n                Type t when t == typeof(MosaicSource) => _helper.GetSources(ownerId).Select(od => od as Biosero.DataModels.Resources.Identity),\r\n                Type t when t == typeof(MosaicDestination) => _helper.GetDestinations(ownerId).Select(od => od as Biosero.DataModels.Resources.Identity),\r\n                Type t when t == typeof(MosaicJob) => _helper.GetJobs(ownerId).Select(od => od as Biosero.DataModels.Resources.Identity),\r\n                _ => throw new Exception(\"Type not supported\"),\r\n            };\r\n\r\n            //   Serilog.Log.Information($\"There are {orderIdents.Count} identities associated with owner ID {ownerId}\");\r\n            Dictionary<int, List<Biosero.DataModels.Resources.Identity>> identitiesWithNumberOfParents = new Dictionary<int, List<Biosero.DataModels.Resources.Identity>>();\r\n\r\n            int numberOfParentsCount;\r\n            string parent;\r\n            string Ident;\r\n\r\n            foreach (var identity in identities)\r\n            {\r\n                numberOfParentsCount = 0;\r\n                parent = identity.Properties.GetOrDefaultValue(\"ParentIdentifier\", string.Empty);\r\n                Ident = identity.Identifier;\r\n                //\tSerilog.Log.Information($\"Parent ID = {parent}\");\r\n                while (parent != string.Empty)\r\n                {                    //add null check here?\r\n                    Biosero.DataModels.Resources.Identity parentId = _queryClient.GetIdentity(parent);\r\n                    parent = parentId.Properties.GetOrDefaultValue(\"ParentIdentifier\", string.Empty);\r\n                    //Serilog.Log.Information($\"Parent ID = {parent}\");\r\n                    numberOfParentsCount += 1;\r\n                }\r\n\r\n                if (identitiesWithNumberOfParents.ContainsKey(numberOfParentsCount))\r\n                {\r\n                    identitiesWithNumberOfParents[numberOfParentsCount].Add(identity);\r\n                }\r\n\r\n                else\r\n                {\r\n                    identitiesWithNumberOfParents.Add(numberOfParentsCount, new List<Biosero.DataModels.Resources.Identity> { identity });\r\n                }\r\n            }\r\n            foreach (KeyValuePair<int, List<Biosero.DataModels.Resources.Identity>> kvp in identitiesWithNumberOfParents)\r\n            {\r\n                //   Serilog.Log.Information($\"There are {kvp.Value.Count} identities with  {kvp.Key} parents\");\r\n            }\r\n            if (identitiesWithNumberOfParents.ContainsKey(nParents))\r\n            {\r\n                return identitiesWithNumberOfParents[nParents];\r\n            }\r\n            else\r\n            {\r\n                return new List<Biosero.DataModels.Resources.Identity>();\r\n            }\r\n        }\r\n\r\n    }\r\n}\r\n\r\n\r\n",
+      "language": "C#"
+    },
+    {
+      "name": "Remove_Sent_Job",
+      "code": "#r Roche.LAMA1.dll\r\n\r\nusing Biosero.DataServices.Client;\r\nusing Biosero.Orchestrator.WorkflowService;\r\nusing Newtonsoft.Json;\r\nusing System;\r\nusing System.Threading;\r\nusing System.Threading.Tasks;\r\nusing System.Collections.Generic;\r\nusing System.Text;\r\nusing System.Linq;\r\nusing Roche.LAMA1;\r\nusing Roche.LAMA1.Models;\r\nusing Roche.LAMA1.MosaicTypes;\r\nusing Biosero.DataServices.RestClient;\r\nusing Biosero.DataModels.Events;\r\nusing Biosero.DataModels.Ordering;\r\nusing Biosero.DataModels.Clients;\r\nusing Biosero.DataModels.Resources;\r\nusing System.Security.Cryptography;\r\nusing System.Collections;\r\nusing System.IO;\r\n\r\nnamespace Biosero.Scripting\r\n{\r\n    public class Remove_Sent_Job : WorkflowScript\r\n    {\r\n        public Remove_Sent_Job(WorkflowEnvironment environment) : base(environment) {}\r\n\r\n        public void Run(Dictionary<string, object> parameters)\r\n        {\r\n        \r\n            string PrioritisedJobs = context.GetGlobalVariableValue<string>(\"Prioritised Jobs\");\r\n            string RemoveSentJob = context.GetGlobalVariableValue<string>(\"Job Numbers\");\r\n            \r\n            List<string> PriorityJobList = new List<string>(PrioritisedJobs.Split(','));\r\n            \r\n            foreach (var job in PriorityJobList)\r\n            {\r\n            \tif (RemoveSentJob == job)\r\n            \t{\r\n            \t\tPriorityJobList.Remove(job);\r\n            \t\tSerilog.Log.Information(\"JobNumber= {JobNumber} removed from list\", jobr.ToString());\r\n            \t}\r\n            }\r\n            \r\n            PrioritisedJobs = string.Join(',' ,PriorityJobList);\r\n            \r\n        }\r\n    }\r\n}",
+      "language": "C#"
+    },
+    {
+      "name": "Compare Assay In And Assay Completed",
+      "code": "#r Roche.LAMA1.dll\r\n\r\n\r\n/*\r\nScript written by Ronen Peleg (ronenpeleg@biosero.com)\r\n\r\nDescription:\r\nInitial script to determine the type of order jobs required to be processed and their contents.\r\nThe script also populates various required variables in dataservices in down the line processes\r\n*/\r\n\r\n\r\n\r\n\r\nusing Biosero.DataServices.Client;\r\nusing Biosero.Orchestrator.WorkflowService;\r\nusing Newtonsoft.Json;\r\nusing System;\r\nusing System.Threading;\r\nusing System.Threading.Tasks;\r\nusing System.Collections.Generic;\r\nusing System.Text;\r\nusing System.Linq;\r\nusing Roche.LAMA1;\r\nusing Roche.LAMA1.Models;\r\nusing Roche.LAMA1.MosaicTypes;\r\nusing Biosero.DataServices.RestClient;\r\nusing Biosero.DataModels.Events;\r\nusing Biosero.DataModels.Ordering;\r\nusing Biosero.DataModels.Clients;\r\nusing Biosero.DataModels.Resources;\r\nusing System.Security.Cryptography;\r\nusing System.Collections;\r\n\r\n\r\nnamespace Biosero.Scripting\r\n{\r\n    public class Compare_Assay_In_And_Assay_Completed\r\n    {\r\n        public async Task RunAsync(DataServicesClient client, WorkflowContext context, CancellationToken cancellationToken)\r\n        {\r\n\r\n            // Boolean variable determining if the first workflow should process Racks or Crash plates. Both set to FALSE initially.\r\n            // it is not expected for a job to have bothrequired\r\n            await context.AddOrUpdateGlobalVariableAsync(\"IOC Racks Required\", false);\r\n            await context.AddOrUpdateGlobalVariableAsync(\"IOC Crash Plates Required\", false);\r\n\r\n\r\n            // Retrieve order ID ran\r\n            string RequestedOrder = context.GetGlobalVariableValue<string>(\"Input.OrderId\");\r\n            string PrioritisedJobs = context.GetGlobalVariableValue<string>(\"Prioritised Jobs\");\r\n            int CurrentJob = context.GetGlobalVariableValue<int>(\"Job Number\");\r\n\r\n            bool AreBothEqual = false;\r\n            int CompletedPlates = 0;\r\n\r\n            Serilog.Log.Information(\"Current Job {CurrentJob}\", CurrentJob.ToString());\r\n\r\n\r\n            // connnect to the DS server, declare query, assecssioning and event clients for the URL\r\n            string API_BASE_URL = \"http://192.168.14.10:8105/api/v2.0/\";\r\n            IQueryClient _queryClient = new QueryClient(API_BASE_URL);\r\n            IAccessioningClient _accessioningClient = new AccessioningClient(API_BASE_URL);\r\n            IEventClient _eventClient = new EventClient(API_BASE_URL);\r\n\r\n            IdentityHelper _identityHelper;\r\n\r\n            //Build out and register the root identities (i.e Mosaic Job) if they do not exist\r\n            _identityHelper = new IdentityHelper(_queryClient, _accessioningClient, _eventClient);\r\n            _identityHelper.BuildBaseIdentities();\r\n\r\n\r\n\r\n            List<string> AllSources = new List<string>();\r\n            List<string> AllJobs = new List<string>();\r\n            List<string> AllDestinations = new List<string>();\r\n            List<string> AllFinishedDestinations = new List<string>();\r\n            List<string> AllCompletedDestinations = new List<string>();\r\n\r\n            \r\n            List<string> AllCPPlatesToProcess = new List<string>();\r\n            List<string> CPPlatesToProcess = new List<string>();\r\n            List<string> FinishedCPPlates = new List<string>();\r\n            List<string> PlateToBeDeliveredBackToIOC = new List<string>();\r\n\r\n\r\n            await context.AddOrUpdateGlobalVariableAsync(\"Delivered Assay Barcodes\", \"\");\r\n\r\n            var orders = await client.GetExecutingOrdersAsync();\r\n\r\n            orders = orders.ToArray();\r\n\r\n            foreach (var order in orders)\r\n            {\r\n                //Get all the destinations associated with this order\r\n                var destinations = _identityHelper.GetDestinations(RequestedOrder).ToList();\r\n                string a = order.Identifier.ToString();\r\n                Serilog.Log.Information(\"Order Found= {a}\", a);\r\n\r\n\r\n                foreach (var dest in destinations)\r\n                {\r\n                    string DestinationName = dest.Name.ToString();\r\n                    string DestinationPlateType = dest.CommonName.ToString();\r\n                    string DestinationStatus = dest.Status.ToString();\r\n                    string DestinationOperationType = dest.OperationType.ToString();\r\n\r\n\r\n                    var sources = _identityHelper.GetSources(RequestedOrder).ToList();\r\n\r\n                    bool IsSource = false;\r\n                    \r\n                    foreach (var source  in sources)\r\n            \t\t{\r\n            \t\tstring SourceName =source.Name.ToString();\r\n\t            \t\tif (SourceName == DestinationName)\r\n\t            \t\t{\r\n\t            \t\tIsSource = true;\r\n\t            \t\t}\r\n            \t\t}\r\n                    \r\n\r\n\r\n\r\n\r\n                     if ((DestinationOperationType == \"CherryPick\") && (!AllCPPlatesToProcess.Contains(DestinationName)))\r\n                    {\r\n                        AllCPPlatesToProcess.Add(DestinationName);\r\n                    }\r\n                    \r\n                    if ((IsSource==false) && (DestinationOperationType == \"CherryPick\") && (!CPPlatesToProcess.Contains(DestinationName)))\r\n                    {\r\n                        CPPlatesToProcess.Add(DestinationName);\r\n                    }\r\n\r\n                    if ((IsSource == false) && (DestinationStatus == \"Finished\") && (DestinationOperationType == \"CherryPick\") && (!PlateToBeDeliveredBackToIOC.Contains(DestinationName)))\r\n                    {\r\n                        PlateToBeDeliveredBackToIOC.Add(DestinationName);\r\n                        await context.AddOrUpdateGlobalVariableAsync(\"DestinationPlateType\", DestinationPlateType);\r\n                        \r\n                    }\r\n\r\n                    if ((IsSource == false) && (DestinationOperationType == \"CherryPick\") && ((DestinationStatus == \"Transporting\") || (DestinationStatus == \"Completed\")) && (!FinishedCPPlates.Contains(DestinationName)))\r\n                    {\r\n                        FinishedCPPlates.Add(DestinationName);\r\n                    }\r\n\r\n\r\n\r\n                }\r\n\r\n            }\r\n\r\n\r\n\r\n            // Format a string version of all created lists\r\n            string AllPlatesInJob = string.Join(\",\", AllCPPlatesToProcess);\r\n            string AllCPPlatesForJob = string.Join(\",\", CPPlatesToProcess);\r\n            string ProcessedCPPlatesForJob = string.Join(\",\", FinishedCPPlates);\r\n            string ReturningIOCPlates = string.Join(\",\", PlateToBeDeliveredBackToIOC);\r\n            \r\n            \r\n\r\n\r\n            Serilog.Log.Information(\"Showing all  plates in the job  {AllPlatesInJob}\", AllPlatesInJob.ToString());\r\n\r\n            Serilog.Log.Information(\"Showing all the plates in the job to return to IOC {AllCPPlatesForJob}\", AllCPPlatesForJob.ToString());\r\n\r\n            Serilog.Log.Information(\"Showing all the plates in the job either transporting or completed {ProcessedCPPlatesForJob}\", ProcessedCPPlatesForJob.ToString());\r\n\r\n            Serilog.Log.Information(\"Showing all the plates in the job that are finished - THESE SHOULD BE RETURNING {ReturningIOCPlates}\", ReturningIOCPlates.ToString());\r\n\r\n            await context.AddOrUpdateGlobalVariableAsync(\"Delivered Assay Barcodes\", ReturningIOCPlates);\r\n\r\n\r\n\r\n\r\n            foreach (var order in orders)\r\n            {\r\n                //Get all the destinations associated with this order\r\n                var destinations = _identityHelper.GetDestinations(RequestedOrder).ToList();\r\n\r\n\r\n                foreach (var dest1 in destinations)\r\n                {\r\n                    string DOperationType = dest1.OperationType.ToString();\r\n                    string DStatus = dest1.Status.ToString();\r\n             \t    string DName = dest1.Name.ToString();\r\n\r\n\r\n                    var sources1 = _identityHelper.GetSources(RequestedOrder).ToList();\r\n\r\n                    bool IsSource1 = false;\r\n                    \r\n                    foreach (var source1  in sources1)\r\n            \t\t{\r\n            \t\tstring SourceName1 =source1.Name.ToString();\r\n\t            \t\tif (SourceName1 == DName)\r\n\t            \t\t{\r\n\t            \t\tIsSource1 = true;\r\n\t            \t\t}\r\n            \t\t}\r\n\r\n\r\n\r\n                    if ((IsSource1 == false) && (DStatus != \"Completed\") && (DOperationType == \"CherryPick\"))\r\n                    {\r\n                        CompletedPlates++;\r\n                    }\r\n                }\r\n            }\r\n\r\n\r\n\r\n\r\n            Serilog.Log.Information(\"CompletedPlates {CompletedPlates}\", CompletedPlates.ToString());\r\n\r\n            if (CompletedPlates == 0)\r\n            {\r\n                // add the list of crash plates for the order to the DS variable \"Queued Crash Plates\"\r\n                await context.AddOrUpdateGlobalVariableAsync(\"AllAssayPlatesCompleted\", true);\r\n\r\n                string resultString = PrioritisedJobs.Replace(CurrentJob.ToString(), string.Empty);\r\n                await context.AddOrUpdateGlobalVariableAsync(\"Prioritised Jobs\", resultString);\r\n\r\n            }\r\n            else\r\n            {\r\n                await context.AddOrUpdateGlobalVariableAsync(\"AllAssayPlatesCompleted\", false);\r\n            }\r\n\r\n\r\n        }\r\n    }\r\n}\r\n\r\n\r\n",
+      "language": "C#"
+    },
+    {
+      "name": "UpdateStatusForReturningCPPlates",
+      "code": "#r Roche.LAMA1.dll\r\n\r\nusing Biosero.DataServices.Client;\r\nusing Biosero.Orchestrator.WorkflowService;\r\nusing Newtonsoft.Json;\r\nusing System;\r\nusing System.Threading;\r\nusing System.Threading.Tasks;\r\nusing System.Collections.Generic;\r\nusing System.Text;\r\nusing System.Linq;\r\nusing Roche.LAMA1;\r\nusing Roche.LAMA1.Models;\r\nusing Roche.LAMA1.MosaicTypes;\r\nusing Biosero.DataServices.RestClient;\r\nusing Biosero.DataModels.Events;\r\nusing Biosero.DataModels.Ordering;\r\nusing Biosero.DataModels.Clients;\r\nusing Biosero.DataModels.Resources;\r\nusing System.Security.Cryptography;\r\nusing System.Collections;\r\n\r\n\r\nnamespace Biosero.Scripting\r\n{\r\n    public class UpdateStatusForReturningCPPlates\r\n    {\r\n        public async Task RunAsync(DataServicesClient client, WorkflowContext context, CancellationToken cancellationToken)\r\n        {\r\n\r\n            string RequestedOrder = context.GetGlobalVariableValue<string>(\"Input.OrderId\");\r\n\r\n\r\n            string API_BASE_URL = \"http://192.168.14.10:8105/api/v2.0/\";\r\n            IQueryClient _queryClient = new QueryClient(API_BASE_URL);\r\n            IAccessioningClient _accessioningClient = new AccessioningClient(API_BASE_URL);\r\n            IEventClient _eventClient = new EventClient(API_BASE_URL);\r\n\r\n\r\n            IdentityHelper _identityHelper;\r\n\r\n\r\n            //Build out and register the root identities (i.e Mosaic Job) if they do not exist\r\n            _identityHelper = new IdentityHelper(_queryClient, _accessioningClient, _eventClient);\r\n            _identityHelper.BuildBaseIdentities();\r\n\r\n\r\n            //Get all the sources associated with this order\r\n            var sources = _identityHelper.GetSources(RequestedOrder).ToList();\r\n\r\n            //Get all the destinations associated with this order\r\n            var destinations = _identityHelper.GetDestinations(RequestedOrder).ToList();\r\n            //Get all the jobs\r\n            var jobs = _identityHelper.GetJobs(RequestedOrder).ToList();\r\n\r\n            foreach (var dest in destinations)\r\n            {\r\n                int identityJobID = dest.JobId; // Identity Job as string\r\n                string DestinationIdentityID = dest.Identifier;\r\n                string DestinationIdentityName = dest.Name;\r\n                string DestinationIdentityType = dest.TypeIdentifier;\r\n                string DestinationIndentityState = dest.Status.ToString();\r\n\r\n                if (DestinationIndentityState == \"Finished\")\r\n                {\r\n                    //  var currentStatus = \"Transporting\";\r\n                    dest.Properties.SetValue(\"Status\", \"Transporting\");\r\n                    _identityHelper.Register(dest, identityJobID, RequestedOrder);\r\n\r\n                }\r\n\r\n\r\n\r\n            }\r\n\r\n\r\n        }\r\n        public List<Biosero.DataModels.Resources.Identity> GetPlatesWithNumberOfParents<T>(IdentityHelper _helper, QueryClient _queryClient, int nParents, string ownerId)\r\n        {\r\n            IEnumerable<DataModels.Resources.Identity> identities = typeof(T) switch\r\n            {\r\n                Type t when t == typeof(MosaicSource) => _helper.GetSources(ownerId).Select(od => od as Biosero.DataModels.Resources.Identity),\r\n                Type t when t == typeof(MosaicDestination) => _helper.GetDestinations(ownerId).Select(od => od as Biosero.DataModels.Resources.Identity),\r\n                Type t when t == typeof(MosaicJob) => _helper.GetJobs(ownerId).Select(od => od as Biosero.DataModels.Resources.Identity),\r\n                _ => throw new Exception(\"Type not supported\"),\r\n            };\r\n\r\n            //   Serilog.Log.Information($\"There are {orderIdents.Count} identities associated with owner ID {ownerId}\");\r\n            Dictionary<int, List<Biosero.DataModels.Resources.Identity>> identitiesWithNumberOfParents = new Dictionary<int, List<Biosero.DataModels.Resources.Identity>>();\r\n\r\n            int numberOfParentsCount;\r\n            string parent;\r\n            string Ident;\r\n\r\n            foreach (var identity in identities)\r\n            {\r\n                numberOfParentsCount = 0;\r\n                parent = identity.Properties.GetOrDefaultValue(\"ParentIdentifier\", string.Empty);\r\n                Ident = identity.Identifier;\r\n                //\tSerilog.Log.Information($\"Parent ID = {parent}\");\r\n                while (parent != string.Empty)\r\n                {                    //add null check here?\r\n                    Biosero.DataModels.Resources.Identity parentId = _queryClient.GetIdentity(parent);\r\n                    parent = parentId.Properties.GetOrDefaultValue(\"ParentIdentifier\", string.Empty);\r\n                    //Serilog.Log.Information($\"Parent ID = {parent}\");\r\n                    numberOfParentsCount += 1;\r\n                }\r\n\r\n                if (identitiesWithNumberOfParents.ContainsKey(numberOfParentsCount))\r\n                {\r\n                    identitiesWithNumberOfParents[numberOfParentsCount].Add(identity);\r\n                }\r\n\r\n                else\r\n                {\r\n                    identitiesWithNumberOfParents.Add(numberOfParentsCount, new List<Biosero.DataModels.Resources.Identity> { identity });\r\n                }\r\n            }\r\n            foreach (KeyValuePair<int, List<Biosero.DataModels.Resources.Identity>> kvp in identitiesWithNumberOfParents)\r\n            {\r\n                //   Serilog.Log.Information($\"There are {kvp.Value.Count} identities with  {kvp.Key} parents\");\r\n            }\r\n            if (identitiesWithNumberOfParents.ContainsKey(nParents))\r\n            {\r\n                return identitiesWithNumberOfParents[nParents];\r\n            }\r\n            else\r\n            {\r\n                return new List<Biosero.DataModels.Resources.Identity>();\r\n            }\r\n        }\r\n\r\n    }\r\n}\r\n\r\n\r\n",
+      "language": "C#"
+    },
+    {
+      "name": "UpdateStatusForReturningCPPlatesToCompleted",
+      "code": "#r Roche.LAMA1.dll\r\n\r\nusing Biosero.DataServices.Client;\r\nusing Biosero.Orchestrator.WorkflowService;\r\nusing Newtonsoft.Json;\r\nusing System;\r\nusing System.Threading;\r\nusing System.Threading.Tasks;\r\nusing System.Collections.Generic;\r\nusing System.Text;\r\nusing System.Linq;\r\nusing Roche.LAMA1;\r\nusing Roche.LAMA1.Models;\r\nusing Roche.LAMA1.MosaicTypes;\r\nusing Biosero.DataServices.RestClient;\r\nusing Biosero.DataModels.Events;\r\nusing Biosero.DataModels.Ordering;\r\nusing Biosero.DataModels.Clients;\r\nusing Biosero.DataModels.Resources;\r\nusing System.Security.Cryptography;\r\nusing System.Collections;\r\n\r\n\r\nnamespace Biosero.Scripting\r\n{\r\n    public class UpdateStatusForReturningCPPlatesToCompleted\r\n    {\r\n        public async Task RunAsync(DataServicesClient client, WorkflowContext context, CancellationToken cancellationToken)\r\n        {\r\n\r\n            string RequestedOrder = context.GetGlobalVariableValue<string>(\"Input.OrderId\");\r\n\r\n\r\n            string API_BASE_URL = \"http://192.168.14.10:8105/api/v2.0/\";\r\n            IQueryClient _queryClient = new QueryClient(API_BASE_URL);\r\n            IAccessioningClient _accessioningClient = new AccessioningClient(API_BASE_URL);\r\n            IEventClient _eventClient = new EventClient(API_BASE_URL);\r\n\r\n\r\n            IdentityHelper _identityHelper;\r\n\r\n\r\n            //Build out and register the root identities (i.e Mosaic Job) if they do not exist\r\n            _identityHelper = new IdentityHelper(_queryClient, _accessioningClient, _eventClient);\r\n            _identityHelper.BuildBaseIdentities();\r\n\r\n\r\n            //Get all the sources associated with this order\r\n            var sources = _identityHelper.GetSources(RequestedOrder).ToList();\r\n\r\n            //Get all the destinations associated with this order\r\n            var destinations = _identityHelper.GetDestinations(RequestedOrder).ToList();\r\n            //Get all the jobs\r\n            var jobs = _identityHelper.GetJobs(RequestedOrder).ToList();\r\n\r\n\r\n\r\n            var orders = await client.GetExecutingOrdersAsync();\r\n\r\n            orders = orders.ToArray();\r\n\r\n            foreach (var order in orders)\r\n            {\r\n                //Get all the destinations associated with this order\r\n                var destins = _identityHelper.GetDestinations(RequestedOrder).ToList();\r\n                string a = order.Identifier.ToString();\r\n                Serilog.Log.Information(\"Order Found= {a}\", a);\r\n\r\n\r\n                foreach (var dest in destins)\r\n                {\r\n                    string DestinationName = dest.Name;\r\n                    string DestinationStatus = dest.Status.ToString();\r\n                    string DestinationOperationType = dest.OperationType.ToString();\r\n                    int DestinationJobId = dest.JobId;\r\n\r\n\r\n\r\n                    if (DestinationStatus == \"Transporting\")\r\n                    {\r\n                        //  var currentStatus = \"Transporting\";\r\n                        dest.Properties.SetValue(\"Status\", \"Completed\");\r\n                        _identityHelper.Register(dest, DestinationJobId, RequestedOrder);\r\n                        \r\n                        \r\n                    Serilog.Log.Information(\">>>>>>>>THIS PLATE WAS SET TO COMPLETED<<<<<<<<< {DestinationName}\", DestinationName.ToString());\r\n\r\n                    }\r\n\r\n\r\n\r\n                }\r\n\r\n\r\n            }\r\n\r\n        }\r\n        public List<Biosero.DataModels.Resources.Identity> GetPlatesWithNumberOfParents<T>(IdentityHelper _helper, QueryClient _queryClient, int nParents, string ownerId)\r\n        {\r\n            IEnumerable<DataModels.Resources.Identity> identities = typeof(T) switch\r\n            {\r\n                Type t when t == typeof(MosaicSource) => _helper.GetSources(ownerId).Select(od => od as Biosero.DataModels.Resources.Identity),\r\n                Type t when t == typeof(MosaicDestination) => _helper.GetDestinations(ownerId).Select(od => od as Biosero.DataModels.Resources.Identity),\r\n                Type t when t == typeof(MosaicJob) => _helper.GetJobs(ownerId).Select(od => od as Biosero.DataModels.Resources.Identity),\r\n                _ => throw new Exception(\"Type not supported\"),\r\n            };\r\n\r\n            //   Serilog.Log.Information($\"There are {orderIdents.Count} identities associated with owner ID {ownerId}\");\r\n            Dictionary<int, List<Biosero.DataModels.Resources.Identity>> identitiesWithNumberOfParents = new Dictionary<int, List<Biosero.DataModels.Resources.Identity>>();\r\n\r\n            int numberOfParentsCount;\r\n            string parent;\r\n            string Ident;\r\n\r\n            foreach (var identity in identities)\r\n            {\r\n                numberOfParentsCount = 0;\r\n                parent = identity.Properties.GetOrDefaultValue(\"ParentIdentifier\", string.Empty);\r\n                Ident = identity.Identifier;\r\n                //\tSerilog.Log.Information($\"Parent ID = {parent}\");\r\n                while (parent != string.Empty)\r\n                {                    //add null check here?\r\n                    Biosero.DataModels.Resources.Identity parentId = _queryClient.GetIdentity(parent);\r\n                    parent = parentId.Properties.GetOrDefaultValue(\"ParentIdentifier\", string.Empty);\r\n                    //Serilog.Log.Information($\"Parent ID = {parent}\");\r\n                    numberOfParentsCount += 1;\r\n                }\r\n\r\n                if (identitiesWithNumberOfParents.ContainsKey(numberOfParentsCount))\r\n                {\r\n                    identitiesWithNumberOfParents[numberOfParentsCount].Add(identity);\r\n                }\r\n\r\n                else\r\n                {\r\n                    identitiesWithNumberOfParents.Add(numberOfParentsCount, new List<Biosero.DataModels.Resources.Identity> { identity });\r\n                }\r\n            }\r\n            foreach (KeyValuePair<int, List<Biosero.DataModels.Resources.Identity>> kvp in identitiesWithNumberOfParents)\r\n            {\r\n                //   Serilog.Log.Information($\"There are {kvp.Value.Count} identities with  {kvp.Key} parents\");\r\n            }\r\n            if (identitiesWithNumberOfParents.ContainsKey(nParents))\r\n            {\r\n                return identitiesWithNumberOfParents[nParents];\r\n            }\r\n            else\r\n            {\r\n                return new List<Biosero.DataModels.Resources.Identity>();\r\n            }\r\n\r\n        }\r\n        \r\n    }\r\n\r\n}\r\n",
+      "language": "C#"
+    },
+    {
+      "name": "Reset Labware Type For Plate",
+      "code": "#r Roche.LAMA1.dll\r\n\r\nusing Biosero.DataServices.Client;\r\nusing Biosero.Orchestrator.WorkflowService;\r\nusing Newtonsoft.Json;\r\nusing System;\r\nusing System.Threading;\r\nusing System.Threading.Tasks;\r\nusing System.Collections.Generic;\r\nusing System.Text;\r\nusing System.Linq;\r\nusing Roche.LAMA1;\r\nusing Roche.LAMA1.Models;\r\nusing Roche.LAMA1.MosaicTypes;\r\nusing Biosero.DataServices.RestClient;\r\nusing Biosero.DataModels.Events;\r\nusing Biosero.DataModels.Ordering;\r\nusing Biosero.DataModels.Clients;\r\nusing Biosero.DataModels.Resources;\r\nusing System.Security.Cryptography;\r\nusing System.Collections;\r\n\r\n\r\nnamespace Biosero.Scripting\r\n{\r\n    public class UpdateStatusForReturningCPPlatesToCompleted\r\n    {\r\n        public async Task RunAsync(DataServicesClient client, WorkflowContext context, CancellationToken cancellationToken)\r\n        {\r\n\r\n            string RequestedOrder = context.GetGlobalVariableValue<string>(\"Input.OrderId\");\r\n\r\n\r\n            string API_BASE_URL = \"http://192.168.14.10:8105/api/v2.0/\";\r\n            IQueryClient _queryClient = new QueryClient(API_BASE_URL);\r\n            IAccessioningClient _accessioningClient = new AccessioningClient(API_BASE_URL);\r\n            IEventClient _eventClient = new EventClient(API_BASE_URL);\r\n\r\n\r\n            IdentityHelper _identityHelper;\r\n\r\n\r\n            //Build out and register the root identities (i.e Mosaic Job) if they do not exist\r\n            _identityHelper = new IdentityHelper(_queryClient, _accessioningClient, _eventClient);\r\n            _identityHelper.BuildBaseIdentities();\r\n\r\n\r\n            //Get all the sources associated with this order\r\n            var sources = _identityHelper.GetSources(RequestedOrder).ToList();\r\n\r\n            //Get all the jobs\r\n            var jobs = _identityHelper.GetJobs(RequestedOrder).ToList();\r\n\r\n\r\n\r\n            var orders = await client.GetExecutingOrdersAsync();\r\n\r\n            orders = orders.ToArray();\r\n\r\n            foreach (var order in orders)\r\n            {\r\n                //Get all the destinations associated with this order\r\n                var destinations = _identityHelper.GetDestinations(RequestedOrder).ToList();\r\n                string a = order.Identifier.ToString();\r\n                Serilog.Log.Information(\"Order Found= {a}\", a);\r\n\r\n\r\n                foreach (var dest in destinations)\r\n                {\r\n                    string DestinationName = dest.Name;\r\n                    string DestinationStatus = dest.Status.ToString();\r\n                    string DestinationId = dest.Identifier.ToString();\r\n                    int DestinationJobId = dest.JobId;\r\n                    string DestinationOperationType = dest.OperationType.ToString();\r\n\r\n\r\n\r\n                    if (DestinationStatus == \"Transporting\")\r\n                    {\r\n                        //  var currentStatus = \"Transporting\";\r\n                        dest.Properties.SetValue(\"Status\", \"Completed\");\r\n                        _identityHelper.Register(dest, DestinationJobId, RequestedOrder);\r\n\r\n                    }\r\n\r\n                }\r\n\r\n            }\r\n\r\n\r\n        }\r\n        public List<Biosero.DataModels.Resources.Identity> GetPlatesWithNumberOfParents<T>(IdentityHelper _helper, QueryClient _queryClient, int nParents, string ownerId)\r\n        {\r\n            IEnumerable<DataModels.Resources.Identity> identities = typeof(T) switch\r\n            {\r\n                Type t when t == typeof(MosaicSource) => _helper.GetSources(ownerId).Select(od => od as Biosero.DataModels.Resources.Identity),\r\n                Type t when t == typeof(MosaicDestination) => _helper.GetDestinations(ownerId).Select(od => od as Biosero.DataModels.Resources.Identity),\r\n                Type t when t == typeof(MosaicJob) => _helper.GetJobs(ownerId).Select(od => od as Biosero.DataModels.Resources.Identity),\r\n                _ => throw new Exception(\"Type not supported\"),\r\n            };\r\n\r\n            //   Serilog.Log.Information($\"There are {orderIdents.Count} identities associated with owner ID {ownerId}\");\r\n            Dictionary<int, List<Biosero.DataModels.Resources.Identity>> identitiesWithNumberOfParents = new Dictionary<int, List<Biosero.DataModels.Resources.Identity>>();\r\n\r\n            int numberOfParentsCount;\r\n            string parent;\r\n            string Ident;\r\n\r\n            foreach (var identity in identities)\r\n            {\r\n                numberOfParentsCount = 0;\r\n                parent = identity.Properties.GetOrDefaultValue(\"ParentIdentifier\", string.Empty);\r\n                Ident = identity.Identifier;\r\n                //\tSerilog.Log.Information($\"Parent ID = {parent}\");\r\n                while (parent != string.Empty)\r\n                {                    //add null check here?\r\n                    Biosero.DataModels.Resources.Identity parentId = _queryClient.GetIdentity(parent);\r\n                    parent = parentId.Properties.GetOrDefaultValue(\"ParentIdentifier\", string.Empty);\r\n                    //Serilog.Log.Information($\"Parent ID = {parent}\");\r\n                    numberOfParentsCount += 1;\r\n                }\r\n\r\n                if (identitiesWithNumberOfParents.ContainsKey(numberOfParentsCount))\r\n                {\r\n                    identitiesWithNumberOfParents[numberOfParentsCount].Add(identity);\r\n                }\r\n\r\n                else\r\n                {\r\n                    identitiesWithNumberOfParents.Add(numberOfParentsCount, new List<Biosero.DataModels.Resources.Identity> { identity });\r\n                }\r\n            }\r\n            foreach (KeyValuePair<int, List<Biosero.DataModels.Resources.Identity>> kvp in identitiesWithNumberOfParents)\r\n            {\r\n                //   Serilog.Log.Information($\"There are {kvp.Value.Count} identities with  {kvp.Key} parents\");\r\n            }\r\n            if (identitiesWithNumberOfParents.ContainsKey(nParents))\r\n            {\r\n                return identitiesWithNumberOfParents[nParents];\r\n            }\r\n            else\r\n            {\r\n                return new List<Biosero.DataModels.Resources.Identity>();\r\n            }\r\n        }\r\n\r\n    }\r\n}\r\n\r\n\r\n",
+      "language": "C#"
+    }
+  ],
+  "screens": [],
+  "globalScriptReferences": [
+    "Biosero.Workflow.Core.dll",
+    "Biosero.DataModels.dll"
+  ],
+  "deviceRequirements": [],
+  "iconUrl": "PackIcon.Telegram [#FFFFFF:0:0]",
+  "color": "#FFCF00FF",
+  "name": "State Machine CP - New",
+  "category": "Workflows",
+  "lastModified": "0001-01-01T00:00:00+00:00",
+  "parameterReferenceIndicator": "%"
+}
