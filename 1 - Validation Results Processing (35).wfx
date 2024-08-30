@@ -1,0 +1,586 @@
+{
+  "procedures": [
+    {
+      "name": "Start",
+      "sequence": {
+        "children": [
+          {
+            "$type": "Biosero.Workflow.Branch, Biosero.Workflow.Core",
+            "yes": {
+              "children": [
+                {
+                  "$type": "Biosero.Workflow.SetParameter, Biosero.Workflow.Core",
+                  "parameterName": "Output.Error",
+                  "leftOperand": "Source Barcodes Need Adding To The Cytomat",
+                  "isUnaryOperation": true,
+                  "operator": "Add",
+                  "rightOperand": "",
+                  "name": "Set Parameter",
+                  "description": "Output.Error = Source Barcodes Need Adding To The Cytomat",
+                  "helpText": "Sets a parameter",
+                  "guid": "1c5ab6c1-5456-497b-a0c9-5cb53bd13376",
+                  "isAsync": false,
+                  "allowAsync": false,
+                  "iconUrl": "PackIcon.Equal [#FFFFFFFF]",
+                  "backgroundColorHex": "#FFA8E281",
+                  "isDisabled": false,
+                  "isPausePointSet": false
+                },
+                {
+                  "$type": "Biosero.Workflow.Elements.Error, Biosero.Workflow.Core",
+                  "message": "Source Barcodes Need Adding To The Cytomat",
+                  "name": "Error",
+                  "description": "Error: Source Barcodes Need Adding To The Cytomat",
+                  "helpText": "Generates and error in the workflow with the specified message",
+                  "guid": "2052855e-b7c8-4b8e-80a1-024cba32a259",
+                  "isAsync": false,
+                  "allowAsync": false,
+                  "iconUrl": "PackIcon.AlertOutline [#FFFFFFFF]",
+                  "backgroundColorHex": "#FFFF0000",
+                  "isDisabled": true,
+                  "isPausePointSet": false
+                }
+              ],
+              "name": "Sequence",
+              "description": "Sequence",
+              "helpText": "A sequence of workflow elements",
+              "guid": "35f001dd-8eaf-463e-b218-1306c6748e66",
+              "isAsync": false,
+              "allowAsync": false,
+              "backgroundColorHex": "#00000000",
+              "isDisabled": false,
+              "isPausePointSet": false
+            },
+            "no": {
+              "children": [
+                {
+                  "$type": "Biosero.Workflow.Branch, Biosero.Workflow.Core",
+                  "yes": {
+                    "children": [
+                      {
+                        "$type": "Biosero.Workflow.SetParameter, Biosero.Workflow.Core",
+                        "parameterName": "Output.Error",
+                        "leftOperand": "Requested Labware %Input.LabwareTwoName% not available in the systemRequested Labware %Input.LabwareTwoName% not available in the system",
+                        "isUnaryOperation": true,
+                        "operator": "Add",
+                        "rightOperand": "",
+                        "name": "Set Parameter",
+                        "description": "Output.Error = Requested Labware %Input.LabwareTwoName% not available in the systemRequested Labware %Input.LabwareTwoName% not available in the system",
+                        "helpText": "Sets a parameter",
+                        "guid": "528611e7-cb04-4789-80ae-303db6cea67c",
+                        "isAsync": false,
+                        "allowAsync": false,
+                        "iconUrl": "PackIcon.Equal [#FFFFFFFF]",
+                        "backgroundColorHex": "#FFA8E281",
+                        "isDisabled": false,
+                        "isPausePointSet": false
+                      },
+                      {
+                        "$type": "Biosero.Workflow.Elements.Error, Biosero.Workflow.Core",
+                        "message": "Requested Labware %Input.LabwareTwoName% not available in the system",
+                        "name": "Error",
+                        "description": "Error: Requested Labware %Input.LabwareTwoName% not available in the system",
+                        "helpText": "Generates and error in the workflow with the specified message",
+                        "guid": "e174970e-e910-4d06-a940-fde966362c6b",
+                        "isAsync": false,
+                        "allowAsync": false,
+                        "iconUrl": "PackIcon.AlertOutline [#FFFFFFFF]",
+                        "backgroundColorHex": "#FFFF0000",
+                        "isDisabled": true,
+                        "isPausePointSet": false
+                      }
+                    ],
+                    "name": "Sequence",
+                    "description": "Sequence",
+                    "helpText": "A sequence of workflow elements",
+                    "guid": "fb5f5bc2-3e19-42d6-8e2e-6eb654758aec",
+                    "isAsync": false,
+                    "allowAsync": false,
+                    "backgroundColorHex": "#00000000",
+                    "isDisabled": false,
+                    "isPausePointSet": false
+                  },
+                  "no": {
+                    "children": [
+                      {
+                        "$type": "Biosero.Workflow.Branch, Biosero.Workflow.Core",
+                        "yes": {
+                          "children": [
+                            {
+                              "$type": "Biosero.Workflow.SetParameter, Biosero.Workflow.Core",
+                              "parameterName": "Output.Error",
+                              "leftOperand": "%Input.LabwareTwoValidationResults%",
+                              "isUnaryOperation": true,
+                              "operator": "Add",
+                              "rightOperand": "",
+                              "name": "Set Parameter",
+                              "description": "Output.Error = %Input.LabwareTwoValidationResults%",
+                              "helpText": "Sets a parameter",
+                              "guid": "c4fa9ddf-cb81-4583-a15b-6e8c084c74de",
+                              "isAsync": false,
+                              "allowAsync": false,
+                              "iconUrl": "PackIcon.Equal [#FFFFFFFF]",
+                              "backgroundColorHex": "#FFA8E281",
+                              "isDisabled": false,
+                              "isPausePointSet": false
+                            },
+                            {
+                              "$type": "Biosero.Workflow.Elements.Error, Biosero.Workflow.Core",
+                              "message": "%Input.LabwareTwoValidationResults%",
+                              "name": "Error",
+                              "description": "Error: %Input.LabwareTwoValidationResults%",
+                              "helpText": "Generates and error in the workflow with the specified message",
+                              "guid": "fde0e764-80a0-44f8-9bda-8b84912a6bff",
+                              "isAsync": false,
+                              "allowAsync": false,
+                              "iconUrl": "PackIcon.AlertOutline [#FFFFFFFF]",
+                              "backgroundColorHex": "#FFFF0000",
+                              "isDisabled": true,
+                              "isPausePointSet": false
+                            }
+                          ],
+                          "name": "Sequence",
+                          "description": "Sequence",
+                          "helpText": "A sequence of workflow elements",
+                          "guid": "de1a2259-8084-4713-b945-49f0db09c2de",
+                          "isAsync": false,
+                          "allowAsync": false,
+                          "backgroundColorHex": "#00000000",
+                          "isDisabled": false,
+                          "isPausePointSet": false
+                        },
+                        "no": {
+                          "children": [
+                            {
+                              "$type": "Biosero.Workflow.Branch, Biosero.Workflow.Core",
+                              "yes": {
+                                "children": [
+                                  {
+                                    "$type": "Biosero.Workflow.SetParameter, Biosero.Workflow.Core",
+                                    "parameterName": "Output.Error",
+                                    "leftOperand": "No 50uL Tecan Tips available for fulfilment",
+                                    "isUnaryOperation": true,
+                                    "operator": "Add",
+                                    "rightOperand": "",
+                                    "name": "Set Parameter",
+                                    "description": "Output.Error = No 50uL Tecan Tips available for fulfilment",
+                                    "helpText": "Sets a parameter",
+                                    "guid": "895a946d-bbb5-483b-bb7e-3c2ca0c34a0f",
+                                    "isAsync": false,
+                                    "allowAsync": false,
+                                    "iconUrl": "PackIcon.Equal [#FFFFFFFF]",
+                                    "backgroundColorHex": "#FFA8E281",
+                                    "isDisabled": false,
+                                    "isPausePointSet": false
+                                  },
+                                  {
+                                    "$type": "Biosero.Workflow.Elements.Error, Biosero.Workflow.Core",
+                                    "message": "No 50uL Tecan Tips available for fulfilment",
+                                    "name": "Error",
+                                    "description": "Error: No 50uL Tecan Tips available for fulfilment",
+                                    "helpText": "Generates and error in the workflow with the specified message",
+                                    "guid": "377aae21-d14b-48c0-b3f8-e32350d1d846",
+                                    "isAsync": false,
+                                    "allowAsync": false,
+                                    "iconUrl": "PackIcon.AlertOutline [#FFFFFFFF]",
+                                    "backgroundColorHex": "#FFFF0000",
+                                    "isDisabled": true,
+                                    "isPausePointSet": false
+                                  }
+                                ],
+                                "name": "Sequence",
+                                "description": "Sequence",
+                                "helpText": "A sequence of workflow elements",
+                                "guid": "e72f6437-3e9b-48e3-b536-2b83146be7fa",
+                                "isAsync": false,
+                                "allowAsync": false,
+                                "backgroundColorHex": "#00000000",
+                                "isDisabled": false,
+                                "isPausePointSet": false
+                              },
+                              "no": {
+                                "children": [
+                                  {
+                                    "$type": "Biosero.Workflow.Branch, Biosero.Workflow.Core",
+                                    "yes": {
+                                      "children": [
+                                        {
+                                          "$type": "Biosero.Workflow.SetParameter, Biosero.Workflow.Core",
+                                          "parameterName": "Output.Error",
+                                          "leftOperand": "No 200uL Tecan Tips available for fulfilment",
+                                          "isUnaryOperation": true,
+                                          "operator": "Add",
+                                          "rightOperand": "",
+                                          "name": "Set Parameter",
+                                          "description": "Output.Error = No 200uL Tecan Tips available for fulfilment",
+                                          "helpText": "Sets a parameter",
+                                          "guid": "f8f63ed8-c71c-4256-90ae-491bab7da9ca",
+                                          "isAsync": false,
+                                          "allowAsync": false,
+                                          "iconUrl": "PackIcon.Equal [#FFFFFFFF]",
+                                          "backgroundColorHex": "#FFA8E281",
+                                          "isDisabled": false,
+                                          "isPausePointSet": false
+                                        },
+                                        {
+                                          "$type": "Biosero.Workflow.Elements.Error, Biosero.Workflow.Core",
+                                          "message": "No 200uL Tecan Tips available for fulfilment",
+                                          "name": "Error",
+                                          "description": "Error: No 200uL Tecan Tips available for fulfilment",
+                                          "helpText": "Generates and error in the workflow with the specified message",
+                                          "guid": "549a8f48-761e-4295-bcc4-5e28ac3be296",
+                                          "isAsync": false,
+                                          "allowAsync": false,
+                                          "iconUrl": "PackIcon.AlertOutline [#FFFFFFFF]",
+                                          "backgroundColorHex": "#FFFF0000",
+                                          "isDisabled": true,
+                                          "isPausePointSet": false
+                                        }
+                                      ],
+                                      "name": "Sequence",
+                                      "description": "Sequence",
+                                      "helpText": "A sequence of workflow elements",
+                                      "guid": "bb38f4ac-00a6-45f9-b3e8-5b35d53d4a10",
+                                      "isAsync": false,
+                                      "allowAsync": false,
+                                      "backgroundColorHex": "#00000000",
+                                      "isDisabled": false,
+                                      "isPausePointSet": false
+                                    },
+                                    "no": {
+                                      "children": [
+                                        {
+                                          "$type": "Biosero.Workflow.Branch, Biosero.Workflow.Core",
+                                          "yes": {
+                                            "children": [
+                                              {
+                                                "$type": "Biosero.Workflow.SetParameter, Biosero.Workflow.Core",
+                                                "parameterName": "Output.Error",
+                                                "leftOperand": "There are not enough Caps for the order",
+                                                "isUnaryOperation": true,
+                                                "operator": "Add",
+                                                "rightOperand": "",
+                                                "name": "Set Parameter",
+                                                "description": "Output.Error = There are not enough Caps for the order",
+                                                "helpText": "Sets a parameter",
+                                                "guid": "c859ca1d-f6d0-48ea-8411-7dd47bcb48f1",
+                                                "isAsync": false,
+                                                "allowAsync": false,
+                                                "iconUrl": "PackIcon.Equal [#FFFFFFFF]",
+                                                "backgroundColorHex": "#FFA8E281",
+                                                "isDisabled": false,
+                                                "isPausePointSet": false
+                                              },
+                                              {
+                                                "$type": "Biosero.Workflow.Elements.Error, Biosero.Workflow.Core",
+                                                "message": "There are not enough Caps for the order",
+                                                "name": "Error",
+                                                "description": "Error: There are not enough Caps for the order",
+                                                "helpText": "Generates and error in the workflow with the specified message",
+                                                "guid": "459c30f2-ce39-41c3-bf49-1687293f7ab3",
+                                                "isAsync": false,
+                                                "allowAsync": false,
+                                                "iconUrl": "PackIcon.AlertOutline [#FFFFFFFF]",
+                                                "backgroundColorHex": "#FFFF0000",
+                                                "isDisabled": true,
+                                                "isPausePointSet": false
+                                              }
+                                            ],
+                                            "name": "Sequence",
+                                            "description": "Sequence",
+                                            "helpText": "A sequence of workflow elements",
+                                            "guid": "7a4299f5-9a4a-42eb-9ce1-e5091c9c2302",
+                                            "isAsync": false,
+                                            "allowAsync": false,
+                                            "backgroundColorHex": "#00000000",
+                                            "isDisabled": false,
+                                            "isPausePointSet": false
+                                          },
+                                          "no": {
+                                            "children": [],
+                                            "name": "Sequence",
+                                            "description": "Sequence",
+                                            "helpText": "A sequence of workflow elements",
+                                            "guid": "f8f31076-e3e3-453f-9df7-d929f91345c5",
+                                            "isAsync": false,
+                                            "allowAsync": false,
+                                            "backgroundColorHex": "#00000000",
+                                            "isDisabled": false,
+                                            "isPausePointSet": false
+                                          },
+                                          "evaluation": {
+                                            "left": "Input.CapsFound",
+                                            "right": "False",
+                                            "evaluator": "Equal"
+                                          },
+                                          "name": "Branch",
+                                          "description": "Branch if Input.CapsFound = False",
+                                          "helpText": "Evaluates a condition and branches accordingly",
+                                          "guid": "615a9139-c009-4201-96b0-5824e5da3251",
+                                          "isAsync": false,
+                                          "allowAsync": false,
+                                          "iconUrl": "PackIcon.Help [#FFFFFFFF:0:2]",
+                                          "backgroundColorHex": "#FFDEDE81",
+                                          "isDisabled": false,
+                                          "isPausePointSet": false
+                                        }
+                                      ],
+                                      "name": "Sequence",
+                                      "description": "Sequence",
+                                      "helpText": "A sequence of workflow elements",
+                                      "guid": "0dcd3f46-bdac-4fbb-a7a6-e3a871c345c9",
+                                      "isAsync": false,
+                                      "allowAsync": false,
+                                      "backgroundColorHex": "#00000000",
+                                      "isDisabled": false,
+                                      "isPausePointSet": false
+                                    },
+                                    "evaluation": {
+                                      "left": "Input.200Found",
+                                      "right": "False",
+                                      "evaluator": "Equal"
+                                    },
+                                    "name": "Branch",
+                                    "description": "Branch if Input.200Found = False",
+                                    "helpText": "Evaluates a condition and branches accordingly",
+                                    "guid": "468213c0-e639-4d63-ac5e-9b78dd150fe2",
+                                    "isAsync": false,
+                                    "allowAsync": false,
+                                    "iconUrl": "PackIcon.Help [#FFFFFFFF:0:2]",
+                                    "backgroundColorHex": "#FFDEDE81",
+                                    "isDisabled": false,
+                                    "isPausePointSet": false
+                                  }
+                                ],
+                                "name": "Sequence",
+                                "description": "Sequence",
+                                "helpText": "A sequence of workflow elements",
+                                "guid": "f682f4d6-ba15-4626-aba6-2d9a0f9afc4d",
+                                "isAsync": false,
+                                "allowAsync": false,
+                                "backgroundColorHex": "#00000000",
+                                "isDisabled": false,
+                                "isPausePointSet": false
+                              },
+                              "evaluation": {
+                                "left": "Input.50Found",
+                                "right": "False",
+                                "evaluator": "Equal"
+                              },
+                              "name": "Branch",
+                              "description": "Branch if Input.50Found = False",
+                              "helpText": "Evaluates a condition and branches accordingly",
+                              "guid": "dd570ba1-2fb5-4e54-8939-3460ec8df6cb",
+                              "isAsync": false,
+                              "allowAsync": false,
+                              "iconUrl": "PackIcon.Help [#FFFFFFFF:0:2]",
+                              "backgroundColorHex": "#FFDEDE81",
+                              "isDisabled": false,
+                              "isPausePointSet": false
+                            }
+                          ],
+                          "name": "Sequence",
+                          "description": "Sequence",
+                          "helpText": "A sequence of workflow elements",
+                          "guid": "5704cdf8-7011-4239-b1c2-9aa538239ca9",
+                          "isAsync": false,
+                          "allowAsync": false,
+                          "backgroundColorHex": "#00000000",
+                          "isDisabled": false,
+                          "isPausePointSet": false
+                        },
+                        "evaluation": {
+                          "left": "Input.LabwareTwoValidationResults",
+                          "right": "Not enough labware available for selected labware type",
+                          "evaluator": "Contains"
+                        },
+                        "name": "Branch",
+                        "description": "Branch if Input.LabwareTwoValidationResults contains Not enough labware available for selected labware type",
+                        "helpText": "Evaluates a condition and branches accordingly",
+                        "guid": "c8c65904-f379-4470-8775-b61a7fb42bef",
+                        "isAsync": false,
+                        "allowAsync": false,
+                        "iconUrl": "PackIcon.Help [#FFFFFFFF:0:2]",
+                        "backgroundColorHex": "#FFDEDE81",
+                        "isDisabled": false,
+                        "isPausePointSet": false
+                      }
+                    ],
+                    "name": "Sequence",
+                    "description": "Sequence",
+                    "helpText": "A sequence of workflow elements",
+                    "guid": "4206072c-8708-4da4-9a56-8658365425de",
+                    "isAsync": false,
+                    "allowAsync": false,
+                    "backgroundColorHex": "#00000000",
+                    "isDisabled": false,
+                    "isPausePointSet": false
+                  },
+                  "evaluation": {
+                    "left": "Input.LabwareTwoValidationResults",
+                    "right": "Requested Labware Not Found",
+                    "evaluator": "Equal"
+                  },
+                  "name": "Branch",
+                  "description": "Branch if Input.LabwareTwoValidationResults = Requested Labware Not Found",
+                  "helpText": "Evaluates a condition and branches accordingly",
+                  "guid": "9adb52d9-2b8a-4e0f-adc2-3a1f706ba1e5",
+                  "isAsync": false,
+                  "allowAsync": false,
+                  "iconUrl": "PackIcon.Help [#FFFFFFFF:0:2]",
+                  "backgroundColorHex": "#FFDEDE81",
+                  "isDisabled": false,
+                  "isPausePointSet": false
+                }
+              ],
+              "name": "Sequence",
+              "description": "Sequence",
+              "helpText": "A sequence of workflow elements",
+              "guid": "4a295f56-80dd-49d7-b28f-01d978a1024f",
+              "isAsync": false,
+              "allowAsync": false,
+              "backgroundColorHex": "#00000000",
+              "isDisabled": false,
+              "isPausePointSet": false
+            },
+            "evaluation": {
+              "left": "Input.ValidatedSources",
+              "right": "%Input.SourceDetails%",
+              "evaluator": "NotEqual"
+            },
+            "name": "Branch",
+            "description": "Branch if Input.ValidatedSources ≠ %Input.SourceDetails%",
+            "helpText": "Evaluates a condition and branches accordingly",
+            "guid": "a66bd30f-83cc-4aee-9690-2bb80df8ce21",
+            "isAsync": false,
+            "allowAsync": false,
+            "iconUrl": "PackIcon.Help [#FFFFFFFF:0:2]",
+            "backgroundColorHex": "#FFDEDE81",
+            "isDisabled": false,
+            "isPausePointSet": false
+          }
+        ],
+        "name": "Sequence",
+        "description": "Sequence",
+        "helpText": "A sequence of workflow elements",
+        "guid": "961c7b75-241b-4983-bba7-4de21b75f608",
+        "isAsync": false,
+        "allowAsync": false,
+        "backgroundColorHex": "#00000000",
+        "isDisabled": false,
+        "isPausePointSet": false
+      }
+    }
+  ],
+  "parameters": [
+    {
+      "name": "Input.ValidatedSources",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.50Found",
+      "value": "False",
+      "valueType": "Boolean",
+      "defaultValue": "False",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.200Found",
+      "value": "False",
+      "valueType": "Boolean",
+      "defaultValue": "False",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.LabwareTwoValidationResults",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.CapsFound",
+      "value": "False",
+      "valueType": "Boolean",
+      "defaultValue": "False",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.SourceDetails",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Output.Error",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.LabwareTwoName",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    }
+  ],
+  "scripts": [],
+  "globalScriptReferences": [
+    "Biosero.Workflow.Core.dll",
+    "Biosero.DataModels.dll"
+  ],
+  "screens": [],
+  "deviceRequirements": [],
+  "iconUrl": "PackIcon.AlphaKBoxOutline [#FFFFFF:0:0]",
+  "color": "#FF00FF90",
+  "name": "Processing Of Validation Results",
+  "category": "Workflows",
+  "lastModified": "0001-01-01T00:00:00+00:00",
+  "parameterReferenceIndicator": "%"
+}

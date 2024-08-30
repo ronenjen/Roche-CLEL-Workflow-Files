@@ -1,0 +1,50 @@
+{
+  "procedures": [
+    {
+      "name": "Start",
+      "sequence": {
+        "children": [
+          {
+            "$type": "Biosero.Workflow.Elements.Delay, Biosero.Workflow.Core",
+            "helpText": "Delays the workflow for the specified amount of time",
+            "backgroundColorHex": "#FF26A9FF",
+            "iconUrl": "PackIcon.ClockOutline [#FFFFFFFF]",
+            "name": "Delay",
+            "isAsync": false,
+            "allowAsync": false,
+            "isDisabled": false,
+            "description": "Delay 0:33:0",
+            "isPausePointSet": false,
+            "seconds": 0.0,
+            "minutes": 33.0,
+            "hours": 0.0,
+            "guid": "e4542fa1-cf9c-4c74-bad8-2c54331fac7f"
+          }
+        ],
+        "name": "Sequence",
+        "description": "Sequence",
+        "helpText": "A sequence of workflow elements",
+        "guid": "187ccd8a-7c3e-48b2-83d6-9ad4a6759e17",
+        "isAsync": false,
+        "allowAsync": false,
+        "backgroundColorHex": "#00000000",
+        "isDisabled": false,
+        "isPausePointSet": false
+      }
+    }
+  ],
+  "parameters": [],
+  "scripts": [],
+  "globalScriptReferences": [
+    "Biosero.Workflow.Core.dll",
+    "Biosero.DataModels.dll"
+  ],
+  "screens": [],
+  "deviceRequirements": [],
+  "iconUrl": "PackIcon.Telegram [#FFFFFF:0:0]",
+  "color": "#0000FF",
+  "name": "testtts",
+  "category": "Workflows",
+  "lastModified": "0001-01-01T00:00:00+00:00",
+  "parameterReferenceIndicator": "%"
+}

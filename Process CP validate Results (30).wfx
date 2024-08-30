@@ -1,0 +1,264 @@
+{
+  "procedures": [
+    {
+      "name": "Start",
+      "sequence": {
+        "children": [
+          {
+            "$type": "Biosero.Workflow.Branch, Biosero.Workflow.Core",
+            "yes": {
+              "children": [
+                {
+                  "$type": "Biosero.Workflow.SetParameter, Biosero.Workflow.Core",
+                  "parameterName": "Output.Error",
+                  "leftOperand": "Source(s) %Input.Sources% Not found in the IOC",
+                  "isUnaryOperation": true,
+                  "operator": "Add",
+                  "rightOperand": "",
+                  "name": "Set Parameter",
+                  "description": "Output.Error = Source(s) %Input.Sources% Not found in the IOC",
+                  "helpText": "Sets a parameter",
+                  "guid": "8ddca99a-1a3a-46cb-9b5e-19a4a576bfc7",
+                  "isAsync": false,
+                  "allowAsync": false,
+                  "iconUrl": "PackIcon.Equal [#FFFFFFFF]",
+                  "backgroundColorHex": "#FFA8E281",
+                  "isDisabled": false,
+                  "isPausePointSet": false
+                }
+              ],
+              "name": "Sequence",
+              "description": "Sequence",
+              "helpText": "A sequence of workflow elements",
+              "guid": "0625c18c-cd3b-41c9-812a-84d0ad56424e",
+              "isAsync": false,
+              "allowAsync": false,
+              "backgroundColorHex": "#00000000",
+              "isDisabled": false,
+              "isPausePointSet": false
+            },
+            "no": {
+              "children": [
+                {
+                  "$type": "Biosero.Workflow.Branch, Biosero.Workflow.Core",
+                  "yes": {
+                    "children": [
+                      {
+                        "$type": "Biosero.Workflow.SetParameter, Biosero.Workflow.Core",
+                        "parameterName": "Output.Error",
+                        "leftOperand": "Assay types %Input.AssayTypes% Not found in the IOC",
+                        "isUnaryOperation": true,
+                        "operator": "Add",
+                        "rightOperand": "",
+                        "name": "Set Parameter",
+                        "description": "Output.Error = Assay types %Input.AssayTypes% Not found in the IOC",
+                        "helpText": "Sets a parameter",
+                        "guid": "7defadd0-055c-49a8-a535-369abb783f7d",
+                        "isAsync": false,
+                        "allowAsync": false,
+                        "iconUrl": "PackIcon.Equal [#FFFFFFFF]",
+                        "backgroundColorHex": "#FFA8E281",
+                        "isDisabled": false,
+                        "isPausePointSet": false
+                      }
+                    ],
+                    "name": "Sequence",
+                    "description": "Sequence",
+                    "helpText": "A sequence of workflow elements",
+                    "guid": "ec7b81ec-bb0b-4274-878f-862cd9aa66d0",
+                    "isAsync": false,
+                    "allowAsync": false,
+                    "backgroundColorHex": "#00000000",
+                    "isDisabled": false,
+                    "isPausePointSet": false
+                  },
+                  "no": {
+                    "children": [
+                      {
+                        "$type": "Biosero.Workflow.Branch, Biosero.Workflow.Core",
+                        "yes": {
+                          "children": [
+                            {
+                              "$type": "Biosero.Workflow.SetParameter, Biosero.Workflow.Core",
+                              "parameterName": "Output.Error",
+                              "leftOperand": "Insufficient number of labware found in the IOC for %Input.AssayTypeTotals%",
+                              "isUnaryOperation": true,
+                              "operator": "Add",
+                              "rightOperand": "",
+                              "name": "Set Parameter",
+                              "description": "Output.Error = Insufficient number of labware found in the IOC for %Input.AssayTypeTotals%",
+                              "helpText": "Sets a parameter",
+                              "guid": "fcf8103f-ff4c-4d23-944d-e6eee85bb59c",
+                              "isAsync": false,
+                              "allowAsync": false,
+                              "iconUrl": "PackIcon.Equal [#FFFFFFFF]",
+                              "backgroundColorHex": "#FFA8E281",
+                              "isDisabled": false,
+                              "isPausePointSet": false
+                            }
+                          ],
+                          "name": "Sequence",
+                          "description": "Sequence",
+                          "helpText": "A sequence of workflow elements",
+                          "guid": "d5a59137-b496-4988-b3c6-402b53fc6008",
+                          "isAsync": false,
+                          "allowAsync": false,
+                          "backgroundColorHex": "#00000000",
+                          "isDisabled": false,
+                          "isPausePointSet": false
+                        },
+                        "no": {
+                          "children": [],
+                          "name": "Sequence",
+                          "description": "Sequence",
+                          "helpText": "A sequence of workflow elements",
+                          "guid": "e5d38c58-e8cb-46d2-a23f-2adca2fd7b9d",
+                          "isAsync": false,
+                          "allowAsync": false,
+                          "backgroundColorHex": "#00000000",
+                          "isDisabled": false,
+                          "isPausePointSet": false
+                        },
+                        "evaluation": {
+                          "left": "Input.AssayTypeTotals",
+                          "right": "",
+                          "evaluator": "NotEqual"
+                        },
+                        "name": "Branch",
+                        "description": "Branch if Input.AssayTypeTotals ≠ ",
+                        "helpText": "Evaluates a condition and branches accordingly",
+                        "guid": "511b88be-6d75-4e8f-9816-33d7e4995924",
+                        "isAsync": false,
+                        "allowAsync": false,
+                        "iconUrl": "PackIcon.Help [#FFFFFFFF:0:2]",
+                        "backgroundColorHex": "#FFDEDE81",
+                        "isDisabled": false,
+                        "isPausePointSet": false
+                      }
+                    ],
+                    "name": "Sequence",
+                    "description": "Sequence",
+                    "helpText": "A sequence of workflow elements",
+                    "guid": "5f9aa9cb-3ff8-45b2-991f-009cf012b10d",
+                    "isAsync": false,
+                    "allowAsync": false,
+                    "backgroundColorHex": "#00000000",
+                    "isDisabled": false,
+                    "isPausePointSet": false
+                  },
+                  "evaluation": {
+                    "left": "Input.AssayTypes",
+                    "right": "",
+                    "evaluator": "NotEqual"
+                  },
+                  "name": "Branch",
+                  "description": "Branch if Input.AssayTypes ≠ ",
+                  "helpText": "Evaluates a condition and branches accordingly",
+                  "guid": "0b7c7b83-d942-4a13-b7b3-480200fec430",
+                  "isAsync": false,
+                  "allowAsync": false,
+                  "iconUrl": "PackIcon.Help [#FFFFFFFF:0:2]",
+                  "backgroundColorHex": "#FFDEDE81",
+                  "isDisabled": false,
+                  "isPausePointSet": false
+                }
+              ],
+              "name": "Sequence",
+              "description": "Sequence",
+              "helpText": "A sequence of workflow elements",
+              "guid": "9b35c51f-1520-4458-a1fd-97324b5608c4",
+              "isAsync": false,
+              "allowAsync": false,
+              "backgroundColorHex": "#00000000",
+              "isDisabled": false,
+              "isPausePointSet": false
+            },
+            "evaluation": {
+              "left": "Input.Sources",
+              "right": "",
+              "evaluator": "NotEqual"
+            },
+            "name": "Branch",
+            "description": "Branch if Input.Sources ≠ ",
+            "helpText": "Evaluates a condition and branches accordingly",
+            "guid": "be4a66be-d5e1-4b63-88ab-08d7b13f21f4",
+            "isAsync": false,
+            "allowAsync": false,
+            "iconUrl": "PackIcon.Help [#FFFFFFFF:0:2]",
+            "backgroundColorHex": "#FFDEDE81",
+            "isDisabled": false,
+            "isPausePointSet": false
+          }
+        ],
+        "name": "Sequence",
+        "description": "Sequence",
+        "helpText": "A sequence of workflow elements",
+        "guid": "b345cdba-0c57-41d4-a4d5-5063da2110e5",
+        "isAsync": false,
+        "allowAsync": false,
+        "backgroundColorHex": "#00000000",
+        "isDisabled": false,
+        "isPausePointSet": false
+      }
+    }
+  ],
+  "parameters": [
+    {
+      "name": "Input.Sources",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.AssayTypes",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.AssayTypeTotals",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Output.Error",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    }
+  ],
+  "scripts": [],
+  "globalScriptReferences": [
+    "Biosero.Workflow.Core.dll",
+    "Biosero.DataModels.dll"
+  ],
+  "screens": [],
+  "deviceRequirements": [],
+  "lastModified": "0001-01-01T00:00:00+00:00",
+  "parameterReferenceIndicator": "%"
+}

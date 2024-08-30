@@ -1,0 +1,991 @@
+{
+  "procedures": [
+    {
+      "name": "Start",
+      "sequence": {
+        "children": [
+          {
+            "$type": "Biosero.Workflow.Commands.ExecuteOrderCommand, Biosero.Workflow.Core",
+            "timeout": "00:30:00",
+            "inputParameters": [
+              {
+                "name": "SMOrchestratorUsed",
+                "value": "True",
+                "valueType": "Boolean",
+                "defaultValue": "False",
+                "valueOptions": {
+                  "$type": "System.String[], System.Private.CoreLib",
+                  "$values": []
+                },
+                "validationRules": [],
+                "tags": [
+                  "User",
+                  "#DarkMagenta"
+                ]
+              }
+            ],
+            "outputParameterMapping": [
+              {
+                "name": "Module ID",
+                "parameterType": "String"
+              }
+            ],
+            "name": "REMP Off",
+            "description": "Order: REMP Off",
+            "guid": "b02357d7-0deb-4ca7-b6ba-9d10ae7e8eea",
+            "isAsync": false,
+            "allowAsync": true,
+            "iconUrl": "PackIcon.RobotIndustrial [#FFFFFF:0:0]",
+            "backgroundColorHex": "#FFFF00B9",
+            "isDisabled": false,
+            "isPausePointSet": false
+          },
+          {
+            "$type": "Biosero.Workflow.Commands.ExecuteOrderCommand, Biosero.Workflow.Core",
+            "timeout": "00:30:00",
+            "inputParameters": [],
+            "outputParameterMapping": [
+              {
+                "name": "SMAllREMPs",
+                "mapToGlobalVariableName": "REMP Racks",
+                "parameterType": "String"
+              },
+              {
+                "name": "SMAllCapHolders",
+                "mapToGlobalVariableName": "Caps",
+                "parameterType": "String"
+              },
+              {
+                "name": "SMAllDWPs",
+                "mapToGlobalVariableName": "DWPs",
+                "parameterType": "String"
+              },
+              {
+                "name": "SMAllMTPs",
+                "mapToGlobalVariableName": "MTPs",
+                "parameterType": "String"
+              },
+              {
+                "name": "SMAll50Tips",
+                "mapToGlobalVariableName": "50 Tips",
+                "parameterType": "String"
+              },
+              {
+                "name": "SMAll200Tips",
+                "mapToGlobalVariableName": "200 Tips",
+                "parameterType": "String"
+              },
+              {
+                "name": "Module ID",
+                "parameterType": "String"
+              }
+            ],
+            "name": "Script.ReturnAllLabwareOnWorkcell",
+            "description": "Order: Script.ReturnAllLabwareOnWorkcell",
+            "guid": "a8c6a08e-4d98-4706-9a00-d02091c655ef",
+            "isAsync": false,
+            "allowAsync": true,
+            "iconUrl": "PackIcon.PersonGroup [#FFFFFF:0:0]",
+            "backgroundColorHex": "#0000FF",
+            "isDisabled": false,
+            "isPausePointSet": false
+          },
+          {
+            "$type": "Biosero.Workflow.Parallel, Biosero.Workflow.Core",
+            "helpText": "Executes two sequences in parallel",
+            "backgroundColorHex": "#FF72EAFF",
+            "iconUrl": "PackIcon.CallSplit [#FFFFFFFF:180]",
+            "name": "Parallel",
+            "left": {
+              "children": [
+                {
+                  "$type": "Biosero.Workflow.Branch, Biosero.Workflow.Core",
+                  "yes": {
+                    "children": [
+                      {
+                        "$type": "Biosero.Workflow.Commands.TransportCommand, Biosero.Workflow.Core",
+                        "inputParameters": [
+                          {
+                            "name": "Timeout (min)",
+                            "value": "100",
+                            "valueType": "Double",
+                            "defaultValue": "10"
+                          },
+                          {
+                            "name": "From",
+                            "value": "CP",
+                            "valueType": "String"
+                          },
+                          {
+                            "name": "To",
+                            "value": "IO",
+                            "valueType": "String"
+                          },
+                          {
+                            "name": "Barcodes",
+                            "value": "%REMP Racks%",
+                            "valueType": "String"
+                          },
+                          {
+                            "name": "Metadata",
+                            "value": "Orchestrator Used=True;Source Orchestrator Workflow=REMP Source;Zone=Zone 1;Labware Designation=REMP Racks",
+                            "valueType": "String"
+                          }
+                        ],
+                        "outputParameterMapping": [
+                          {
+                            "name": "Barcodes",
+                            "parameterType": "String"
+                          },
+                          {
+                            "name": "Request ID",
+                            "parameterType": "String"
+                          }
+                        ],
+                        "name": "Transport",
+                        "description": "Transport",
+                        "helpText": "Transports the specified barcode(s) from one station to another.",
+                        "guid": "0d4ff040-5886-465a-92e4-4c356c7ee2e8",
+                        "isAsync": false,
+                        "allowAsync": false,
+                        "iconUrl": "PackIcon.TransitConnectionVariant [#FFFFFFFF]",
+                        "backgroundColorHex": "#FF666666",
+                        "isDisabled": false,
+                        "isPausePointSet": false
+                      }
+                    ],
+                    "name": "Sequence",
+                    "description": "Sequence",
+                    "helpText": "A sequence of workflow elements",
+                    "guid": "39bf62b7-c891-4a1b-826b-86ce239bcd5a",
+                    "isAsync": false,
+                    "allowAsync": false,
+                    "backgroundColorHex": "#00000000",
+                    "isDisabled": false,
+                    "isPausePointSet": false
+                  },
+                  "no": {
+                    "children": [],
+                    "name": "Sequence",
+                    "description": "Sequence",
+                    "helpText": "A sequence of workflow elements",
+                    "guid": "fc134e73-ecb0-4bb9-bbeb-aba69af1d59d",
+                    "isAsync": false,
+                    "allowAsync": false,
+                    "backgroundColorHex": "#00000000",
+                    "isDisabled": false,
+                    "isPausePointSet": false
+                  },
+                  "evaluation": {
+                    "left": "REMP Racks",
+                    "right": "",
+                    "evaluator": "NotEqual"
+                  },
+                  "name": "Branch",
+                  "description": "Branch if REMP Racks ≠ ",
+                  "helpText": "Evaluates a condition and branches accordingly",
+                  "guid": "98152102-ffd6-4a04-bb78-d8efddf9a0d4",
+                  "isAsync": false,
+                  "allowAsync": false,
+                  "iconUrl": "PackIcon.Help [#FFFFFFFF:0:2]",
+                  "backgroundColorHex": "#FFDEDE81",
+                  "isDisabled": false,
+                  "isPausePointSet": false
+                }
+              ],
+              "name": "Sequence",
+              "description": "Sequence",
+              "helpText": "A sequence of workflow elements",
+              "guid": "5a303e0c-625a-4ea3-bcc6-062f624af8d3",
+              "isAsync": false,
+              "allowAsync": false,
+              "backgroundColorHex": "#00000000",
+              "isDisabled": false,
+              "isPausePointSet": false
+            },
+            "right": {
+              "children": [
+                {
+                  "$type": "Biosero.Workflow.Parallel, Biosero.Workflow.Core",
+                  "helpText": "Executes two sequences in parallel",
+                  "backgroundColorHex": "#FF72EAFF",
+                  "iconUrl": "PackIcon.CallSplit [#FFFFFFFF:180]",
+                  "name": "Parallel",
+                  "left": {
+                    "children": [
+                      {
+                        "$type": "Biosero.Workflow.Branch, Biosero.Workflow.Core",
+                        "yes": {
+                          "children": [
+                            {
+                              "$type": "Biosero.Workflow.Commands.TransportCommand, Biosero.Workflow.Core",
+                              "inputParameters": [
+                                {
+                                  "name": "Timeout (min)",
+                                  "value": "100",
+                                  "valueType": "Double",
+                                  "defaultValue": "10"
+                                },
+                                {
+                                  "name": "From",
+                                  "value": "CP",
+                                  "valueType": "String"
+                                },
+                                {
+                                  "name": "To",
+                                  "value": "IO",
+                                  "valueType": "String"
+                                },
+                                {
+                                  "name": "Barcodes",
+                                  "value": "%Caps%",
+                                  "valueType": "String"
+                                },
+                                {
+                                  "name": "Metadata",
+                                  "value": "Orchestrator Used=True;Source Orchestrator Workflow=Cap Holders;Zone=Cap Holders;Labware Designation=Caps",
+                                  "valueType": "String"
+                                }
+                              ],
+                              "outputParameterMapping": [
+                                {
+                                  "name": "Barcodes",
+                                  "parameterType": "String"
+                                },
+                                {
+                                  "name": "Request ID",
+                                  "parameterType": "String"
+                                }
+                              ],
+                              "name": "Transport",
+                              "description": "Transport",
+                              "helpText": "Transports the specified barcode(s) from one station to another.",
+                              "guid": "991b6872-c89c-4890-8f83-b145d5b1f4c4",
+                              "isAsync": false,
+                              "allowAsync": false,
+                              "iconUrl": "PackIcon.TransitConnectionVariant [#FFFFFFFF]",
+                              "backgroundColorHex": "#FF666666",
+                              "isDisabled": false,
+                              "isPausePointSet": false
+                            }
+                          ],
+                          "name": "Sequence",
+                          "description": "Sequence",
+                          "helpText": "A sequence of workflow elements",
+                          "guid": "b574e5d8-7285-412d-a5ba-8ad2414c2aa2",
+                          "isAsync": false,
+                          "allowAsync": false,
+                          "backgroundColorHex": "#00000000",
+                          "isDisabled": false,
+                          "isPausePointSet": false
+                        },
+                        "no": {
+                          "children": [],
+                          "name": "Sequence",
+                          "description": "Sequence",
+                          "helpText": "A sequence of workflow elements",
+                          "guid": "91f981b8-9c39-49cc-8e8a-a9c09c928556",
+                          "isAsync": false,
+                          "allowAsync": false,
+                          "backgroundColorHex": "#00000000",
+                          "isDisabled": false,
+                          "isPausePointSet": false
+                        },
+                        "evaluation": {
+                          "left": "Caps",
+                          "right": "",
+                          "evaluator": "NotEqual"
+                        },
+                        "name": "Branch",
+                        "description": "Branch if Caps ≠ ",
+                        "helpText": "Evaluates a condition and branches accordingly",
+                        "guid": "e598cd78-ef63-4dd9-b533-59f604a92c18",
+                        "isAsync": false,
+                        "allowAsync": false,
+                        "iconUrl": "PackIcon.Help [#FFFFFFFF:0:2]",
+                        "backgroundColorHex": "#FFDEDE81",
+                        "isDisabled": false,
+                        "isPausePointSet": false
+                      }
+                    ],
+                    "name": "Sequence",
+                    "description": "Sequence",
+                    "helpText": "A sequence of workflow elements",
+                    "guid": "9549ffd4-9374-414b-bb98-9d978d587d9c",
+                    "isAsync": false,
+                    "allowAsync": false,
+                    "backgroundColorHex": "#00000000",
+                    "isDisabled": false,
+                    "isPausePointSet": false
+                  },
+                  "right": {
+                    "children": [
+                      {
+                        "$type": "Biosero.Workflow.Parallel, Biosero.Workflow.Core",
+                        "helpText": "Executes two sequences in parallel",
+                        "backgroundColorHex": "#FF72EAFF",
+                        "iconUrl": "PackIcon.CallSplit [#FFFFFFFF:180]",
+                        "name": "Parallel",
+                        "left": {
+                          "children": [
+                            {
+                              "$type": "Biosero.Workflow.Branch, Biosero.Workflow.Core",
+                              "yes": {
+                                "children": [
+                                  {
+                                    "$type": "Biosero.Workflow.Commands.TransportCommand, Biosero.Workflow.Core",
+                                    "inputParameters": [
+                                      {
+                                        "name": "Timeout (min)",
+                                        "value": "100",
+                                        "valueType": "Double",
+                                        "defaultValue": "10"
+                                      },
+                                      {
+                                        "name": "From",
+                                        "value": "CP",
+                                        "valueType": "String"
+                                      },
+                                      {
+                                        "name": "To",
+                                        "value": "IO",
+                                        "valueType": "String"
+                                      },
+                                      {
+                                        "name": "Barcodes",
+                                        "value": "%DWPs%",
+                                        "valueType": "String"
+                                      },
+                                      {
+                                        "name": "Metadata",
+                                        "value": "Orchestrator Used=True;Current Orchestrator Workflow=Carousel Hotel;Zone=Test;Labware Designation=DWPs",
+                                        "valueType": "String"
+                                      }
+                                    ],
+                                    "outputParameterMapping": [
+                                      {
+                                        "name": "Barcodes",
+                                        "parameterType": "String"
+                                      },
+                                      {
+                                        "name": "Request ID",
+                                        "parameterType": "String"
+                                      }
+                                    ],
+                                    "name": "Transport",
+                                    "description": "Transport",
+                                    "helpText": "Transports the specified barcode(s) from one station to another.",
+                                    "guid": "e53b849f-af1e-4b2e-9445-c733be6e8c4b",
+                                    "isAsync": false,
+                                    "allowAsync": false,
+                                    "iconUrl": "PackIcon.TransitConnectionVariant [#FFFFFFFF]",
+                                    "backgroundColorHex": "#FF666666",
+                                    "isDisabled": false,
+                                    "isPausePointSet": false
+                                  }
+                                ],
+                                "name": "Sequence",
+                                "description": "Sequence",
+                                "helpText": "A sequence of workflow elements",
+                                "guid": "5dc109bd-3e53-49d2-9b40-ab05364c0c35",
+                                "isAsync": false,
+                                "allowAsync": false,
+                                "backgroundColorHex": "#00000000",
+                                "isDisabled": false,
+                                "isPausePointSet": false
+                              },
+                              "no": {
+                                "children": [],
+                                "name": "Sequence",
+                                "description": "Sequence",
+                                "helpText": "A sequence of workflow elements",
+                                "guid": "c693172a-0803-4e36-923c-c4f508707889",
+                                "isAsync": false,
+                                "allowAsync": false,
+                                "backgroundColorHex": "#00000000",
+                                "isDisabled": false,
+                                "isPausePointSet": false
+                              },
+                              "evaluation": {
+                                "left": "DWPs",
+                                "right": "",
+                                "evaluator": "NotEqual"
+                              },
+                              "name": "Branch",
+                              "description": "Branch if DWPs ≠ ",
+                              "helpText": "Evaluates a condition and branches accordingly",
+                              "guid": "52f10f0a-feaf-4c42-93a0-b22db9b492f9",
+                              "isAsync": false,
+                              "allowAsync": false,
+                              "iconUrl": "PackIcon.Help [#FFFFFFFF:0:2]",
+                              "backgroundColorHex": "#FFDEDE81",
+                              "isDisabled": false,
+                              "isPausePointSet": false
+                            }
+                          ],
+                          "name": "Sequence",
+                          "description": "Sequence",
+                          "helpText": "A sequence of workflow elements",
+                          "guid": "b7006fa4-6038-4204-9e5c-849182c9226f",
+                          "isAsync": false,
+                          "allowAsync": false,
+                          "backgroundColorHex": "#00000000",
+                          "isDisabled": false,
+                          "isPausePointSet": false
+                        },
+                        "right": {
+                          "children": [
+                            {
+                              "$type": "Biosero.Workflow.Parallel, Biosero.Workflow.Core",
+                              "helpText": "Executes two sequences in parallel",
+                              "backgroundColorHex": "#FF72EAFF",
+                              "iconUrl": "PackIcon.CallSplit [#FFFFFFFF:180]",
+                              "name": "Parallel",
+                              "left": {
+                                "children": [
+                                  {
+                                    "$type": "Biosero.Workflow.Branch, Biosero.Workflow.Core",
+                                    "yes": {
+                                      "children": [
+                                        {
+                                          "$type": "Biosero.Workflow.Commands.TransportCommand, Biosero.Workflow.Core",
+                                          "inputParameters": [
+                                            {
+                                              "name": "Timeout (min)",
+                                              "value": "100",
+                                              "valueType": "Double",
+                                              "defaultValue": "10"
+                                            },
+                                            {
+                                              "name": "From",
+                                              "value": "CP",
+                                              "valueType": "String"
+                                            },
+                                            {
+                                              "name": "To",
+                                              "value": "IO",
+                                              "valueType": "String"
+                                            },
+                                            {
+                                              "name": "Barcodes",
+                                              "value": "%MTPs%",
+                                              "valueType": "String"
+                                            },
+                                            {
+                                              "name": "Metadata",
+                                              "value": "Orchestrator Used=True;Current Orchestrator Workflow=Carousel Hotel;Zone=MTPs;Labware Designation=MTPs",
+                                              "valueType": "String"
+                                            }
+                                          ],
+                                          "outputParameterMapping": [
+                                            {
+                                              "name": "Barcodes",
+                                              "parameterType": "String"
+                                            },
+                                            {
+                                              "name": "Request ID",
+                                              "parameterType": "String"
+                                            }
+                                          ],
+                                          "name": "Transport",
+                                          "description": "Transport",
+                                          "helpText": "Transports the specified barcode(s) from one station to another.",
+                                          "guid": "e2988f9d-3753-491e-b186-bc82f10ce4eb",
+                                          "isAsync": false,
+                                          "allowAsync": false,
+                                          "iconUrl": "PackIcon.TransitConnectionVariant [#FFFFFFFF]",
+                                          "backgroundColorHex": "#FF666666",
+                                          "isDisabled": false,
+                                          "isPausePointSet": false
+                                        }
+                                      ],
+                                      "name": "Sequence",
+                                      "description": "Sequence",
+                                      "helpText": "A sequence of workflow elements",
+                                      "guid": "ed95a835-0921-400a-9150-87f57117d686",
+                                      "isAsync": false,
+                                      "allowAsync": false,
+                                      "backgroundColorHex": "#00000000",
+                                      "isDisabled": false,
+                                      "isPausePointSet": false
+                                    },
+                                    "no": {
+                                      "children": [],
+                                      "name": "Sequence",
+                                      "description": "Sequence",
+                                      "helpText": "A sequence of workflow elements",
+                                      "guid": "5b1dcc7e-ca8b-4188-8c52-4674a9890b5c",
+                                      "isAsync": false,
+                                      "allowAsync": false,
+                                      "backgroundColorHex": "#00000000",
+                                      "isDisabled": false,
+                                      "isPausePointSet": false
+                                    },
+                                    "evaluation": {
+                                      "left": "MTPs",
+                                      "right": "",
+                                      "evaluator": "NotEqual"
+                                    },
+                                    "name": "Branch",
+                                    "description": "Branch if MTPs ≠ ",
+                                    "helpText": "Evaluates a condition and branches accordingly",
+                                    "guid": "812cc309-6f14-4efc-a699-57f95a15ea00",
+                                    "isAsync": false,
+                                    "allowAsync": false,
+                                    "iconUrl": "PackIcon.Help [#FFFFFFFF:0:2]",
+                                    "backgroundColorHex": "#FFDEDE81",
+                                    "isDisabled": false,
+                                    "isPausePointSet": false
+                                  }
+                                ],
+                                "name": "Sequence",
+                                "description": "Sequence",
+                                "helpText": "A sequence of workflow elements",
+                                "guid": "37eb1a03-f794-4392-84a0-2bbb27e43c44",
+                                "isAsync": false,
+                                "allowAsync": false,
+                                "backgroundColorHex": "#00000000",
+                                "isDisabled": false,
+                                "isPausePointSet": false
+                              },
+                              "right": {
+                                "children": [
+                                  {
+                                    "$type": "Biosero.Workflow.Parallel, Biosero.Workflow.Core",
+                                    "helpText": "Executes two sequences in parallel",
+                                    "backgroundColorHex": "#FF72EAFF",
+                                    "iconUrl": "PackIcon.CallSplit [#FFFFFFFF:180]",
+                                    "name": "Parallel",
+                                    "left": {
+                                      "children": [
+                                        {
+                                          "$type": "Biosero.Workflow.Branch, Biosero.Workflow.Core",
+                                          "yes": {
+                                            "children": [
+                                              {
+                                                "$type": "Biosero.Workflow.Commands.TransportCommand, Biosero.Workflow.Core",
+                                                "inputParameters": [
+                                                  {
+                                                    "name": "Timeout (min)",
+                                                    "value": "100",
+                                                    "valueType": "Double",
+                                                    "defaultValue": "10"
+                                                  },
+                                                  {
+                                                    "name": "From",
+                                                    "value": "CP",
+                                                    "valueType": "String"
+                                                  },
+                                                  {
+                                                    "name": "To",
+                                                    "value": "IO",
+                                                    "valueType": "String"
+                                                  },
+                                                  {
+                                                    "name": "Barcodes",
+                                                    "value": "%50 Tips%",
+                                                    "valueType": "String"
+                                                  },
+                                                  {
+                                                    "name": "Metadata",
+                                                    "value": "Orchestrator Used=True;Source Orchestrator Workflow=Consumable Storage;Zone=50uL Tips;Labware Designation=50 Tips",
+                                                    "valueType": "String"
+                                                  }
+                                                ],
+                                                "outputParameterMapping": [
+                                                  {
+                                                    "name": "Barcodes",
+                                                    "parameterType": "String"
+                                                  },
+                                                  {
+                                                    "name": "Request ID",
+                                                    "parameterType": "String"
+                                                  }
+                                                ],
+                                                "name": "Transport",
+                                                "description": "Transport",
+                                                "helpText": "Transports the specified barcode(s) from one station to another.",
+                                                "guid": "d6916f69-067b-4cb7-a7d0-2b146c45770b",
+                                                "isAsync": false,
+                                                "allowAsync": false,
+                                                "iconUrl": "PackIcon.TransitConnectionVariant [#FFFFFFFF]",
+                                                "backgroundColorHex": "#FF666666",
+                                                "isDisabled": false,
+                                                "isPausePointSet": false
+                                              }
+                                            ],
+                                            "name": "Sequence",
+                                            "description": "Sequence",
+                                            "helpText": "A sequence of workflow elements",
+                                            "guid": "fb249d0e-3d58-4948-ab51-eda3a54d72d6",
+                                            "isAsync": false,
+                                            "allowAsync": false,
+                                            "backgroundColorHex": "#00000000",
+                                            "isDisabled": false,
+                                            "isPausePointSet": false
+                                          },
+                                          "no": {
+                                            "children": [],
+                                            "name": "Sequence",
+                                            "description": "Sequence",
+                                            "helpText": "A sequence of workflow elements",
+                                            "guid": "41aa4b67-3314-499d-b2e0-5ba4e0716fb6",
+                                            "isAsync": false,
+                                            "allowAsync": false,
+                                            "backgroundColorHex": "#00000000",
+                                            "isDisabled": false,
+                                            "isPausePointSet": false
+                                          },
+                                          "evaluation": {
+                                            "left": "50 Tips",
+                                            "right": "",
+                                            "evaluator": "NotEqual"
+                                          },
+                                          "name": "Branch",
+                                          "description": "Branch if 50 Tips ≠ ",
+                                          "helpText": "Evaluates a condition and branches accordingly",
+                                          "guid": "471b2cc4-3e46-4a65-a429-2a49e7fb30fd",
+                                          "isAsync": false,
+                                          "allowAsync": false,
+                                          "iconUrl": "PackIcon.Help [#FFFFFFFF:0:2]",
+                                          "backgroundColorHex": "#FFDEDE81",
+                                          "isDisabled": false,
+                                          "isPausePointSet": false
+                                        }
+                                      ],
+                                      "name": "Sequence",
+                                      "description": "Sequence",
+                                      "helpText": "A sequence of workflow elements",
+                                      "guid": "d6a90980-39ce-4af7-ab45-48c984752e10",
+                                      "isAsync": false,
+                                      "allowAsync": false,
+                                      "backgroundColorHex": "#00000000",
+                                      "isDisabled": false,
+                                      "isPausePointSet": false
+                                    },
+                                    "right": {
+                                      "children": [
+                                        {
+                                          "$type": "Biosero.Workflow.Parallel, Biosero.Workflow.Core",
+                                          "helpText": "Executes two sequences in parallel",
+                                          "backgroundColorHex": "#FF72EAFF",
+                                          "iconUrl": "PackIcon.CallSplit [#FFFFFFFF:180]",
+                                          "name": "Parallel",
+                                          "left": {
+                                            "children": [
+                                              {
+                                                "$type": "Biosero.Workflow.Branch, Biosero.Workflow.Core",
+                                                "yes": {
+                                                  "children": [
+                                                    {
+                                                      "$type": "Biosero.Workflow.Commands.TransportCommand, Biosero.Workflow.Core",
+                                                      "inputParameters": [
+                                                        {
+                                                          "name": "Timeout (min)",
+                                                          "value": "100",
+                                                          "valueType": "Double",
+                                                          "defaultValue": "10"
+                                                        },
+                                                        {
+                                                          "name": "From",
+                                                          "value": "CP",
+                                                          "valueType": "String"
+                                                        },
+                                                        {
+                                                          "name": "To",
+                                                          "value": "IO",
+                                                          "valueType": "String"
+                                                        },
+                                                        {
+                                                          "name": "Barcodes",
+                                                          "value": "%200 Tips%",
+                                                          "valueType": "String"
+                                                        },
+                                                        {
+                                                          "name": "Metadata",
+                                                          "value": "Orchestrator Used=True;Source Orchestrator Workflow=Consumable Storage;Zone=200uL Tips;Labware Designation=200 Tips",
+                                                          "valueType": "String"
+                                                        }
+                                                      ],
+                                                      "outputParameterMapping": [
+                                                        {
+                                                          "name": "Barcodes",
+                                                          "parameterType": "String"
+                                                        },
+                                                        {
+                                                          "name": "Request ID",
+                                                          "parameterType": "String"
+                                                        }
+                                                      ],
+                                                      "name": "Transport",
+                                                      "description": "Transport",
+                                                      "helpText": "Transports the specified barcode(s) from one station to another.",
+                                                      "guid": "0f053f4a-9658-4cd5-be2c-fec35326db80",
+                                                      "isAsync": false,
+                                                      "allowAsync": false,
+                                                      "iconUrl": "PackIcon.TransitConnectionVariant [#FFFFFFFF]",
+                                                      "backgroundColorHex": "#FF666666",
+                                                      "isDisabled": false,
+                                                      "isPausePointSet": false
+                                                    }
+                                                  ],
+                                                  "name": "Sequence",
+                                                  "description": "Sequence",
+                                                  "helpText": "A sequence of workflow elements",
+                                                  "guid": "16cb7753-0221-4c74-a40a-1e5ada9c7e34",
+                                                  "isAsync": false,
+                                                  "allowAsync": false,
+                                                  "backgroundColorHex": "#00000000",
+                                                  "isDisabled": false,
+                                                  "isPausePointSet": false
+                                                },
+                                                "no": {
+                                                  "children": [],
+                                                  "name": "Sequence",
+                                                  "description": "Sequence",
+                                                  "helpText": "A sequence of workflow elements",
+                                                  "guid": "bd94cec2-420a-4fbd-aff4-e98d29f0ae16",
+                                                  "isAsync": false,
+                                                  "allowAsync": false,
+                                                  "backgroundColorHex": "#00000000",
+                                                  "isDisabled": false,
+                                                  "isPausePointSet": false
+                                                },
+                                                "evaluation": {
+                                                  "left": "200 Tips",
+                                                  "right": "",
+                                                  "evaluator": "NotEqual"
+                                                },
+                                                "name": "Branch",
+                                                "description": "Branch if 200 Tips ≠ ",
+                                                "helpText": "Evaluates a condition and branches accordingly",
+                                                "guid": "cb98c9aa-05d5-4000-bc5e-e7b0a4942e45",
+                                                "isAsync": false,
+                                                "allowAsync": false,
+                                                "iconUrl": "PackIcon.Help [#FFFFFFFF:0:2]",
+                                                "backgroundColorHex": "#FFDEDE81",
+                                                "isDisabled": false,
+                                                "isPausePointSet": false
+                                              }
+                                            ],
+                                            "name": "Sequence",
+                                            "description": "Sequence",
+                                            "helpText": "A sequence of workflow elements",
+                                            "guid": "28bbc91f-8649-4540-96f9-9f574543d52e",
+                                            "isAsync": false,
+                                            "allowAsync": false,
+                                            "backgroundColorHex": "#00000000",
+                                            "isDisabled": false,
+                                            "isPausePointSet": false
+                                          },
+                                          "right": {
+                                            "children": [],
+                                            "name": "Sequence",
+                                            "description": "Sequence",
+                                            "helpText": "A sequence of workflow elements",
+                                            "guid": "e09df2d4-cb1f-49e5-9440-4f8e23037a98",
+                                            "isAsync": false,
+                                            "allowAsync": false,
+                                            "backgroundColorHex": "#00000000",
+                                            "isDisabled": false,
+                                            "isPausePointSet": false
+                                          },
+                                          "description": "Parallel",
+                                          "guid": "c3954b94-3e2c-4a6d-81d1-7c7a2ff8f1a3",
+                                          "isAsync": false,
+                                          "allowAsync": false,
+                                          "isDisabled": false,
+                                          "isPausePointSet": false
+                                        }
+                                      ],
+                                      "name": "Sequence",
+                                      "description": "Sequence",
+                                      "helpText": "A sequence of workflow elements",
+                                      "guid": "8d0b7b71-769f-456d-8274-da46cd0407af",
+                                      "isAsync": false,
+                                      "allowAsync": false,
+                                      "backgroundColorHex": "#00000000",
+                                      "isDisabled": false,
+                                      "isPausePointSet": false
+                                    },
+                                    "description": "Parallel",
+                                    "guid": "f17d0b82-35fd-47ed-ada6-249546a8c4b1",
+                                    "isAsync": false,
+                                    "allowAsync": false,
+                                    "isDisabled": false,
+                                    "isPausePointSet": false
+                                  }
+                                ],
+                                "name": "Sequence",
+                                "description": "Sequence",
+                                "helpText": "A sequence of workflow elements",
+                                "guid": "8de419b0-6ccb-4556-ba27-0a03455da06d",
+                                "isAsync": false,
+                                "allowAsync": false,
+                                "backgroundColorHex": "#00000000",
+                                "isDisabled": false,
+                                "isPausePointSet": false
+                              },
+                              "description": "Parallel",
+                              "guid": "638f11b7-fef0-4739-92c9-57f797e682dc",
+                              "isAsync": false,
+                              "allowAsync": false,
+                              "isDisabled": false,
+                              "isPausePointSet": false
+                            }
+                          ],
+                          "name": "Sequence",
+                          "description": "Sequence",
+                          "helpText": "A sequence of workflow elements",
+                          "guid": "f123e6c5-24f0-4bfb-9307-e28088afb987",
+                          "isAsync": false,
+                          "allowAsync": false,
+                          "backgroundColorHex": "#00000000",
+                          "isDisabled": false,
+                          "isPausePointSet": false
+                        },
+                        "description": "Parallel",
+                        "guid": "8161e028-0fc1-4ae3-bf8e-9cb85b4df3d2",
+                        "isAsync": false,
+                        "allowAsync": false,
+                        "isDisabled": false,
+                        "isPausePointSet": false
+                      }
+                    ],
+                    "name": "Sequence",
+                    "description": "Sequence",
+                    "helpText": "A sequence of workflow elements",
+                    "guid": "34fa0c8a-0450-40f7-8d07-13f5840e467e",
+                    "isAsync": false,
+                    "allowAsync": false,
+                    "backgroundColorHex": "#00000000",
+                    "isDisabled": false,
+                    "isPausePointSet": false
+                  },
+                  "description": "Parallel",
+                  "guid": "84e004a2-a08d-40ad-a0bb-c27758e64e3a",
+                  "isAsync": false,
+                  "allowAsync": false,
+                  "isDisabled": false,
+                  "isPausePointSet": false
+                }
+              ],
+              "name": "Sequence",
+              "description": "Sequence",
+              "helpText": "A sequence of workflow elements",
+              "guid": "86a19577-8705-4178-b044-2f10772fbc42",
+              "isAsync": false,
+              "allowAsync": false,
+              "backgroundColorHex": "#00000000",
+              "isDisabled": false,
+              "isPausePointSet": false
+            },
+            "description": "Parallel",
+            "guid": "6b98b9f9-f41c-458f-8b0e-fa89c908990d",
+            "isAsync": false,
+            "allowAsync": false,
+            "isDisabled": false,
+            "isPausePointSet": false
+          }
+        ],
+        "name": "Sequence",
+        "description": "Sequence",
+        "helpText": "A sequence of workflow elements",
+        "guid": "e61a157f-ed9a-4a9f-965c-f4993bf57fe2",
+        "isAsync": false,
+        "allowAsync": false,
+        "backgroundColorHex": "#00000000",
+        "isDisabled": false,
+        "isPausePointSet": false
+      }
+    }
+  ],
+  "parameters": [
+    {
+      "name": "REMP Racks",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "MTPs",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "DWPs",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "50 Tips",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "200 Tips",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Caps",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    }
+  ],
+  "scripts": [],
+  "globalScriptReferences": [
+    "Biosero.Workflow.Core.dll",
+    "Biosero.DataModels.dll"
+  ],
+  "screens": [],
+  "deviceRequirements": [],
+  "iconUrl": "PackIcon.Telegram [#FFFFFF:0:0]",
+  "color": "#0000FF",
+  "name": "Remp Off",
+  "category": "Workflows",
+  "description": "The Master REMP Off",
+  "lastModified": "0001-01-01T00:00:00+00:00",
+  "parameterReferenceIndicator": "%"
+}

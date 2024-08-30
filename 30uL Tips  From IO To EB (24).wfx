@@ -1,0 +1,310 @@
+{
+  "procedures": [
+    {
+      "name": "Start",
+      "sequence": {
+        "children": [
+          {
+            "$type": "Biosero.Workflow.Commands.ExecuteOrderCommand, Biosero.Workflow.Core",
+            "timeout": "00:30:00",
+            "inputParameters": [
+              {
+                "name": "Labware Types Required",
+                "value": "384 30uL Bravo Tip Box",
+                "valueType": "String",
+                "defaultValue": "",
+                "valueOptions": [],
+                "validationRules": [],
+                "tags": [
+                  "User",
+                  "#DarkMagenta"
+                ]
+              },
+              {
+                "name": "Quantity",
+                "value": "%Input.Quantity%",
+                "valueType": "Double",
+                "defaultValue": "0",
+                "valueOptions": {
+                  "$type": "System.String[], System.Private.CoreLib",
+                  "$values": []
+                },
+                "validationRules": [],
+                "tags": [
+                  "User",
+                  "#DarkMagenta"
+                ]
+              }
+            ],
+            "outputParameterMapping": [
+              {
+                "name": "ValidatedLabwareType",
+                "mapToGlobalVariableName": "Current Labware",
+                "parameterType": "String"
+              },
+              {
+                "name": "ValidatedLabwareStorage",
+                "mapToGlobalVariableName": "Current Storage",
+                "parameterType": "String"
+              },
+              {
+                "name": "ValidationError",
+                "mapToGlobalVariableName": "Validation Error",
+                "parameterType": "String"
+              },
+              {
+                "name": "ValidatedQuantity",
+                "mapToGlobalVariableName": "Validated Quantity",
+                "parameterType": "String"
+              },
+              {
+                "name": "Module ID",
+                "parameterType": "String"
+              }
+            ],
+            "name": "Script.CheckInputLabwareTypeForEB",
+            "description": "Order: Script.CheckInputLabwareTypeForEB",
+            "guid": "86dabaa0-ff01-487b-992c-d9614af23b07",
+            "isAsync": false,
+            "allowAsync": true,
+            "iconUrl": "PackIcon.AlarmClock [#FFFFFF:0:0]",
+            "backgroundColorHex": "#0000FF",
+            "isDisabled": false,
+            "isPausePointSet": false
+          },
+          {
+            "$type": "Biosero.Workflow.RunScript, Biosero.Workflow.Core",
+            "scriptName": "Set Barcodes for transport",
+            "name": "Run Script",
+            "description": "Run Script: Set Barcodes for transport",
+            "helpText": "Runs the specified script",
+            "guid": "4cdba8cd-789a-4ebe-bf0a-bf03f09d95fa",
+            "isAsync": false,
+            "allowAsync": false,
+            "iconUrl": "PackIcon.ScriptTextOutline [#FFFFFFFF]",
+            "backgroundColorHex": "#FFF58CFF",
+            "isDisabled": false,
+            "isPausePointSet": false
+          },
+          {
+            "$type": "Biosero.Workflow.Branch, Biosero.Workflow.Core",
+            "yes": {
+              "children": [
+                {
+                  "$type": "Biosero.Workflow.Elements.Error, Biosero.Workflow.Core",
+                  "name": "Error",
+                  "description": "Error: ",
+                  "helpText": "Generates and error in the workflow with the specified message",
+                  "guid": "5d973df7-65ac-4645-81b1-5be282149807",
+                  "isAsync": false,
+                  "allowAsync": false,
+                  "iconUrl": "PackIcon.AlertOutline [#FFFFFFFF]",
+                  "backgroundColorHex": "#FFFF0000",
+                  "isDisabled": false,
+                  "isPausePointSet": false
+                }
+              ],
+              "name": "Sequence",
+              "description": "Sequence",
+              "helpText": "A sequence of workflow elements",
+              "guid": "c0b27219-3457-42ed-84f0-ce13f7d0efb9",
+              "isAsync": false,
+              "allowAsync": false,
+              "backgroundColorHex": "#00000000",
+              "isDisabled": false,
+              "isPausePointSet": false
+            },
+            "no": {
+              "children": [
+                {
+                  "$type": "Biosero.Workflow.Commands.TransportCommand, Biosero.Workflow.Core",
+                  "inputParameters": [
+                    {
+                      "name": "Timeout (min)",
+                      "value": "60",
+                      "valueType": "Double",
+                      "defaultValue": "10",
+                      "validationRules": []
+                    },
+                    {
+                      "name": "From",
+                      "value": "IO",
+                      "valueType": "String",
+                      "validationRules": []
+                    },
+                    {
+                      "name": "To",
+                      "value": "EB1",
+                      "valueType": "String",
+                      "validationRules": []
+                    },
+                    {
+                      "name": "Barcodes",
+                      "value": "%Placeholder Barcodes%",
+                      "valueType": "String",
+                      "validationRules": []
+                    },
+                    {
+                      "name": "Metadata",
+                      "value": "Source Orchestrator Workflow=Stack Carousel;Storage=%Current Storage%;Labware=%Current Labware%;Destination Orchestrator Workflow=Tips 384 30 uL;Labware Types=%Current Labware%;Quantity=1;Storage=%Current Storage%",
+                      "valueType": "String",
+                      "validationRules": []
+                    }
+                  ],
+                  "outputParameterMapping": [
+                    {
+                      "name": "Barcodes",
+                      "mapToGlobalVariableName": "Current Labware",
+                      "parameterType": "String"
+                    },
+                    {
+                      "name": "Request ID",
+                      "parameterType": "String"
+                    }
+                  ],
+                  "name": "Transport",
+                  "description": "Transport",
+                  "helpText": "Transports the specified barcode(s) from one station to another.",
+                  "guid": "38b3bfeb-882a-4049-bad7-b6bad59581cb",
+                  "isAsync": false,
+                  "allowAsync": false,
+                  "iconUrl": "PackIcon.TransitConnectionVariant [#FFFFFFFF]",
+                  "backgroundColorHex": "#FF666666",
+                  "isDisabled": false,
+                  "isPausePointSet": false
+                }
+              ],
+              "name": "Sequence",
+              "description": "Sequence",
+              "helpText": "A sequence of workflow elements",
+              "guid": "a0c25abb-683e-45d6-903e-517bbfbf72f4",
+              "isAsync": false,
+              "allowAsync": false,
+              "backgroundColorHex": "#00000000",
+              "isDisabled": false,
+              "isPausePointSet": false
+            },
+            "evaluation": {
+              "left": "Validation Error",
+              "right": "",
+              "evaluator": "NotEqual"
+            },
+            "name": "Branch",
+            "description": "Branch if Validation Error ≠ ",
+            "helpText": "Evaluates a condition and branches accordingly",
+            "guid": "454e8d75-028a-4ce0-b16d-4ad1aaefe00f",
+            "isAsync": false,
+            "allowAsync": false,
+            "iconUrl": "PackIcon.Help [#FFFFFFFF:0:2]",
+            "backgroundColorHex": "#FFDEDE81",
+            "isDisabled": false,
+            "isPausePointSet": false
+          }
+        ],
+        "name": "Sequence",
+        "description": "Sequence",
+        "helpText": "A sequence of workflow elements",
+        "guid": "e264aa7c-c9f9-437f-97ee-faedba2e1bb4",
+        "isAsync": false,
+        "allowAsync": false,
+        "backgroundColorHex": "#00000000",
+        "isDisabled": false,
+        "isPausePointSet": false
+      }
+    }
+  ],
+  "parameters": [
+    {
+      "name": "Current Labware",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "validationRules": [],
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Current Storage",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Validation Error",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.Quantity",
+      "value": "0",
+      "valueType": "Integer",
+      "defaultValue": "0",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Placeholder Barcodes",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Validated Quantity",
+      "value": "0",
+      "valueType": "Integer",
+      "defaultValue": "0",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    }
+  ],
+  "scripts": [
+    {
+      "name": "Set Barcodes for transport",
+      "code": "using Biosero.DataServices.Client;\r\nusing Biosero.Orchestrator.WorkflowService;\r\nusing Newtonsoft.Json;\r\nusing System;\r\nusing System.Threading;\r\nusing System.Threading.Tasks;\r\nusing System.Collections.Generic;\r\nusing System.Text;\r\nusing System.Linq;\r\nusing System.Runtime.CompilerServices;\r\n\r\nnamespace Biosero.Scripting\r\n{\r\n    public class Set_Barcodes_for_transport\r\n    {\r\n        public async Task RunAsync(DataServicesClient client, WorkflowContext context, CancellationToken cancellationToken)\r\n        {\r\n            int Quantity = 0;\r\n            int ValQuantity = context.GetGlobalVariableValue<int>(\"Validated Quantity\");\r\n        //    Quantity = Int32.Parse(ValQuantity);//\r\n            string BarcodeList = \"\";\r\n\r\n\r\n            for (int a = 0; a < ValQuantity; a++)\r\n            {\r\n                if (BarcodeList == \"\")\r\n                {\r\n                    BarcodeList = BarcodeList + \"30Tip\" + (a+1).ToString();\r\n                }\r\n                else\r\n                {\r\n                    BarcodeList = BarcodeList + \",\" + \"30Tip\" + (a+1).ToString();\r\n                }\r\n\r\n            }\r\n\r\n            await context.AddOrUpdateGlobalVariableAsync(\"Placeholder Barcodes\", BarcodeList);\r\n        }\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n    }\r\n}\r\n",
+      "language": "C#"
+    }
+  ],
+  "globalScriptReferences": [
+    "Biosero.Workflow.Core.dll",
+    "Biosero.DataModels.dll"
+  ],
+  "screens": [],
+  "deviceRequirements": [],
+  "iconUrl": "PackIcon.DumpTruck [#FFFFFF:0:0]",
+  "color": "#FF006AFF",
+  "name": "IO To EB 30uL Tips",
+  "category": "Transport Request",
+  "lastModified": "0001-01-01T00:00:00+00:00",
+  "parameterReferenceIndicator": "%"
+}

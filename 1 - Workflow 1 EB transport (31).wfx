@@ -1,0 +1,1252 @@
+{
+  "procedures": [
+    {
+      "name": "Start",
+      "sequence": {
+        "children": [
+          {
+            "$type": "Biosero.Workflow.Commands.ExecuteOrderCommand, Biosero.Workflow.Core",
+            "timeout": "00:30:00",
+            "inputParameters": [],
+            "outputParameterMapping": [
+              {
+                "name": "EBLabwareTypeOneName",
+                "mapToGlobalVariableName": "Input.LabwareTypeOneName",
+                "parameterType": "String"
+              },
+              {
+                "name": "EBLabwareTypeThreeName",
+                "mapToGlobalVariableName": "Input.LabwareTypeThreeName",
+                "parameterType": "String"
+              },
+              {
+                "name": "EBLabwareTypeOneTotal",
+                "mapToGlobalVariableName": "Input.LabwareTypeOneTotal",
+                "parameterType": "String"
+              },
+              {
+                "name": "EBLabwareTypeThreeTotal",
+                "mapToGlobalVariableName": "Input.LabwareTypeThreeTotal",
+                "parameterType": "String"
+              },
+              {
+                "name": "EBJob Number",
+                "mapToGlobalVariableName": "Input.Job Number",
+                "parameterType": "String"
+              },
+              {
+                "name": "EBCherryPickTotal",
+                "mapToGlobalVariableName": "Input.CherryPickTotal",
+                "parameterType": "String"
+              },
+              {
+                "name": "EBSourceBarcodeDetails",
+                "mapToGlobalVariableName": "Input.SourceBarcodeDetails",
+                "parameterType": "String"
+              },
+              {
+                "name": "EBLabwareOneMetadata",
+                "mapToGlobalVariableName": "Input.LabwareOneMetadata",
+                "parameterType": "String"
+              },
+              {
+                "name": "EBLabwareThreeMetadata",
+                "mapToGlobalVariableName": "Input.LabwareThreeMetadata",
+                "parameterType": "String"
+              },
+              {
+                "name": "EBLabwareTypeOneVolume",
+                "mapToGlobalVariableName": "Input.Labware One Volume",
+                "parameterType": "String"
+              },
+              {
+                "name": "EBLabwareTypeThreeVolume",
+                "mapToGlobalVariableName": "Input.Labware Three Volume",
+                "parameterType": "String"
+              },
+              {
+                "name": "EBDMSOVolume",
+                "mapToGlobalVariableName": "Input.DMSOVolume",
+                "parameterType": "String"
+              },
+              {
+                "name": "EBWorkflowNumber",
+                "mapToGlobalVariableName": "Input.WorkflowNumber",
+                "parameterType": "String"
+              },
+              {
+                "name": "Module ID",
+                "parameterType": "String"
+              }
+            ],
+            "name": "Script.Prioritise And Set EB Order Transport",
+            "description": "Order: Script.Prioritise And Set EB Order Transport",
+            "guid": "8edd9a8a-45b2-41f5-a8ce-df7273b5a146",
+            "isAsync": false,
+            "allowAsync": true,
+            "iconUrl": "PackIcon.Amazon [#FFFFFF:0:0]",
+            "backgroundColorHex": "#0000FF",
+            "isDisabled": false,
+            "isPausePointSet": false
+          },
+          {
+            "$type": "Biosero.Workflow.RunScript, Biosero.Workflow.Core",
+            "scriptName": "Populate_EB_Placeholders_Destination_Barcodes",
+            "name": "Run Script",
+            "description": "Run Script: Populate_EB_Placeholders_Destination_Barcodes",
+            "helpText": "Runs the specified script",
+            "guid": "9106fe72-871b-4010-afb1-45cc75e2d3be",
+            "isAsync": false,
+            "allowAsync": false,
+            "iconUrl": "PackIcon.ScriptTextOutline [#FFFFFFFF]",
+            "backgroundColorHex": "#FFF58CFF",
+            "isDisabled": false,
+            "isPausePointSet": false
+          },
+          {
+            "$type": "Biosero.Workflow.Parallel, Biosero.Workflow.Core",
+            "left": {
+              "children": [
+                {
+                  "$type": "Biosero.Workflow.Commands.TransportCommand, Biosero.Workflow.Core",
+                  "inputParameters": [
+                    {
+                      "name": "Timeout (min)",
+                      "value": "20",
+                      "valueType": "Double",
+                      "defaultValue": "10",
+                      "validationRules": []
+                    },
+                    {
+                      "name": "From",
+                      "value": "IO",
+                      "valueType": "String",
+                      "validationRules": []
+                    },
+                    {
+                      "name": "To",
+                      "value": "EB2",
+                      "valueType": "String",
+                      "validationRules": []
+                    },
+                    {
+                      "name": "Barcodes",
+                      "value": "%LabwareTypeOnePlaceholderBarcodes%",
+                      "valueType": "String",
+                      "validationRules": []
+                    },
+                    {
+                      "name": "Metadata",
+                      "value": "%Input.LabwareOneMetadata%;Zone=Echo Destination Plates",
+                      "valueType": "String",
+                      "validationRules": []
+                    }
+                  ],
+                  "outputParameterMapping": [
+                    {
+                      "name": "Barcodes",
+                      "mapToGlobalVariableName": "Output.Zone",
+                      "parameterType": "String"
+                    },
+                    {
+                      "name": "Request ID",
+                      "parameterType": "String"
+                    }
+                  ],
+                  "name": "Transport",
+                  "description": "Transport",
+                  "helpText": "Transports the specified barcode(s) from one station to another.",
+                  "guid": "20515e23-967f-4d30-bd6d-13f5a972af80",
+                  "isAsync": false,
+                  "allowAsync": false,
+                  "iconUrl": "PackIcon.TransitConnectionVariant [#FFFFFFFF]",
+                  "backgroundColorHex": "#FF666666",
+                  "isDisabled": false,
+                  "isPausePointSet": false
+                }
+              ],
+              "name": "Sequence",
+              "description": "Sequence",
+              "helpText": "A sequence of workflow elements",
+              "guid": "3e5b26b2-28f9-464a-ad07-7e3fec31bc0c",
+              "isAsync": false,
+              "allowAsync": false,
+              "backgroundColorHex": "#00000000",
+              "isDisabled": false,
+              "isPausePointSet": false
+            },
+            "right": {
+              "children": [
+                {
+                  "$type": "Biosero.Workflow.Parallel, Biosero.Workflow.Core",
+                  "left": {
+                    "children": [
+                      {
+                        "$type": "Biosero.Workflow.Commands.TransportCommand, Biosero.Workflow.Core",
+                        "inputParameters": [
+                          {
+                            "name": "Timeout (min)",
+                            "value": "20",
+                            "valueType": "Double",
+                            "defaultValue": "10",
+                            "validationRules": []
+                          },
+                          {
+                            "name": "From",
+                            "value": "IO",
+                            "valueType": "String",
+                            "validationRules": []
+                          },
+                          {
+                            "name": "To",
+                            "value": "EB2",
+                            "valueType": "String",
+                            "validationRules": []
+                          },
+                          {
+                            "name": "Barcodes",
+                            "value": "%LabwareTypeThreePlaceholderBarcodes%",
+                            "valueType": "String",
+                            "validationRules": []
+                          },
+                          {
+                            "name": "Metadata",
+                            "value": "%Input.LabwareThreeMetadata%;Zone=Transfer Plates",
+                            "valueType": "String",
+                            "validationRules": []
+                          }
+                        ],
+                        "outputParameterMapping": [
+                          {
+                            "name": "Barcodes",
+                            "mapToGlobalVariableName": "Output.Zone",
+                            "parameterType": "String"
+                          },
+                          {
+                            "name": "Request ID",
+                            "parameterType": "String"
+                          }
+                        ],
+                        "name": "Transport",
+                        "description": "Transport",
+                        "helpText": "Transports the specified barcode(s) from one station to another.",
+                        "guid": "3a24a30f-e521-4aa4-a777-1b95c0d5fe1a",
+                        "isAsync": false,
+                        "allowAsync": false,
+                        "iconUrl": "PackIcon.TransitConnectionVariant [#FFFFFFFF]",
+                        "backgroundColorHex": "#FF666666",
+                        "isDisabled": false,
+                        "isPausePointSet": false
+                      }
+                    ],
+                    "name": "Sequence",
+                    "description": "Sequence",
+                    "helpText": "A sequence of workflow elements",
+                    "guid": "0fc7e88c-7bc7-440b-9397-4ab89870ea1f",
+                    "isAsync": false,
+                    "allowAsync": false,
+                    "backgroundColorHex": "#00000000",
+                    "isDisabled": false,
+                    "isPausePointSet": false
+                  },
+                  "right": {
+                    "children": [
+                      {
+                        "$type": "Biosero.Workflow.RunScript, Biosero.Workflow.Core",
+                        "scriptName": "RequiredVelocityTips_new",
+                        "name": "Run Script",
+                        "description": "Run Script: RequiredVelocityTips_new",
+                        "helpText": "Runs the specified script",
+                        "guid": "4a0cb4b0-b045-4065-bb1d-9c61062cf3a1",
+                        "isAsync": false,
+                        "allowAsync": false,
+                        "iconUrl": "PackIcon.ScriptTextOutline [#FFFFFFFF]",
+                        "backgroundColorHex": "#FFF58CFF",
+                        "isDisabled": false,
+                        "isPausePointSet": false
+                      },
+                      {
+                        "$type": "Biosero.Workflow.Parallel, Biosero.Workflow.Core",
+                        "left": {
+                          "children": [
+                            {
+                              "$type": "Biosero.Workflow.Branch, Biosero.Workflow.Core",
+                              "yes": {
+                                "children": [],
+                                "name": "Sequence",
+                                "description": "Sequence",
+                                "helpText": "A sequence of workflow elements",
+                                "guid": "b19b2639-1975-49b8-935e-a74e5a58b2b6",
+                                "isAsync": false,
+                                "allowAsync": false,
+                                "backgroundColorHex": "#00000000",
+                                "isDisabled": false,
+                                "isPausePointSet": false
+                              },
+                              "no": {
+                                "children": [
+                                  {
+                                    "$type": "Biosero.Workflow.Commands.TransportCommand, Biosero.Workflow.Core",
+                                    "inputParameters": [
+                                      {
+                                        "name": "Timeout (min)",
+                                        "value": "20",
+                                        "valueType": "Double",
+                                        "defaultValue": "10",
+                                        "validationRules": []
+                                      },
+                                      {
+                                        "name": "From",
+                                        "value": "IO",
+                                        "valueType": "String",
+                                        "validationRules": []
+                                      },
+                                      {
+                                        "name": "To",
+                                        "value": "EB2",
+                                        "valueType": "String",
+                                        "validationRules": []
+                                      },
+                                      {
+                                        "name": "Barcodes",
+                                        "value": "%VelocityTips10PlaceholderBarcodes%",
+                                        "valueType": "String",
+                                        "validationRules": []
+                                      },
+                                      {
+                                        "name": "Metadata",
+                                        "value": "Source Orchestrator Workflow=%Input.Velocity10Storage%;Labware Types=%Input.Velocity10Name%;Destination Orchestrator Workflow=%Input.Velocity10Storage%;Zone=Velocity10",
+                                        "valueType": "String",
+                                        "validationRules": []
+                                      }
+                                    ],
+                                    "outputParameterMapping": [
+                                      {
+                                        "name": "Barcodes",
+                                        "mapToGlobalVariableName": "Output.Zone",
+                                        "parameterType": "String"
+                                      },
+                                      {
+                                        "name": "Request ID",
+                                        "parameterType": "String"
+                                      }
+                                    ],
+                                    "name": "Transport",
+                                    "description": "Transport",
+                                    "helpText": "Transports the specified barcode(s) from one station to another.",
+                                    "guid": "c0d74a68-2fd3-445b-8b45-52b2460e0760",
+                                    "isAsync": false,
+                                    "allowAsync": false,
+                                    "iconUrl": "PackIcon.TransitConnectionVariant [#FFFFFFFF]",
+                                    "backgroundColorHex": "#FF666666",
+                                    "isDisabled": false,
+                                    "isPausePointSet": false
+                                  }
+                                ],
+                                "name": "Sequence",
+                                "description": "Sequence",
+                                "helpText": "A sequence of workflow elements",
+                                "guid": "8738f565-fd09-4545-93b1-d0ca46f4304e",
+                                "isAsync": false,
+                                "allowAsync": false,
+                                "backgroundColorHex": "#00000000",
+                                "isDisabled": false,
+                                "isPausePointSet": false
+                              },
+                              "evaluation": {
+                                "left": "VelocityTips10PlaceholderBarcodes",
+                                "right": "",
+                                "evaluator": "Equal"
+                              },
+                              "name": "Branch",
+                              "description": "Branch if VelocityTips10PlaceholderBarcodes = ",
+                              "helpText": "Evaluates a condition and branches accordingly",
+                              "guid": "29f794b6-b85f-48b5-ae17-5e5e11034f80",
+                              "isAsync": false,
+                              "allowAsync": false,
+                              "iconUrl": "PackIcon.Help [#FFFFFFFF:0:2]",
+                              "backgroundColorHex": "#FFDEDE81",
+                              "isDisabled": false,
+                              "isPausePointSet": false
+                            }
+                          ],
+                          "name": "Sequence",
+                          "description": "Sequence",
+                          "helpText": "A sequence of workflow elements",
+                          "guid": "76ae646f-9e5b-450c-a970-5d3b88fb4077",
+                          "isAsync": false,
+                          "allowAsync": false,
+                          "backgroundColorHex": "#00000000",
+                          "isDisabled": false,
+                          "isPausePointSet": false
+                        },
+                        "right": {
+                          "children": [
+                            {
+                              "$type": "Biosero.Workflow.Branch, Biosero.Workflow.Core",
+                              "yes": {
+                                "children": [],
+                                "name": "Sequence",
+                                "description": "Sequence",
+                                "helpText": "A sequence of workflow elements",
+                                "guid": "c5b0e7e3-cb2a-408d-a8a5-cffa01dd6343",
+                                "isAsync": false,
+                                "allowAsync": false,
+                                "backgroundColorHex": "#00000000",
+                                "isDisabled": false,
+                                "isPausePointSet": false
+                              },
+                              "no": {
+                                "children": [
+                                  {
+                                    "$type": "Biosero.Workflow.Commands.TransportCommand, Biosero.Workflow.Core",
+                                    "inputParameters": [
+                                      {
+                                        "name": "Timeout (min)",
+                                        "value": "20",
+                                        "valueType": "Double",
+                                        "defaultValue": "10",
+                                        "validationRules": []
+                                      },
+                                      {
+                                        "name": "From",
+                                        "value": "IO",
+                                        "valueType": "String",
+                                        "validationRules": []
+                                      },
+                                      {
+                                        "name": "To",
+                                        "value": "EB2",
+                                        "valueType": "String",
+                                        "validationRules": []
+                                      },
+                                      {
+                                        "name": "Barcodes",
+                                        "value": "%VelocityTips30PlaceholderBarcodes%",
+                                        "valueType": "String",
+                                        "validationRules": []
+                                      },
+                                      {
+                                        "name": "Metadata",
+                                        "value": "Source Orchestrator Workflow=%Input.Velocity30Storage%;Labware Types=%Input.Velocity30Name%;Destination Orchestrator Workflow=%Input.Velocity30Storage%;Zone=Velocity30",
+                                        "valueType": "String",
+                                        "validationRules": []
+                                      }
+                                    ],
+                                    "outputParameterMapping": [
+                                      {
+                                        "name": "Barcodes",
+                                        "mapToGlobalVariableName": "Output.Zone",
+                                        "parameterType": "String"
+                                      },
+                                      {
+                                        "name": "Request ID",
+                                        "parameterType": "String"
+                                      }
+                                    ],
+                                    "name": "Transport",
+                                    "description": "Transport",
+                                    "helpText": "Transports the specified barcode(s) from one station to another.",
+                                    "guid": "eadaabb2-378a-4ea8-b1ba-1d926eb17081",
+                                    "isAsync": false,
+                                    "allowAsync": false,
+                                    "iconUrl": "PackIcon.TransitConnectionVariant [#FFFFFFFF]",
+                                    "backgroundColorHex": "#FF666666",
+                                    "isDisabled": false,
+                                    "isPausePointSet": false
+                                  }
+                                ],
+                                "name": "Sequence",
+                                "description": "Sequence",
+                                "helpText": "A sequence of workflow elements",
+                                "guid": "580c35d1-416e-4605-bdad-8333bba1f161",
+                                "isAsync": false,
+                                "allowAsync": false,
+                                "backgroundColorHex": "#00000000",
+                                "isDisabled": false,
+                                "isPausePointSet": false
+                              },
+                              "evaluation": {
+                                "left": "VelocityTips30PlaceholderBarcodes",
+                                "right": "",
+                                "evaluator": "Equal"
+                              },
+                              "name": "Branch",
+                              "description": "Branch if VelocityTips30PlaceholderBarcodes = ",
+                              "helpText": "Evaluates a condition and branches accordingly",
+                              "guid": "48396176-43cf-4b1c-b43c-ba7ed5c2a969",
+                              "isAsync": false,
+                              "allowAsync": false,
+                              "iconUrl": "PackIcon.Help [#FFFFFFFF:0:2]",
+                              "backgroundColorHex": "#FFDEDE81",
+                              "isDisabled": false,
+                              "isPausePointSet": false
+                            }
+                          ],
+                          "name": "Sequence",
+                          "description": "Sequence",
+                          "helpText": "A sequence of workflow elements",
+                          "guid": "95ff0482-da8e-4a31-8038-404489c246ee",
+                          "isAsync": false,
+                          "allowAsync": false,
+                          "backgroundColorHex": "#00000000",
+                          "isDisabled": false,
+                          "isPausePointSet": false
+                        },
+                        "name": "Parallel",
+                        "description": "Parallel",
+                        "helpText": "Executes two sequences in parallel",
+                        "guid": "a01744ad-b6a3-46c7-8094-82977be41bfa",
+                        "isAsync": false,
+                        "allowAsync": false,
+                        "iconUrl": "PackIcon.CallSplit [#FFFFFFFF:180]",
+                        "backgroundColorHex": "#FF72EAFF",
+                        "isDisabled": false,
+                        "isPausePointSet": false
+                      }
+                    ],
+                    "name": "Sequence",
+                    "description": "Sequence",
+                    "helpText": "A sequence of workflow elements",
+                    "guid": "33577530-fe70-433a-8f5a-d92fbb4540e3",
+                    "isAsync": false,
+                    "allowAsync": false,
+                    "backgroundColorHex": "#00000000",
+                    "isDisabled": false,
+                    "isPausePointSet": false
+                  },
+                  "name": "Parallel",
+                  "description": "Parallel",
+                  "helpText": "Executes two sequences in parallel",
+                  "guid": "654faa5e-5590-45d4-a553-7d9bd59adf50",
+                  "isAsync": false,
+                  "allowAsync": false,
+                  "iconUrl": "PackIcon.CallSplit [#FFFFFFFF:180]",
+                  "backgroundColorHex": "#FF72EAFF",
+                  "isDisabled": false,
+                  "isPausePointSet": false
+                }
+              ],
+              "name": "Sequence",
+              "description": "Sequence",
+              "helpText": "A sequence of workflow elements",
+              "guid": "ae31612f-6f9f-481d-9796-af9ee48741fa",
+              "isAsync": false,
+              "allowAsync": false,
+              "backgroundColorHex": "#00000000",
+              "isDisabled": false,
+              "isPausePointSet": false
+            },
+            "name": "Parallel",
+            "description": "Parallel",
+            "helpText": "Executes two sequences in parallel",
+            "guid": "c2e1ced8-8e06-44ee-874c-539326b729f8",
+            "isAsync": false,
+            "allowAsync": false,
+            "iconUrl": "PackIcon.CallSplit [#FFFFFFFF:180]",
+            "backgroundColorHex": "#FF72EAFF",
+            "isDisabled": false,
+            "isPausePointSet": false
+          },
+          {
+            "$type": "Biosero.Workflow.Commands.TransportCommand, Biosero.Workflow.Core",
+            "inputParameters": [
+              {
+                "name": "Timeout (min)",
+                "value": "10",
+                "valueType": "Double",
+                "defaultValue": "10"
+              },
+              {
+                "name": "From",
+                "value": "CP",
+                "valueType": "String"
+              },
+              {
+                "name": "To",
+                "value": "EB2",
+                "valueType": "String"
+              },
+              {
+                "name": "Barcodes",
+                "value": "%Input.CPPlate%",
+                "valueType": "String"
+              },
+              {
+                "name": "Metadata",
+                "value": "Zone=Source Plates;Source Orchestrator Workflow=Standard Assay",
+                "valueType": "String"
+              }
+            ],
+            "outputParameterMapping": [
+              {
+                "name": "Barcodes",
+                "parameterType": "String"
+              },
+              {
+                "name": "Request ID",
+                "parameterType": "String"
+              }
+            ],
+            "name": "Transport",
+            "description": "Transport",
+            "helpText": "Transports the specified barcode(s) from one station to another.",
+            "guid": "dc46e1ef-4045-442f-b34f-1004ce863646",
+            "isAsync": false,
+            "allowAsync": false,
+            "iconUrl": "PackIcon.TransitConnectionVariant [#FFFFFFFF]",
+            "backgroundColorHex": "#FF666666",
+            "isDisabled": false,
+            "isPausePointSet": false
+          }
+        ],
+        "name": "Sequence",
+        "description": "Sequence",
+        "helpText": "A sequence of workflow elements",
+        "guid": "5a48165d-543f-46fa-a8a6-bac1deef69c8",
+        "isAsync": false,
+        "allowAsync": false,
+        "backgroundColorHex": "#00000000",
+        "isDisabled": false,
+        "isPausePointSet": false
+      }
+    }
+  ],
+  "parameters": [
+    {
+      "name": "Input.ThawTime",
+      "value": "1",
+      "valueType": "String",
+      "defaultValue": "1",
+      "validationRules": [],
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.SourceBarcodeDetails",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "validationRules": [],
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.LabwareTypeOneName",
+      "value": "384 ECHO PP 65ul",
+      "valueType": "String",
+      "defaultValue": "384 ECHO PP 65ul",
+      "validationRules": [],
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.LabwareTypeTwoName",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "validationRules": [],
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.LabwareTypeThreeName",
+      "value": "384 DTbR 80ul plate",
+      "valueType": "String",
+      "defaultValue": "384 DTbR 80ul plate",
+      "validationRules": [],
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.LabwareOneMetadata",
+      "value": "Source Orchestrator Workflow=Cytomat Skyline;Labware Types=384 ECHO PP 65ul;Destination Orchestrator Workflow=Consumables Carousel",
+      "valueType": "String",
+      "defaultValue": "Source Orchestrator Workflow=Cytomat Skyline;Labware Types=384 ECHO PP 65ul;Destination Orchestrator Workflow=Consumables Carousel",
+      "validationRules": [],
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.LabwareTwoMetadata",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "validationRules": [],
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.LabwareThreeMetadata",
+      "value": "Source Orchestrator Workflow=Cytomat Skyline;Labware Types=384 DTbR 80ul plate;Destination Orchestrator Workflow=Consumables Carousel",
+      "valueType": "String",
+      "defaultValue": "Source Orchestrator Workflow=Cytomat Skyline;Labware Types=384 DTbR 80ul plate;Destination Orchestrator Workflow=Consumables Carousel",
+      "validationRules": [],
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.CherryPickTotal",
+      "value": "2",
+      "valueType": "Integer",
+      "defaultValue": "2",
+      "validationRules": [],
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "LabwareTypeOnePlaceholderBarcodes",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "validationRules": [],
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "LabwareTypeTwoPlaceholderBarcodes",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "validationRules": [],
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "LabwareTypeThreePlaceholderBarcodes",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "validationRules": [],
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.LabwareTypeOneTotal",
+      "value": "2",
+      "valueType": "Integer",
+      "defaultValue": "2",
+      "validationRules": [],
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.LabwareTypeTwoTotal",
+      "value": "0",
+      "valueType": "Integer",
+      "defaultValue": "0",
+      "validationRules": [],
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.LabwareTypeThreeTotal",
+      "value": "3",
+      "valueType": "Integer",
+      "defaultValue": "3",
+      "validationRules": [],
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "CapsPlaceholderBarcodes",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.WorkflowNumber",
+      "value": "1",
+      "valueType": "Integer",
+      "defaultValue": "1",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.TecanTipRacksSent",
+      "value": "0",
+      "valueType": "Integer",
+      "defaultValue": "0",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.Job Number",
+      "value": "3",
+      "valueType": "Integer",
+      "defaultValue": "3",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "TecanTipRacksDay",
+      "value": "0",
+      "valueType": "Integer",
+      "defaultValue": "0",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.Tecan Job ID",
+      "value": "0",
+      "valueType": "Integer",
+      "defaultValue": "0",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.RunInventory",
+      "value": "False",
+      "valueType": "Boolean",
+      "defaultValue": "False",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.LabwareTypePreDilution",
+      "value": "96 SWP Greiner PP 340ul",
+      "valueType": "String",
+      "defaultValue": "96 SWP Greiner PP 340ul",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.CPPreDilutionRequired",
+      "value": "False",
+      "valueType": "Boolean",
+      "defaultValue": "False",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.LabwarePreDilutionMetadata",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "PDPPlaceholderBarcodes",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.Labware One Volume",
+      "value": "3",
+      "valueType": "Double",
+      "defaultValue": "3",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.Labware Two Volume",
+      "value": "0",
+      "valueType": "Double",
+      "defaultValue": "0",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.Labware Three Volume",
+      "value": "2",
+      "valueType": "Double",
+      "defaultValue": "2",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "TotalVelocity10TipBoxes",
+      "value": "0",
+      "valueType": "Integer",
+      "defaultValue": "0",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "VelocityTips10PlaceholderBarcodes",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "VelocityTips30PlaceholderBarcodes",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.InventorySkyline",
+      "value": "False",
+      "valueType": "Boolean",
+      "defaultValue": "False",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.InventoryHotelsCarousel",
+      "value": "False",
+      "valueType": "Boolean",
+      "defaultValue": "False",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.InventoryIncubator",
+      "value": "False",
+      "valueType": "Boolean",
+      "defaultValue": "False",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.InventoryStackCarousel",
+      "value": "False",
+      "valueType": "Boolean",
+      "defaultValue": "False",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.DMSOVolume",
+      "value": "2.3",
+      "valueType": "Double",
+      "defaultValue": "2.3",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.LabwareOneStorage",
+      "value": "Cytomat Skyline",
+      "valueType": "String",
+      "defaultValue": "Cytomat Skyline",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.LabwareThreeStorage",
+      "value": "Cytomat Skyline",
+      "valueType": "String",
+      "defaultValue": "Cytomat Skyline",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.VelocityTips10Metadata",
+      "value": "Source Orchestrator Workflow=Stack Carousel;Labware Types=%Input.VelocityTipBoxName%;Destination Orchestrator Workflow=Stack Carousel",
+      "valueType": "String",
+      "defaultValue": "Source Orchestrator Workflow=Stack Carousel;Labware Types=%Input.VelocityTipBoxName%;Destination Orchestrator Workflow=Stack Carousel",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.VelocityTips30Metadata",
+      "value": "Source Orchestrator Workflow=Stack Carousel;Labware Types=%Input.VelocityTipBoxName%;Destination Orchestrator Workflow=Stack Carousel",
+      "valueType": "String",
+      "defaultValue": "Source Orchestrator Workflow=Stack Carousel;Labware Types=%Input.VelocityTipBoxName%;Destination Orchestrator Workflow=Stack Carousel",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.CPBarcodes",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.Velocity10Storage",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.Velocity30Storage",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.Velocity10Name",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.Velocity30Name",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Output.Zone",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.CPPlate",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    }
+  ],
+  "scripts": [
+    {
+      "name": "Populate_Placeholder_Destination_Barcodes",
+      "code": "using System;\r\nusing System.Collections.Generic;\r\nusing System.Text;\r\nusing System.Linq;\r\nusing Biosero.Workflow;\r\n\r\nnamespace Biosero.Scripting\r\n{\r\n    public class Populate_Placeholder_Destination_Barcodes : WorkflowScript\r\n    {\r\n        public Populate_Placeholder_Destination_Barcodes(WorkflowEnvironment environment) : base(environment) {}\r\n\r\n        public void Run(Dictionary<string, object> parameters)\r\n        {\r\n\t//    parameters[\"OutputRempRacks\"] = \"ltty,mm\";\r\n\t    \r\n           int LabwareTypeOneTotal = (int)parameters[\"Input.LabwareTypeOneTotal\"]; \r\n           int LabwareTypeTwoTotal = (int)parameters[\"Input.LabwareTypeTwoTotal\"]; \r\n           int LabwareTypeThreeTotal = (int)parameters[\"Input.LabwareTypeThreeTotal\"]; \r\n           int CherryPickTotal = (int)parameters[\"Input.CherryPickTotal\"];\r\n           int JobNumber = (int)parameters[\"Input.Job Number\"];\r\n         //  string OutputRempRacks = (string)parameters[\"OutputRempRacks\"]; \r\n           string OutputRempRacks = (string)parameters[\"Output.OutputRempRacks\"]; \r\n           \r\n           string LabwareTypeOneName = (string)parameters[\"Input.LabwareTypeOneName\"]; \r\n           string LabwareTypeTwoName = (string)parameters[\"Input.LabwareTypeTwoName\"]; \r\n           string LabwareTypeThreeName = (string)parameters[\"Input.LabwareTypeThreeName\"]; \r\n           \r\n           string LabwareTypeOnePlaceholderBarcodes = \"\";\r\n           string LabwareTypeTwoPlaceholderBarcodes = \"\";\r\n           string LabwareTypeThreePlaceholderBarcodes = \"\";\r\n           string CapsPlaceholderBarcodes = \"\";\r\n           string PDPPlaceholderBarcodes = \"\";\r\n           DateTime currentDate = DateTime.Now;\r\n           int CurrentDay = currentDate.Day;\r\n            int TotalValidatedSources = 0;\r\n           \r\n           \r\n\tList<string> REMPReturnedSources = OutputRempRacks.Split(',').ToList();\r\n\tint REMPSourcesToProcess = REMPReturnedSources.Count;\r\n\t\r\n\t\r\n\r\n\t\r\n\t\r\n\t// LabwareTypeOne = for each plate created on CP, 1 plate to transfer into\r\n\t\r\n\tfor (int i = 1; i <= (CherryPickTotal); i++)\r\n\t\t{\r\n\t\t    LabwareTypeOnePlaceholderBarcodes = LabwareTypeOnePlaceholderBarcodes + JobNumber.ToString() + CurrentDay.ToString() +  \"One\" +  i + \",\";\r\n\t\t}\r\n\t    LabwareTypeOnePlaceholderBarcodes = LabwareTypeOnePlaceholderBarcodes.TrimEnd(',');\r\n\t    parameters[\"LabwareTypeOnePlaceholderBarcodes\"] = LabwareTypeOnePlaceholderBarcodes;\r\n\t    \r\n\t//    System.IO.File.AppendAllLines(@\"C:\\Users\\LabTech\\Documents\\rr.txt\", new string []{ LabwareTypeOnePlaceholderBarcodes.ToString()});\r\n\t\r\n\t\r\n\t//   LabwareTypeTwo = ther number of plates to create on CP\r\n\t\r\n\tfor (int i = 1; i <= (CherryPickTotal); i++)\r\n\t\t{\r\n\t\t    LabwareTypeTwoPlaceholderBarcodes = LabwareTypeTwoPlaceholderBarcodes +JobNumber.ToString() +  CurrentDay.ToString() + \"Two\" +  i + \",\";\r\n\t\t}\r\n\t    LabwareTypeTwoPlaceholderBarcodes = LabwareTypeTwoPlaceholderBarcodes.TrimEnd(',');\r\n\t    parameters[\"LabwareTypeTwoPlaceholderBarcodes\"] = LabwareTypeTwoPlaceholderBarcodes;\r\n\t\r\n\t//LabwareTypeThree = number of copies per each CP plate\r\n\t//System.IO.File.AppendAllLines(@\"C:\\Users\\LabTech\\Documents\\rr.txt\", new string []{ (CherryPickTotal*LabwareTypeThreeTotal).ToString()});\r\n\tfor (int i = 1; i <= (CherryPickTotal*LabwareTypeThreeTotal); i++)\r\n\t\t{\r\n\t\t    LabwareTypeThreePlaceholderBarcodes = LabwareTypeThreePlaceholderBarcodes +JobNumber.ToString() +  CurrentDay.ToString()   + \"Three\" +  i + \",\";\r\n\t\t}\r\n\t    LabwareTypeThreePlaceholderBarcodes = LabwareTypeThreePlaceholderBarcodes.TrimEnd(',');\r\n\t    parameters[\"LabwareTypeThreePlaceholderBarcodes\"] = LabwareTypeThreePlaceholderBarcodes;\r\n\t\r\n\t\r\n\t// Cap  = for each source, 1 Cap Holder\r\n\t\r\n\tfor (int i = 1; i <= (REMPSourcesToProcess); i++)\r\n\t\t{\r\n\t\t    CapsPlaceholderBarcodes = CapsPlaceholderBarcodes +JobNumber.ToString() +  CurrentDay.ToString()   + \"CAP\" +  i + \",\";\r\n\t\t}\r\n\t    CapsPlaceholderBarcodes = CapsPlaceholderBarcodes.TrimEnd(',');\r\n\t    parameters[\"CapsPlaceholderBarcodes\"] = CapsPlaceholderBarcodes;\r\n\t\r\n\t\r\n\t// PDP  = for each source, 1 PDP \r\n\t\r\n\tfor (int i = 1; i <= (REMPSourcesToProcess); i++)\r\n\t\t{\r\n\t\t    PDPPlaceholderBarcodes = PDPPlaceholderBarcodes +JobNumber.ToString() +  CurrentDay.ToString()   + \"PDP\" +  i + \",\";\r\n\t\t}\r\n\t    PDPPlaceholderBarcodes = PDPPlaceholderBarcodes.TrimEnd(',');\r\n\t    parameters[\"PDPPlaceholderBarcodes\"] = PDPPlaceholderBarcodes;\r\n\t    \r\n\t    \r\n\t    \r\n\t\r\n\t\r\n        }\r\n    }\r\n}",
+      "language": "C#"
+    },
+    {
+      "name": "RequiredVelocityTips ",
+      "code": "using System;\r\nusing System.Collections.Generic;\r\nusing System.Text;\r\nusing System.Linq;\r\nusing Biosero.Workflow;\r\n\r\nnamespace Biosero.Scripting\r\n{\r\n    public class RequiredVelocityTips_ : WorkflowScript\r\n    {\r\n        public RequiredVelocityTips_(WorkflowEnvironment environment) : base(environment) {}\r\n\r\n        public void Run(Dictionary<string, object> parameters)\r\n        {\r\n        \r\n        \r\n                /*\r\n        Workflow requires Replicate and SD\r\n\r\nReplicate = 1 tip per 1 source\r\nSD - 1 tip per 1 dest\r\n\r\nWorflow 1 required - \r\n\r\nSD on the CP plate created for Labware type 2 \r\n\r\nTrasnsfer  to labware type 1 \r\n\r\nReplication to  labware type 3 \r\n\r\nexample:\r\n\r\n3 sources in order - creating 2 plates\r\n\r\n2  CP plated created \r\n\r\nRequiring - 3 replicates\r\n\r\nNeeded:\r\n\r\n1 Velocity rack for DMSO\r\n3 Velocity racks for the SD step\r\n3 Velocity racks for the Rep step\r\n\r\n \r\n        */\r\n           int LabwareTypeOneTotal = (int)parameters[\"Input.LabwareTypeOneTotal\"]; \r\n           double LabwareTypeOneVolume = (double)parameters[\"Input.Labware One Volume\"]; \r\n           double DMSOVolume = (double)parameters[\"Input.DMSOVolume\"]; \r\n           int LabwareOneST10Total = 0;\r\n           int LabwareOneST30Total = 0;\r\n           double LabwareTypeThreeVolume = (double)parameters[\"Input.Labware Three Volume\"]; \r\n           int LabwareThreeST10Total = 0;\r\n           int LabwareThreeST30Total = 0;\r\n           int DMSOST10Total = 0;\r\n           int DMSOST30Total = 0;\r\n           int LabwareTypeThreeTotal = (int)parameters[\"Input.LabwareTypeThreeTotal\"]; \r\n           int CherryPickTotal = (int)parameters[\"Input.CherryPickTotal\"]; \r\n           int WorkflowNumber = (int)parameters[\"Input.WorkflowNumber\"]; \r\n           int V10WorkflowStepsTotal = 0;\r\n           int V30WorkflowStepsTotal = 0;\r\n           int DMSOWorkflowStepsTotal = 0;\r\n       //    string VelocityTypeLabwareOne = \"\";\r\n       //    string VelocityTypeLabwarThreee = \"\";\r\n           string VelocityTips10PlaceholderBarcodes = \"\";\r\n           string VelocityTips30PlaceholderBarcodes = \"\";\r\n           \r\n           \r\n           if (LabwareTypeOneVolume <=7)\r\n             {\r\n             LabwareOneST10Total = 1;\r\n             }\r\n             else if ((LabwareTypeOneVolume>7) && (LabwareTypeOneVolume <=28))\r\n             {\r\n             LabwareOneST30Total = 1;\r\n             }\r\n         /*    else if ((LabwareTypeOneVolume>28) && (LabwareTypeOneVolume <=35))\r\n             {\r\n             LabwareOneST30Total = 1;\r\n             LabwareOneST10Total = 1;\r\n             }\r\n             else if ((LabwareTypeOneVolume>35) && (LabwareTypeOneVolume <=42))\r\n             {\r\n             LabwareOneST30Total = 2;\r\n             }*/\r\n           \r\n           if ( (LabwareTypeThreeVolume <=7) && (LabwareTypeThreeVolume > 0))\r\n             {\r\n             LabwareThreeST10Total = 1;\r\n             }\r\n             else if ((LabwareTypeThreeVolume>7) && (LabwareTypeThreeVolume <=28))\r\n             {\r\n             LabwareThreeST30Total = 1;\r\n             }\r\n           /*  else if ((LabwareTypeThreeVolume>28) && (LabwareTypeThreeVolume <=35))\r\n             {\r\n             LabwareThreeST30Total = 1;\r\n             LabwareThreeST10Total = 1;\r\n             }\r\n             else if ((LabwareTypeThreeVolume>35) && (LabwareTypeThreeVolume <=42))\r\n             {\r\n             LabwareThreeST30Total = 2;\r\n             }\r\n             */\r\n           \r\n           \r\n           if (DMSOVolume <=7)\r\n             {\r\n             DMSOST10Total = 1;\r\n             }\r\n             else if ((DMSOVolume>7) && (DMSOVolume <=28))\r\n             {\r\n             DMSOST30Total = 1;\r\n             }\r\n         /*    else if ((DMSOVolume>28) && (DMSOVolume <=35))\r\n             {\r\n             LabwareOneST30Total = 1;\r\n             LabwareOneST10Total = 1;\r\n             }\r\n             else if ((DMSOVolume>35) && (DMSOVolume <=42))\r\n             {\r\n             LabwareOneST30Total = 2;\r\n             }*/\r\n             \r\n             \r\n             \r\n    //       System.IO.File.AppendAllLines(@\"C:\\Users\\LabTech\\Documents\\xx.txt\", new string []{ LabwareThreeST10Total.ToString()});\r\nswitch (WorkflowNumber)\r\n{\r\n    case 1:\r\n        V10WorkflowStepsTotal = ( CherryPickTotal*LabwareOneST10Total) +( CherryPickTotal*LabwareThreeST10Total);\r\n        V30WorkflowStepsTotal = ( CherryPickTotal*LabwareOneST30Total) +( CherryPickTotal*LabwareThreeST30Total);\r\n        \r\n        \tif (DMSOST10Total > 0)\r\n        \t\t{\r\n        \t\tV10WorkflowStepsTotal = V10WorkflowStepsTotal + DMSOST10Total;\r\n        \t\t}\r\n        else\r\n        \t\t{\r\n        \t\tV30WorkflowStepsTotal = V30WorkflowStepsTotal + DMSOST30Total;\r\n        \t\t}\r\n        \r\n        break;\r\n  //  default:\r\n //       Console.WriteLine(\"Other day\");\r\n   //     break;\r\n}\r\n        \r\n \r\n\t    parameters[\"TotalVelocity10TipBoxes\"] = V10WorkflowStepsTotal;\r\n\t    parameters[\"TotalVelocity30TipBoxes\"] = V30WorkflowStepsTotal;\r\n           \r\n\t\r\n\tfor (int i = 1; i <= (V10WorkflowStepsTotal); i++)\r\n\t\t{\r\n\t\t    VelocityTips10PlaceholderBarcodes = VelocityTips10PlaceholderBarcodes +\"Velocity10_\" +  i + \",\";\r\n\t\t}\r\n\t    VelocityTips10PlaceholderBarcodes = VelocityTips10PlaceholderBarcodes.TrimEnd(',');\r\n\t    parameters[\"VelocityTips10PlaceholderBarcodes\"] = VelocityTips10PlaceholderBarcodes;\r\n           \r\n\t\r\n\tfor (int i = 1; i <= (V30WorkflowStepsTotal); i++)\r\n\t\t{\r\n\t\t    VelocityTips30PlaceholderBarcodes = VelocityTips30PlaceholderBarcodes +\"Velocity30_\" +  i + \",\";\r\n\t\t}\r\n\t    VelocityTips30PlaceholderBarcodes = VelocityTips30PlaceholderBarcodes.TrimEnd(',');\r\n\t    parameters[\"VelocityTips30PlaceholderBarcodes\"] = VelocityTips30PlaceholderBarcodes;\r\n\t    \r\n\t//    System.IO.File.AppendAllLines(@\"C:\\Users\\LabTech\\Documents\\xs.txt\", new string []{ WorkflowStepsTotal.ToString()});\r\n        \r\n\t\r\n\t\r\n        }\r\n    }\r\n}",
+      "language": "C#"
+    },
+    {
+      "name": "ValidateSufficientCapsHolders",
+      "code": "using System;\r\nusing System.Collections.Generic;\r\nusing System.Text;\r\nusing System.Linq;\r\nusing Biosero.Workflow;\r\n\r\nnamespace Biosero.Scripting\r\n{\r\n    public class ValidateSufficientCapsHolders : WorkflowScript\r\n    {\r\n        public ValidateSufficientCapsHolders(WorkflowEnvironment environment) : base(environment) {}\r\n\r\n        public void Run(Dictionary<string, object> parameters)\r\n        {\r\n\t    \r\n           string CapHoldersBarcodes = (string)parameters[\"Input.CapHoldersBarcodes\"]; \r\n           string OutputRempRacks = (string)parameters[\"OutputRempRacks\"]; \r\n           \r\n           \r\n\tList<string> OutputRempRacksList = OutputRempRacks.Split(',').ToList();\r\n\tint OutputRempRacksListCount = OutputRempRacksList.Count;\r\n           \r\n           \r\n\tList<string> CapHoldersBarcodesList = CapHoldersBarcodes.Split(',').ToList();\r\n\tint CapHoldersBarcodesListCount = CapHoldersBarcodesList.Count;\r\n        }\r\n    }\r\n}",
+      "language": "C#"
+    },
+    {
+      "name": "CheckTecanTipsSentStatus",
+      "code": "using System;\r\nusing System.Collections.Generic;\r\nusing System.Text;\r\nusing System.Linq;\r\nusing Biosero.Workflow;\r\n\r\nnamespace Biosero.Scripting\r\n{\r\n    public class CheckTecanTipsSentStatus : WorkflowScript\r\n    {\r\n        public CheckTecanTipsSentStatus(WorkflowEnvironment environment) : base(environment) {}\r\n\r\n        public void Run(Dictionary<string, object> parameters)\r\n        {\r\n           int TecanTipRacksDay = (int)parameters[\"Input.TecanTipRacksDay\"];\r\n           int DayToday =  (int)DateTime.Now.DayOfWeek;\r\n           int TecanTipRacksSent = (int)parameters[\"Input.TecanTipRacksSent\"]; \r\n      //     int CurrentTecanTipValue = 0;\r\n           \r\n           \r\n           // check if a day passed isnce tips were sent\r\n           if( (DayToday != TecanTipRacksDay) && (TecanTipRacksSent != 0))\r\n             {\r\n\t  CurrentTecanTipValue = 0;\r\n\t  parameters[\"TecanTipRacksDay\"] = DayToday;\r\n             }\r\n           \r\n           // check if first ever delivery\r\n          else  if( (TecanTipRacksDay==0) && (TecanTipRacksSent == 0))\r\n             {\r\n\t  CurrentTecanTipValue = 1;\r\n\t  parameters[\"TecanTipRacksDay\"] = DayToday;\r\n             }\r\n             \r\n             \r\n             \r\n               parameters[\"TecanTipRacksSent\"] = CurrentTecanTipValue;\r\n                   System.IO.File.AppendAllLines(@\"C:\\Users\\LabTech\\Documents\\TECAN.txt\", new string []{ \"Day= \" +DayToday.ToString()});\r\n                   System.IO.File.AppendAllLines(@\"C:\\Users\\LabTech\\Documents\\TECAN.txt\", new string []{ \"Value= \" + CurrentTecanTipValue.ToString()});\r\n               \r\n        }\r\n    }\r\n}",
+      "language": "C#"
+    },
+    {
+      "name": "Populate_EB_Placeholders_Destination_Barcodes",
+      "code": "using Biosero.DataServices.Client;\r\nusing Biosero.Orchestrator.WorkflowService;\r\nusing Newtonsoft.Json;\r\nusing System;\r\nusing System.Threading;\r\nusing System.Threading.Tasks;\r\nusing System.Collections.Generic;\r\nusing System.Text;\r\nusing System.Linq;\r\n\r\nnamespace Biosero.Scripting\r\n{\r\n    public class Populate_EB_Placeholders_Destination_Barcodes\r\n    {\r\n        public async Task RunAsync(DataServicesClient client, WorkflowContext context, CancellationToken cancellationToken)\r\n        {\r\n            int LabwareTypeOneTotal = context.GetGlobalVariableValue<int>(\"Input.LabwareTypeOneTotal\");\r\n            int LabwareTypeThreeTotal = context.GetGlobalVariableValue<int>(\"Input.LabwareTypeThreeTotal\");\r\n            int JobNumber = context.GetGlobalVariableValue<int>(\"Input.Job Number\");\r\n            int CherryPickTotal = context.GetGlobalVariableValue<int>(\"Input.CherryPickTotal\");\r\n            string OutputRempRacks = context.GetGlobalVariableValue<string>(\"Input.SourceBarcodeDetails\");\r\n\r\n            string LabwareTypeOneName = context.GetGlobalVariableValue<string>(\"Input.LabwareTypeOneName\");\r\n            string LabwareTypeThreeName = context.GetGlobalVariableValue<string>(\"Input.LabwareTypeThreeName\");\r\n\r\n            string LabwareTypeOnePlaceholderBarcodes = \"\";\r\n            string LabwareTypeThreePlaceholderBarcodes = \"\";\r\n            DateTime currentDate = DateTime.Now;\r\n            int CurrentDay = currentDate.Day;\r\n\r\n            List<string> REMPReturnedSources = OutputRempRacks.Split(',').ToList();\r\n            int REMPSourcesToProcess = REMPReturnedSources.Count;\r\n            // LabwareTypeOne = for each plate created on CP, 1 plate to transfer into\r\n\r\n            for (int i = 1; i <= (CherryPickTotal); i++)\r\n            {\r\n                LabwareTypeOnePlaceholderBarcodes = LabwareTypeOnePlaceholderBarcodes + JobNumber.ToString() + CurrentDay.ToString() + \"One\" + i + \",\";\r\n            }\r\n            LabwareTypeOnePlaceholderBarcodes = LabwareTypeOnePlaceholderBarcodes.TrimEnd(',');\r\n            await context.AddOrUpdateGlobalVariableAsync(\"LabwareTypeOnePlaceholderBarcodes\", LabwareTypeOnePlaceholderBarcodes);\r\n\r\n            //LabwareTypeThree = number of copies per each CP plate\r\n            for (int i = 1; i <= (CherryPickTotal * LabwareTypeThreeTotal); i++)\r\n            {\r\n                LabwareTypeThreePlaceholderBarcodes = LabwareTypeThreePlaceholderBarcodes + JobNumber.ToString() + CurrentDay.ToString() + \"Three\" + i + \",\";\r\n            }\r\n            LabwareTypeThreePlaceholderBarcodes = LabwareTypeThreePlaceholderBarcodes.TrimEnd(',');\r\n            await context.AddOrUpdateGlobalVariableAsync(\"LabwareTypeThreePlaceholderBarcodes\", LabwareTypeThreePlaceholderBarcodes);\r\n        }\r\n    }\r\n}",
+      "language": "C#"
+    },
+    {
+      "name": "RequiredVelocityTips_new",
+      "code": "using Biosero.DataServices.Client;\r\nusing Biosero.Orchestrator.WorkflowService;\r\nusing Newtonsoft.Json;\r\nusing System;\r\nusing System.Threading;\r\nusing System.Threading.Tasks;\r\nusing System.Collections.Generic;\r\nusing System.Text;\r\nusing System.Linq;\r\n\r\nnamespace Biosero.Scripting\r\n{\r\n    public class RequiredVelocityTips_new\r\n    {\r\n        public async Task RunAsync(DataServicesClient client, WorkflowContext context, CancellationToken cancellationToken)\r\n        {\r\n\r\n\r\n            /*\r\n    Workflow requires Replicate and SD\r\n\r\nReplicate = 1 tip per 1 source\r\nSD - 1 tip per 1 dest\r\n\r\nWorflow 1 required - \r\n\r\nSD on the CP plate created for Labware type 2 \r\n\r\nTrasnsfer  to labware type 1 \r\n\r\nReplication to  labware type 3 \r\n\r\nexample:\r\n\r\n3 sources in order - creating 2 plates\r\n\r\n2  CP plated created \r\n\r\nRequiring - 3 replicates\r\n\r\nNeeded:\r\n\r\n1 Velocity rack for DMSO\r\n3 Velocity racks for the SD step\r\n3 Velocity racks for the Rep step\r\n\r\n\r\n    */\r\n            int LabwareTypeOneTotal = context.GetGlobalVariableValue<int>(\"Input.LabwareTypeOneTotal\");\r\n            double LabwareTypeOneVolume = context.GetGlobalVariableValue<double>(\"Input.Labware One Volume\");\r\n            double DMSOVolume = context.GetGlobalVariableValue<double>(\"Input.DMSOVolume\");\r\n            double LabwareTypeThreeVolume = context.GetGlobalVariableValue<double>(\"Input.Labware Three Volume\");\r\n            int CherryPickTotal = context.GetGlobalVariableValue<int>(\"Input.CherryPickTotal\");\r\n            int WorkflowNumber = context.GetGlobalVariableValue<int>(\"Input.WorkflowNumber\");\r\n            int LabwareTypeThreeTotal = context.GetGlobalVariableValue<int>(\"Input.LabwareTypeThreeTotal\");\r\n\r\n            int LabwareOneST10Total = 0;\r\n            int LabwareOneST30Total = 0;\r\n            int LabwareThreeST10Total = 0;\r\n            int LabwareThreeST30Total = 0;\r\n            int DMSOST10Total = 0;\r\n            int DMSOST30Total = 0;\r\n            int V10WorkflowStepsTotal = 0;\r\n            int V30WorkflowStepsTotal = 0;\r\n            string VelocityTips10PlaceholderBarcodes = \"\";\r\n            string VelocityTips30PlaceholderBarcodes = \"\";\r\n            \r\n            //Source Orchestrator Workflow=Stack Carousel;Labware Types=%Input.VelocityTipBoxName%;Destination Orchestrator Workflow=Stack Carousel\r\n\r\n\r\n            if (LabwareTypeOneVolume <= 7)\r\n            {\r\n                LabwareOneST10Total = 1;\r\n            }\r\n            else if ((LabwareTypeOneVolume > 7) && (LabwareTypeOneVolume <= 28))\r\n            {\r\n                LabwareOneST30Total = 1;\r\n            }\r\n\r\n            if ((LabwareTypeThreeVolume <= 7) && (LabwareTypeThreeVolume > 0))\r\n            {\r\n                LabwareThreeST10Total = 1;\r\n            }\r\n            else if ((LabwareTypeThreeVolume > 7) && (LabwareTypeThreeVolume <= 28))\r\n            {\r\n                LabwareThreeST30Total = 1;\r\n            }\r\n\r\n\r\n            if (DMSOVolume <= 7)\r\n            {\r\n                DMSOST10Total = 1;\r\n            }\r\n            else if ((DMSOVolume > 7) && (DMSOVolume <= 28))\r\n            {\r\n                DMSOST30Total = 1;\r\n            }\r\n\r\n            switch (WorkflowNumber)\r\n            {\r\n                case 1:\r\n                    V10WorkflowStepsTotal = (CherryPickTotal * LabwareOneST10Total) + (CherryPickTotal * LabwareThreeST10Total);\r\n                    V30WorkflowStepsTotal = (CherryPickTotal * LabwareOneST30Total) + (CherryPickTotal * LabwareThreeST30Total);\r\n\r\n                    if (DMSOST10Total > 0)\r\n                    {\r\n                        V10WorkflowStepsTotal = V10WorkflowStepsTotal + DMSOST10Total;\r\n                    }\r\n                    else\r\n                    {\r\n                        V30WorkflowStepsTotal = V30WorkflowStepsTotal + DMSOST30Total;\r\n                    }\r\n\r\n                    break;\r\n            }\r\n\r\n            await context.AddOrUpdateGlobalVariableAsync(\"TotalVelocity10TipBoxes\", V10WorkflowStepsTotal);\r\n            await context.AddOrUpdateGlobalVariableAsync(\"TotalVelocity30TipBoxes\", V30WorkflowStepsTotal);\r\n\r\n\r\n            for (int i = 1; i <= (V10WorkflowStepsTotal); i++)\r\n            {\r\n                VelocityTips10PlaceholderBarcodes = VelocityTips10PlaceholderBarcodes + \"Velocity10_\" + i + \",\";\r\n            }\r\n            VelocityTips10PlaceholderBarcodes = VelocityTips10PlaceholderBarcodes.TrimEnd(',');\r\n            await context.AddOrUpdateGlobalVariableAsync(\"VelocityTips10PlaceholderBarcodes\", VelocityTips10PlaceholderBarcodes);\r\n\r\n\r\n            for (int i = 1; i <= (V30WorkflowStepsTotal); i++)\r\n            {\r\n                VelocityTips30PlaceholderBarcodes = VelocityTips30PlaceholderBarcodes + \"Velocity30_\" + i + \",\";\r\n            }\r\n            VelocityTips30PlaceholderBarcodes = VelocityTips30PlaceholderBarcodes.TrimEnd(',');\r\n            await context.AddOrUpdateGlobalVariableAsync(\"VelocityTips30PlaceholderBarcodes\", VelocityTips30PlaceholderBarcodes);\r\n\r\n        }\r\n    }\r\n}\r\n",
+      "language": "C#"
+    }
+  ],
+  "globalScriptReferences": [
+    "Biosero.Workflow.Core.dll",
+    "Biosero.DataModels.dll"
+  ],
+  "screens": [],
+  "deviceRequirements": [],
+  "iconUrl": "PackIcon.Portrait [#FFFFFF:0:0]",
+  "color": "#FF9DFF00",
+  "name": "Workflow 1 - EB Transports",
+  "category": "Workflows",
+  "lastModified": "0001-01-01T00:00:00+00:00",
+  "parameterReferenceIndicator": "%"
+}
