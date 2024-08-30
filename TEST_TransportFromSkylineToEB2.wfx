@@ -1,0 +1,146 @@
+{
+  "Parameters": [
+    {
+      "Name": "Input.BarcodeToTransport",
+      "Value": "P1,P2,P3,P4,P5,P6,P7,P8,P9,P10",
+      "ValueType": "String",
+      "Unit": null,
+      "DefaultValue": "P1,P2,P3,P4,P5,P6,P7,P8,P9,P10",
+      "ValueOptions": null,
+      "ValidationRules": null,
+      "Tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      },
+      "Identity": null,
+      "Description": null
+    }
+  ],
+  "Procedures": [
+    {
+      "Name": "Start",
+      "Sequence": {
+        "Children": [
+          {
+            "$type": "Biosero.Workflow.Commands.TransportCommand, Biosero.Workflow.Core",
+            "HelpText": "Transports the specified barcode(s) from one station to another.",
+            "BackgroundColorHex": "#FF666666",
+            "IconUrl": "PackIcon.TransitConnectionVariant [#FFFFFFFF]",
+            "Name": "Transport",
+            "InputParameters": [
+              {
+                "Name": "Timeout (min)",
+                "Value": "10",
+                "ValueType": "Double",
+                "Unit": null,
+                "DefaultValue": "10",
+                "ValueOptions": null,
+                "ValidationRules": null,
+                "Tags": null,
+                "Identity": null,
+                "Description": null
+              },
+              {
+                "Name": "From",
+                "Value": "IO",
+                "ValueType": "String",
+                "Unit": null,
+                "DefaultValue": null,
+                "ValueOptions": null,
+                "ValidationRules": null,
+                "Tags": null,
+                "Identity": null,
+                "Description": null
+              },
+              {
+                "Name": "To",
+                "Value": "EB2",
+                "ValueType": "String",
+                "Unit": null,
+                "DefaultValue": null,
+                "ValueOptions": null,
+                "ValidationRules": null,
+                "Tags": null,
+                "Identity": null,
+                "Description": null
+              },
+              {
+                "Name": "Barcodes",
+                "Value": "%Input.BarcodeToTransport%",
+                "ValueType": "String",
+                "Unit": null,
+                "DefaultValue": null,
+                "ValueOptions": null,
+                "ValidationRules": null,
+                "Tags": null,
+                "Identity": null,
+                "Description": null
+              },
+              {
+                "Name": "Metadata",
+                "Value": "Source Orchestrator Workflow=Cytomat Skyline;Zone=Zone 3;Labware Types=384 Perkin Elmer Optiplate;Destination Orchestrator Workflow=Consumables Carousel",
+                "ValueType": "String",
+                "Unit": null,
+                "DefaultValue": null,
+                "ValueOptions": null,
+                "ValidationRules": null,
+                "Tags": null,
+                "Identity": null,
+                "Description": null
+              }
+            ],
+            "OutputParameterMapping": [
+              {
+                "Name": "Barcodes",
+                "MapToGlobalVariableName": null,
+                "ParameterType": 0,
+                "Description": null
+              },
+              {
+                "Name": "Request ID",
+                "MapToGlobalVariableName": null,
+                "ParameterType": 0,
+                "Description": null
+              }
+            ],
+            "Description": "Transport",
+            "Guid": "222508fe-ea41-4c44-9cf9-8a90b839fb6b",
+            "IsAsync": false,
+            "AllowAsync": false,
+            "IsDisabled": false,
+            "IsPausePointSet": false
+          }
+        ],
+        "Name": "Sequence",
+        "Description": "Sequence",
+        "HelpText": "A sequence of workflow elements",
+        "Guid": "7b537ef3-e5d9-42c3-8b74-5a356ea5d8be",
+        "IsAsync": false,
+        "AllowAsync": false,
+        "IconUrl": null,
+        "BackgroundColorHex": "#00000000",
+        "IsDisabled": false,
+        "IsPausePointSet": false
+      }
+    }
+  ],
+  "Scripts": [],
+  "Screens": [],
+  "GlobalScriptReferences": [
+    "Biosero.Workflow.Core.dll",
+    "Biosero.DataModels.dll"
+  ],
+  "DeviceRequirements": [],
+  "Properties": null,
+  "IconUrl": "PackIcon.Telegram [#FFFFFF:0:0]",
+  "Color": "#FF00FFDD",
+  "Name": "TEST_TransportFromSkylineToEB2",
+  "Category": "TEST",
+  "Description": null,
+  "Version": null,
+  "Signature": null,
+  "LastModified": "0001-01-01T00:00:00+00:00",
+  "ParameterReferenceIndicator": "%"
+}

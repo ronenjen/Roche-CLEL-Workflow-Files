@@ -1,0 +1,103 @@
+{
+  "procedures": [
+    {
+      "name": "Start",
+      "sequence": {
+        "children": [
+          {
+            "$type": "Biosero.Workflow.Commands.ExecuteOrderCommand, Biosero.Workflow.Core",
+            "timeout": "00:30:00",
+            "inputParameters": [],
+            "outputParameterMapping": [
+              {
+                "name": "Module ID",
+                "parameterType": "String"
+              }
+            ],
+            "name": "Assay Plate Prep (Orchestrator)",
+            "description": "Order: Assay Plate Prep (Orchestrator)",
+            "guid": "f138b868-0306-4e8c-907a-eb9c1316171a",
+            "isAsync": false,
+            "allowAsync": true,
+            "iconUrl": "PackIcon.Human [#FFFFFF:0:0]",
+            "backgroundColorHex": "#FFB300FF",
+            "isDisabled": false,
+            "isPausePointSet": false
+          }
+        ],
+        "name": "Sequence",
+        "description": "Sequence",
+        "helpText": "A sequence of workflow elements",
+        "guid": "2eb178e0-5a71-4864-94b3-d35990c36e8f",
+        "isAsync": false,
+        "allowAsync": false,
+        "backgroundColorHex": "#00000000",
+        "isDisabled": false,
+        "isPausePointSet": false
+      }
+    }
+  ],
+  "parameters": [
+    {
+      "name": "Input.Barcodes",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.Cap Holders",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.Assay Plates",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.CP Matrix",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    }
+  ],
+  "scripts": [],
+  "globalScriptReferences": [
+    "Biosero.Workflow.Core.dll",
+    "Biosero.DataModels.dll"
+  ],
+  "screens": [],
+  "deviceRequirements": [],
+  "iconUrl": "PackIcon.Telegram [#FFFFFF:0:0]",
+  "color": "#FFDA00FF",
+  "name": "Test CP  Assay Process - New",
+  "category": "TEST",
+  "lastModified": "0001-01-01T00:00:00+00:00",
+  "parameterReferenceIndicator": "%"
+}

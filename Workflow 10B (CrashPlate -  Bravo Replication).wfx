@@ -1,0 +1,170 @@
+{
+  "procedures": [
+    {
+      "name": "Start",
+      "sequence": {
+        "children": [
+          {
+            "$type": "Biosero.Workflow.Commands.ExecuteOrderCommand, Biosero.Workflow.Core",
+            "timeout": "00:30:00",
+            "inputParameters": [
+              {
+                "name": "CrashPlateThawTime",
+                "value": "%Input.CrashPlateThaw%",
+                "valueType": "Double",
+                "defaultValue": "0",
+                "valueOptions": {
+                  "$type": "System.String[], System.Private.CoreLib",
+                  "$values": []
+                },
+                "validationRules": [],
+                "tags": [
+                  "User",
+                  "#DarkMagenta"
+                ]
+              },
+              {
+                "name": "Metadata",
+                "value": "Current Orchestrator Workflow=Workflow 10B;Orchestrator Used=True",
+                "valueType": "String",
+                "defaultValue": "",
+                "valueOptions": [],
+                "validationRules": [],
+                "tags": [
+                  "Unknown",
+                  "#DarkMagenta"
+                ]
+              },
+              {
+                "name": "CrashPlateWorklist",
+                "value": "%Input.CrashPlateList%",
+                "valueType": "String",
+                "defaultValue": "",
+                "valueOptions": [],
+                "validationRules": [],
+                "tags": [
+                  "User",
+                  "#DarkMagenta"
+                ]
+              }
+            ],
+            "outputParameterMapping": [
+              {
+                "name": "Module ID",
+                "parameterType": "String"
+              }
+            ],
+            "name": "Crash Plate Preparation",
+            "description": "Order: Crash Plate Preparation",
+            "guid": "1be63616-dabc-4870-9547-80fdd54002ec",
+            "isAsync": false,
+            "allowAsync": true,
+            "iconUrl": "PackIcon.CarBattery [#FFFFFF:0:0]",
+            "backgroundColorHex": "#0000FF",
+            "isDisabled": false,
+            "isPausePointSet": false
+          },
+          {
+            "$type": "Biosero.Workflow.Commands.TransportCommand, Biosero.Workflow.Core",
+            "inputParameters": [
+              {
+                "name": "Timeout (min)",
+                "value": "10",
+                "valueType": "Double",
+                "defaultValue": "10"
+              },
+              {
+                "name": "From",
+                "value": "IO",
+                "valueType": "String"
+              },
+              {
+                "name": "To",
+                "value": "CP",
+                "valueType": "String"
+              },
+              {
+                "name": "Barcodes",
+                "value": "%Input.CrashPlateList%",
+                "valueType": "String"
+              },
+              {
+                "name": "Metadata",
+                "value": "Current Orchestrator Workflow=Workflow 10B;Orchestrator Used=True",
+                "valueType": "String"
+              }
+            ],
+            "outputParameterMapping": [
+              {
+                "name": "Barcodes",
+                "parameterType": "String"
+              },
+              {
+                "name": "Request ID",
+                "parameterType": "String"
+              }
+            ],
+            "name": "Transport",
+            "description": "Transport",
+            "helpText": "Transports the specified barcode(s) from one station to another.",
+            "guid": "a14e892b-76e9-4754-aaab-917b0f574b69",
+            "isAsync": false,
+            "allowAsync": false,
+            "iconUrl": "PackIcon.TransitConnectionVariant [#FFFFFFFF]",
+            "backgroundColorHex": "#FF666666",
+            "isDisabled": false,
+            "isPausePointSet": false
+          }
+        ],
+        "name": "Sequence",
+        "description": "Sequence",
+        "helpText": "A sequence of workflow elements",
+        "guid": "97b865bb-ed42-43d5-9190-6af2ed4ebd6f",
+        "isAsync": false,
+        "allowAsync": false,
+        "backgroundColorHex": "#00000000",
+        "isDisabled": false,
+        "isPausePointSet": false
+      }
+    }
+  ],
+  "parameters": [
+    {
+      "name": "Input.CrashPlateThaw",
+      "value": "0",
+      "valueType": "Integer",
+      "defaultValue": "0",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.CrashPlateList",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    }
+  ],
+  "scripts": [],
+  "globalScriptReferences": [
+    "Biosero.Workflow.Core.dll",
+    "Biosero.DataModels.dll"
+  ],
+  "screens": [],
+  "deviceRequirements": [],
+  "iconUrl": "PackIcon.CarCog [#FFFFFF:0:0]",
+  "color": "#FFFF0047",
+  "name": "Workflow 10B (CrashPlate -  Bravo Replication)",
+  "category": "Workflows",
+  "lastModified": "0001-01-01T00:00:00+00:00",
+  "parameterReferenceIndicator": "%"
+}

@@ -1,0 +1,223 @@
+{
+  "Procedures": [
+    {
+      "Name": "Start",
+      "Sequence": {
+        "Children": [
+          {
+            "$type": "Biosero.Workflow.Commands.ExecuteOrderCommand, Biosero.Workflow.Core",
+            "Timeout": "00:30:00",
+            "InputParameters": [
+              {
+                "Name": "Barcode",
+                "Value": "%Input.Barcode%",
+                "ValueType": "String",
+                "Unit": null,
+                "DefaultValue": "",
+                "ValueOptions": [],
+                "ValidationRules": [],
+                "Tags": [
+                  "Unknown",
+                  "#DarkMagenta"
+                ],
+                "Identity": null,
+                "Description": null
+              },
+              {
+                "Name": "Metadata",
+                "Value": "Source Orchestrator Workflow=Cytomat Source;Zone=Zone 1;Destination Orchestrator Workflow=Cytomat Source",
+                "ValueType": "String",
+                "Unit": null,
+                "DefaultValue": "",
+                "ValueOptions": [],
+                "ValidationRules": [],
+                "Tags": [
+                  "Unknown",
+                  "#DarkMagenta"
+                ],
+                "Identity": null,
+                "Description": null
+              }
+            ],
+            "OutputParameterMapping": [
+              {
+                "Name": "ValidatedLabwareType",
+                "MapToGlobalVariableName": "Current Labware",
+                "ParameterType": 0,
+                "Description": null
+              },
+              {
+                "Name": "Module ID",
+                "MapToGlobalVariableName": null,
+                "ParameterType": 0,
+                "Description": null
+              }
+            ],
+            "Name": "Script.CheckCarouselLAbwareTypeForBarcode",
+            "Description": "Order: Script.CheckCarouselLAbwareTypeForBarcode",
+            "HelpText": null,
+            "Guid": "7b743956-127d-4bbc-8dfc-f22152df6273",
+            "IsAsync": false,
+            "AllowAsync": true,
+            "IconUrl": "PackIcon.AeroplaneLanding [#FFFFFF:0:0]",
+            "BackgroundColorHex": "#0000FF",
+            "IsDisabled": false,
+            "IsPausePointSet": false
+          },
+          {
+            "$type": "Biosero.Workflow.Commands.TransportCommand, Biosero.Workflow.Core",
+            "InputParameters": [
+              {
+                "Name": "Timeout (min)",
+                "Value": "10",
+                "ValueType": "Double",
+                "Unit": null,
+                "DefaultValue": "10",
+                "ValueOptions": null,
+                "ValidationRules": [],
+                "Tags": null,
+                "Identity": null,
+                "Description": null
+              },
+              {
+                "Name": "From",
+                "Value": "IO",
+                "ValueType": "String",
+                "Unit": null,
+                "DefaultValue": null,
+                "ValueOptions": null,
+                "ValidationRules": [],
+                "Tags": null,
+                "Identity": null,
+                "Description": null
+              },
+              {
+                "Name": "To",
+                "Value": "CP",
+                "ValueType": "String",
+                "Unit": null,
+                "DefaultValue": null,
+                "ValueOptions": null,
+                "ValidationRules": [],
+                "Tags": null,
+                "Identity": null,
+                "Description": null
+              },
+              {
+                "Name": "Barcodes",
+                "Value": "%Input.Barcode%",
+                "ValueType": "String",
+                "Unit": null,
+                "DefaultValue": null,
+                "ValueOptions": null,
+                "ValidationRules": [],
+                "Tags": null,
+                "Identity": null,
+                "Description": null
+              },
+              {
+                "Name": "Metadata",
+                "Value": "Source Orchestrator Workflow=Cytomat Source;Zone=Zone 1;Destination Orchestrator Workflow=Cytomat Source;Labware Types=%Current Labware%",
+                "ValueType": "String",
+                "Unit": null,
+                "DefaultValue": null,
+                "ValueOptions": null,
+                "ValidationRules": [],
+                "Tags": null,
+                "Identity": null,
+                "Description": null
+              }
+            ],
+            "OutputParameterMapping": [
+              {
+                "Name": "Barcodes",
+                "MapToGlobalVariableName": "Current Labware",
+                "ParameterType": 0,
+                "Description": null
+              },
+              {
+                "Name": "Request ID",
+                "MapToGlobalVariableName": null,
+                "ParameterType": 0,
+                "Description": null
+              }
+            ],
+            "Name": "Transport",
+            "Description": "Transport",
+            "HelpText": "Transports the specified barcode(s) from one station to another.",
+            "Guid": "bfee98de-9362-49e9-ac5f-e83fa433764b",
+            "IsAsync": false,
+            "AllowAsync": false,
+            "IconUrl": "PackIcon.TransitConnectionVariant [#FFFFFFFF]",
+            "BackgroundColorHex": "#FF666666",
+            "IsDisabled": false,
+            "IsPausePointSet": false
+          }
+        ],
+        "Name": "Sequence",
+        "Description": "Sequence",
+        "HelpText": "A sequence of workflow elements",
+        "Guid": "e264aa7c-c9f9-437f-97ee-faedba2e1bb4",
+        "IsAsync": false,
+        "AllowAsync": false,
+        "IconUrl": null,
+        "BackgroundColorHex": "#00000000",
+        "IsDisabled": false,
+        "IsPausePointSet": false
+      }
+    }
+  ],
+  "Parameters": [
+    {
+      "Name": "Current Labware",
+      "Value": "",
+      "ValueType": "String",
+      "Unit": null,
+      "DefaultValue": "",
+      "ValueOptions": null,
+      "ValidationRules": [],
+      "Tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      },
+      "Identity": null,
+      "Description": null
+    },
+    {
+      "Name": "Input.Barcode",
+      "Value": "",
+      "ValueType": "String",
+      "Unit": null,
+      "DefaultValue": "",
+      "ValueOptions": null,
+      "ValidationRules": [],
+      "Tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      },
+      "Identity": null,
+      "Description": null
+    }
+  ],
+  "Scripts": [],
+  "GlobalScriptReferences": [
+    "Biosero.Workflow.Core.dll",
+    "Biosero.DataModels.dll"
+  ],
+  "Screens": [],
+  "DeviceRequirements": [],
+  "Properties": null,
+  "IconUrl": "PackIcon.DumpTruck [#FFFFFF:0:0]",
+  "Color": "#FFFF00F7",
+  "Name": "IO To CP Quarentine",
+  "Category": "Transport Request",
+  "Description": null,
+  "Version": null,
+  "Signature": null,
+  "LastModified": "0001-01-01T00:00:00+00:00",
+  "ParameterReferenceIndicator": "%"
+}

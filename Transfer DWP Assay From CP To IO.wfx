@@ -1,0 +1,168 @@
+{
+  "procedures": [
+    {
+      "name": "Start",
+      "sequence": {
+        "children": [
+          {
+            "$type": "Biosero.Workflow.Commands.ExecuteOrderCommand, Biosero.Workflow.Core",
+            "timeout": "00:30:00",
+            "inputParameters": [
+              {
+                "name": "Barcode",
+                "value": "%Input.Barcode%",
+                "valueType": "String",
+                "defaultValue": "",
+                "valueOptions": [],
+                "validationRules": [],
+                "tags": [
+                  "Unknown",
+                  "#DarkMagenta"
+                ]
+              },
+              {
+                "name": "Metadata",
+                "value": "Orchestrator Used=True;Source Orchestrator Workflow=DWP Assay;Destination Zone=Returns;Destination Orchestrator Workflow=Cytomat Source",
+                "valueType": "String",
+                "defaultValue": "",
+                "valueOptions": [],
+                "validationRules": [],
+                "tags": [
+                  "Unknown",
+                  "#DarkMagenta"
+                ]
+              }
+            ],
+            "outputParameterMapping": [
+              {
+                "name": "ValidatedLabwareType",
+                "mapToGlobalVariableName": "Current Labware",
+                "parameterType": "String"
+              },
+              {
+                "name": "Module ID",
+                "parameterType": "String"
+              }
+            ],
+            "name": "Script.CheckLabwareTypeForBarcode",
+            "description": "Order: Script.CheckLabwareTypeForBarcode",
+            "guid": "496f1a86-7897-4de8-9efa-f495efb70e89",
+            "isAsync": false,
+            "allowAsync": true,
+            "iconUrl": "PackIcon.Telegram [#FFFFFF:0:0]",
+            "backgroundColorHex": "#0000FF",
+            "isDisabled": false,
+            "isPausePointSet": false
+          },
+          {
+            "$type": "Biosero.Workflow.Commands.TransportCommand, Biosero.Workflow.Core",
+            "inputParameters": [
+              {
+                "name": "Timeout (min)",
+                "value": "10",
+                "valueType": "Double",
+                "defaultValue": "10",
+                "validationRules": []
+              },
+              {
+                "name": "From",
+                "value": "CP",
+                "valueType": "String",
+                "validationRules": []
+              },
+              {
+                "name": "To",
+                "value": "IO",
+                "valueType": "String",
+                "validationRules": []
+              },
+              {
+                "name": "Barcodes",
+                "value": "%Input.Barcode%",
+                "valueType": "String",
+                "validationRules": []
+              },
+              {
+                "name": "Metadata",
+                "value": "Orchestrator Used=True;Source Orchestrator Workflow=DWP Assay;Destination Zone=Returns;Destination Orchestrator Workflow=Cytomat Source;Labware Types=%Current Labware%",
+                "valueType": "String",
+                "validationRules": []
+              }
+            ],
+            "outputParameterMapping": [
+              {
+                "name": "Barcodes",
+                "mapToGlobalVariableName": "Current Labware",
+                "parameterType": "String"
+              },
+              {
+                "name": "Request ID",
+                "parameterType": "String"
+              }
+            ],
+            "name": "Transport",
+            "description": "Transport",
+            "helpText": "Transports the specified barcode(s) from one station to another.",
+            "guid": "bfee98de-9362-49e9-ac5f-e83fa433764b",
+            "isAsync": false,
+            "allowAsync": false,
+            "iconUrl": "PackIcon.TransitConnectionVariant [#FFFFFFFF]",
+            "backgroundColorHex": "#FF666666",
+            "isDisabled": false,
+            "isPausePointSet": false
+          }
+        ],
+        "name": "Sequence",
+        "description": "Sequence",
+        "helpText": "A sequence of workflow elements",
+        "guid": "e264aa7c-c9f9-437f-97ee-faedba2e1bb4",
+        "isAsync": false,
+        "allowAsync": false,
+        "backgroundColorHex": "#00000000",
+        "isDisabled": false,
+        "isPausePointSet": false
+      }
+    }
+  ],
+  "parameters": [
+    {
+      "name": "Current Labware",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "validationRules": [],
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.Barcode",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "validationRules": [],
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    }
+  ],
+  "scripts": [],
+  "globalScriptReferences": [
+    "Biosero.Workflow.Core.dll",
+    "Biosero.DataModels.dll"
+  ],
+  "screens": [],
+  "deviceRequirements": [],
+  "iconUrl": "PackIcon.SailBoat [#FFFFFF:0:0]",
+  "color": "#FF2A00FF",
+  "name": "CP to IO DWP Assay",
+  "category": "Transport Request",
+  "lastModified": "0001-01-01T00:00:00+00:00",
+  "parameterReferenceIndicator": "%"
+}

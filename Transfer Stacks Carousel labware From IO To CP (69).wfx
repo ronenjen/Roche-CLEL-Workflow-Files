@@ -1,0 +1,146 @@
+{
+  "Procedures": [
+    {
+      "Name": "Start",
+      "Sequence": {
+        "Children": [
+          {
+            "$type": "Biosero.Workflow.Commands.TransportCommand, Biosero.Workflow.Core",
+            "InputParameters": [
+              {
+                "Name": "Timeout (min)",
+                "Value": "10",
+                "ValueType": "Double",
+                "Unit": null,
+                "DefaultValue": "10",
+                "ValueOptions": null,
+                "ValidationRules": null,
+                "Tags": null,
+                "Identity": null,
+                "Description": null
+              },
+              {
+                "Name": "From",
+                "Value": "IO",
+                "ValueType": "String",
+                "Unit": null,
+                "DefaultValue": null,
+                "ValueOptions": null,
+                "ValidationRules": null,
+                "Tags": null,
+                "Identity": null,
+                "Description": null
+              },
+              {
+                "Name": "To",
+                "Value": "CP",
+                "ValueType": "String",
+                "Unit": null,
+                "DefaultValue": null,
+                "ValueOptions": null,
+                "ValidationRules": null,
+                "Tags": null,
+                "Identity": null,
+                "Description": null
+              },
+              {
+                "Name": "Barcodes",
+                "Value": "xx",
+                "ValueType": "String",
+                "Unit": null,
+                "DefaultValue": null,
+                "ValueOptions": null,
+                "ValidationRules": null,
+                "Tags": null,
+                "Identity": null,
+                "Description": null
+              },
+              {
+                "Name": "Metadata",
+                "Value": "Source Orchestrator Workflow=Stack Carousel;Labware Types=%Input.LabwareType%;Destination Orchestrator Workflow=Consumables Carousel",
+                "ValueType": "String",
+                "Unit": null,
+                "DefaultValue": null,
+                "ValueOptions": null,
+                "ValidationRules": null,
+                "Tags": null,
+                "Identity": null,
+                "Description": null
+              }
+            ],
+            "OutputParameterMapping": [
+              {
+                "Name": "Barcodes",
+                "MapToGlobalVariableName": null,
+                "ParameterType": 0,
+                "Description": null
+              },
+              {
+                "Name": "Request ID",
+                "MapToGlobalVariableName": null,
+                "ParameterType": 0,
+                "Description": null
+              }
+            ],
+            "Name": "Transport",
+            "Description": "Transport",
+            "HelpText": "Transports the specified barcode(s) from one station to another.",
+            "Guid": "040d2ec3-020b-4b1c-bef3-36dd36892cfd",
+            "IsAsync": false,
+            "AllowAsync": false,
+            "IconUrl": "PackIcon.TransitConnectionVariant [#FFFFFFFF]",
+            "BackgroundColorHex": "#FF666666",
+            "IsDisabled": false,
+            "IsPausePointSet": false
+          }
+        ],
+        "Name": "Sequence",
+        "Description": "Sequence",
+        "HelpText": "A sequence of workflow elements",
+        "Guid": "c33fbf36-7846-49f9-b5c9-e5a2d4707f74",
+        "IsAsync": false,
+        "AllowAsync": false,
+        "IconUrl": null,
+        "BackgroundColorHex": "#00000000",
+        "IsDisabled": false,
+        "IsPausePointSet": false
+      }
+    }
+  ],
+  "Parameters": [
+    {
+      "Name": "Input.LabwareType",
+      "Value": "",
+      "ValueType": "String",
+      "Unit": null,
+      "DefaultValue": "",
+      "ValueOptions": null,
+      "ValidationRules": null,
+      "Tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      },
+      "Identity": null,
+      "Description": null
+    }
+  ],
+  "Scripts": [],
+  "GlobalScriptReferences": [
+    "Biosero.Workflow.Core.dll",
+    "Biosero.DataModels.dll"
+  ],
+  "Screens": [],
+  "DeviceRequirements": [],
+  "Properties": null,
+  "IconUrl": "PackIcon.PaperAirplaneOutline [#FFFFFF:0:0]",
+  "Color": "#0000FF",
+  "Name": "IO To CP Skyline Labware",
+  "Category": "Transport Request",
+  "Description": null,
+  "Version": null,
+  "Signature": null,
+  "LastModified": "0001-01-01T00:00:00+00:00",
+  "ParameterReferenceIndicator": "%"
+}

@@ -1,0 +1,148 @@
+{
+  "procedures": [
+    {
+      "name": "Start",
+      "sequence": {
+        "children": [
+          {
+            "$type": "Biosero.Workflow.Commands.ExecuteOrderCommand, Biosero.Workflow.Core",
+            "timeout": "00:30:00",
+            "inputParameters": [
+              {
+                "name": "Barcode",
+                "value": "%Input.Barcode%",
+                "valueType": "String",
+                "defaultValue": "",
+                "valueOptions": [],
+                "validationRules": [],
+                "tags": [
+                  "Unknown",
+                  "#DarkMagenta"
+                ]
+              }
+            ],
+            "outputParameterMapping": [
+              {
+                "name": "ValidatedLabwareType",
+                "mapToGlobalVariableName": "Labware",
+                "parameterType": "String"
+              },
+              {
+                "name": "Module ID",
+                "parameterType": "String"
+              }
+            ],
+            "name": "Script.EB2CheckLabwareTypeForBarcode",
+            "description": "Order: Script.EB2CheckLabwareTypeForBarcode",
+            "guid": "bb930260-599d-4220-b582-4f93eec99400",
+            "isAsync": false,
+            "allowAsync": true,
+            "iconUrl": "PackIcon.Telegram [#FFFFFF:0:0]",
+            "backgroundColorHex": "#FFFF00A2",
+            "isDisabled": false,
+            "isPausePointSet": false
+          },
+          {
+            "$type": "Biosero.Workflow.Commands.TransportCommand, Biosero.Workflow.Core",
+            "inputParameters": [
+              {
+                "name": "Timeout (min)",
+                "value": "10",
+                "valueType": "Double",
+                "defaultValue": "10"
+              },
+              {
+                "name": "From",
+                "value": "EB2",
+                "valueType": "String"
+              },
+              {
+                "name": "To",
+                "value": "IO",
+                "valueType": "String"
+              },
+              {
+                "name": "Barcodes",
+                "value": "%Input.Barcode%",
+                "valueType": "String"
+              },
+              {
+                "name": "Metadata",
+                "value": "Labware Types=%Labware%",
+                "valueType": "String"
+              }
+            ],
+            "outputParameterMapping": [
+              {
+                "name": "Barcodes",
+                "parameterType": "String"
+              },
+              {
+                "name": "Request ID",
+                "parameterType": "String"
+              }
+            ],
+            "name": "Transport",
+            "description": "Transport",
+            "helpText": "Transports the specified barcode(s) from one station to another.",
+            "guid": "abd11277-3b4e-47d6-b672-7be11a013e63",
+            "isAsync": false,
+            "allowAsync": false,
+            "iconUrl": "PackIcon.TransitConnectionVariant [#FFFFFFFF]",
+            "backgroundColorHex": "#FF666666",
+            "isDisabled": false,
+            "isPausePointSet": false
+          }
+        ],
+        "name": "Sequence",
+        "description": "Sequence",
+        "helpText": "A sequence of workflow elements",
+        "guid": "4df93e2d-a4b5-49e0-a719-b51582baf871",
+        "isAsync": false,
+        "allowAsync": false,
+        "backgroundColorHex": "#00000000",
+        "isDisabled": false,
+        "isPausePointSet": false
+      }
+    }
+  ],
+  "parameters": [
+    {
+      "name": "Input.Barcode",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Labware",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    }
+  ],
+  "scripts": [],
+  "globalScriptReferences": [
+    "Biosero.Workflow.Core.dll",
+    "Biosero.DataModels.dll"
+  ],
+  "screens": [],
+  "deviceRequirements": [],
+  "iconUrl": "PackIcon.SailBoat [#FFFFFF:0:0]",
+  "color": "#0000FF",
+  "name": "Transfer from EB to IO",
+  "category": "Transport Request",
+  "lastModified": "0001-01-01T00:00:00+00:00",
+  "parameterReferenceIndicator": "%"
+}

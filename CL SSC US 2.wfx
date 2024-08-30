@@ -1,0 +1,99 @@
+{
+  "procedures": [
+    {
+      "name": "Start",
+      "sequence": {
+        "children": [
+          {
+            "$type": "Biosero.Workflow.Commands.TransportCommand, Biosero.Workflow.Core",
+            "inputParameters": [
+              {
+                "name": "Timeout (min)",
+                "value": "10",
+                "valueType": "Double",
+                "defaultValue": "10"
+              },
+              {
+                "name": "From",
+                "value": "CP",
+                "valueType": "String"
+              },
+              {
+                "name": "To",
+                "value": "IO",
+                "valueType": "String"
+              },
+              {
+                "name": "Barcodes",
+                "value": "%Input.Sources%",
+                "valueType": "String"
+              },
+              {
+                "name": "Metadata",
+                "value": "Orchestrator Used=True;Current Orchestrator Workflow=Consumable Storage;Destination Zone=Returns;Destination Orchestrator Workflow=Cytomat Source",
+                "valueType": "String"
+              }
+            ],
+            "outputParameterMapping": [
+              {
+                "name": "Barcodes",
+                "parameterType": "String"
+              },
+              {
+                "name": "Request ID",
+                "parameterType": "String"
+              }
+            ],
+            "name": "Transport",
+            "description": "Transport",
+            "helpText": "Transports the specified barcode(s) from one station to another.",
+            "guid": "9eb350e5-f93b-4b64-aa9b-55cf48a6909d",
+            "isAsync": false,
+            "allowAsync": false,
+            "iconUrl": "PackIcon.TransitConnectionVariant [#FFFFFFFF]",
+            "backgroundColorHex": "#FF666666",
+            "isDisabled": false,
+            "isPausePointSet": false
+          }
+        ],
+        "name": "Sequence",
+        "description": "Sequence",
+        "helpText": "A sequence of workflow elements",
+        "guid": "0b08bb96-81f6-4d68-ac19-fc626d480a3f",
+        "isAsync": false,
+        "allowAsync": false,
+        "backgroundColorHex": "#00000000",
+        "isDisabled": false,
+        "isPausePointSet": false
+      }
+    }
+  ],
+  "parameters": [
+    {
+      "name": "Input.Sources",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    }
+  ],
+  "scripts": [],
+  "globalScriptReferences": [
+    "Biosero.Workflow.Core.dll",
+    "Biosero.DataModels.dll"
+  ],
+  "screens": [],
+  "deviceRequirements": [],
+  "iconUrl": "PackIcon.BatteryPositive [#FFFFFF:0:0]",
+  "color": "#FF19FF00",
+  "name": "CL SSC US 2",
+  "category": "Standard Workflows",
+  "description": "CL SSC US 2 (retina 847961)",
+  "lastModified": "0001-01-01T00:00:00+00:00",
+  "parameterReferenceIndicator": "%"
+}

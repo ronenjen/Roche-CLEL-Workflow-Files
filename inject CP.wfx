@@ -1,0 +1,131 @@
+{
+  "procedures": [
+    {
+      "name": "Start",
+      "sequence": {
+        "children": [
+          {
+            "$type": "Biosero.Workflow.Commands.ExecuteOrderCommand, Biosero.Workflow.Core",
+            "timeout": "00:30:00",
+            "inputParameters": [
+              {
+                "name": "SourceDetails",
+                "value": "%input.Barcodes%",
+                "valueType": "String",
+                "defaultValue": "",
+                "valueOptions": [],
+                "validationRules": [],
+                "tags": [
+                  "User",
+                  "#DarkMagenta"
+                ]
+              },
+              {
+                "name": "Priority",
+                "value": "%Input.Priority%",
+                "valueType": "String",
+                "defaultValue": "",
+                "valueOptions": [],
+                "validationRules": [],
+                "tags": [
+                  "User",
+                  "#DarkMagenta"
+                ]
+              },
+              {
+                "name": "Job Number",
+                "value": "%Input.Job%",
+                "valueType": "Double",
+                "defaultValue": "0",
+                "valueOptions": {
+                  "$type": "System.String[], System.Private.CoreLib",
+                  "$values": []
+                },
+                "validationRules": [],
+                "tags": [
+                  "User",
+                  "#DarkMagenta"
+                ]
+              }
+            ],
+            "outputParameterMapping": [
+              {
+                "name": "Module ID",
+                "parameterType": "String"
+              }
+            ],
+            "name": "Inject Process",
+            "description": "Order: Inject Process",
+            "guid": "ae686464-d6fe-4f4d-bc6e-4f906f8681d4",
+            "isAsync": false,
+            "allowAsync": true,
+            "iconUrl": "PackIcon.Needle [#FFFFFF:0:0]",
+            "backgroundColorHex": "#FFD000FF",
+            "isDisabled": false,
+            "isPausePointSet": false
+          }
+        ],
+        "name": "Sequence",
+        "description": "Sequence",
+        "helpText": "A sequence of workflow elements",
+        "guid": "e05fba7c-590d-4024-892e-9da439e410e7",
+        "isAsync": false,
+        "allowAsync": false,
+        "backgroundColorHex": "#00000000",
+        "isDisabled": false,
+        "isPausePointSet": false
+      }
+    }
+  ],
+  "parameters": [
+    {
+      "name": "Input.Priority",
+      "value": "Medium",
+      "valueType": "String",
+      "defaultValue": "Medium",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.Job",
+      "value": "4",
+      "valueType": "Integer",
+      "defaultValue": "4",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "input.Barcodes",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "SIM BC1",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    }
+  ],
+  "scripts": [],
+  "globalScriptReferences": [
+    "Biosero.Workflow.Core.dll",
+    "Biosero.DataModels.dll"
+  ],
+  "screens": [],
+  "deviceRequirements": [],
+  "iconUrl": "PackIcon.VectorPolylineEdit [#FFFFFF:0:0]",
+  "color": "#FF00FFE8",
+  "name": "CP Inject Process",
+  "category": "Workflows",
+  "lastModified": "0001-01-01T00:00:00+00:00",
+  "parameterReferenceIndicator": "%"
+}

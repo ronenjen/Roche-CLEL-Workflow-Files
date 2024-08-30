@@ -1,0 +1,235 @@
+{
+  "Parameters": [
+    {
+      "Name": "Input.BCRToTransport",
+      "Value": "SIM EB1,SIM EB2,SIM EB3,SIM EB4,SIM EB5,SIM EB6,SIM EB7,SIM EB8,SIM EB9,SIM EB10",
+      "ValueType": "String",
+      "Unit": null,
+      "DefaultValue": "SIM EB1,SIM EB2,SIM EB3,SIM EB4,SIM EB5,SIM EB6,SIM EB7,SIM EB8,SIM EB9,SIM EB10",
+      "ValueOptions": null,
+      "ValidationRules": null,
+      "Tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      },
+      "Identity": null,
+      "Description": null
+    }
+  ],
+  "Procedures": [
+    {
+      "Name": "Start",
+      "Sequence": {
+        "Children": [
+          {
+            "$type": "Biosero.Workflow.Commands.TransportCommand, Biosero.Workflow.Core",
+            "HelpText": "Transports the specified barcode(s) from one station to another.",
+            "BackgroundColorHex": "#FF666666",
+            "IconUrl": "PackIcon.TransitConnectionVariant [#FFFFFFFF]",
+            "Name": "Transport",
+            "InputParameters": [
+              {
+                "Name": "Timeout (min)",
+                "Value": "10",
+                "ValueType": "Double",
+                "Unit": null,
+                "DefaultValue": "10",
+                "ValueOptions": null,
+                "ValidationRules": null,
+                "Tags": null,
+                "Identity": null,
+                "Description": null
+              },
+              {
+                "Name": "From",
+                "Value": "IO",
+                "ValueType": "String",
+                "Unit": null,
+                "DefaultValue": null,
+                "ValueOptions": null,
+                "ValidationRules": null,
+                "Tags": null,
+                "Identity": null,
+                "Description": null
+              },
+              {
+                "Name": "To",
+                "Value": "EB2",
+                "ValueType": "String",
+                "Unit": null,
+                "DefaultValue": null,
+                "ValueOptions": null,
+                "ValidationRules": null,
+                "Tags": null,
+                "Identity": null,
+                "Description": null
+              },
+              {
+                "Name": "Barcodes",
+                "Value": "%Input.BCRToTransport%",
+                "ValueType": "String",
+                "Unit": null,
+                "DefaultValue": null,
+                "ValueOptions": null,
+                "ValidationRules": null,
+                "Tags": null,
+                "Identity": null,
+                "Description": null
+              },
+              {
+                "Name": "Metadata",
+                "Value": "Source Orchestrator Workflow=Cytomat Source;Zone=Zone 1;Destination Orchestrator Workflow=Cytomat Source",
+                "ValueType": "String",
+                "Unit": null,
+                "DefaultValue": null,
+                "ValueOptions": null,
+                "ValidationRules": null,
+                "Tags": null,
+                "Identity": null,
+                "Description": null
+              }
+            ],
+            "OutputParameterMapping": [
+              {
+                "Name": "Barcodes",
+                "MapToGlobalVariableName": null,
+                "ParameterType": 0,
+                "Description": null
+              },
+              {
+                "Name": "Request ID",
+                "MapToGlobalVariableName": null,
+                "ParameterType": 0,
+                "Description": null
+              }
+            ],
+            "Description": "Transport",
+            "Guid": "0473c257-33d5-42dd-9aac-dd5c0c00b7da",
+            "IsAsync": false,
+            "AllowAsync": false,
+            "IsDisabled": false,
+            "IsPausePointSet": false
+          },
+          {
+            "$type": "Biosero.Workflow.Commands.TransportCommand, Biosero.Workflow.Core",
+            "HelpText": "Transports the specified barcode(s) from one station to another.",
+            "BackgroundColorHex": "#FF666666",
+            "IconUrl": "PackIcon.TransitConnectionVariant [#FFFFFFFF]",
+            "Name": "Transport",
+            "InputParameters": [
+              {
+                "Name": "Timeout (min)",
+                "Value": "10",
+                "ValueType": "Double",
+                "Unit": null,
+                "DefaultValue": "10",
+                "ValueOptions": null,
+                "ValidationRules": [],
+                "Tags": null,
+                "Identity": null,
+                "Description": null
+              },
+              {
+                "Name": "From",
+                "Value": "EB2",
+                "ValueType": "String",
+                "Unit": null,
+                "DefaultValue": null,
+                "ValueOptions": null,
+                "ValidationRules": [],
+                "Tags": null,
+                "Identity": null,
+                "Description": null
+              },
+              {
+                "Name": "To",
+                "Value": "IO",
+                "ValueType": "String",
+                "Unit": null,
+                "DefaultValue": null,
+                "ValueOptions": null,
+                "ValidationRules": [],
+                "Tags": null,
+                "Identity": null,
+                "Description": null
+              },
+              {
+                "Name": "Barcodes",
+                "Value": "%Input.BCRToTransport%",
+                "ValueType": "String",
+                "Unit": null,
+                "DefaultValue": null,
+                "ValueOptions": null,
+                "ValidationRules": [],
+                "Tags": null,
+                "Identity": null,
+                "Description": null
+              },
+              {
+                "Name": "Metadata",
+                "Value": "Source Orchestrator Workflow=Cytomat Source;Zone=Zone 1;Destination Orchestrator Workflow=Cytomat Source",
+                "ValueType": "String",
+                "Unit": null,
+                "DefaultValue": null,
+                "ValueOptions": null,
+                "ValidationRules": [],
+                "Tags": null,
+                "Identity": null,
+                "Description": null
+              }
+            ],
+            "OutputParameterMapping": [
+              {
+                "Name": "Barcodes",
+                "MapToGlobalVariableName": null,
+                "ParameterType": 0,
+                "Description": null
+              },
+              {
+                "Name": "Request ID",
+                "MapToGlobalVariableName": null,
+                "ParameterType": 0,
+                "Description": null
+              }
+            ],
+            "Description": "Transport",
+            "Guid": "1118dae2-3ebf-421b-ba0c-efac3bff2227",
+            "IsAsync": false,
+            "AllowAsync": false,
+            "IsDisabled": false,
+            "IsPausePointSet": false
+          }
+        ],
+        "Name": "Sequence",
+        "Description": "Sequence",
+        "HelpText": "A sequence of workflow elements",
+        "Guid": "b9406c5e-2fc5-402c-b433-204f0caeb751",
+        "IsAsync": false,
+        "AllowAsync": false,
+        "IconUrl": null,
+        "BackgroundColorHex": "#00000000",
+        "IsDisabled": false,
+        "IsPausePointSet": false
+      }
+    }
+  ],
+  "Scripts": [],
+  "Screens": [],
+  "GlobalScriptReferences": [
+    "Biosero.Workflow.Core.dll",
+    "Biosero.DataModels.dll"
+  ],
+  "DeviceRequirements": [],
+  "Properties": null,
+  "IconUrl": "PackIcon.Telegram [#FFFFFF:0:0]",
+  "Color": "#FF00FF90",
+  "Name": "TEST_TransportFromCytomatToEB2",
+  "Category": "TEST",
+  "Description": null,
+  "Version": null,
+  "Signature": null,
+  "LastModified": "0001-01-01T00:00:00+00:00",
+  "ParameterReferenceIndicator": "%"
+}

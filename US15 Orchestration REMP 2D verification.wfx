@@ -1,0 +1,150 @@
+{
+  "procedures": [
+    {
+      "name": "Start",
+      "sequence": {
+        "children": [
+          {
+            "$type": "Biosero.Workflow.Commands.ExecuteOrderCommand, Biosero.Workflow.Core",
+            "timeout": "00:30:00",
+            "inputParameters": [
+              {
+                "name": "REMPThawTime",
+                "value": "%Input.ThawTime%",
+                "valueType": "Double",
+                "defaultValue": "0",
+                "valueOptions": {
+                  "$type": "System.String[], System.Private.CoreLib",
+                  "$values": []
+                },
+                "validationRules": [],
+                "tags": [
+                  "User",
+                  "#DarkMagenta"
+                ]
+              },
+              {
+                "name": "LabwareTypes",
+                "value": "",
+                "valueType": "String",
+                "defaultValue": "",
+                "valueOptions": [],
+                "validationRules": [],
+                "tags": [
+                  "User",
+                  "#DarkMagenta"
+                ]
+              },
+              {
+                "name": "SourceDetails",
+                "value": "%Input.SourcesDetails%",
+                "valueType": "String",
+                "defaultValue": "",
+                "valueOptions": [],
+                "validationRules": [],
+                "tags": [
+                  "User",
+                  "#DarkMagenta"
+                ]
+              },
+              {
+                "name": "Metadata",
+                "value": "Current Orchestrator Workflow=REMP 2D Verification;Orchestrator Used=True",
+                "valueType": "String",
+                "defaultValue": "",
+                "valueOptions": [],
+                "validationRules": [],
+                "tags": [
+                  "Unknown",
+                  "#DarkMagenta"
+                ]
+              },
+              {
+                "name": "NARP Plates",
+                "value": "0",
+                "valueType": "Double",
+                "defaultValue": "0",
+                "valueOptions": {
+                  "$type": "System.String[], System.Private.CoreLib",
+                  "$values": []
+                },
+                "validationRules": [],
+                "tags": [
+                  "User",
+                  "#DarkMagenta"
+                ]
+              }
+            ],
+            "outputParameterMapping": [
+              {
+                "name": "PreppedSourceDetails",
+                "parameterType": "String"
+              },
+              {
+                "name": "Module ID",
+                "parameterType": "String"
+              }
+            ],
+            "name": "REMP Preparation",
+            "description": "Order: REMP Preparation",
+            "guid": "c32e4ad7-1993-44a3-bdee-f28d3e6386ed",
+            "isAsync": false,
+            "allowAsync": true,
+            "iconUrl": "PackIcon.MagnifyClose [#FFFFFF:0:0]",
+            "backgroundColorHex": "#0000FF",
+            "isDisabled": false,
+            "isPausePointSet": false
+          }
+        ],
+        "name": "Sequence",
+        "description": "Sequence",
+        "helpText": "A sequence of workflow elements",
+        "guid": "b1fd2685-5993-4cf5-abfc-690769066cb1",
+        "isAsync": false,
+        "allowAsync": false,
+        "backgroundColorHex": "#00000000",
+        "isDisabled": false,
+        "isPausePointSet": false
+      }
+    }
+  ],
+  "parameters": [
+    {
+      "name": "Input.ThawTime",
+      "value": "0",
+      "valueType": "Integer",
+      "defaultValue": "0",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.SourcesDetails",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    }
+  ],
+  "scripts": [],
+  "globalScriptReferences": [
+    "Biosero.Workflow.Core.dll",
+    "Biosero.DataModels.dll"
+  ],
+  "screens": [],
+  "deviceRequirements": [],
+  "iconUrl": "PackIcon.MagnifyScan [#FFFFFF:0:0]",
+  "color": "#0000FF",
+  "name": "US15 Orchestration REMP 2D verification",
+  "category": "Workflows",
+  "lastModified": "0001-01-01T00:00:00+00:00",
+  "parameterReferenceIndicator": "%"
+}

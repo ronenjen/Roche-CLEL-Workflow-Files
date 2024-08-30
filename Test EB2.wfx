@@ -1,0 +1,203 @@
+{
+  "procedures": [
+    {
+      "name": "Start",
+      "sequence": {
+        "children": [
+          {
+            "$type": "Biosero.Workflow.Commands.ExecuteOrderCommand, Biosero.Workflow.Core",
+            "timeout": "00:30:00",
+            "inputParameters": [
+              {
+                "name": "Barcode",
+                "value": "%Input.BarcodeList%",
+                "valueType": "String",
+                "defaultValue": "",
+                "valueOptions": [],
+                "validationRules": [],
+                "tags": [
+                  "Unknown",
+                  "#DarkMagenta"
+                ]
+              },
+              {
+                "name": "LabwareOneName",
+                "value": "",
+                "valueType": "String",
+                "defaultValue": "",
+                "valueOptions": [],
+                "validationRules": [],
+                "tags": [
+                  "User",
+                  "#DarkMagenta"
+                ]
+              },
+              {
+                "name": "LabwareThreeName",
+                "value": "",
+                "valueType": "String",
+                "defaultValue": "",
+                "valueOptions": [],
+                "validationRules": [],
+                "tags": [
+                  "User",
+                  "#DarkMagenta"
+                ]
+              },
+              {
+                "name": "LabwareThreeTotal",
+                "value": "0",
+                "valueType": "Double",
+                "defaultValue": "0",
+                "valueOptions": {
+                  "$type": "System.String[], System.Private.CoreLib",
+                  "$values": []
+                },
+                "validationRules": [],
+                "tags": [
+                  "User",
+                  "#DarkMagenta"
+                ]
+              },
+              {
+                "name": "LabwareOneTotal",
+                "value": "",
+                "valueType": "String",
+                "defaultValue": "",
+                "valueOptions": [],
+                "validationRules": [],
+                "tags": [
+                  "User",
+                  "#DarkMagenta"
+                ]
+              },
+              {
+                "name": "LabwareTwoName",
+                "value": "",
+                "valueType": "String",
+                "defaultValue": "",
+                "valueOptions": [],
+                "validationRules": [],
+                "tags": [
+                  "User",
+                  "#DarkMagenta"
+                ]
+              },
+              {
+                "name": "Labware One Volume",
+                "value": "0",
+                "valueType": "Double",
+                "defaultValue": "0",
+                "valueOptions": {
+                  "$type": "System.String[], System.Private.CoreLib",
+                  "$values": []
+                },
+                "validationRules": [],
+                "tags": [
+                  "User",
+                  "#DarkMagenta"
+                ]
+              },
+              {
+                "name": "Labware Three Volume",
+                "value": "0",
+                "valueType": "Double",
+                "defaultValue": "0",
+                "valueOptions": {
+                  "$type": "System.String[], System.Private.CoreLib",
+                  "$values": []
+                },
+                "validationRules": [],
+                "tags": [
+                  "User",
+                  "#DarkMagenta"
+                ]
+              },
+              {
+                "name": "Job No",
+                "value": "0",
+                "valueType": "Double",
+                "defaultValue": "0",
+                "valueOptions": {
+                  "$type": "System.String[], System.Private.CoreLib",
+                  "$values": []
+                },
+                "validationRules": [],
+                "tags": [
+                  "User",
+                  "#DarkMagenta"
+                ]
+              },
+              {
+                "name": "Mosaic Job No",
+                "value": "0",
+                "valueType": "Double",
+                "defaultValue": "0",
+                "valueOptions": {
+                  "$type": "System.String[], System.Private.CoreLib",
+                  "$values": []
+                },
+                "validationRules": [],
+                "tags": [
+                  "User",
+                  "#DarkMagenta"
+                ]
+              }
+            ],
+            "outputParameterMapping": [
+              {
+                "name": "Module ID",
+                "parameterType": "String"
+              }
+            ],
+            "name": "Placeholder Process",
+            "description": "Order: Placeholder Process",
+            "guid": "c73c382e-8dc0-448c-b6cf-b8dd8d7b3ab2",
+            "isAsync": false,
+            "allowAsync": true,
+            "iconUrl": "PackIcon.LocalGroceryStore [#FFFFFF:0:0]",
+            "backgroundColorHex": "#FFFF0000",
+            "isDisabled": false,
+            "isPausePointSet": false
+          }
+        ],
+        "name": "Sequence",
+        "description": "Sequence",
+        "helpText": "A sequence of workflow elements",
+        "guid": "0306400b-657b-41a8-aa95-770ead342988",
+        "isAsync": false,
+        "allowAsync": false,
+        "backgroundColorHex": "#00000000",
+        "isDisabled": false,
+        "isPausePointSet": false
+      }
+    }
+  ],
+  "parameters": [
+    {
+      "name": "Input.BarcodeList",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    }
+  ],
+  "scripts": [],
+  "globalScriptReferences": [
+    "Biosero.Workflow.Core.dll",
+    "Biosero.DataModels.dll"
+  ],
+  "screens": [],
+  "deviceRequirements": [],
+  "iconUrl": "PackIcon.AccountCash [#FFFFFF:0:0]",
+  "color": "#0000FF",
+  "name": "Test EB2",
+  "category": "Workflows",
+  "lastModified": "0001-01-01T00:00:00+00:00",
+  "parameterReferenceIndicator": "%"
+}

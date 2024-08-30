@@ -1,0 +1,242 @@
+{
+  "procedures": [
+    {
+      "name": "Start",
+      "sequence": {
+        "children": [
+          {
+            "$type": "Biosero.Workflow.Commands.ExecuteOrderCommand, Biosero.Workflow.Core",
+            "timeout": "00:30:00",
+            "inputParameters": [
+              {
+                "name": "PreDilReq",
+                "value": "%Input.SkipPreDilution%",
+                "valueType": "Boolean",
+                "defaultValue": "False",
+                "valueOptions": {
+                  "$type": "System.String[], System.Private.CoreLib",
+                  "$values": []
+                },
+                "validationRules": [],
+                "tags": [
+                  "User",
+                  "#DarkMagenta"
+                ]
+              },
+              {
+                "name": "Current Assay Plate",
+                "value": "%Input.Assay Plates%",
+                "valueType": "String",
+                "defaultValue": "",
+                "valueOptions": [],
+                "validationRules": [],
+                "tags": [
+                  "User",
+                  "#DarkMagenta"
+                ]
+              }
+            ],
+            "outputParameterMapping": [
+              {
+                "name": "Module ID",
+                "parameterType": "String"
+              }
+            ],
+            "name": "Assay Plate Prep (Orchestrator)",
+            "description": "Order: Assay Plate Prep (Orchestrator)",
+            "guid": "874b8127-7d14-44b8-a4a2-cad1d74c8c7e",
+            "isAsync": false,
+            "allowAsync": true,
+            "iconUrl": "PackIcon.WomanChild [#FFFFFF:0:0]",
+            "backgroundColorHex": "#0000FF",
+            "isDisabled": false,
+            "isPausePointSet": false
+          },
+          {
+            "$type": "Biosero.Workflow.Commands.ExecuteOrderCommand, Biosero.Workflow.Core",
+            "timeout": "00:30:00",
+            "inputParameters": [
+              {
+                "name": "Barcode",
+                "value": "%Input.Barcodes%",
+                "valueType": "String",
+                "defaultValue": "",
+                "valueOptions": [],
+                "validationRules": [],
+                "tags": [
+                  "Unknown",
+                  "#DarkMagenta"
+                ]
+              },
+              {
+                "name": "Current Cap Holder",
+                "value": "%Input.Cap Holders%",
+                "valueType": "String",
+                "defaultValue": "",
+                "valueOptions": [],
+                "validationRules": [],
+                "tags": [
+                  "User",
+                  "#DarkMagenta"
+                ]
+              },
+              {
+                "name": "Current Assay Plate",
+                "value": "%Input.Assay Plates%",
+                "valueType": "String",
+                "defaultValue": "",
+                "valueOptions": [],
+                "validationRules": [],
+                "tags": [
+                  "User",
+                  "#DarkMagenta"
+                ]
+              },
+              {
+                "name": "Mosaic Job Number",
+                "value": "%Input.Job%",
+                "valueType": "Double",
+                "defaultValue": "0",
+                "valueOptions": {
+                  "$type": "System.String[], System.Private.CoreLib",
+                  "$values": []
+                },
+                "validationRules": [],
+                "tags": [
+                  "User",
+                  "#DarkMagenta"
+                ]
+              },
+              {
+                "name": "Mosaic Number",
+                "value": "%Input.Mosaic Job%",
+                "valueType": "Double",
+                "defaultValue": "0",
+                "valueOptions": {
+                  "$type": "System.String[], System.Private.CoreLib",
+                  "$values": []
+                },
+                "validationRules": [],
+                "tags": [
+                  "User",
+                  "#DarkMagenta"
+                ]
+              }
+            ],
+            "outputParameterMapping": [
+              {
+                "name": "Module ID",
+                "parameterType": "String"
+              }
+            ],
+            "name": "Cherry Picking (Orchestrator)",
+            "description": "Order: Cherry Picking (Orchestrator)",
+            "guid": "de4788b4-fb69-4430-a7d9-0ef9196fb55d",
+            "isAsync": false,
+            "allowAsync": true,
+            "iconUrl": "PackIcon.AppleKeyboardShift [#FFFFFF:0:0]",
+            "backgroundColorHex": "#0000FF",
+            "isDisabled": false,
+            "isPausePointSet": false
+          }
+        ],
+        "name": "Sequence",
+        "description": "Sequence",
+        "helpText": "A sequence of workflow elements",
+        "guid": "4f53e438-32cf-41f2-bc50-2875a20ab628",
+        "isAsync": false,
+        "allowAsync": false,
+        "backgroundColorHex": "#00000000",
+        "isDisabled": false,
+        "isPausePointSet": false
+      }
+    }
+  ],
+  "parameters": [
+    {
+      "name": "Input.Barcodes",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.Cap Holders",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.Assay Plates",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.SkipPreDilution",
+      "value": "False",
+      "valueType": "Boolean",
+      "defaultValue": "False",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.Job",
+      "value": "0",
+      "valueType": "Integer",
+      "defaultValue": "0",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.Mosaic Job",
+      "value": "0",
+      "valueType": "Integer",
+      "defaultValue": "0",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    }
+  ],
+  "scripts": [],
+  "globalScriptReferences": [
+    "Biosero.Workflow.Core.dll",
+    "Biosero.DataModels.dll"
+  ],
+  "screens": [],
+  "deviceRequirements": [],
+  "iconUrl": "PackIcon.FruitGrapes [#FFFFFF:0:0]",
+  "color": "#FF00FFB1",
+  "name": "mAIN CP  Assay Process",
+  "category": "Workflows",
+  "lastModified": "0001-01-01T00:00:00+00:00",
+  "parameterReferenceIndicator": "%"
+}

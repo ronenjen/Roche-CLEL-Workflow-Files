@@ -1,0 +1,239 @@
+{
+  "procedures": [
+    {
+      "name": "Start",
+      "sequence": {
+        "children": [
+          {
+            "$type": "Biosero.Workflow.Commands.ExecuteOrderCommand, Biosero.Workflow.Core",
+            "timeout": "00:30:00",
+            "inputParameters": [
+              {
+                "name": "REMPThawTime",
+                "value": "%Input.ThawTime%",
+                "valueType": "Double",
+                "defaultValue": "0",
+                "valueOptions": {
+                  "$type": "System.String[], System.Private.CoreLib",
+                  "$values": []
+                },
+                "validationRules": [],
+                "tags": [
+                  "User",
+                  "#DarkMagenta"
+                ]
+              },
+              {
+                "name": "SourceDetails",
+                "value": "%Input.SourcesDetails%",
+                "valueType": "String",
+                "defaultValue": "",
+                "valueOptions": [],
+                "validationRules": [],
+                "tags": [
+                  "User",
+                  "#DarkMagenta"
+                ]
+              },
+              {
+                "name": "Metadata",
+                "value": "Current Orchestrator Workflow=Cytomat Source;Zone=Zone 1;Orchestrator Used=True",
+                "valueType": "String",
+                "defaultValue": "",
+                "valueOptions": [],
+                "validationRules": [],
+                "tags": [
+                  "Unknown",
+                  "#DarkMagenta"
+                ]
+              },
+              {
+                "name": "NARP Plates",
+                "value": "0",
+                "valueType": "Double",
+                "defaultValue": "0",
+                "valueOptions": {
+                  "$type": "System.String[], System.Private.CoreLib",
+                  "$values": []
+                },
+                "validationRules": [],
+                "tags": [
+                  "User",
+                  "#DarkMagenta"
+                ]
+              }
+            ],
+            "outputParameterMapping": [
+              {
+                "name": "PreppedSourceDetails",
+                "mapToGlobalVariableName": "OutputRempRacks",
+                "parameterType": "String"
+              },
+              {
+                "name": "Module ID",
+                "parameterType": "String"
+              }
+            ],
+            "name": "REMP Preparation",
+            "description": "Order: REMP Preparation",
+            "guid": "587b804c-a2c7-4b1c-ab7c-f95aa3e18aa9",
+            "isAsync": false,
+            "allowAsync": true,
+            "iconUrl": "PackIcon.MagnifyPlus [#FFFFFF:0:0]",
+            "backgroundColorHex": "#0000FF",
+            "isDisabled": false,
+            "isPausePointSet": false
+          },
+          {
+            "$type": "Biosero.Workflow.Commands.TransportCommand, Biosero.Workflow.Core",
+            "inputParameters": [
+              {
+                "name": "Timeout (min)",
+                "value": "10",
+                "valueType": "Double",
+                "defaultValue": "10"
+              },
+              {
+                "name": "From",
+                "value": "IO",
+                "valueType": "String"
+              },
+              {
+                "name": "To",
+                "value": "CP",
+                "valueType": "String"
+              },
+              {
+                "name": "Barcodes",
+                "value": "%OutputRempRacks%",
+                "valueType": "String"
+              },
+              {
+                "name": "Metadata",
+                "value": "Current Orchestrator Workflow=Consumables Carousel;Zone=REMP Racks;Orchestrator Used=True",
+                "valueType": "String"
+              }
+            ],
+            "outputParameterMapping": [
+              {
+                "name": "Barcodes",
+                "mapToGlobalVariableName": "OutputRempRacks",
+                "parameterType": "String"
+              },
+              {
+                "name": "Request ID",
+                "parameterType": "String"
+              }
+            ],
+            "name": "Transport",
+            "description": "Transport",
+            "helpText": "Transports the specified barcode(s) from one station to another.",
+            "guid": "3b2d661a-89a7-494f-88af-81b343b24b9f",
+            "isAsync": false,
+            "allowAsync": false,
+            "iconUrl": "PackIcon.TransitConnectionVariant [#FFFFFFFF]",
+            "backgroundColorHex": "#FF666666",
+            "isDisabled": false,
+            "isPausePointSet": false
+          }
+        ],
+        "name": "Sequence",
+        "description": "Sequence",
+        "helpText": "A sequence of workflow elements",
+        "guid": "3ade86e5-76a3-4ea3-8d97-32dbdae60d05",
+        "isAsync": false,
+        "allowAsync": false,
+        "backgroundColorHex": "#00000000",
+        "isDisabled": false,
+        "isPausePointSet": false
+      }
+    }
+  ],
+  "parameters": [
+    {
+      "name": "Input.SourcesDetails",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "OutputRempRacks",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.ThawTime",
+      "value": "0",
+      "valueType": "Integer",
+      "defaultValue": "0",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "TotalRempSources",
+      "value": "0",
+      "valueType": "Integer",
+      "defaultValue": "0",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "RackAvailableForTransport",
+      "value": "False",
+      "valueType": "Boolean",
+      "defaultValue": "False",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    }
+  ],
+  "scripts": [
+    {
+      "name": "CountREMPSourcesToProcess",
+      "code": "reference c:\\Program Files (x86)\\Green Button Go\\Newtonsoft.Json.dll\r\nreference c:\\Program Files (x86)\\Green Button Go\\BioSero.GreenButtonGo.Scripting.dll\r\nreference c:\\Program Files (x86)\\Green Button Go\\BioSero.Utilities.dll\r\nusing System;\r\nusing System.IO;\r\nusing System.Collections.Generic;\r\nusing System.Text;\r\nusing System.Linq;\r\nusing Biosero.Workflow;\r\nusing System.Data;\r\n\r\nnamespace Biosero.Scripting\r\n{\r\n    public class CountREMPSourcesToProcess : WorkflowScript\r\n    {\r\n        public CountREMPSourcesToProcess(WorkflowEnvironment environment) : base(environment) {}\r\n\r\n        public void Run(Dictionary<string, object> parameters)\r\n        {\r\n           string CurrentSourcesList = (string)parameters[\"Input.SourcesDetails\"]; \r\n           List<string> REMPSources = CurrentSourcesList.Split(',').ToList();\r\n            int REMPSourcesToProcess = REMPSources.Count;\r\n\t    parameters[\"TotalRempSources\"] = REMPSourcesToProcess;\r\n\r\n\t\t                     \r\n        System.IO.File.AppendAllLines(@\"C:\\Users\\LabTech\\Documents\\Sandbox.txt\", new string []{ REMPSourcesToProcess.ToString()});\r\n        }\r\n    }\r\n}",
+      "language": "C#"
+    },
+    {
+      "name": "CheckForAvailableOutputRacks",
+      "code": "reference c:\\Program Files (x86)\\Green Button Go\\Newtonsoft.Json.dll\r\nreference c:\\Program Files (x86)\\Green Button Go\\BioSero.GreenButtonGo.Scripting.dll\r\nreference c:\\Program Files (x86)\\Green Button Go\\BioSero.Utilities.dll\r\nusing System;\r\nusing System.IO;\r\nusing System.Collections.Generic;\r\nusing System.Text;\r\nusing System.Linq;\r\nusing Biosero.Workflow;\r\nusing System.Data;\r\n\r\nnamespace Biosero.Scripting\r\n{\r\n    public class CheckForAvailableOutputRacks : WorkflowScript\r\n    {\r\n        public CheckForAvailableOutputRacks(WorkflowEnvironment environment) : base(environment) {}\r\n\r\n        public void Run(Dictionary<string, object> parameters)\r\n        {\r\n           string OutputRempRacks = (string)parameters[\"OutputRempRacks\"]; \r\n           bool RackAvailableForTransport = false;\r\n           \r\n           if (OutputRempRacks != \"\")\r\n             {\r\n             RackAvailableForTransport = true;\r\n             }\r\n             \r\n\t    parameters[\"RackAvailableForTransport\"] = RackAvailableForTransport;\r\n             \r\n             \r\n        }\r\n    }\r\n}",
+      "language": "C#"
+    }
+  ],
+  "globalScriptReferences": [
+    "Biosero.Workflow.Core.dll",
+    "Biosero.DataModels.dll"
+  ],
+  "screens": [],
+  "deviceRequirements": [],
+  "iconUrl": "PackIcon.BatteryMinus [#FFFFFF:0:0]",
+  "color": "#FF00B1FF",
+  "name": "CL SSC US 1",
+  "category": "Standard Workflows",
+  "description": "CL SSC US 1 (retina 847960)",
+  "lastModified": "0001-01-01T00:00:00+00:00",
+  "parameterReferenceIndicator": "%"
+}

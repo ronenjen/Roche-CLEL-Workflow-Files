@@ -1,0 +1,436 @@
+{
+  "Procedures": [
+    {
+      "Name": "Start",
+      "Sequence": {
+        "Children": [
+          {
+            "$type": "Biosero.Workflow.SetParameter, Biosero.Workflow.Core",
+            "HelpText": "Sets a parameter",
+            "BackgroundColorHex": "#FFA8E281",
+            "IconUrl": "PackIcon.Equal [#FFFFFFFF]",
+            "Name": "Set Parameter",
+            "IsAsync": false,
+            "AllowAsync": false,
+            "IsDisabled": false,
+            "Description": "DestBarcodes = ",
+            "IsPausePointSet": false,
+            "ParameterName": "DestBarcodes",
+            "LeftOperand": "",
+            "IsUnaryOperation": true,
+            "Operator": 0,
+            "RightOperand": "",
+            "Guid": "c3ed5fce-fb55-494f-84bd-e5ce068c44ed"
+          },
+          {
+            "$type": "Biosero.Workflow.Commands.TransportCommand, Biosero.Workflow.Core",
+            "InputParameters": [
+              {
+                "Name": "Timeout (min)",
+                "Value": "10",
+                "ValueType": "Double",
+                "Unit": null,
+                "DefaultValue": "10",
+                "ValueOptions": null,
+                "ValidationRules": [],
+                "Tags": null,
+                "Identity": null,
+                "Description": null
+              },
+              {
+                "Name": "From",
+                "Value": "CP",
+                "ValueType": "String",
+                "Unit": null,
+                "DefaultValue": null,
+                "ValueOptions": null,
+                "ValidationRules": [],
+                "Tags": null,
+                "Identity": null,
+                "Description": null
+              },
+              {
+                "Name": "To",
+                "Value": "EB2",
+                "ValueType": "String",
+                "Unit": null,
+                "DefaultValue": null,
+                "ValueOptions": null,
+                "ValidationRules": [],
+                "Tags": null,
+                "Identity": null,
+                "Description": null
+              },
+              {
+                "Name": "Barcodes",
+                "Value": "%Input.Barcode%",
+                "ValueType": "String",
+                "Unit": null,
+                "DefaultValue": null,
+                "ValueOptions": null,
+                "ValidationRules": [],
+                "Tags": null,
+                "Identity": null,
+                "Description": null
+              },
+              {
+                "Name": "Metadata",
+                "Value": "Orchestrator Used=True;Source Orchestrator Workflow=REMP Source;Destination Zone=Returns;Destination Orchestrator Workflow=Cytomat Source",
+                "ValueType": "String",
+                "Unit": null,
+                "DefaultValue": null,
+                "ValueOptions": null,
+                "ValidationRules": [],
+                "Tags": null,
+                "Identity": null,
+                "Description": null
+              }
+            ],
+            "OutputParameterMapping": [
+              {
+                "Name": "Barcodes",
+                "MapToGlobalVariableName": null,
+                "ParameterType": 0,
+                "Description": null
+              },
+              {
+                "Name": "Request ID",
+                "MapToGlobalVariableName": null,
+                "ParameterType": 0,
+                "Description": null
+              }
+            ],
+            "Name": "Transport",
+            "Description": "Transport",
+            "HelpText": "Transports the specified barcode(s) from one station to another.",
+            "Guid": "9f92b210-fa73-4309-b611-5685ffce3077",
+            "IsAsync": false,
+            "AllowAsync": false,
+            "IconUrl": "PackIcon.TransitConnectionVariant [#FFFFFFFF]",
+            "BackgroundColorHex": "#FF666666",
+            "IsDisabled": false,
+            "IsPausePointSet": false
+          },
+          {
+            "$type": "Biosero.Workflow.Commands.TransportCommand, Biosero.Workflow.Core",
+            "InputParameters": [
+              {
+                "Name": "Timeout (min)",
+                "Value": "10",
+                "ValueType": "Double",
+                "Unit": null,
+                "DefaultValue": "10",
+                "ValueOptions": null,
+                "ValidationRules": [],
+                "Tags": null,
+                "Identity": null,
+                "Description": null
+              },
+              {
+                "Name": "From",
+                "Value": "IO",
+                "ValueType": "String",
+                "Unit": null,
+                "DefaultValue": null,
+                "ValueOptions": null,
+                "ValidationRules": [],
+                "Tags": null,
+                "Identity": null,
+                "Description": null
+              },
+              {
+                "Name": "To",
+                "Value": "EB2",
+                "ValueType": "String",
+                "Unit": null,
+                "DefaultValue": null,
+                "ValueOptions": null,
+                "ValidationRules": [],
+                "Tags": null,
+                "Identity": null,
+                "Description": null
+              },
+              {
+                "Name": "Barcodes",
+                "Value": "%Input.Barcode%A,%Input.Barcode%B",
+                "ValueType": "String",
+                "Unit": null,
+                "DefaultValue": null,
+                "ValueOptions": null,
+                "ValidationRules": [],
+                "Tags": null,
+                "Identity": null,
+                "Description": null
+              },
+              {
+                "Name": "Metadata",
+                "Value": "Source Orchestrator Workflow=Cytomat Skyline;Zone=Zone 3;Labware Types=384 Perkin Elmer Optiplate;Destination Orchestrator Workflow=Consumables Carousel",
+                "ValueType": "String",
+                "Unit": null,
+                "DefaultValue": null,
+                "ValueOptions": null,
+                "ValidationRules": [],
+                "Tags": null,
+                "Identity": null,
+                "Description": null
+              }
+            ],
+            "OutputParameterMapping": [
+              {
+                "Name": "Barcodes",
+                "MapToGlobalVariableName": "DestBarcodes",
+                "ParameterType": 0,
+                "Description": null
+              },
+              {
+                "Name": "Request ID",
+                "MapToGlobalVariableName": null,
+                "ParameterType": 0,
+                "Description": null
+              }
+            ],
+            "Name": "Transport",
+            "Description": "Transport",
+            "HelpText": "Transports the specified barcode(s) from one station to another.",
+            "Guid": "9f1f6b23-cfcd-418f-a9f4-659af61ebff1",
+            "IsAsync": false,
+            "AllowAsync": false,
+            "IconUrl": "PackIcon.TransitConnectionVariant [#FFFFFFFF]",
+            "BackgroundColorHex": "#FF666666",
+            "IsDisabled": false,
+            "IsPausePointSet": false
+          },
+          {
+            "$type": "Biosero.Workflow.Branch, Biosero.Workflow.Core",
+            "HelpText": "Evaluates a condition and branches accordingly",
+            "BackgroundColorHex": "#FFDEDE81",
+            "IconUrl": "PackIcon.Help [#FFFFFFFF:0:2]",
+            "Name": "Branch",
+            "IsAsync": false,
+            "AllowAsync": false,
+            "IsDisabled": false,
+            "IsPausePointSet": false,
+            "Description": "Branch if DestBarcodes ≠ ",
+            "No": {
+              "Children": [],
+              "Name": "Sequence",
+              "Description": "Sequence",
+              "HelpText": "A sequence of workflow elements",
+              "Guid": "ef75667d-8cc6-4b42-ad26-71d75ad5705c",
+              "IsAsync": false,
+              "AllowAsync": false,
+              "IconUrl": null,
+              "BackgroundColorHex": "#00000000",
+              "IsDisabled": false,
+              "IsPausePointSet": false
+            },
+            "Yes": {
+              "Children": [
+                {
+                  "$type": "Biosero.Workflow.Commands.ExecuteOrderCommand, Biosero.Workflow.Core",
+                  "Timeout": "00:30:00",
+                  "InputParameters": [
+                    {
+                      "Name": "BarcodeList",
+                      "Value": "%Input.Barcode%",
+                      "ValueType": "String",
+                      "Unit": null,
+                      "DefaultValue": "",
+                      "ValueOptions": [],
+                      "ValidationRules": [],
+                      "Tags": [
+                        "User",
+                        "#DarkMagenta"
+                      ],
+                      "Identity": null,
+                      "Description": null
+                    },
+                    {
+                      "Name": "Priority",
+                      "Value": "%Input.Priorirty%",
+                      "ValueType": "String",
+                      "Unit": null,
+                      "DefaultValue": "",
+                      "ValueOptions": [],
+                      "ValidationRules": [],
+                      "Tags": [
+                        "User",
+                        "#DarkMagenta"
+                      ],
+                      "Identity": null,
+                      "Description": null
+                    },
+                    {
+                      "Name": "JobNumber",
+                      "Value": "%Input.JobNumber%",
+                      "ValueType": "Double",
+                      "Unit": null,
+                      "DefaultValue": "0",
+                      "ValueOptions": {
+                        "$type": "System.String[], System.Private.CoreLib",
+                        "$values": []
+                      },
+                      "ValidationRules": [],
+                      "Tags": [
+                        "User",
+                        "#DarkMagenta"
+                      ],
+                      "Identity": null,
+                      "Description": null
+                    },
+                    {
+                      "Name": "DestBarcodes",
+                      "Value": "%DestBarcodes%",
+                      "ValueType": "String",
+                      "Unit": null,
+                      "DefaultValue": "",
+                      "ValueOptions": [],
+                      "ValidationRules": [],
+                      "Tags": [
+                        "User",
+                        "#DarkMagenta"
+                      ],
+                      "Identity": null,
+                      "Description": null
+                    }
+                  ],
+                  "OutputParameterMapping": [
+                    {
+                      "Name": "Module ID",
+                      "MapToGlobalVariableName": null,
+                      "ParameterType": 0,
+                      "Description": null
+                    }
+                  ],
+                  "Name": "Inject Process",
+                  "Description": "Order: Inject Process",
+                  "HelpText": null,
+                  "Guid": "005e6fca-6f17-482a-b802-de5bbe7e7e11",
+                  "IsAsync": false,
+                  "AllowAsync": true,
+                  "IconUrl": "PackIcon.Needle [#FFFFFF:0:0]",
+                  "BackgroundColorHex": "#FFF3FF00",
+                  "IsDisabled": false,
+                  "IsPausePointSet": false
+                }
+              ],
+              "Name": "Sequence",
+              "Description": "Sequence",
+              "HelpText": "A sequence of workflow elements",
+              "Guid": "d083c8c1-b498-4255-bd63-13388e095283",
+              "IsAsync": false,
+              "AllowAsync": false,
+              "IconUrl": null,
+              "BackgroundColorHex": "#00000000",
+              "IsDisabled": false,
+              "IsPausePointSet": false
+            },
+            "Evaluation": {
+              "Left": "DestBarcodes",
+              "Right": "",
+              "Evaluator": 1
+            },
+            "Guid": "3a60f8b6-761f-44c6-87f0-9a14367f4a5b"
+          }
+        ],
+        "Name": "Sequence",
+        "Description": "Sequence",
+        "HelpText": "A sequence of workflow elements",
+        "Guid": "383a50d3-bffe-4f0a-95c2-bb9d504fee46",
+        "IsAsync": false,
+        "AllowAsync": false,
+        "IconUrl": null,
+        "BackgroundColorHex": "#00000000",
+        "IsDisabled": false,
+        "IsPausePointSet": false
+      }
+    }
+  ],
+  "Parameters": [
+    {
+      "Name": "Input.Barcode",
+      "Value": "",
+      "ValueType": "String",
+      "Unit": null,
+      "DefaultValue": "",
+      "ValueOptions": null,
+      "ValidationRules": [],
+      "Tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      },
+      "Identity": null,
+      "Description": null
+    },
+    {
+      "Name": "Input.Priorirty",
+      "Value": "",
+      "ValueType": "String",
+      "Unit": null,
+      "DefaultValue": "",
+      "ValueOptions": null,
+      "ValidationRules": [],
+      "Tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      },
+      "Identity": null,
+      "Description": null
+    },
+    {
+      "Name": "Input.JobNumber",
+      "Value": "0",
+      "ValueType": "Integer",
+      "Unit": null,
+      "DefaultValue": "0",
+      "ValueOptions": null,
+      "ValidationRules": [],
+      "Tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      },
+      "Identity": null,
+      "Description": null
+    },
+    {
+      "Name": "DestBarcodes",
+      "Value": "",
+      "ValueType": "String",
+      "Unit": null,
+      "DefaultValue": "",
+      "ValueOptions": null,
+      "ValidationRules": null,
+      "Tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      },
+      "Identity": null,
+      "Description": null
+    }
+  ],
+  "Scripts": [],
+  "GlobalScriptReferences": [
+    "Biosero.Workflow.Core.dll",
+    "Biosero.DataModels.dll"
+  ],
+  "Screens": [],
+  "DeviceRequirements": [],
+  "Properties": null,
+  "IconUrl": "PackIcon.AlarmLight [#FFFFFF:0:0]",
+  "Color": "#FFFF00BB",
+  "Name": "EB workflow demo",
+  "Category": "TEST",
+  "Description": null,
+  "Version": null,
+  "Signature": null,
+  "LastModified": "0001-01-01T00:00:00+00:00",
+  "ParameterReferenceIndicator": "%"
+}
