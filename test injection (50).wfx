@@ -1,0 +1,648 @@
+{
+  "procedures": [
+    {
+      "name": "Start",
+      "sequence": {
+        "children": [
+          {
+            "$type": "Biosero.Workflow.RunScript, Biosero.Workflow.Core",
+            "scriptName": "Populate_Placeholder_Destination_Barcodes",
+            "name": "Run Script",
+            "description": "Run Script: Populate_Placeholder_Destination_Barcodes",
+            "helpText": "Runs the specified script",
+            "guid": "2f75be94-f127-497e-a65d-208d76260fe2",
+            "isAsync": false,
+            "allowAsync": false,
+            "iconUrl": "PackIcon.ScriptTextOutline [#FFFFFFFF]",
+            "backgroundColorHex": "#FFF58CFF",
+            "isDisabled": false,
+            "isPausePointSet": false
+          },
+          {
+            "$type": "Biosero.Workflow.Commands.ExecuteOrderCommand, Biosero.Workflow.Core",
+            "timeout": "00:30:00",
+            "inputParameters": [
+              {
+                "name": "REMPThawTime",
+                "value": "%Input.ThawTime%",
+                "valueType": "Double",
+                "defaultValue": "0",
+                "valueOptions": {
+                  "$type": "System.String[], System.Private.CoreLib",
+                  "$values": []
+                },
+                "validationRules": [],
+                "tags": [
+                  "User",
+                  "#DarkMagenta"
+                ]
+              },
+              {
+                "name": "SourceDetails",
+                "value": "%Input.Barcodes%",
+                "valueType": "String",
+                "defaultValue": "",
+                "valueOptions": [],
+                "validationRules": [],
+                "tags": [
+                  "User",
+                  "#DarkMagenta"
+                ]
+              },
+              {
+                "name": "LabwareTypeTwoName",
+                "value": "%Input.LabwareTypeTwoName%",
+                "valueType": "String",
+                "defaultValue": "",
+                "valueOptions": [],
+                "validationRules": [],
+                "tags": [
+                  "User",
+                  "#DarkMagenta"
+                ]
+              },
+              {
+                "name": "Cherry Pick Total",
+                "value": "%Input.CherryPickTotal%",
+                "valueType": "Double",
+                "defaultValue": "0",
+                "valueOptions": {
+                  "$type": "System.String[], System.Private.CoreLib",
+                  "$values": []
+                },
+                "validationRules": [],
+                "tags": [
+                  "User",
+                  "#DarkMagenta"
+                ]
+              },
+              {
+                "name": "Priority",
+                "value": "%Input.Priority%",
+                "valueType": "String",
+                "defaultValue": "",
+                "valueOptions": [],
+                "validationRules": [],
+                "tags": [
+                  "User",
+                  "#DarkMagenta"
+                ]
+              },
+              {
+                "name": "Job Number",
+                "value": "%Input.Job Number%",
+                "valueType": "Double",
+                "defaultValue": "0",
+                "valueOptions": {
+                  "$type": "System.String[], System.Private.CoreLib",
+                  "$values": []
+                },
+                "validationRules": [],
+                "tags": [
+                  "User",
+                  "#DarkMagenta"
+                ]
+              },
+              {
+                "name": "LabwareTypeTwoPlaceholderBarcodes",
+                "value": "%LabwareTypeTwoPlaceholderBarcodes%",
+                "valueType": "String",
+                "defaultValue": "",
+                "valueOptions": [],
+                "validationRules": [],
+                "tags": [
+                  "User",
+                  "#DarkMagenta"
+                ]
+              },
+              {
+                "name": "CapsPlaceholderBarcodes",
+                "value": "%CapsPlaceholderBarcodes%",
+                "valueType": "String",
+                "defaultValue": "",
+                "valueOptions": [],
+                "validationRules": [],
+                "tags": [
+                  "User",
+                  "#DarkMagenta"
+                ]
+              },
+              {
+                "name": "PDPPlaceholderBarcodes",
+                "value": "%PDPPlaceholderBarcodes%",
+                "valueType": "String",
+                "defaultValue": "",
+                "valueOptions": [],
+                "validationRules": [],
+                "tags": [
+                  "User",
+                  "#DarkMagenta"
+                ]
+              },
+              {
+                "name": "Pre Dil Required",
+                "value": "%Input.CPPreDilutionRequired%",
+                "valueType": "Boolean",
+                "defaultValue": "False",
+                "valueOptions": {
+                  "$type": "System.String[], System.Private.CoreLib",
+                  "$values": []
+                },
+                "validationRules": [],
+                "tags": [
+                  "User",
+                  "#DarkMagenta"
+                ]
+              },
+              {
+                "name": "TecanTipRackSent",
+                "value": "%Input.TecanTipRackSent%",
+                "valueType": "Double",
+                "defaultValue": "0",
+                "valueOptions": {
+                  "$type": "System.String[], System.Private.CoreLib",
+                  "$values": []
+                },
+                "validationRules": [],
+                "tags": [
+                  "User",
+                  "#DarkMagenta"
+                ]
+              },
+              {
+                "name": "LabwareTypeTwoTotal",
+                "value": "%Input.LabwareTypeTwoTotal%",
+                "valueType": "Double",
+                "defaultValue": "0",
+                "valueOptions": {
+                  "$type": "System.String[], System.Private.CoreLib",
+                  "$values": []
+                },
+                "validationRules": [],
+                "tags": [
+                  "User",
+                  "#DarkMagenta"
+                ]
+              },
+              {
+                "name": "LabwarePreDilutionMetadata",
+                "value": "%Input.PDPMetadata%",
+                "valueType": "String",
+                "defaultValue": "",
+                "valueOptions": [],
+                "validationRules": [],
+                "tags": [
+                  "User",
+                  "#DarkMagenta"
+                ]
+              },
+              {
+                "name": "Tecan Job ID",
+                "value": "%Input.TecanJobID%",
+                "valueType": "Double",
+                "defaultValue": "0",
+                "valueOptions": {
+                  "$type": "System.String[], System.Private.CoreLib",
+                  "$values": []
+                },
+                "validationRules": [],
+                "tags": [
+                  "User",
+                  "#DarkMagenta"
+                ]
+              },
+              {
+                "name": "RunInventoryRequired",
+                "value": "%Input.RunInventoryRequired%",
+                "valueType": "Boolean",
+                "defaultValue": "False",
+                "valueOptions": {
+                  "$type": "System.String[], System.Private.CoreLib",
+                  "$values": []
+                },
+                "validationRules": [],
+                "tags": [
+                  "User",
+                  "#DarkMagenta"
+                ]
+              }
+            ],
+            "outputParameterMapping": [
+              {
+                "name": "OutputRempRacks",
+                "parameterType": "String"
+              },
+              {
+                "name": "Module ID",
+                "parameterType": "String"
+              }
+            ],
+            "name": "Inject Process",
+            "description": "Order: Inject Process",
+            "guid": "ba278622-0053-43e9-b6ce-50efe11faacc",
+            "isAsync": false,
+            "allowAsync": true,
+            "iconUrl": "PackIcon.Needle [#FFFFFF:0:0]",
+            "backgroundColorHex": "#FFFF6E00",
+            "isDisabled": false,
+            "isPausePointSet": false
+          },
+          {
+            "$type": "Biosero.Workflow.Elements.Delay, Biosero.Workflow.Core",
+            "helpText": "Delays the workflow for the specified amount of time",
+            "backgroundColorHex": "#FF26A9FF",
+            "iconUrl": "PackIcon.ClockOutline [#FFFFFFFF]",
+            "name": "Delay",
+            "isAsync": false,
+            "allowAsync": false,
+            "isDisabled": false,
+            "description": "Delay 0:0:35",
+            "isPausePointSet": false,
+            "seconds": 35.0,
+            "minutes": 0.0,
+            "hours": 0.0,
+            "guid": "87a91fea-3cf2-4f2a-a08d-459f99c1e5d5"
+          }
+        ],
+        "name": "Sequence",
+        "description": "Sequence",
+        "helpText": "A sequence of workflow elements",
+        "guid": "ccf00efa-3b5f-439c-9f3e-ba3e28ebe13b",
+        "isAsync": false,
+        "allowAsync": false,
+        "backgroundColorHex": "#00000000",
+        "isDisabled": false,
+        "isPausePointSet": false
+      }
+    }
+  ],
+  "parameters": [
+    {
+      "name": "Input.Barcodes",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.Priority",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.LabwareTypeOneTotal",
+      "value": "0",
+      "valueType": "Integer",
+      "defaultValue": "0",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.LabwareTypeTwoTotal",
+      "value": "0",
+      "valueType": "Integer",
+      "defaultValue": "0",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.LabwareTypeThreeTotal",
+      "value": "0",
+      "valueType": "Integer",
+      "defaultValue": "0",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.CherryPickTotal",
+      "value": "0",
+      "valueType": "Integer",
+      "defaultValue": "0",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Output.OutputRempRacks",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.LabwareTypeOneName",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.LabwareTypeTwoName",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.LabwareTypeThreeName",
+      "value": "384 DTbR 80ul plate",
+      "valueType": "String",
+      "defaultValue": "384 DTbR 80ul plate",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "LabwareTypeOnePlaceholderBarcodes",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "LabwareTypeTwoPlaceholderBarcodes",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "LabwareTypeThreePlaceholderBarcodes",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "CapsPlaceholderBarcodes",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "PDPPlaceholderBarcodes",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.Job Number",
+      "value": "5",
+      "valueType": "Integer",
+      "defaultValue": "5",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.Tecan50Meatdata",
+      "value": "Source Orchestrator Workflow=Consumables Carousel;Zone=50uL Tecan Tips;Destination Orchestrator Workflow=Consumables Carousel;Placeholder=true",
+      "valueType": "String",
+      "defaultValue": "Source Orchestrator Workflow=Consumables Carousel;Zone=50uL Tecan Tips;Destination Orchestrator Workflow=Consumables Carousel;Placeholder=true",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.Tecan200Meatdata",
+      "value": "Source Orchestrator Workflow=Consumables Carousel;Zone=200uL Tecan Tips;Destination Orchestrator Workflow=Consumables Carousel;Placeholder=true",
+      "valueType": "String",
+      "defaultValue": "Source Orchestrator Workflow=Consumables Carousel;Zone=200uL Tecan Tips;Destination Orchestrator Workflow=Consumables Carousel;Placeholder=true",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.CPPreDilutionRequired",
+      "value": "True",
+      "valueType": "Boolean",
+      "defaultValue": "True",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "LabwarePreDilutionStorage",
+      "value": "Cytomat Skyline",
+      "valueType": "String",
+      "defaultValue": "Cytomat Skyline",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.LabwarePreDilutionName",
+      "value": "96 SWP Greiner PP 340ul",
+      "valueType": "String",
+      "defaultValue": "96 SWP Greiner PP 340ul",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.PDPMetadata",
+      "value": "Source Orchestrator Workflow=%LabwarePreDilutionStorage%;Labware Types=%Input.LabwarePreDilutionName%;Destination Orchestrator Workflow=%LabwarePreDilutionStorage%",
+      "valueType": "String",
+      "defaultValue": "Source Orchestrator Workflow=%LabwarePreDilutionStorage%;Labware Types=%Input.LabwarePreDilutionName%;Destination Orchestrator Workflow=%LabwarePreDilutionStorage%",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.TecanTipRackSent",
+      "value": "0",
+      "valueType": "Integer",
+      "defaultValue": "0",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.WorkflowNumber",
+      "value": "1",
+      "valueType": "Integer",
+      "defaultValue": "1",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.LabwareTwoMetadata",
+      "value": "Source Orchestrator Workflow=Stack Carousel;Labware Types=384 MTP 120ul;Destination Orchestrator Workflow=Stack Carousel",
+      "valueType": "String",
+      "defaultValue": "Source Orchestrator Workflow=Stack Carousel;Labware Types=384 MTP 120ul;Destination Orchestrator Workflow=Stack Carousel",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.LabwarePDMetadata",
+      "value": "Source Orchestrator Workflow=Cytomat Skyline;Labware Types=96 SWP Greiner PP 340ul;Destination Orchestrator Workflow=Cytomat Skyline",
+      "valueType": "String",
+      "defaultValue": "Source Orchestrator Workflow=Cytomat Skyline;Labware Types=96 SWP Greiner PP 340ul;Destination Orchestrator Workflow=Cytomat Skyline",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.TecanJobID",
+      "value": "0",
+      "valueType": "Integer",
+      "defaultValue": "0",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.ThawTime",
+      "value": "0",
+      "valueType": "Integer",
+      "defaultValue": "0",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.RunInventoryRequired",
+      "value": "False",
+      "valueType": "Boolean",
+      "defaultValue": "False",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    }
+  ],
+  "scripts": [
+    {
+      "name": "Populate_Placeholder_Destination_Barcodes",
+      "code": "using System;\r\nusing System.Collections.Generic;\r\nusing System.Text;\r\nusing System.Linq;\r\nusing Biosero.Workflow;\r\n\r\nnamespace Biosero.Scripting\r\n{\r\n    public class Populate_Placeholder_Destination_Barcodes : WorkflowScript\r\n    {\r\n        public Populate_Placeholder_Destination_Barcodes(WorkflowEnvironment environment) : base(environment) {}\r\n\r\n        public void Run(Dictionary<string, object> parameters)\r\n        {\r\n\t//    parameters[\"OutputRempRacks\"] = \"ltty,mm\";\r\n\t    \r\n           int LabwareTypeOneTotal = (int)parameters[\"Input.LabwareTypeOneTotal\"]; \r\n           int LabwareTypeTwoTotal = (int)parameters[\"Input.LabwareTypeTwoTotal\"]; \r\n           int LabwareTypeThreeTotal = (int)parameters[\"Input.LabwareTypeThreeTotal\"]; \r\n           int CherryPickTotal = (int)parameters[\"Input.CherryPickTotal\"];\r\n           int JobNumber = (int)parameters[\"Input.Job Number\"];\r\n         //  string OutputRempRacks = (string)parameters[\"OutputRempRacks\"]; \r\n           string OutputRempRacks = (string)parameters[\"Output.OutputRempRacks\"]; \r\n           \r\n           string LabwareTypeOneName = (string)parameters[\"Input.LabwareTypeOneName\"]; \r\n           string LabwareTypeTwoName = (string)parameters[\"Input.LabwareTypeTwoName\"]; \r\n           string LabwareTypeThreeName = (string)parameters[\"Input.LabwareTypeThreeName\"]; \r\n           \r\n           string LabwareTypeOnePlaceholderBarcodes = \"\";\r\n           string LabwareTypeTwoPlaceholderBarcodes = \"\";\r\n           string LabwareTypeThreePlaceholderBarcodes = \"\";\r\n           string CapsPlaceholderBarcodes = \"\";\r\n           string PDPPlaceholderBarcodes = \"\";\r\n           DateTime currentDate = DateTime.Now;\r\n           int CurrentDay = currentDate.Day;\r\n            int TotalValidatedSources = 0;\r\n           \r\n           \r\n\tList<string> REMPReturnedSources = OutputRempRacks.Split(',').ToList();\r\n\tint REMPSourcesToProcess = REMPReturnedSources.Count;\r\n\t\r\n\t\r\n\r\n\t\r\n\t\r\n\t// LabwareTypeOne = for each plate created on CP, 1 plate to transfer into\r\n\t\r\n\tfor (int i = 1; i <= (CherryPickTotal); i++)\r\n\t\t{\r\n\t\t    LabwareTypeOnePlaceholderBarcodes = LabwareTypeOnePlaceholderBarcodes + JobNumber.ToString() + CurrentDay.ToString() +  \"One\" +  i + \",\";\r\n\t\t}\r\n\t    LabwareTypeOnePlaceholderBarcodes = LabwareTypeOnePlaceholderBarcodes.TrimEnd(',');\r\n\t    parameters[\"LabwareTypeOnePlaceholderBarcodes\"] = LabwareTypeOnePlaceholderBarcodes;\r\n\t    \r\n\t//    System.IO.File.AppendAllLines(@\"C:\\Users\\LabTech\\Documents\\rr.txt\", new string []{ LabwareTypeOnePlaceholderBarcodes.ToString()});\r\n\t\r\n\t\r\n\t//   LabwareTypeTwo = ther number of plates to create on CP\r\n\t\r\n\tfor (int i = 1; i <= (CherryPickTotal); i++)\r\n\t\t{\r\n\t\t    LabwareTypeTwoPlaceholderBarcodes = LabwareTypeTwoPlaceholderBarcodes +JobNumber.ToString() +  CurrentDay.ToString() + \"Two\" +  i + \",\";\r\n\t\t}\r\n\t    LabwareTypeTwoPlaceholderBarcodes = LabwareTypeTwoPlaceholderBarcodes.TrimEnd(',');\r\n\t    parameters[\"LabwareTypeTwoPlaceholderBarcodes\"] = LabwareTypeTwoPlaceholderBarcodes;\r\n\t\r\n\t//LabwareTypeThree = number of copies per each CP plate\r\n\t//System.IO.File.AppendAllLines(@\"C:\\Users\\LabTech\\Documents\\rr.txt\", new string []{ (CherryPickTotal*LabwareTypeThreeTotal).ToString()});\r\n\tfor (int i = 1; i <= (CherryPickTotal*LabwareTypeThreeTotal); i++)\r\n\t\t{\r\n\t\t    LabwareTypeThreePlaceholderBarcodes = LabwareTypeThreePlaceholderBarcodes +JobNumber.ToString() +  CurrentDay.ToString()   + \"Three\" +  i + \",\";\r\n\t\t}\r\n\t    LabwareTypeThreePlaceholderBarcodes = LabwareTypeThreePlaceholderBarcodes.TrimEnd(',');\r\n\t    parameters[\"LabwareTypeThreePlaceholderBarcodes\"] = LabwareTypeThreePlaceholderBarcodes;\r\n\t\r\n\t\r\n\t// Cap  = for each source, 1 Cap Holder\r\n\t\r\n\tfor (int i = 1; i <= (REMPSourcesToProcess); i++)\r\n\t\t{\r\n\t\t    CapsPlaceholderBarcodes = CapsPlaceholderBarcodes +JobNumber.ToString() +  CurrentDay.ToString()   + \"CAP\" +  i + \",\";\r\n\t\t}\r\n\t    CapsPlaceholderBarcodes = CapsPlaceholderBarcodes.TrimEnd(',');\r\n\t    parameters[\"CapsPlaceholderBarcodes\"] = CapsPlaceholderBarcodes;\r\n\t\r\n\t\r\n\t// PDP  = for each source, 1 PDP \r\n\t\r\n\tfor (int i = 1; i <= (REMPSourcesToProcess); i++)\r\n\t\t{\r\n\t\t    PDPPlaceholderBarcodes = PDPPlaceholderBarcodes +JobNumber.ToString() +  CurrentDay.ToString()   + \"PDP\" +  i + \",\";\r\n\t\t}\r\n\t    PDPPlaceholderBarcodes = PDPPlaceholderBarcodes.TrimEnd(',');\r\n\t    parameters[\"PDPPlaceholderBarcodes\"] = PDPPlaceholderBarcodes;\r\n\t    \r\n\t    \r\n\t    \r\n\t\r\n\t\r\n        }\r\n    }\r\n}",
+      "language": "C#"
+    }
+  ],
+  "globalScriptReferences": [
+    "Biosero.Workflow.Core.dll",
+    "Biosero.DataModels.dll"
+  ],
+  "screens": [],
+  "deviceRequirements": [],
+  "iconUrl": "PackIcon.VectorPolylineEdit [#FFFFFF:0:0]",
+  "color": "#FF006FFF",
+  "name": "CP Inject Process",
+  "category": "Workflows",
+  "lastModified": "0001-01-01T00:00:00+00:00",
+  "parameterReferenceIndicator": "%"
+}

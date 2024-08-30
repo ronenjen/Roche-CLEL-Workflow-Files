@@ -1,0 +1,1577 @@
+{
+  "procedures": [
+    {
+      "name": "Start",
+      "sequence": {
+        "children": [
+          {
+            "$type": "Biosero.Workflow.Parallel, Biosero.Workflow.Core",
+            "left": {
+              "children": [
+                {
+                  "$type": "Biosero.Workflow.Commands.TransportCommand, Biosero.Workflow.Core",
+                  "inputParameters": [
+                    {
+                      "name": "Timeout (min)",
+                      "value": "20",
+                      "valueType": "Double",
+                      "defaultValue": "10",
+                      "validationRules": []
+                    },
+                    {
+                      "name": "From",
+                      "value": "IO",
+                      "valueType": "String",
+                      "validationRules": []
+                    },
+                    {
+                      "name": "To",
+                      "value": "CP",
+                      "valueType": "String",
+                      "validationRules": []
+                    },
+                    {
+                      "name": "Barcodes",
+                      "value": "%Output.OutputRempRacks%",
+                      "valueType": "String",
+                      "validationRules": []
+                    },
+                    {
+                      "name": "Metadata",
+                      "value": "Source Orchestrator Workflow=Consumables Carousel;Destination Orchestrator Workflow=Cytomat Source;Orchestrator Used=True;Labware Types=REMP Racks",
+                      "valueType": "String",
+                      "validationRules": []
+                    }
+                  ],
+                  "outputParameterMapping": [
+                    {
+                      "name": "Barcodes",
+                      "parameterType": "String"
+                    },
+                    {
+                      "name": "Request ID",
+                      "parameterType": "String"
+                    }
+                  ],
+                  "name": "Transport",
+                  "description": "Transport",
+                  "helpText": "Transports the specified barcode(s) from one station to another.",
+                  "guid": "0c0344e6-5890-4fb1-985d-df0871aeabf2",
+                  "isAsync": false,
+                  "allowAsync": false,
+                  "iconUrl": "PackIcon.TransitConnectionVariant [#FFFFFFFF]",
+                  "backgroundColorHex": "#FF666666",
+                  "isDisabled": false,
+                  "isPausePointSet": false
+                }
+              ],
+              "name": "Sequence",
+              "description": "Sequence",
+              "helpText": "A sequence of workflow elements",
+              "guid": "ff569fea-90aa-473f-b29c-d592e188ece9",
+              "isAsync": false,
+              "allowAsync": false,
+              "backgroundColorHex": "#00000000",
+              "isDisabled": false,
+              "isPausePointSet": false
+            },
+            "right": {
+              "children": [
+                {
+                  "$type": "Biosero.Workflow.RunScript, Biosero.Workflow.Core",
+                  "scriptName": "Populate_Placeholder_Destination_Barcodes",
+                  "name": "Run Script",
+                  "description": "Run Script: Populate_Placeholder_Destination_Barcodes",
+                  "helpText": "Runs the specified script",
+                  "guid": "af10818e-a0b6-40a4-b949-236c220764d8",
+                  "isAsync": false,
+                  "allowAsync": false,
+                  "iconUrl": "PackIcon.ScriptTextOutline [#FFFFFFFF]",
+                  "backgroundColorHex": "#FFF58CFF",
+                  "isDisabled": false,
+                  "isPausePointSet": false
+                },
+                {
+                  "$type": "Biosero.Workflow.Parallel, Biosero.Workflow.Core",
+                  "left": {
+                    "children": [
+                      {
+                        "$type": "Biosero.Workflow.Commands.TransportCommand, Biosero.Workflow.Core",
+                        "inputParameters": [
+                          {
+                            "name": "Timeout (min)",
+                            "value": "20",
+                            "valueType": "Double",
+                            "defaultValue": "10",
+                            "validationRules": []
+                          },
+                          {
+                            "name": "From",
+                            "value": "IO",
+                            "valueType": "String",
+                            "validationRules": []
+                          },
+                          {
+                            "name": "To",
+                            "value": "EB2",
+                            "valueType": "String",
+                            "validationRules": []
+                          },
+                          {
+                            "name": "Barcodes",
+                            "value": "%LabwareTypeOnePlaceholderBarcodes%",
+                            "valueType": "String",
+                            "validationRules": []
+                          },
+                          {
+                            "name": "Metadata",
+                            "value": "%Input.LabwareOneMetadata%",
+                            "valueType": "String",
+                            "validationRules": []
+                          }
+                        ],
+                        "outputParameterMapping": [
+                          {
+                            "name": "Barcodes",
+                            "parameterType": "String"
+                          },
+                          {
+                            "name": "Request ID",
+                            "parameterType": "String"
+                          }
+                        ],
+                        "name": "Transport",
+                        "description": "Transport",
+                        "helpText": "Transports the specified barcode(s) from one station to another.",
+                        "guid": "aaeb9de8-37fc-425c-9cc7-d09bd76acb9e",
+                        "isAsync": false,
+                        "allowAsync": false,
+                        "iconUrl": "PackIcon.TransitConnectionVariant [#FFFFFFFF]",
+                        "backgroundColorHex": "#FF666666",
+                        "isDisabled": true,
+                        "isPausePointSet": false
+                      }
+                    ],
+                    "name": "Sequence",
+                    "description": "Sequence",
+                    "helpText": "A sequence of workflow elements",
+                    "guid": "8515905f-6340-4aec-9b33-5ee44a4de93f",
+                    "isAsync": false,
+                    "allowAsync": false,
+                    "backgroundColorHex": "#00000000",
+                    "isDisabled": false,
+                    "isPausePointSet": false
+                  },
+                  "right": {
+                    "children": [
+                      {
+                        "$type": "Biosero.Workflow.Parallel, Biosero.Workflow.Core",
+                        "left": {
+                          "children": [
+                            {
+                              "$type": "Biosero.Workflow.Commands.TransportCommand, Biosero.Workflow.Core",
+                              "inputParameters": [
+                                {
+                                  "name": "Timeout (min)",
+                                  "value": "20",
+                                  "valueType": "Double",
+                                  "defaultValue": "10",
+                                  "validationRules": []
+                                },
+                                {
+                                  "name": "From",
+                                  "value": "IO",
+                                  "valueType": "String",
+                                  "validationRules": []
+                                },
+                                {
+                                  "name": "To",
+                                  "value": "CP",
+                                  "valueType": "String",
+                                  "validationRules": []
+                                },
+                                {
+                                  "name": "Barcodes",
+                                  "value": "%LabwareTypeTwoPlaceholderBarcodes%",
+                                  "valueType": "String",
+                                  "validationRules": []
+                                },
+                                {
+                                  "name": "Metadata",
+                                  "value": "%Input.LabwareTwoMetadata%",
+                                  "valueType": "String",
+                                  "validationRules": []
+                                }
+                              ],
+                              "outputParameterMapping": [
+                                {
+                                  "name": "Barcodes",
+                                  "mapToGlobalVariableName": "Output.AssayPlatesLabwareTwo",
+                                  "parameterType": "String"
+                                },
+                                {
+                                  "name": "Request ID",
+                                  "parameterType": "String"
+                                }
+                              ],
+                              "name": "Transport",
+                              "description": "Transport",
+                              "helpText": "Transports the specified barcode(s) from one station to another.",
+                              "guid": "e814f7a6-06f1-4df4-8834-0790d1881024",
+                              "isAsync": false,
+                              "allowAsync": false,
+                              "iconUrl": "PackIcon.TransitConnectionVariant [#FFFFFFFF]",
+                              "backgroundColorHex": "#FF666666",
+                              "isDisabled": false,
+                              "isPausePointSet": false
+                            }
+                          ],
+                          "name": "Sequence",
+                          "description": "Sequence",
+                          "helpText": "A sequence of workflow elements",
+                          "guid": "6678efb4-b014-442d-b7ba-e9500e9ea1dd",
+                          "isAsync": false,
+                          "allowAsync": false,
+                          "backgroundColorHex": "#00000000",
+                          "isDisabled": false,
+                          "isPausePointSet": false
+                        },
+                        "right": {
+                          "children": [
+                            {
+                              "$type": "Biosero.Workflow.Parallel, Biosero.Workflow.Core",
+                              "left": {
+                                "children": [
+                                  {
+                                    "$type": "Biosero.Workflow.Commands.TransportCommand, Biosero.Workflow.Core",
+                                    "inputParameters": [
+                                      {
+                                        "name": "Timeout (min)",
+                                        "value": "20",
+                                        "valueType": "Double",
+                                        "defaultValue": "10",
+                                        "validationRules": []
+                                      },
+                                      {
+                                        "name": "From",
+                                        "value": "IO",
+                                        "valueType": "String",
+                                        "validationRules": []
+                                      },
+                                      {
+                                        "name": "To",
+                                        "value": "EB2",
+                                        "valueType": "String",
+                                        "validationRules": []
+                                      },
+                                      {
+                                        "name": "Barcodes",
+                                        "value": "%LabwareTypeThreePlaceholderBarcodes%",
+                                        "valueType": "String",
+                                        "validationRules": []
+                                      },
+                                      {
+                                        "name": "Metadata",
+                                        "value": "%Input.LabwareThreeMetadata%",
+                                        "valueType": "String",
+                                        "validationRules": []
+                                      }
+                                    ],
+                                    "outputParameterMapping": [
+                                      {
+                                        "name": "Barcodes",
+                                        "parameterType": "String"
+                                      },
+                                      {
+                                        "name": "Request ID",
+                                        "parameterType": "String"
+                                      }
+                                    ],
+                                    "name": "Transport",
+                                    "description": "Transport",
+                                    "helpText": "Transports the specified barcode(s) from one station to another.",
+                                    "guid": "15b02b60-10cd-46b7-baac-372208ef070a",
+                                    "isAsync": false,
+                                    "allowAsync": false,
+                                    "iconUrl": "PackIcon.TransitConnectionVariant [#FFFFFFFF]",
+                                    "backgroundColorHex": "#FF666666",
+                                    "isDisabled": true,
+                                    "isPausePointSet": false
+                                  }
+                                ],
+                                "name": "Sequence",
+                                "description": "Sequence",
+                                "helpText": "A sequence of workflow elements",
+                                "guid": "428aac23-f14a-4fa3-94ab-53a03c090282",
+                                "isAsync": false,
+                                "allowAsync": false,
+                                "backgroundColorHex": "#00000000",
+                                "isDisabled": false,
+                                "isPausePointSet": false
+                              },
+                              "right": {
+                                "children": [
+                                  {
+                                    "$type": "Biosero.Workflow.Parallel, Biosero.Workflow.Core",
+                                    "left": {
+                                      "children": [
+                                        {
+                                          "$type": "Biosero.Workflow.RunScript, Biosero.Workflow.Core",
+                                          "scriptName": "RequiredVelocityTips ",
+                                          "name": "Run Script",
+                                          "description": "Run Script: RequiredVelocityTips ",
+                                          "helpText": "Runs the specified script",
+                                          "guid": "ba714dc5-28bd-4f46-9ddb-8b02d31c9ebe",
+                                          "isAsync": false,
+                                          "allowAsync": false,
+                                          "iconUrl": "PackIcon.ScriptTextOutline [#FFFFFFFF]",
+                                          "backgroundColorHex": "#FFF58CFF",
+                                          "isDisabled": true,
+                                          "isPausePointSet": false
+                                        },
+                                        {
+                                          "$type": "Biosero.Workflow.Parallel, Biosero.Workflow.Core",
+                                          "left": {
+                                            "children": [
+                                              {
+                                                "$type": "Biosero.Workflow.Commands.TransportCommand, Biosero.Workflow.Core",
+                                                "inputParameters": [
+                                                  {
+                                                    "name": "Timeout (min)",
+                                                    "value": "20",
+                                                    "valueType": "Double",
+                                                    "defaultValue": "10",
+                                                    "validationRules": []
+                                                  },
+                                                  {
+                                                    "name": "From",
+                                                    "value": "IO",
+                                                    "valueType": "String",
+                                                    "validationRules": []
+                                                  },
+                                                  {
+                                                    "name": "To",
+                                                    "value": "EB2",
+                                                    "valueType": "String",
+                                                    "validationRules": []
+                                                  },
+                                                  {
+                                                    "name": "Barcodes",
+                                                    "value": "%VelocityTips10PlaceholderBarcodes%",
+                                                    "valueType": "String",
+                                                    "validationRules": []
+                                                  },
+                                                  {
+                                                    "name": "Metadata",
+                                                    "value": "Source Orchestrator Workflow=Stack Carousel;Labware Types=%Input.VelocityTipBoxName%;Destination Orchestrator Workflow=Stack Carousel",
+                                                    "valueType": "String",
+                                                    "validationRules": []
+                                                  }
+                                                ],
+                                                "outputParameterMapping": [
+                                                  {
+                                                    "name": "Barcodes",
+                                                    "parameterType": "String"
+                                                  },
+                                                  {
+                                                    "name": "Request ID",
+                                                    "parameterType": "String"
+                                                  }
+                                                ],
+                                                "name": "Transport",
+                                                "description": "Transport",
+                                                "helpText": "Transports the specified barcode(s) from one station to another.",
+                                                "guid": "89a950d8-f396-4ef9-8c75-2d7655eb248c",
+                                                "isAsync": false,
+                                                "allowAsync": false,
+                                                "iconUrl": "PackIcon.TransitConnectionVariant [#FFFFFFFF]",
+                                                "backgroundColorHex": "#FF666666",
+                                                "isDisabled": false,
+                                                "isPausePointSet": false
+                                              }
+                                            ],
+                                            "name": "Sequence",
+                                            "description": "Sequence",
+                                            "helpText": "A sequence of workflow elements",
+                                            "guid": "76ae646f-9e5b-450c-a970-5d3b88fb4077",
+                                            "isAsync": false,
+                                            "allowAsync": false,
+                                            "backgroundColorHex": "#00000000",
+                                            "isDisabled": false,
+                                            "isPausePointSet": false
+                                          },
+                                          "right": {
+                                            "children": [
+                                              {
+                                                "$type": "Biosero.Workflow.Commands.TransportCommand, Biosero.Workflow.Core",
+                                                "inputParameters": [
+                                                  {
+                                                    "name": "Timeout (min)",
+                                                    "value": "20",
+                                                    "valueType": "Double",
+                                                    "defaultValue": "10",
+                                                    "validationRules": []
+                                                  },
+                                                  {
+                                                    "name": "From",
+                                                    "value": "IO",
+                                                    "valueType": "String",
+                                                    "validationRules": []
+                                                  },
+                                                  {
+                                                    "name": "To",
+                                                    "value": "EB2",
+                                                    "valueType": "String",
+                                                    "validationRules": []
+                                                  },
+                                                  {
+                                                    "name": "Barcodes",
+                                                    "value": "%VelocityTips30PlaceholderBarcodes%",
+                                                    "valueType": "String",
+                                                    "validationRules": []
+                                                  },
+                                                  {
+                                                    "name": "Metadata",
+                                                    "value": "Source Orchestrator Workflow=Stack Carousel;Labware Types=%Input.VelocityTipBoxName%;Destination Orchestrator Workflow=Stack Carousel",
+                                                    "valueType": "String",
+                                                    "validationRules": []
+                                                  }
+                                                ],
+                                                "outputParameterMapping": [
+                                                  {
+                                                    "name": "Barcodes",
+                                                    "parameterType": "String"
+                                                  },
+                                                  {
+                                                    "name": "Request ID",
+                                                    "parameterType": "String"
+                                                  }
+                                                ],
+                                                "name": "Transport",
+                                                "description": "Transport",
+                                                "helpText": "Transports the specified barcode(s) from one station to another.",
+                                                "guid": "fbbb6bb7-8171-42b5-b3db-ab02eacfbb41",
+                                                "isAsync": false,
+                                                "allowAsync": false,
+                                                "iconUrl": "PackIcon.TransitConnectionVariant [#FFFFFFFF]",
+                                                "backgroundColorHex": "#FF666666",
+                                                "isDisabled": false,
+                                                "isPausePointSet": false
+                                              }
+                                            ],
+                                            "name": "Sequence",
+                                            "description": "Sequence",
+                                            "helpText": "A sequence of workflow elements",
+                                            "guid": "95ff0482-da8e-4a31-8038-404489c246ee",
+                                            "isAsync": false,
+                                            "allowAsync": false,
+                                            "backgroundColorHex": "#00000000",
+                                            "isDisabled": false,
+                                            "isPausePointSet": false
+                                          },
+                                          "name": "Parallel",
+                                          "description": "Parallel",
+                                          "helpText": "Executes two sequences in parallel",
+                                          "guid": "dad35c95-5ab6-4be2-8535-61fcfbf9a0ac",
+                                          "isAsync": false,
+                                          "allowAsync": false,
+                                          "iconUrl": "PackIcon.CallSplit [#FFFFFFFF:180]",
+                                          "backgroundColorHex": "#FF72EAFF",
+                                          "isDisabled": true,
+                                          "isPausePointSet": false
+                                        }
+                                      ],
+                                      "name": "Sequence",
+                                      "description": "Sequence",
+                                      "helpText": "A sequence of workflow elements",
+                                      "guid": "0a8f01d4-5bc9-42b4-8e2e-23b2987c439d",
+                                      "isAsync": false,
+                                      "allowAsync": false,
+                                      "backgroundColorHex": "#00000000",
+                                      "isDisabled": false,
+                                      "isPausePointSet": false
+                                    },
+                                    "right": {
+                                      "children": [
+                                        {
+                                          "$type": "Biosero.Workflow.Parallel, Biosero.Workflow.Core",
+                                          "left": {
+                                            "children": [
+                                              {
+                                                "$type": "Biosero.Workflow.Branch, Biosero.Workflow.Core",
+                                                "yes": {
+                                                  "children": [
+                                                    {
+                                                      "$type": "Biosero.Workflow.Commands.TransportCommand, Biosero.Workflow.Core",
+                                                      "inputParameters": [
+                                                        {
+                                                          "name": "Timeout (min)",
+                                                          "value": "10",
+                                                          "valueType": "Double",
+                                                          "defaultValue": "10"
+                                                        },
+                                                        {
+                                                          "name": "From",
+                                                          "value": "IO",
+                                                          "valueType": "String"
+                                                        },
+                                                        {
+                                                          "name": "To",
+                                                          "value": "CP",
+                                                          "valueType": "String"
+                                                        },
+                                                        {
+                                                          "name": "Barcodes",
+                                                          "value": "%PDPPlaceholderBarcodes%",
+                                                          "valueType": "String"
+                                                        },
+                                                        {
+                                                          "name": "Metadata",
+                                                          "value": "%Input.LabwarePreDilutionMetadata%",
+                                                          "valueType": "String"
+                                                        }
+                                                      ],
+                                                      "outputParameterMapping": [
+                                                        {
+                                                          "name": "Barcodes",
+                                                          "parameterType": "String"
+                                                        },
+                                                        {
+                                                          "name": "Request ID",
+                                                          "parameterType": "String"
+                                                        }
+                                                      ],
+                                                      "name": "Transport",
+                                                      "description": "Transport",
+                                                      "helpText": "Transports the specified barcode(s) from one station to another.",
+                                                      "guid": "6ba80f36-4cd7-443d-b30a-656b0dc9c1b9",
+                                                      "isAsync": false,
+                                                      "allowAsync": false,
+                                                      "iconUrl": "PackIcon.TransitConnectionVariant [#FFFFFFFF]",
+                                                      "backgroundColorHex": "#FF666666",
+                                                      "isDisabled": false,
+                                                      "isPausePointSet": false
+                                                    }
+                                                  ],
+                                                  "name": "Sequence",
+                                                  "description": "Sequence",
+                                                  "helpText": "A sequence of workflow elements",
+                                                  "guid": "29af9851-e168-4ed4-8c11-8d3c88ccd6d4",
+                                                  "isAsync": false,
+                                                  "allowAsync": false,
+                                                  "backgroundColorHex": "#00000000",
+                                                  "isDisabled": false,
+                                                  "isPausePointSet": false
+                                                },
+                                                "no": {
+                                                  "children": [],
+                                                  "name": "Sequence",
+                                                  "description": "Sequence",
+                                                  "helpText": "A sequence of workflow elements",
+                                                  "guid": "ade570e1-2d7e-44fa-9480-bcb6383a23d0",
+                                                  "isAsync": false,
+                                                  "allowAsync": false,
+                                                  "backgroundColorHex": "#00000000",
+                                                  "isDisabled": false,
+                                                  "isPausePointSet": false
+                                                },
+                                                "evaluation": {
+                                                  "left": "Input.CPPreDilutionRequired",
+                                                  "right": "True",
+                                                  "evaluator": "Equal"
+                                                },
+                                                "name": "Branch",
+                                                "description": "Branch if Input.CPPreDilutionRequired = True",
+                                                "helpText": "Evaluates a condition and branches accordingly",
+                                                "guid": "d2acc973-9d80-4391-803d-acef3089e6cb",
+                                                "isAsync": false,
+                                                "allowAsync": false,
+                                                "iconUrl": "PackIcon.Help [#FFFFFFFF:0:2]",
+                                                "backgroundColorHex": "#FFDEDE81",
+                                                "isDisabled": false,
+                                                "isPausePointSet": false
+                                              }
+                                            ],
+                                            "name": "Sequence",
+                                            "description": "Sequence",
+                                            "helpText": "A sequence of workflow elements",
+                                            "guid": "969ecd22-ecda-4d5b-a7e0-ecd3289f1d43",
+                                            "isAsync": false,
+                                            "allowAsync": false,
+                                            "backgroundColorHex": "#00000000",
+                                            "isDisabled": false,
+                                            "isPausePointSet": false
+                                          },
+                                          "right": {
+                                            "children": [
+                                              {
+                                                "$type": "Biosero.Workflow.Parallel, Biosero.Workflow.Core",
+                                                "left": {
+                                                  "children": [
+                                                    {
+                                                      "$type": "Biosero.Workflow.Commands.TransportCommand, Biosero.Workflow.Core",
+                                                      "inputParameters": [
+                                                        {
+                                                          "name": "Timeout (min)",
+                                                          "value": "20",
+                                                          "valueType": "Double",
+                                                          "defaultValue": "10"
+                                                        },
+                                                        {
+                                                          "name": "From",
+                                                          "value": "IO",
+                                                          "valueType": "String"
+                                                        },
+                                                        {
+                                                          "name": "To",
+                                                          "value": "CP",
+                                                          "valueType": "String"
+                                                        },
+                                                        {
+                                                          "name": "Barcodes",
+                                                          "value": "%CapsPlaceholderBarcodes%",
+                                                          "valueType": "String"
+                                                        },
+                                                        {
+                                                          "name": "Metadata",
+                                                          "value": "Source Orchestrator Workflow=Consumables Carousel;Zone=Cap Racks;Destination Orchestrator Workflow=Cap Racks;Placeholder=true",
+                                                          "valueType": "String"
+                                                        }
+                                                      ],
+                                                      "outputParameterMapping": [
+                                                        {
+                                                          "name": "Barcodes",
+                                                          "mapToGlobalVariableName": "Output.CapsBarcodes",
+                                                          "parameterType": "String"
+                                                        },
+                                                        {
+                                                          "name": "Request ID",
+                                                          "parameterType": "String"
+                                                        }
+                                                      ],
+                                                      "name": "Transport",
+                                                      "description": "Transport",
+                                                      "helpText": "Transports the specified barcode(s) from one station to another.",
+                                                      "guid": "cf73c027-9f12-44ff-acaa-6038a62f6720",
+                                                      "isAsync": false,
+                                                      "allowAsync": false,
+                                                      "iconUrl": "PackIcon.TransitConnectionVariant [#FFFFFFFF]",
+                                                      "backgroundColorHex": "#FF666666",
+                                                      "isDisabled": false,
+                                                      "isPausePointSet": false
+                                                    }
+                                                  ],
+                                                  "name": "Sequence",
+                                                  "description": "Sequence",
+                                                  "helpText": "A sequence of workflow elements",
+                                                  "guid": "301565b4-5f47-4657-bf14-e170009bfce0",
+                                                  "isAsync": false,
+                                                  "allowAsync": false,
+                                                  "backgroundColorHex": "#00000000",
+                                                  "isDisabled": false,
+                                                  "isPausePointSet": false
+                                                },
+                                                "right": {
+                                                  "children": [
+                                                    {
+                                                      "$type": "Biosero.Workflow.Branch, Biosero.Workflow.Core",
+                                                      "yes": {
+                                                        "children": [
+                                                          {
+                                                            "$type": "Biosero.Workflow.SetParameter, Biosero.Workflow.Core",
+                                                            "parameterName": "Input.TecanTipRacksSent",
+                                                            "leftOperand": "1",
+                                                            "isUnaryOperation": true,
+                                                            "operator": "Add",
+                                                            "rightOperand": "",
+                                                            "name": "Set Parameter",
+                                                            "description": "Input.TecanTipRacksSent = 1",
+                                                            "helpText": "Sets a parameter",
+                                                            "guid": "2d21d9c9-ca9e-4073-a371-fa652a1c17f9",
+                                                            "isAsync": false,
+                                                            "allowAsync": false,
+                                                            "iconUrl": "PackIcon.Equal [#FFFFFFFF]",
+                                                            "backgroundColorHex": "#FFA8E281",
+                                                            "isDisabled": false,
+                                                            "isPausePointSet": false
+                                                          },
+                                                          {
+                                                            "$type": "Biosero.Workflow.Parallel, Biosero.Workflow.Core",
+                                                            "left": {
+                                                              "children": [
+                                                                {
+                                                                  "$type": "Biosero.Workflow.Commands.TransportCommand, Biosero.Workflow.Core",
+                                                                  "inputParameters": [
+                                                                    {
+                                                                      "name": "Timeout (min)",
+                                                                      "value": "20",
+                                                                      "valueType": "Double",
+                                                                      "defaultValue": "10"
+                                                                    },
+                                                                    {
+                                                                      "name": "From",
+                                                                      "value": "IO",
+                                                                      "valueType": "String"
+                                                                    },
+                                                                    {
+                                                                      "name": "To",
+                                                                      "value": "CP",
+                                                                      "valueType": "String"
+                                                                    },
+                                                                    {
+                                                                      "name": "Barcodes",
+                                                                      "value": "50_1,50_2",
+                                                                      "valueType": "String"
+                                                                    },
+                                                                    {
+                                                                      "name": "Metadata",
+                                                                      "value": "Source Orchestrator Workflow=Consumables Carousel;Zone=50uL Tecan Tips;Destination Orchestrator Workflow=Consumables Carousel;Placeholder=true",
+                                                                      "valueType": "String"
+                                                                    }
+                                                                  ],
+                                                                  "outputParameterMapping": [
+                                                                    {
+                                                                      "name": "Barcodes",
+                                                                      "parameterType": "String"
+                                                                    },
+                                                                    {
+                                                                      "name": "Request ID",
+                                                                      "parameterType": "String"
+                                                                    }
+                                                                  ],
+                                                                  "name": "Transport",
+                                                                  "description": "Transport",
+                                                                  "helpText": "Transports the specified barcode(s) from one station to another.",
+                                                                  "guid": "428b87ae-3203-4a19-aea1-b49a1ebd5858",
+                                                                  "isAsync": false,
+                                                                  "allowAsync": false,
+                                                                  "iconUrl": "PackIcon.TransitConnectionVariant [#FFFFFFFF]",
+                                                                  "backgroundColorHex": "#FF666666",
+                                                                  "isDisabled": false,
+                                                                  "isPausePointSet": false
+                                                                }
+                                                              ],
+                                                              "name": "Sequence",
+                                                              "description": "Sequence",
+                                                              "helpText": "A sequence of workflow elements",
+                                                              "guid": "1bd1238b-9d5c-4b28-a600-a79af9b7ac80",
+                                                              "isAsync": false,
+                                                              "allowAsync": false,
+                                                              "backgroundColorHex": "#00000000",
+                                                              "isDisabled": false,
+                                                              "isPausePointSet": false
+                                                            },
+                                                            "right": {
+                                                              "children": [
+                                                                {
+                                                                  "$type": "Biosero.Workflow.Commands.TransportCommand, Biosero.Workflow.Core",
+                                                                  "inputParameters": [
+                                                                    {
+                                                                      "name": "Timeout (min)",
+                                                                      "value": "20",
+                                                                      "valueType": "Double",
+                                                                      "defaultValue": "10"
+                                                                    },
+                                                                    {
+                                                                      "name": "From",
+                                                                      "value": "IO",
+                                                                      "valueType": "String"
+                                                                    },
+                                                                    {
+                                                                      "name": "To",
+                                                                      "value": "CP",
+                                                                      "valueType": "String"
+                                                                    },
+                                                                    {
+                                                                      "name": "Barcodes",
+                                                                      "value": "200_1,200_2",
+                                                                      "valueType": "String"
+                                                                    },
+                                                                    {
+                                                                      "name": "Metadata",
+                                                                      "value": "Source Orchestrator Workflow=Consumables Carousel;Zone=200uL Tecan Tips;Destination Orchestrator Workflow=Consumables Carousel;Placeholder=true",
+                                                                      "valueType": "String"
+                                                                    }
+                                                                  ],
+                                                                  "outputParameterMapping": [
+                                                                    {
+                                                                      "name": "Barcodes",
+                                                                      "parameterType": "String"
+                                                                    },
+                                                                    {
+                                                                      "name": "Request ID",
+                                                                      "parameterType": "String"
+                                                                    }
+                                                                  ],
+                                                                  "name": "Transport",
+                                                                  "description": "Transport",
+                                                                  "helpText": "Transports the specified barcode(s) from one station to another.",
+                                                                  "guid": "b8713448-77c8-4ce4-8776-55cfd3561032",
+                                                                  "isAsync": false,
+                                                                  "allowAsync": false,
+                                                                  "iconUrl": "PackIcon.TransitConnectionVariant [#FFFFFFFF]",
+                                                                  "backgroundColorHex": "#FF666666",
+                                                                  "isDisabled": false,
+                                                                  "isPausePointSet": false
+                                                                }
+                                                              ],
+                                                              "name": "Sequence",
+                                                              "description": "Sequence",
+                                                              "helpText": "A sequence of workflow elements",
+                                                              "guid": "c8d8b812-2323-4d82-a0bd-2f90b9d5c343",
+                                                              "isAsync": false,
+                                                              "allowAsync": false,
+                                                              "backgroundColorHex": "#00000000",
+                                                              "isDisabled": false,
+                                                              "isPausePointSet": false
+                                                            },
+                                                            "name": "Parallel",
+                                                            "description": "Parallel",
+                                                            "helpText": "Executes two sequences in parallel",
+                                                            "guid": "496c559a-3cea-4213-b9c2-443cf7c2b551",
+                                                            "isAsync": false,
+                                                            "allowAsync": false,
+                                                            "iconUrl": "PackIcon.CallSplit [#FFFFFFFF:180]",
+                                                            "backgroundColorHex": "#FF72EAFF",
+                                                            "isDisabled": false,
+                                                            "isPausePointSet": false
+                                                          }
+                                                        ],
+                                                        "name": "Sequence",
+                                                        "description": "Sequence",
+                                                        "helpText": "A sequence of workflow elements",
+                                                        "guid": "b9500514-9d31-4b28-9f83-e2772925cf69",
+                                                        "isAsync": false,
+                                                        "allowAsync": false,
+                                                        "backgroundColorHex": "#00000000",
+                                                        "isDisabled": false,
+                                                        "isPausePointSet": false
+                                                      },
+                                                      "no": {
+                                                        "children": [],
+                                                        "name": "Sequence",
+                                                        "description": "Sequence",
+                                                        "helpText": "A sequence of workflow elements",
+                                                        "guid": "9509f046-0ba9-4f1d-bd4b-077736257a6f",
+                                                        "isAsync": false,
+                                                        "allowAsync": false,
+                                                        "backgroundColorHex": "#00000000",
+                                                        "isDisabled": false,
+                                                        "isPausePointSet": false
+                                                      },
+                                                      "evaluation": {
+                                                        "left": "Input.TecanTipRacksSent",
+                                                        "right": "0",
+                                                        "evaluator": "Equal"
+                                                      },
+                                                      "name": "Branch",
+                                                      "description": "Branch if Input.TecanTipRacksSent = 0",
+                                                      "helpText": "Evaluates a condition and branches accordingly",
+                                                      "guid": "02ac4b80-3387-434c-aacb-14e347224375",
+                                                      "isAsync": false,
+                                                      "allowAsync": false,
+                                                      "iconUrl": "PackIcon.Help [#FFFFFFFF:0:2]",
+                                                      "backgroundColorHex": "#FFDEDE81",
+                                                      "isDisabled": false,
+                                                      "isPausePointSet": false
+                                                    }
+                                                  ],
+                                                  "name": "Sequence",
+                                                  "description": "Sequence",
+                                                  "helpText": "A sequence of workflow elements",
+                                                  "guid": "f0f5c1ec-d3da-4146-9f6b-0d2ff309e180",
+                                                  "isAsync": false,
+                                                  "allowAsync": false,
+                                                  "backgroundColorHex": "#00000000",
+                                                  "isDisabled": false,
+                                                  "isPausePointSet": false
+                                                },
+                                                "name": "Parallel",
+                                                "description": "Parallel",
+                                                "helpText": "Executes two sequences in parallel",
+                                                "guid": "5ac25d63-c73a-4045-9fcd-3df744cf5e3b",
+                                                "isAsync": false,
+                                                "allowAsync": false,
+                                                "iconUrl": "PackIcon.CallSplit [#FFFFFFFF:180]",
+                                                "backgroundColorHex": "#FF72EAFF",
+                                                "isDisabled": false,
+                                                "isPausePointSet": false
+                                              }
+                                            ],
+                                            "name": "Sequence",
+                                            "description": "Sequence",
+                                            "helpText": "A sequence of workflow elements",
+                                            "guid": "41ac8a2b-3c95-4741-90fe-9c8cbbe135c8",
+                                            "isAsync": false,
+                                            "allowAsync": false,
+                                            "backgroundColorHex": "#00000000",
+                                            "isDisabled": false,
+                                            "isPausePointSet": false
+                                          },
+                                          "name": "Parallel",
+                                          "description": "Parallel",
+                                          "helpText": "Executes two sequences in parallel",
+                                          "guid": "7e01f6ee-e65f-4663-b304-4e8bf2fa1f19",
+                                          "isAsync": false,
+                                          "allowAsync": false,
+                                          "iconUrl": "PackIcon.CallSplit [#FFFFFFFF:180]",
+                                          "backgroundColorHex": "#FF72EAFF",
+                                          "isDisabled": false,
+                                          "isPausePointSet": false
+                                        }
+                                      ],
+                                      "name": "Sequence",
+                                      "description": "Sequence",
+                                      "helpText": "A sequence of workflow elements",
+                                      "guid": "070cedf9-55da-4989-8670-8932f447d9af",
+                                      "isAsync": false,
+                                      "allowAsync": false,
+                                      "backgroundColorHex": "#00000000",
+                                      "isDisabled": false,
+                                      "isPausePointSet": false
+                                    },
+                                    "name": "Parallel",
+                                    "description": "Parallel",
+                                    "helpText": "Executes two sequences in parallel",
+                                    "guid": "7140bee7-01f9-46bf-ac42-6c875470f2b9",
+                                    "isAsync": false,
+                                    "allowAsync": false,
+                                    "iconUrl": "PackIcon.CallSplit [#FFFFFFFF:180]",
+                                    "backgroundColorHex": "#FF72EAFF",
+                                    "isDisabled": false,
+                                    "isPausePointSet": false
+                                  }
+                                ],
+                                "name": "Sequence",
+                                "description": "Sequence",
+                                "helpText": "A sequence of workflow elements",
+                                "guid": "b8ba0efa-23b3-4772-876c-0cb809850d1f",
+                                "isAsync": false,
+                                "allowAsync": false,
+                                "backgroundColorHex": "#00000000",
+                                "isDisabled": false,
+                                "isPausePointSet": false
+                              },
+                              "name": "Parallel",
+                              "description": "Parallel",
+                              "helpText": "Executes two sequences in parallel",
+                              "guid": "5923d2b7-61f7-47d3-8304-b13293033111",
+                              "isAsync": false,
+                              "allowAsync": false,
+                              "iconUrl": "PackIcon.CallSplit [#FFFFFFFF:180]",
+                              "backgroundColorHex": "#FF72EAFF",
+                              "isDisabled": false,
+                              "isPausePointSet": false
+                            }
+                          ],
+                          "name": "Sequence",
+                          "description": "Sequence",
+                          "helpText": "A sequence of workflow elements",
+                          "guid": "75f198d1-3e72-4522-a705-bca33ef1926d",
+                          "isAsync": false,
+                          "allowAsync": false,
+                          "backgroundColorHex": "#00000000",
+                          "isDisabled": false,
+                          "isPausePointSet": false
+                        },
+                        "name": "Parallel",
+                        "description": "Parallel",
+                        "helpText": "Executes two sequences in parallel",
+                        "guid": "c825dd06-0563-44b7-b3c5-4f54a9bfc3cc",
+                        "isAsync": false,
+                        "allowAsync": false,
+                        "iconUrl": "PackIcon.CallSplit [#FFFFFFFF:180]",
+                        "backgroundColorHex": "#FF72EAFF",
+                        "isDisabled": false,
+                        "isPausePointSet": false
+                      }
+                    ],
+                    "name": "Sequence",
+                    "description": "Sequence",
+                    "helpText": "A sequence of workflow elements",
+                    "guid": "d25898f8-8505-4e56-b26e-5a143db689f2",
+                    "isAsync": false,
+                    "allowAsync": false,
+                    "backgroundColorHex": "#00000000",
+                    "isDisabled": false,
+                    "isPausePointSet": false
+                  },
+                  "name": "Parallel",
+                  "description": "Parallel",
+                  "helpText": "Executes two sequences in parallel",
+                  "guid": "6d76fd4f-78d2-4bae-9b8d-ef7790863688",
+                  "isAsync": false,
+                  "allowAsync": false,
+                  "iconUrl": "PackIcon.CallSplit [#FFFFFFFF:180]",
+                  "backgroundColorHex": "#FF72EAFF",
+                  "isDisabled": false,
+                  "isPausePointSet": false
+                }
+              ],
+              "name": "Sequence",
+              "description": "Sequence",
+              "helpText": "A sequence of workflow elements",
+              "guid": "0b3b7b56-cc8d-4c1e-96b4-23a7e9489fc4",
+              "isAsync": false,
+              "allowAsync": false,
+              "backgroundColorHex": "#00000000",
+              "isDisabled": false,
+              "isPausePointSet": false
+            },
+            "name": "Parallel",
+            "description": "Parallel",
+            "helpText": "Executes two sequences in parallel",
+            "guid": "924a5d38-9750-4856-91d5-ccfa17454247",
+            "isAsync": false,
+            "allowAsync": false,
+            "iconUrl": "PackIcon.CallSplit [#FFFFFFFF:180]",
+            "backgroundColorHex": "#FF72EAFF",
+            "isDisabled": false,
+            "isPausePointSet": false
+          }
+        ],
+        "name": "Sequence",
+        "description": "Sequence",
+        "helpText": "A sequence of workflow elements",
+        "guid": "5a48165d-543f-46fa-a8a6-bac1deef69c8",
+        "isAsync": false,
+        "allowAsync": false,
+        "backgroundColorHex": "#00000000",
+        "isDisabled": false,
+        "isPausePointSet": false
+      }
+    }
+  ],
+  "parameters": [
+    {
+      "name": "Input.ThawTime",
+      "value": "1",
+      "valueType": "String",
+      "defaultValue": "1",
+      "validationRules": [],
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.SourceBarcodeDetails",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "validationRules": [],
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.LabwareTypeOneName",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "validationRules": [],
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.LabwareTypeTwoName",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "validationRules": [],
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.LabwareTypeThreeName",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "validationRules": [],
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.LabwareOneMetadata",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "validationRules": [],
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.LabwareTwoMetadata",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "validationRules": [],
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.LabwareThreeMetadata",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "validationRules": [],
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.CherryPickTotal",
+      "value": "2",
+      "valueType": "Integer",
+      "defaultValue": "0",
+      "validationRules": [],
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "LabwareTypeOnePlaceholderBarcodes",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "validationRules": [],
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "LabwareTypeTwoPlaceholderBarcodes",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "validationRules": [],
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "LabwareTypeThreePlaceholderBarcodes",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "validationRules": [],
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.LabwareTypeOneTotal",
+      "value": "0",
+      "valueType": "Integer",
+      "defaultValue": "0",
+      "validationRules": [],
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.LabwareTypeTwoTotal",
+      "value": "0",
+      "valueType": "Integer",
+      "defaultValue": "0",
+      "validationRules": [],
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.LabwareTypeThreeTotal",
+      "value": "0",
+      "valueType": "Integer",
+      "defaultValue": "0",
+      "validationRules": [],
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "CapsPlaceholderBarcodes",
+      "value": "311CAP1",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.WorkflowNumber",
+      "value": "1",
+      "valueType": "Integer",
+      "defaultValue": "0",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.TecanTipRacksSent",
+      "value": "0",
+      "valueType": "Integer",
+      "defaultValue": "0",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.Job Number",
+      "value": "3",
+      "valueType": "Integer",
+      "defaultValue": "3",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Output.OutputRempRacks",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "validationRules": [],
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "TecanTipRacksDay",
+      "value": "0",
+      "valueType": "Integer",
+      "defaultValue": "0",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Output.CapsBarcodes",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Output.AssayPlatesLabwareTwo",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.Tecan Job ID",
+      "value": "0",
+      "valueType": "Integer",
+      "defaultValue": "0",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.RunInventory",
+      "value": "False",
+      "valueType": "Boolean",
+      "defaultValue": "False",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.LabwareTypePreDilution",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "96 SWP Greiner PP 340ul",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.CPPreDilutionRequired",
+      "value": "False",
+      "valueType": "Boolean",
+      "defaultValue": "False",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.LabwarePreDilutionMetadata",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "PDPPlaceholderBarcodes",
+      "value": "311PDP1",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.Labware One Volume",
+      "value": "11",
+      "valueType": "Double",
+      "defaultValue": "0",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.Labware Two Volume",
+      "value": "0",
+      "valueType": "Double",
+      "defaultValue": "0",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.Labware Three Volume",
+      "value": "0",
+      "valueType": "Double",
+      "defaultValue": "0",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "TotalVelocity10TipBoxes",
+      "value": "0",
+      "valueType": "Integer",
+      "defaultValue": "0",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "VelocityTips10PlaceholderBarcodes",
+      "value": "",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "VelocityTips30PlaceholderBarcodes",
+      "value": "Velocity30_1,Velocity30_2",
+      "valueType": "String",
+      "defaultValue": "",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.InventorySkyline",
+      "value": "False",
+      "valueType": "Boolean",
+      "defaultValue": "False",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.InventoryHotelsCarousel",
+      "value": "False",
+      "valueType": "Boolean",
+      "defaultValue": "False",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.InventoryIncubator",
+      "value": "False",
+      "valueType": "Boolean",
+      "defaultValue": "False",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.InventoryStackCarousel",
+      "value": "False",
+      "valueType": "Boolean",
+      "defaultValue": "False",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "Input.DMSOVolume",
+      "value": "0",
+      "valueType": "Double",
+      "defaultValue": "0",
+      "tags": {
+        "$type": "System.Collections.ObjectModel.ObservableCollection`1[[System.String, System.Private.CoreLib]], System.ObjectModel",
+        "$values": [
+          ""
+        ]
+      }
+    }
+  ],
+  "scripts": [
+    {
+      "name": "Populate_Placeholder_Destination_Barcodes",
+      "code": "using System;\r\nusing System.Collections.Generic;\r\nusing System.Text;\r\nusing System.Linq;\r\nusing Biosero.Workflow;\r\n\r\nnamespace Biosero.Scripting\r\n{\r\n    public class Populate_Placeholder_Destination_Barcodes : WorkflowScript\r\n    {\r\n        public Populate_Placeholder_Destination_Barcodes(WorkflowEnvironment environment) : base(environment) {}\r\n\r\n        public void Run(Dictionary<string, object> parameters)\r\n        {\r\n\t//    parameters[\"OutputRempRacks\"] = \"ltty,mm\";\r\n\t    \r\n           int LabwareTypeOneTotal = (int)parameters[\"Input.LabwareTypeOneTotal\"]; \r\n           int LabwareTypeTwoTotal = (int)parameters[\"Input.LabwareTypeTwoTotal\"]; \r\n           int LabwareTypeThreeTotal = (int)parameters[\"Input.LabwareTypeThreeTotal\"]; \r\n           int CherryPickTotal = (int)parameters[\"Input.CherryPickTotal\"];\r\n           int JobNumber = (int)parameters[\"Input.Job Number\"];\r\n         //  string OutputRempRacks = (string)parameters[\"OutputRempRacks\"]; \r\n           string OutputRempRacks = (string)parameters[\"Output.OutputRempRacks\"]; \r\n           \r\n           string LabwareTypeOneName = (string)parameters[\"Input.LabwareTypeOneName\"]; \r\n           string LabwareTypeTwoName = (string)parameters[\"Input.LabwareTypeTwoName\"]; \r\n           string LabwareTypeThreeName = (string)parameters[\"Input.LabwareTypeThreeName\"]; \r\n           \r\n           string LabwareTypeOnePlaceholderBarcodes = \"\";\r\n           string LabwareTypeTwoPlaceholderBarcodes = \"\";\r\n           string LabwareTypeThreePlaceholderBarcodes = \"\";\r\n           string CapsPlaceholderBarcodes = \"\";\r\n           string PDPPlaceholderBarcodes = \"\";\r\n           DateTime currentDate = DateTime.Now;\r\n           int CurrentDay = currentDate.Day;\r\n            int TotalValidatedSources = 0;\r\n           \r\n           \r\n\tList<string> REMPReturnedSources = OutputRempRacks.Split(',').ToList();\r\n\tint REMPSourcesToProcess = REMPReturnedSources.Count;\r\n\t\r\n\t\r\n\r\n\t\r\n\t\r\n\t// LabwareTypeOne = for each plate created on CP, 1 plate to transfer into\r\n\t\r\n\tfor (int i = 1; i <= (CherryPickTotal); i++)\r\n\t\t{\r\n\t\t    LabwareTypeOnePlaceholderBarcodes = LabwareTypeOnePlaceholderBarcodes + JobNumber.ToString() + CurrentDay.ToString() +  \"One\" +  i + \",\";\r\n\t\t}\r\n\t    LabwareTypeOnePlaceholderBarcodes = LabwareTypeOnePlaceholderBarcodes.TrimEnd(',');\r\n\t    parameters[\"LabwareTypeOnePlaceholderBarcodes\"] = LabwareTypeOnePlaceholderBarcodes;\r\n\t    \r\n\t//    System.IO.File.AppendAllLines(@\"C:\\Users\\LabTech\\Documents\\rr.txt\", new string []{ LabwareTypeOnePlaceholderBarcodes.ToString()});\r\n\t\r\n\t\r\n\t//   LabwareTypeTwo = ther number of plates to create on CP\r\n\t\r\n\tfor (int i = 1; i <= (CherryPickTotal); i++)\r\n\t\t{\r\n\t\t    LabwareTypeTwoPlaceholderBarcodes = LabwareTypeTwoPlaceholderBarcodes +JobNumber.ToString() +  CurrentDay.ToString() + \"Two\" +  i + \",\";\r\n\t\t}\r\n\t    LabwareTypeTwoPlaceholderBarcodes = LabwareTypeTwoPlaceholderBarcodes.TrimEnd(',');\r\n\t    parameters[\"LabwareTypeTwoPlaceholderBarcodes\"] = LabwareTypeTwoPlaceholderBarcodes;\r\n\t\r\n\t//LabwareTypeThree = number of copies per each CP plate\r\n\t//System.IO.File.AppendAllLines(@\"C:\\Users\\LabTech\\Documents\\rr.txt\", new string []{ (CherryPickTotal*LabwareTypeThreeTotal).ToString()});\r\n\tfor (int i = 1; i <= (CherryPickTotal*LabwareTypeThreeTotal); i++)\r\n\t\t{\r\n\t\t    LabwareTypeThreePlaceholderBarcodes = LabwareTypeThreePlaceholderBarcodes +JobNumber.ToString() +  CurrentDay.ToString()   + \"Three\" +  i + \",\";\r\n\t\t}\r\n\t    LabwareTypeThreePlaceholderBarcodes = LabwareTypeThreePlaceholderBarcodes.TrimEnd(',');\r\n\t    parameters[\"LabwareTypeThreePlaceholderBarcodes\"] = LabwareTypeThreePlaceholderBarcodes;\r\n\t\r\n\t\r\n\t// Cap  = for each source, 1 Cap Holder\r\n\t\r\n\tfor (int i = 1; i <= (REMPSourcesToProcess); i++)\r\n\t\t{\r\n\t\t    CapsPlaceholderBarcodes = CapsPlaceholderBarcodes +JobNumber.ToString() +  CurrentDay.ToString()   + \"CAP\" +  i + \",\";\r\n\t\t}\r\n\t    CapsPlaceholderBarcodes = CapsPlaceholderBarcodes.TrimEnd(',');\r\n\t    parameters[\"CapsPlaceholderBarcodes\"] = CapsPlaceholderBarcodes;\r\n\t\r\n\t\r\n\t// PDP  = for each source, 1 PDP \r\n\t\r\n\tfor (int i = 1; i <= (REMPSourcesToProcess); i++)\r\n\t\t{\r\n\t\t    PDPPlaceholderBarcodes = PDPPlaceholderBarcodes +JobNumber.ToString() +  CurrentDay.ToString()   + \"PDP\" +  i + \",\";\r\n\t\t}\r\n\t    PDPPlaceholderBarcodes = PDPPlaceholderBarcodes.TrimEnd(',');\r\n\t    parameters[\"PDPPlaceholderBarcodes\"] = PDPPlaceholderBarcodes;\r\n\t    \r\n\t    \r\n\t    \r\n\t\r\n\t\r\n        }\r\n    }\r\n}",
+      "language": "C#"
+    },
+    {
+      "name": "RequiredVelocityTips ",
+      "code": "using System;\r\nusing System.Collections.Generic;\r\nusing System.Text;\r\nusing System.Linq;\r\nusing Biosero.Workflow;\r\n\r\nnamespace Biosero.Scripting\r\n{\r\n    public class RequiredVelocityTips_ : WorkflowScript\r\n    {\r\n        public RequiredVelocityTips_(WorkflowEnvironment environment) : base(environment) {}\r\n\r\n        public void Run(Dictionary<string, object> parameters)\r\n        {\r\n        \r\n        \r\n                /*\r\n        Workflow requires Replicate and SD\r\n\r\nReplicate = 1 tip per 1 source\r\nSD - 1 tip per 1 dest\r\n\r\nWorflow 1 required - \r\n\r\nSD on the CP plate created for Labware type 2 \r\n\r\nTrasnsfer  to labware type 1 \r\n\r\nReplication to  labware type 3 \r\n\r\nexample:\r\n\r\n3 sources in order - creating 2 plates\r\n\r\n2  CP plated created \r\n\r\nRequiring - 3 replicates\r\n\r\nNeeded:\r\n\r\n1 Velocity rack for DMSO\r\n3 Velocity racks for the SD step\r\n3 Velocity racks for the Rep step\r\n\r\n \r\n        */\r\n           int LabwareTypeOneTotal = (int)parameters[\"Input.LabwareTypeOneTotal\"]; \r\n           double LabwareTypeOneVolume = (double)parameters[\"Input.Labware One Volume\"]; \r\n           double DMSOVolume = (double)parameters[\"Input.DMSOVolume\"]; \r\n           int LabwareOneST10Total = 0;\r\n           int LabwareOneST30Total = 0;\r\n           double LabwareTypeThreeVolume = (double)parameters[\"Input.Labware Three Volume\"]; \r\n           int LabwareThreeST10Total = 0;\r\n           int LabwareThreeST30Total = 0;\r\n           int DMSOST10Total = 0;\r\n           int DMSOST30Total = 0;\r\n           int LabwareTypeThreeTotal = (int)parameters[\"Input.LabwareTypeThreeTotal\"]; \r\n           int CherryPickTotal = (int)parameters[\"Input.CherryPickTotal\"]; \r\n           int WorkflowNumber = (int)parameters[\"Input.WorkflowNumber\"]; \r\n           int V10WorkflowStepsTotal = 0;\r\n           int V30WorkflowStepsTotal = 0;\r\n           int DMSOWorkflowStepsTotal = 0;\r\n       //    string VelocityTypeLabwareOne = \"\";\r\n       //    string VelocityTypeLabwarThreee = \"\";\r\n           string VelocityTips10PlaceholderBarcodes = \"\";\r\n           string VelocityTips30PlaceholderBarcodes = \"\";\r\n           \r\n           \r\n           if (LabwareTypeOneVolume <=7)\r\n             {\r\n             LabwareOneST10Total = 1;\r\n             }\r\n             else if ((LabwareTypeOneVolume>7) && (LabwareTypeOneVolume <=28))\r\n             {\r\n             LabwareOneST30Total = 1;\r\n             }\r\n         /*    else if ((LabwareTypeOneVolume>28) && (LabwareTypeOneVolume <=35))\r\n             {\r\n             LabwareOneST30Total = 1;\r\n             LabwareOneST10Total = 1;\r\n             }\r\n             else if ((LabwareTypeOneVolume>35) && (LabwareTypeOneVolume <=42))\r\n             {\r\n             LabwareOneST30Total = 2;\r\n             }*/\r\n           \r\n           if ( (LabwareTypeThreeVolume <=7) && (LabwareTypeThreeVolume > 0))\r\n             {\r\n             LabwareThreeST10Total = 1;\r\n             }\r\n             else if ((LabwareTypeThreeVolume>7) && (LabwareTypeThreeVolume <=28))\r\n             {\r\n             LabwareThreeST30Total = 1;\r\n             }\r\n           /*  else if ((LabwareTypeThreeVolume>28) && (LabwareTypeThreeVolume <=35))\r\n             {\r\n             LabwareThreeST30Total = 1;\r\n             LabwareThreeST10Total = 1;\r\n             }\r\n             else if ((LabwareTypeThreeVolume>35) && (LabwareTypeThreeVolume <=42))\r\n             {\r\n             LabwareThreeST30Total = 2;\r\n             }\r\n             */\r\n           \r\n           \r\n           if (DMSOVolume <=7)\r\n             {\r\n             DMSOST10Total = 1;\r\n             }\r\n             else if ((DMSOVolume>7) && (DMSOVolume <=28))\r\n             {\r\n             DMSOST30Total = 1;\r\n             }\r\n         /*    else if ((DMSOVolume>28) && (DMSOVolume <=35))\r\n             {\r\n             LabwareOneST30Total = 1;\r\n             LabwareOneST10Total = 1;\r\n             }\r\n             else if ((DMSOVolume>35) && (DMSOVolume <=42))\r\n             {\r\n             LabwareOneST30Total = 2;\r\n             }*/\r\n             \r\n             \r\n             \r\n    //       System.IO.File.AppendAllLines(@\"C:\\Users\\LabTech\\Documents\\xx.txt\", new string []{ LabwareThreeST10Total.ToString()});\r\nswitch (WorkflowNumber)\r\n{\r\n    case 1:\r\n        V10WorkflowStepsTotal = ( CherryPickTotal*LabwareOneST10Total) +( CherryPickTotal*LabwareThreeST10Total);\r\n        V30WorkflowStepsTotal = ( CherryPickTotal*LabwareOneST30Total) +( CherryPickTotal*LabwareThreeST30Total);\r\n        \r\n        \tif (DMSOST10Total > 0)\r\n        \t\t{\r\n        \t\tV10WorkflowStepsTotal = V10WorkflowStepsTotal + DMSOST10Total;\r\n        \t\t}\r\n        else\r\n        \t\t{\r\n        \t\tV30WorkflowStepsTotal = V30WorkflowStepsTotal + DMSOST30Total;\r\n        \t\t}\r\n        \r\n        break;\r\n  //  default:\r\n //       Console.WriteLine(\"Other day\");\r\n   //     break;\r\n}\r\n        \r\n \r\n\t    parameters[\"TotalVelocity10TipBoxes\"] = V10WorkflowStepsTotal;\r\n\t    parameters[\"TotalVelocity30TipBoxes\"] = V30WorkflowStepsTotal;\r\n           \r\n\t\r\n\tfor (int i = 1; i <= (V10WorkflowStepsTotal); i++)\r\n\t\t{\r\n\t\t    VelocityTips10PlaceholderBarcodes = VelocityTips10PlaceholderBarcodes +\"Velocity10_\" +  i + \",\";\r\n\t\t}\r\n\t    VelocityTips10PlaceholderBarcodes = VelocityTips10PlaceholderBarcodes.TrimEnd(',');\r\n\t    parameters[\"VelocityTips10PlaceholderBarcodes\"] = VelocityTips10PlaceholderBarcodes;\r\n           \r\n\t\r\n\tfor (int i = 1; i <= (V30WorkflowStepsTotal); i++)\r\n\t\t{\r\n\t\t    VelocityTips30PlaceholderBarcodes = VelocityTips30PlaceholderBarcodes +\"Velocity30_\" +  i + \",\";\r\n\t\t}\r\n\t    VelocityTips30PlaceholderBarcodes = VelocityTips30PlaceholderBarcodes.TrimEnd(',');\r\n\t    parameters[\"VelocityTips30PlaceholderBarcodes\"] = VelocityTips30PlaceholderBarcodes;\r\n\t    \r\n\t//    System.IO.File.AppendAllLines(@\"C:\\Users\\LabTech\\Documents\\xs.txt\", new string []{ WorkflowStepsTotal.ToString()});\r\n        \r\n\t\r\n\t\r\n        }\r\n    }\r\n}",
+      "language": "C#"
+    },
+    {
+      "name": "ValidateSufficientCapsHolders",
+      "code": "using System;\r\nusing System.Collections.Generic;\r\nusing System.Text;\r\nusing System.Linq;\r\nusing Biosero.Workflow;\r\n\r\nnamespace Biosero.Scripting\r\n{\r\n    public class ValidateSufficientCapsHolders : WorkflowScript\r\n    {\r\n        public ValidateSufficientCapsHolders(WorkflowEnvironment environment) : base(environment) {}\r\n\r\n        public void Run(Dictionary<string, object> parameters)\r\n        {\r\n\t    \r\n           string CapHoldersBarcodes = (string)parameters[\"Input.CapHoldersBarcodes\"]; \r\n           string OutputRempRacks = (string)parameters[\"OutputRempRacks\"]; \r\n           \r\n           \r\n\tList<string> OutputRempRacksList = OutputRempRacks.Split(',').ToList();\r\n\tint OutputRempRacksListCount = OutputRempRacksList.Count;\r\n           \r\n           \r\n\tList<string> CapHoldersBarcodesList = CapHoldersBarcodes.Split(',').ToList();\r\n\tint CapHoldersBarcodesListCount = CapHoldersBarcodesList.Count;\r\n        }\r\n    }\r\n}",
+      "language": "C#"
+    },
+    {
+      "name": "CheckTecanTipsSentStatus",
+      "code": "using System;\r\nusing System.Collections.Generic;\r\nusing System.Text;\r\nusing System.Linq;\r\nusing Biosero.Workflow;\r\n\r\nnamespace Biosero.Scripting\r\n{\r\n    public class CheckTecanTipsSentStatus : WorkflowScript\r\n    {\r\n        public CheckTecanTipsSentStatus(WorkflowEnvironment environment) : base(environment) {}\r\n\r\n        public void Run(Dictionary<string, object> parameters)\r\n        {\r\n           int TecanTipRacksDay = (int)parameters[\"Input.TecanTipRacksDay\"];\r\n           int DayToday =  (int)DateTime.Now.DayOfWeek;\r\n           int TecanTipRacksSent = (int)parameters[\"Input.TecanTipRacksSent\"]; \r\n      //     int CurrentTecanTipValue = 0;\r\n           \r\n           \r\n           // check if a day passed isnce tips were sent\r\n           if( (DayToday != TecanTipRacksDay) && (TecanTipRacksSent != 0))\r\n             {\r\n\t  CurrentTecanTipValue = 0;\r\n\t  parameters[\"TecanTipRacksDay\"] = DayToday;\r\n             }\r\n           \r\n           // check if first ever delivery\r\n          else  if( (TecanTipRacksDay==0) && (TecanTipRacksSent == 0))\r\n             {\r\n\t  CurrentTecanTipValue = 1;\r\n\t  parameters[\"TecanTipRacksDay\"] = DayToday;\r\n             }\r\n             \r\n             \r\n             \r\n               parameters[\"TecanTipRacksSent\"] = CurrentTecanTipValue;\r\n                   System.IO.File.AppendAllLines(@\"C:\\Users\\LabTech\\Documents\\TECAN.txt\", new string []{ \"Day= \" +DayToday.ToString()});\r\n                   System.IO.File.AppendAllLines(@\"C:\\Users\\LabTech\\Documents\\TECAN.txt\", new string []{ \"Value= \" + CurrentTecanTipValue.ToString()});\r\n               \r\n        }\r\n    }\r\n}",
+      "language": "C#"
+    }
+  ],
+  "globalScriptReferences": [
+    "Biosero.Workflow.Core.dll",
+    "Biosero.DataModels.dll"
+  ],
+  "screens": [],
+  "deviceRequirements": [],
+  "iconUrl": "PackIcon.Portrait [#FFFFFF:0:0]",
+  "color": "#FF45FF00",
+  "name": "Workflow 1 - (CP - SD (Bravo) - Transfer - ECHO)",
+  "category": "Workflows",
+  "lastModified": "0001-01-01T00:00:00+00:00",
+  "parameterReferenceIndicator": "%"
+}
