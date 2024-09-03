@@ -1,0 +1,117 @@
+#r Roche.LAMA1.dll
+
+using Biosero.DataServices.Client;
+using Biosero.Orchestrator.WorkflowService;
+using Newtonsoft.Json;
+using System;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Collections.Generic;
+using System.Text;
+using System.Linq;
+using Roche.LAMA1;
+using Roche.LAMA1.Models;
+using Roche.LAMA1.MosaicTypes;
+using Biosero.DataServices.RestClient;
+using Biosero.DataModels.Events;
+using Biosero.DataModels.Ordering;
+using Biosero.DataModels.Clients;
+using Biosero.DataModels.Resources;
+using System.Security.Cryptography;
+using System.Collections;
+
+
+namespace Biosero.Scripting
+{
+    public class SetRemainingSourcesToTransferred
+    {
+        public async Task RunAsync(DataServicesClient client, WorkflowContext context, CancellationToken cancellationToken)
+        {
+
+            string ProcessedRacks = context.GetGlobalVariableValue<string>("IOC Processed Racks");
+            string ProcessedCrashPlates = context.GetGlobalVariableValue<string>("IOC Processed Crash Plates");
+            string RequestedOrder = context.GetGlobalVariableValue<string>("Input.OrderId");
+
+
+            await context.AddOrUpdateGlobalVariableAsync("REMPRackToBeTransferred", true);
+            await context.AddOrUpdateGlobalVariableAsync("CrashPlateToBeTransferred", true);
+            Console.WriteLine($"  Current value for CrashPlateToBeTransferred is {true}  " + Environment.NewLine);
+            Console.WriteLine($"  Current value for REMPRackToBeTransferred is {true}  " + Environment.NewLine);
+
+
+            string API_BASE_URL = "http://192.168.14.10:8105/api/v2.0/";
+            IQueryClient _queryClient = new QueryClient(API_BASE_URL);
+            IAccessioningClient _accessioningClient = new AccessioningClient(API_BASE_URL);
+            IEventClient _eventClient = new EventClient(API_BASE_URL);
+
+
+            IdentityHelper _identityHelper;
+
+
+            //Build out and register the root identities (i.e Mosaic Job) if they do not exist
+            _identityHelper = new IdentityHelper(_queryClient, _accessioningClient, _eventClient);
+            _identityHelper.BuildBaseIdentities();
+
+
+            //Get all the sources associated with this order
+            var sources = _identityHelper.GetSources(RequestedOrder).ToList();
+
+            //Get all the destinations associated with this order
+            var destinations = _identityHelper.GetDestinations(RequestedOrder).ToList();
+            //Get all the jobs
+            var jobs = _identityHelper.GetJobs(RequestedOrder).ToList();
+
+            foreach (var source in sources)
+            {
+                int identityJobID = source.JobId; // Identity Job as string
+                string SourceIdentityID = source.Identifier;
+                string SourceIdentityName = source.Name;
+                string SourceIdentityType = source.TypeIdentifier;
+                string SourceIndentityState = source.Status.ToString();
+
+
+
+                Console.WriteLine($"  Current source is {SourceIdentityName} with state set to {SourceIndentityState}  " + Environment.NewLine);
+
+                if ((ProcessedRacks == SourceIdentityName) && (ProcessedRacks.Contains(SourceIdentityName)) && (SourceIndentityState == "Ready"))
+                {
+                    var currentStatus = SourceIndentityState;
+                    source.Properties.SetValue("Status", "Transporting");
+                    _identityHelper.Register(source, identityJobID, RequestedOrder);
+                    await context.AddOrUpdateGlobalVariableAsync("REMPRackToBeTransferred", true);
+                    Console.WriteLine($"  Current value for REMPRackToBeTransferred is {true}  " + Environment.NewLine);
+
+                }
+                else
+                {
+
+                    await context.AddOrUpdateGlobalVariableAsync("REMPRackToBeTransferred", false);
+                    Console.WriteLine($"  Current value for REMPRackToBeTransferred is {false}  " + Environment.NewLine);
+                }
+
+                if ((ProcessedCrashPlates == SourceIdentityName) && (ProcessedCrashPlates.Contains(SourceIdentityName)) && (SourceIndentityState == "Ready"))
+                {
+                    var currentStatus = SourceIndentityState;
+                    source.Properties.SetValue("Status", "Transporting");
+                    _identityHelper.Register(source, identityJobID, RequestedOrder);
+                    await context.AddOrUpdateGlobalVariableAsync("CrashPlateToBeTransferred", true);
+                    Console.WriteLine($"  Current value for CrashPlateToBeTransferred is {true}  " + Environment.NewLine);
+                }
+                else
+                {
+
+                    await context.AddOrUpdateGlobalVariableAsync("CrashPlateToBeTransferred", false);
+                    Console.WriteLine($"  Current value for CrashPlateToBeTransferred is {false}  " + Environment.NewLine);
+
+                }
+
+            }
+
+
+        }
+
+
+    }
+}
+
+
